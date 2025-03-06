@@ -1,0 +1,275 @@
+{
+  "x": [
+    {
+      "type": "x",
+      "main": false,
+      "attr_type": "Q",
+      "fixed_distance": 39.85294117647059,
+      "range": {
+        "begin": 327.6357612609863,
+        "end": 1681.197998046875
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 327.6357612609863,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 0,
+          "content": "2013"
+        },
+        {
+          "position": {
+            "x": 446.40570068359375,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 1,
+          "content": "2014"
+        },
+        {
+          "position": {
+            "x": 605.7127685546875,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 2,
+          "content": "2015"
+        },
+        {
+          "position": {
+            "x": 765.019775390625,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 3,
+          "content": "2016"
+        },
+        {
+          "position": {
+            "x": 924.7633056640625,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 4,
+          "content": "2017"
+        },
+        {
+          "position": {
+            "x": 1084.0704345703125,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 5,
+          "content": "2018"
+        },
+        {
+          "position": {
+            "x": 1243.37744140625,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 6,
+          "content": "2019"
+        },
+        {
+          "position": {
+            "x": 1402.6843719482422,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 7,
+          "content": "2020"
+        },
+        {
+          "position": {
+            "x": 1562.427978515625,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 8,
+          "content": "2021"
+        },
+        {
+          "position": {
+            "x": 1681.197998046875,
+            "y": 1201.221653172977
+          },
+          "controlled": null,
+          "visual_object": 9,
+          "content": "2022"
+        }
+      ],
+      "align": "up"
+    }
+  ],
+  "y": [
+    {
+      "type": "y",
+      "main": false,
+      "attr_type": "Q",
+      "fixed_distance": 66.0625,
+      "range": {
+        "begin": 133.29465121985214,
+        "end": 1189.109836766727
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 133.29465121985214
+          },
+          "controlled": null,
+          "visual_object": 27,
+          "content": "8,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 199.2844583487584
+          },
+          "controlled": null,
+          "visual_object": 26,
+          "content": "7,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 265.2743265128209
+          },
+          "controlled": null,
+          "visual_object": 25,
+          "content": "7,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 331.26413364172714
+          },
+          "controlled": null,
+          "visual_object": 24,
+          "content": "6,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 397.25400180578964
+          },
+          "controlled": null,
+          "visual_object": 23,
+          "content": "6,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 463.24384708166855
+          },
+          "controlled": null,
+          "visual_object": 22,
+          "content": "5,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 529.233715245731
+          },
+          "controlled": null,
+          "visual_object": 21,
+          "content": "5,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 595.2235223746372
+          },
+          "controlled": null,
+          "visual_object": 20,
+          "content": "4,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 661.2133523917271
+          },
+          "controlled": null,
+          "visual_object": 19,
+          "content": "4,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 727.203197667606
+          },
+          "controlled": null,
+          "visual_object": 18,
+          "content": "3,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 793.1930658316685
+          },
+          "controlled": null,
+          "visual_object": 17,
+          "content": "3,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 859.1828958487583
+          },
+          "controlled": null,
+          "visual_object": 16,
+          "content": "2,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 925.172680089481
+          },
+          "controlled": null,
+          "visual_object": 15,
+          "content": "2,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 991.1625482535435
+          },
+          "controlled": null,
+          "visual_object": 14,
+          "content": "1,500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 1057.1523401236607
+          },
+          "controlled": null,
+          "visual_object": 13,
+          "content": "1,000"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 1123.1199686026646
+          },
+          "controlled": null,
+          "visual_object": 12,
+          "content": "500"
+        },
+        {
+          "position": {
+            "x": 261.3883056640625,
+            "y": 1189.109836766727
+          },
+          "controlled": null,
+          "visual_object": 11,
+          "content": "0"
+        }
+      ],
+      "align": "right"
+    }
+  ]
+}
