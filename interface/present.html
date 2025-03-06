@@ -1,0 +1,159 @@
+<html>
+<meta charset="UTF-8">
+
+<head>
+	<title>Direct Manipulating Static Visualization Modeled by Control Points and Constraints</title>
+	<link rel="stylesheet" href="css/vivisfy.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div id="canvas">
+		<div id="micSpace">
+			<button id="myButton">
+				<img src="mic-microphone-icon.svg" alt="mic" width="50" height="50">
+			</button>
+			<div id="speechBubble">
+				<img id="sbImg" src="speech-bubble-long.svg" alt="speechBubble" width="400" height="250">
+				<div id="recognizedText" style="margin-top: 20px; font-size: 20px;"></div>
+			</div>
+			
+		</div>
+		
+	</div>
+
+	<!-- Chat UI -->
+	<div id="chat-container"
+		style="position: absolute; top: 50px; right: 0%; width: 35%; height: 100%; background-color: white;">
+		<div id="chat-body"
+			style="position: absolute; top: 1%; right: 0%; width: 98%; height: 65%; overflow-y: scroll; font-size: 28px;"></div>
+		<textarea 
+			id="chat-input" 
+			style="position: absolute; bottom: 7%; left: 0%; width: 80%; height: 25%; padding: 10px; margin: 10px;"
+			placeholder="Type a message..."></textarea>
+		<button id="send-button" style="position: absolute; right: 0%; margin: 3%; bottom: 27%; padding: 5 15 5 15;;">Send</button>
+	</div>
+
+	<div id="head"
+		style="position: absolute; top: 0%; left: 0%; width: 100%; height: 50px; margin: 0px; padding: 0px; background: #D8D8D8; user-select:none;">
+		<div id="header-text" style="">
+			Direct Manipulating Static Visualization Modeled by Control Points and Constraints
+		</div>
+	</div>
+	
+	<script src="js/lib/d3v6.min.js"></script>
+	<script src="js/lib/jquery-3.3.1.min.js"></script>
+	<script src="js/lib/moment.min.js"></script>
+	<script src="js/somehints.js"></script>
+	<script src="js/force.js"></script>
+	<script src="js/resize.js"></script>
+	<script src="js/axis.js"></script>
+	<script src="js/related_calculation.js"></script>
+	<script src="js/constraints.js"></script>
+	<script src="js/transform.js"></script>
+	<script src="js/customize_force.js"></script>
+	<script src="js/run_action.js"></script>
+	<script src="js/ChatService.js"></script>
+	<script src="auto_manipulate.js"></script>
+	<script src="manipulate.js"></script>
+	<script>
+		server_position = ""
+
+		let file_name = window.location.href.toString().split("?")[1]
+		let file_url = "chosen_json/" + file_name + ".json"
+
+		console.log(file_url)
+
+		let queryString = window.location.search;
+		let urlParams = new URLSearchParams(queryString);
+		let json_string = urlParams.get('json')
+		let action = urlParams.get('action')
+
+		console.log('json', json_string)
+		console.log('action', action)
+
+		if (json_string !== null) {
+
+			file_url = "chosen_json/" + json_string + ".json"
+
+			d3.json(file_url)
+				.then(function (data) {
+					let canvas = new canvas_main(data)
+					if (action != null) {
+						let action_file = "action/" + action + ".json"
+						console.log("action file", action_file)
+						d3.json(action_file)
+							.then(function (data) {
+								console.log("action data", data)
+								run_action(canvas.begin_point, data)
+							})
+					}
+				})
+				.catch(function () {
+					d3.json("chosen_json/current.json")
+						.then(function (data) {
+							console.log("We open the old file")
+							let canvas = new canvas_main(data)
+
+						})
+
+				})
+		}
+		else {
+			d3.json(file_url)
+				.then(function (data) {
+					let canvas = new canvas_main(data)
+				})
+				.catch(function () {
+					d3.json("chosen_json/current.json")
+						.then(function (data) {
+							console.log("We open the old file")
+							let canvas = new canvas_main(data)
+						})
+
+				})
+
+		}
+
+		document.addEventListener("DOMContentLoaded", function () {
+            const chatService = new ChatService(document, "en"); // 영어 설정
+
+            // 기본 메시지 입력
+            chatService.set_default_input("Hello! How can I assist you?");
+        });
+
+
+
+
+
+	    	// d3.json('file_name.json')
+	    	// 	.then(function(file_name){
+	    	// 		console.log('file list', file_name)
+			//     	let gallery_father = d3.select('#gallery_father')
+			//     	let gallery_div = gallery_father
+			//     		.selectAll('.gallery_son')
+			//     		.data(file_name)
+			//     		.enter()
+			//     		.append('div')
+			//     		.attr('class', "gallery_son")
+			// 	    	.classed('beautiful', true)
+
+			// 	    gallery_div.append('img')
+			// 	    	.attr("src", function(d){
+			// 		    	return "chosen_svg/" + d + ".svg"
+			// 		    })
+			// 		    .attr('height', "100%")
+
+			// 		gallery_div.on('click', function(e, d){
+			// 			gallery_father.style('display', 'none')
+			// 			d3.json("chosen_json/" + d + ".json")
+			//     		.then(function(data){
+			//     			let canvas = new canvas_main(data)
+			//     		})
+			// 		})
+	    	// 	})
+	</script>
+	<script src="mic.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+#tooltip {	
+    position: absolute;			
+    text-align: left;			
+    /*width: 60px;					*/
+    /*height: 18px;					*/
+    padding: 2px;				
+    font-family: "Microsoft YaHei";
+    font-size: 12px;	
+    background: rgb(255, 255, 255);	
+    border: 1px;		
+    border-radius: 5px;			
+    pointer-events: none;		
+	padding: 10px;	
+}
+
+rect.axis_back {
+	fill: #777;
+	fill-opacity: 0;
+}
+
+.svg_candidate {
+	fill: #0c0;
+	opacity: 0.1;
+	stroke: #333;
+	stroke-width: 3;
+	stroke-dasharray: 4 4;
+}
+
+rect.axis_back.highlight {
+	fill: #777;
+	fill-opacity: 0.3;
+}
+
+
+body {
+	overscroll-behavior: none;
+}
+
+div#gallery_father {
+	justify-content: center;
+	position: absolute; 
+	display: flex;
+	top: 60px; 
+	left: 10%; 
+	width: 80%; 
+	height: 95%; 
+	flex-wrap:wrap;
+	display: flex;
+	overflow: scroll;
+	background: #ffffff;
+}
+div.gallery_son {
+  margin: 10px;
+  border: 1px solid #ddd;
+  float: left;
+  /*width: 180px;*/
+  height: 250px;
+}
+
+text {
+	font-family: "Microsoft YaHei";
+	user-select:none;
+}
+
+.visual_object {
+	/* cursor: url('../image/cursor_hand.svg')  2 2, pointer; */
+	cursor: url('../image/hint-cursor.svg')  2 2, pointer;
+
+	
+}
+
+.visual_object.chosen {
+	stroke: #ddd;
+	stroke-width: 2px;
+}
+
+
+
+#canvas {
+	position: absolute; 
+	top: 0%; 
+	left: 0%; 
+	width: 100%; 
+	height: 100%; 
+	margin: 0px; 
+	padding: 0px; 
+	background: #F3F3F3;
+	overscroll-behavior-x: none;
+}
+
+.holder_default {
+    border: 3px dashed #ccc;
+}
+
+#header-text{
+	font-family: PingFangSC-Light;
+	font-size: 26px;
+	color: #575757;
+	letter-spacing: 0.63px;
+	/*text-align: left;*/
+	justify-content: center; 
+	display: flex; 
+	position: relative; 
+	height: 100%; 
+	align-items: center; 
+}
+#upload.hover { 
+    border: 3px dashed #0c0 !important; 
+}
+.hidden {
+    visibility: hidden;
+}
+
+#gallery {
+	display: inline-flex;
+
+}
+.visible {
+    visibility: visible;
+}
+.g_svg {
+	margin: 5px;
+	/*border: 3px dashed #ccc;*/
+}
+.g_svg img {
+	height: 100%;
+	width: auto;
+}
+
+.beautiful {
+	background: #FFFFFF;
+	box-shadow: 0 50px 50px -50px rgba(110,146,204,0.50);
+	border-radius: 5px;
+}
+
+.beautiful.highlight {
+	border: 1px solid #007DFF;
+}
+
+.dragHint {
+	display: null;
+	position: absolute;
+	z-index: 100;
+	cursor: url('../image/hint-cursor.svg')  2 2, pointer;
+}
+.dragHints {
+	display: null;
+	position: absolute;
+}
+#force_layout image {
+	cursor: url('../image/hint-cursor.svg')  2 2, pointer;
+}
+.force_buttons {
+	cursor: url('../image/hint-cursor.svg')  2 2, pointer;
+}
+
+#axisx {
+	cursor: url('../image/hint-cursor.svg')  2 2, pointer;
+}
+#axisy {
+	cursor: url('../image/hint-cursor.svg')  2 2, pointer;
+}
