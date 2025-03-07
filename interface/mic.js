@@ -56,31 +56,31 @@ function getSpeak() {
         recognition.onend = function () {
             if (document.getElementById("recognizedText").innerText == "Listening...") {
                 // document.getElementById("recognizedText").innerText = "Speak nothing";
-                // document.getElementById("recognizedText").innerText = "Create a button to remove the yellow area";
+                document.getElementById("recognizedText").innerText = "Create a button to remove the yellow area";
                 // document.getElementById("recognizedText").innerText = "Allow zoom in zoom out to rescale axis";
                 // document.getElementById("recognizedText").innerText = "Allow the x-axis to be reordered based on height when the right button is clicked";
                 // document.getElementById("recognizedText").innerText = "Allow the selected area to move to the bottom when the button is clicked";
                 // document.getElementById("recognizedText").innerText = "Show tooltip for x value";
-                document.getElementById("recognizedText").innerText = "Allow overlap stacked bar chart";
+                // document.getElementById("recognizedText").innerText = "Allow overlap stacked bar chart";
             }
             console.log("End");
             isRecognizing = false;
             stopVisualizer(micButton, micIcon);
 
             // let recognizedText = document.getElementById("recognizedText").innerText;
-            // let recognizedText = "Create a button to remove the yellow area";
+            let recognizedText = "Create a button to remove the yellow area";
             // let recognizedText = "Allow zoom in zoom out to rescale axis";
             // let recognizedText = "Allow the x-axis to be reordered based on height when the right button is clicked";
             // let recognizedText = "Allow the selected area to move to the bottom when the button is clicked";
             // let recognizedText = "Show tooltip for x value";
-            let recognizedText = "Allow overlap stacked bar chart";
+            // let recognizedText = "Allow overlap stacked bar chart";
             if (recognizedText && recognizedText !== "Listening..." && recognizedText !== "Speak nothing") {
                 console.log("Sending recognized text to LLM:", recognizedText);
                 // sendToLLM(recognizedText);
                 // _chart_object[0].x_axis_object_list[0].activate_sort('click', 'height');
                 // _chart_object[0].CoordSys[2].activate_move_to_bottom();
                 // _chart_object[0].CoordSys[2].activate_value_tooltip('x');
-                _chart_object[0].CoordSys[2].activate_allow_overlap();
+                // _chart_object[0].CoordSys[2].activate_allow_overlap();
                 console.log("HI");
             }
         };

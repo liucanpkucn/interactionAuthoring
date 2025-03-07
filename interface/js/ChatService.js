@@ -116,10 +116,16 @@ class ChatService {
 
         this.chatInput = this.document.getElementById("chat-input");
         // 按 sendbutton 发送消息
-        this.sendButton.addEventListener("click", () => {
+        this.sendButton.addEventListener("click", async () => {
             const userMessage = this.chatInput.value.trim();
+
             if (userMessage) {
                 this.UserMessage(userMessage);
+                
+                let answer = await getAnswer(userMessage);
+                console.log("answer!!!!!!!", answer);
+        
+                this.SystemResponse(answer);
             }
 
             // 清空输入框并滚动到底部
@@ -161,107 +167,117 @@ class ChatService {
         this.dialog.push(current_dialog);
 
 
-        if (no_reply) {
-            return
-        }
+        // if (no_reply) {
+        //     return
+        // }
 
-        console.log(this.dialog);
-        let last_options = null;
-        let focused_dialog = this.get_current_focus_chat()
-        if (focused_dialog && focused_dialog.hasOwnProperty("options")) {
-            last_options = focused_dialog.options;
-            console.log("last_system", focused_dialog);
-            console.log("system_input", this.dialog);
-        }
-        // 保存用户消息
+        // console.log(this.dialog);
+        // let last_options = null;
+        // let focused_dialog = this.get_current_focus_chat()
+        // if (focused_dialog && focused_dialog.hasOwnProperty("options")) {
+        //     last_options = focused_dialog.options;
+        //     console.log("last_system", focused_dialog);
+        //     console.log("system_input", this.dialog);
+        // }
+        // // 保存用户消息
 
-        if (last_options) {
-            user_input_update(message, focused_dialog);
-        } else {
-            // this.SystemResponse(dialog[0]);
-            this.SystemResponse(this.get_default_response("no_select"));
-        }
+        // if (last_options) {
+        //     user_input_update(message, focused_dialog);
+        // } else {
+        //     // this.SystemResponse(dialog[0]);
+        //     this.SystemResponse(this.get_default_response("no_select"));
+        // }
     }
 
     // 系统回复
-    SystemResponse (response) {
-        // 保存系统回复
-        this.dialog.push(response);
-
-        let chat_service = this;
-        console.log("Default Response", response);
+    SystemResponse(response) {
+        // 시스템 메시지를 대화창에 추가
         const systemMessageDiv = this.document.createElement("div");
         systemMessageDiv.className = "chat-message assistant";
-
-        // 如果回复是字符串，则直接显示
-
-        // 如果用户输入了消息，则回复
-        if (typeof response === "string") {
-            systemMessageDiv.innerHTML = `<div class="message-text">${response}</div>`;
-            this.chatBody.appendChild(systemMessageDiv);
-        } else if (response) {
-            // 解析response.content, 将content中的参数替换为html的input类型
-            const content = response.content.replace(/##(\w+)##/g, (match, p1) => {
-                console.log("selected key", p1);
-                if (!response.options[p1]) {
-                    return;
-                }
-                const option = response.options[p1];
-                //为graphic_id
-                if (option.type === "graphic_id") {
-                    return this.createGraphicElement(option, p1, this.dialog.length)
-                }
-                // 为dropdown类型
-                if (option.hasOwnProperty("possible_values")) {
-                    return this.createDropdownElement(option, p1, this.dialog.length);
-                }
-                if (option.type === "coordinates") {
-                    return this.createXYElement(option, p1);
-                } else if (option.type === "color") {
-                    return this.createColorElement(option, p1); // 使用颜色选择器和文本框
-                }
-                return this.createInputElement(option, p1);
-            });
-
-            const assistantMessageDiv = this.document.createElement("div");
-            assistantMessageDiv.className = "chat-message assistant";
-
-            const messageTextDiv = this.document.createElement("div");
-            messageTextDiv.className = "message-text";
-            messageTextDiv.id = "message-text_" + this.dialog.length;
-            messageTextDiv.innerHTML = content;
-            // 更新focus_id
-            this.focus_id = this.dialog.length;
-            let current_focus_id = this.focus_id;
-
-            assistantMessageDiv.setAttribute('id', 'message-div-' + current_focus_id);
-
-            messageTextDiv.addEventListener(
-                "click",
-                (event) => {
-                    chat_service.focus_id = current_focus_id;
-                }
-            )
-
-            // 为当前新创建的消息添加事件监听
-            messageTextDiv.addEventListener(
-                "blur",
-                (event) => {
-                    if (event.target.closest(".message-text-input")) {
-                        console.log("更新", event.target);
-                        this.sendAllValue(current_focus_id);
-                        // this.sendAllValue(this.dialog.length);
-                    }
-                },
-                true
-            );
-
-            assistantMessageDiv.appendChild(messageTextDiv);
-            this.chatBody.appendChild(assistantMessageDiv);
-        }
-
-        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+        systemMessageDiv.innerHTML = `<div class="message-text">${response}</div>`;
+        
+        this.chatBody.appendChild(systemMessageDiv);
+        this.chatBody.scrollTop = this.chatBody.scrollHeight; // 채팅창 자동 스크롤
     }
+    // SystemResponse (response) {
+    //     // 保存系统回复
+    //     this.dialog.push(response);
+
+    //     let chat_service = this;
+    //     console.log("Default Response", response);
+    //     const systemMessageDiv = this.document.createElement("div");
+    //     systemMessageDiv.className = "chat-message assistant";
+
+        
+    //     // 如果回复是字符串，则直接显示
+
+    //     // 如果用户输入了消息，则回复
+    //     if (typeof response === "string") {
+    //         systemMessageDiv.innerHTML = `<div class="message-text">${response}</div>`;
+    //         this.chatBody.appendChild(systemMessageDiv);
+    //     } else if (response) {
+    //         // 解析response.content, 将content中的参数替换为html的input类型
+    //         const content = response.content.replace(/##(\w+)##/g, (match, p1) => {
+    //             console.log("selected key", p1);
+    //             if (!response.options[p1]) {
+    //                 return;
+    //             }
+    //             const option = response.options[p1];
+    //             //为graphic_id
+    //             if (option.type === "graphic_id") {
+    //                 return this.createGraphicElement(option, p1, this.dialog.length)
+    //             }
+    //             // 为dropdown类型
+    //             if (option.hasOwnProperty("possible_values")) {
+    //                 return this.createDropdownElement(option, p1, this.dialog.length);
+    //             }
+    //             if (option.type === "coordinates") {
+    //                 return this.createXYElement(option, p1);
+    //             } else if (option.type === "color") {
+    //                 return this.createColorElement(option, p1); // 使用颜色选择器和文本框
+    //             }
+    //             return this.createInputElement(option, p1);
+    //         });
+
+    //         const assistantMessageDiv = this.document.createElement("div");
+    //         assistantMessageDiv.className = "chat-message assistant";
+
+    //         const messageTextDiv = this.document.createElement("div");
+    //         messageTextDiv.className = "message-text";
+    //         messageTextDiv.id = "message-text_" + this.dialog.length;
+    //         messageTextDiv.innerHTML = content;
+    //         // 更新focus_id
+    //         this.focus_id = this.dialog.length;
+    //         let current_focus_id = this.focus_id;
+
+    //         assistantMessageDiv.setAttribute('id', 'message-div-' + current_focus_id);
+
+    //         messageTextDiv.addEventListener(
+    //             "click",
+    //             (event) => {
+    //                 chat_service.focus_id = current_focus_id;
+    //             }
+    //         )
+
+    //         // 为当前新创建的消息添加事件监听
+    //         messageTextDiv.addEventListener(
+    //             "blur",
+    //             (event) => {
+    //                 if (event.target.closest(".message-text-input")) {
+    //                     console.log("更新", event.target);
+    //                     this.sendAllValue(current_focus_id);
+    //                     // this.sendAllValue(this.dialog.length);
+    //                 }
+    //             },
+    //             true
+    //         );
+
+    //         assistantMessageDiv.appendChild(messageTextDiv);
+    //         this.chatBody.appendChild(assistantMessageDiv);
+    //     }
+
+    //     this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    // }
 
     createRotationCenterElement (input) {
         this.drawRotationIcon(input)

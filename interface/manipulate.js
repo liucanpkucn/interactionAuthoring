@@ -12,6 +12,52 @@ const predefinedColors = {
   "brown": [165, 42, 42]
 };
 
+async function getAnswer(message) {
+  // localStorage.setItem("apiToken", "sk-xxxxxxxxxxxxxxxxxxxx");
+  const token = localStorage.getItem("apiToken");
+
+  if (!token) {
+      console.error("There are no API tokens!");
+      return "API Token is not set.";
+  }
+  
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "model": "gpt-4o",
+    "messages": [
+        {
+          "role": "user",
+          "content": message
+        }
+    ],
+    "max_tokens": 1688,
+    "temperature": 0.5,
+    "stream": false
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  console.log("requestOptions", requestOptions);
+
+  try {
+    const response = await fetch("https://api.gpt.ge/v1/chat/completions", requestOptions);
+    const result = await response.json();
+    console.log("result", result);
+    return result.choices[0].message.content;
+} catch (error) {
+    console.error("error", error);
+    return "Error fetching response";
+}
+}
+
 function receiveJson(parsedJson){
   let action = parsedJson.action;
   let result = parsedJson.result;
