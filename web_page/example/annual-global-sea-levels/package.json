@@ -1,0 +1,14 @@
+{
+  "name": "@terezaif/annual-global-sea-levels",
+  "main": "573d62f2274ea3c4@681.js",
+  "version": "681.0.0",
+  "homepage": "https://observablehq.com/@terezaif/annual-global-sea-levels",
+  "author": {
+    "name": "Tereza Iofciu",
+    "url": "https://observablehq.com/@terezaif"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

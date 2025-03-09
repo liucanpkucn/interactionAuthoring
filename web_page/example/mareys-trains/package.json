@@ -1,0 +1,14 @@
+{
+  "name": "@mbostock/mareys-trains",
+  "main": "ceff1f8c68f85e39@362.js",
+  "version": "362.0.0",
+  "homepage": "https://observablehq.com/@mbostock/mareys-trains",
+  "author": {
+    "name": "Mike Bostock",
+    "url": "https://observablehq.com/@mbostock"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

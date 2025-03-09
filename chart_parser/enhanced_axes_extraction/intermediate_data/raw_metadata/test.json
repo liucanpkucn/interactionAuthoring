@@ -82,6 +82,34 @@
           "x": "wait",
           "y": "wait"
         },
+        "content": "10,000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "20,000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "30,000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "40,000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
         "content": "50,000"
       },
       {
@@ -89,21 +117,28 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "100,000"
+        "content": "60,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "150,000"
+        "content": "70,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "200,000"
+        "content": "80,000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "90,000"
       }
     ]
   }

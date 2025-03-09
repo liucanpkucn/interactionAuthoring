@@ -1,0 +1,82 @@
+<html>
+  <meta charset="UTF-8" />
+  <head>
+    <title>
+      Direct Manipulating Static Visualization Modeled by Control Points and
+      Constraints
+    </title>
+    <link rel="stylesheet" href="css/vivisfy.css" />
+  </head>
+
+  <body>
+    <div id="canvas"></div>
+
+    <div
+      id="head"
+      style="
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 50px;
+        margin: 0px;
+        padding: 0px;
+        background: #d8d8d8;
+        user-select: none;
+      "
+    >
+      <div id="header-text" style="">
+        Direct Manipulating Static Visualization Modeled by Control Points and
+        Constraints
+      </div>
+    </div>
+
+    <div id="gallery_father"></div>
+
+    <script src="js/lib/d3v6.min.js"></script>
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="js/lib/moment.min.js"></script>
+    <script src="js/force.js"></script>
+    <script src="js/resize.js"></script>
+    <script src="js/axis.js"></script>
+    <script src="js/related_calculation.js"></script>
+    <script src="js/constraints.js"></script>
+    <script src="js/transform.js"></script>
+    <script src="js/customize_force.js"></script>
+    <script>
+      server_position = "";
+
+      d3.json("fileFromJson.json").then(function (file_name) {
+        console.log("file list", file_name);
+        let gallery_father = d3.select("#gallery_father");
+        let gallery_div = gallery_father
+          .selectAll(".gallery_son")
+          .data(file_name)
+          .enter()
+          .append("div")
+          .attr("class", "gallery_son")
+          .classed("beautiful", true);
+
+        gallery_div
+          .append("img")
+          .attr("src", function (d) {
+            return "chosen_json/" + d + ".svg";
+          })
+          .attr("height", "100%");
+
+        gallery_div.on("click", function (e, d) {
+          window.location =
+            "present.html?json=" +
+            d.replace(".json", "") +
+            "&action=" +
+            d.replace(".json", "");
+          // gallery_father.style('display', 'none')
+          // d3.json("chosen_json/" + d + ".json")
+          // .then(function(data){
+          // 	let canvas = new canvas_main(data)
+          // })
+        });
+      });
+    </script>
+  </body>
+</html>

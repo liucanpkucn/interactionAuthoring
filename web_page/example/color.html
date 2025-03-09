@@ -1,0 +1,70 @@
+
+<html>
+	<meta charset="UTF-8">
+	<head>
+		<title>color</title>
+	</head>
+
+	<body>
+        <!-- <script src="js/lib/d3v6.min.js"></script> -->
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script>
+
+            function get_color_list(seed_color){
+                let current_color = d3.lch(seed_color)
+                let color_list = []
+
+                let min_luminance = 5
+                let max_luminance = 105
+                let number_of_color = 20
+
+                let inter = (max_luminance - min_luminance) / (number_of_color - 1)
+
+                console.log("current luminance", current_color.l)
+
+                min_luminance = current_color.l - parseInt((current_color.l - min_luminance) / inter) * inter
+
+                console.log("min_luminance", min_luminance)
+
+                max_luminance = min_luminance + inter * (number_of_color - 1)
+
+                for (let i = max_luminance; i >= min_luminance; i -= inter)
+                {
+                    current_color.l = i;
+                    color_list.push(current_color + '')
+                }
+                return color_list
+            }
+
+
+            let canvas = d3.select("body")
+                .append('svg')
+                .attr("width", 1000)
+                .attr('height', 1400)
+
+            let seed_color_list = ["#217DFF", "#E8632E", "#756EFF", "#03A157"]
+
+            for (let idx = 0; idx < seed_color_list.length; idx ++){
+                let seed_color = seed_color_list[idx]
+                let color_list = get_color_list(seed_color)
+
+                console.log(color_list)
+                
+                let current_color_contain = canvas.append("g")
+                    .attr('transform', "translate(" + (20 + 250 * idx) + ", 30)")
+
+                let color_block = current_color_contain.selectAll('g')
+                    .data(color_list).enter()
+                    .append('g')
+                    .attr('transform', (d, i) => "translate(0, " +  i * 50 + ")")
+                
+                color_block
+                    .append('rect')
+                    .attr('width', 200)
+                    .attr('height', 50)
+                    .attr('fill', d => d)
+            }
+        </script>
+    </body>
+
+</html>
