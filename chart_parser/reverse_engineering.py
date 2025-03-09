@@ -3,6 +3,7 @@ from datetime import datetime
 import time
 import copy
 import re
+import os
 
 from extract_svg import parse_unknown_svg_visual_elements
 from dateutil.parser import parse
@@ -16,6 +17,20 @@ from calculate_axis import get_ticks_robust
 from deal_with_object import classify_groups_by_size
 from axes_parser import parse_axes, parse_temp_list, is_time_list, is_single_time
 from shapely.geometry import Point, Polygon
+
+
+
+
+def pprint(*args, file="tmp/1_debug_output.txt", encoding="utf8"):
+    """
+    Print to file instead of terminal. Overwrites the file on each call.
+    """
+    os.makedirs(os.path.dirname(file), exist_ok=True)  
+    with open(file, "w", encoding=encoding) as f:  
+        f.write(" ".join(map(str, args)) + "\n")
+
+
+
 def get_group(
     control_point,
     visual_object):
@@ -392,6 +407,7 @@ def get_area(coord_sys, axes_array, width, height):
     return
 
 def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None):
+    # pprint(svg_string)
     return_obj = parse_unknown_svg_visual_elements(svg_string, need_text = True, min_len = 1000)
     visual_objs = return_obj[0]
     width = return_obj[1]
@@ -415,11 +431,19 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
         height,
         selected_area,
         False)  # convert to control point and visual object format
+    
     if axisdata and (axisdata != "null"):
         axes_array = json.loads(axisdata)
     else:
         axes_array = get_ticks(control_point, visual_object)  # get the possible axis from control point and visual object
-        axes_array = get_ticks_robust(control_point, visual_object)
+        
+        pprint("visual_object", visual_object)
+        axes_array = get_ticks_robust(svg_string,visual_object)
+        # axes_array = get_ticks_robust(control_point, visual_object)
+        # pprint(axes_array)
+        # print("DEBUG: axes_array =", type(axes_array), axes_array)
+
+
         axes_array = parse_axes(axes_array, visual_object, control_point) # 移交前端
     if no_soup:
         for vo in visual_object:
@@ -444,6 +468,8 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
 
     # with open('tmp/axis.json', 'w') as f:
     #     json.dump(axes_info, f, indent = 2)
+    # print("DEBUG: axes_array =", type(axes_array), axes_array)
+
     return axes_info
 
 def parse_axis_type(
@@ -505,7 +531,7 @@ def get_axes_from_svg_string(svg_string):
 
     # get the possible axis from control point and visual object
     axes_array = get_ticks(control_point, visual_object)
-    axes_array = get_ticks_robust(control_point, visual_object)
+    axes_array = get_ticks_robust(svg_string)
     parse_axis_type(axes_array, visual_object)
     for i, item in enumerate(axes_array['x']):
         item['id'] = i
@@ -1446,12 +1472,15 @@ if __name__ == "__main__":
     #         f.write(constraints_with_data['svg_string'])
 
 
-    file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
+    # file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
     # file_name = '20210819_bar'
     # file_name = "multi_line"
+    # file_name = "20210819_bar"
     file_name = "download"
+
     with open(f'test_example/{file_name}.svg') as f:
         string = f.read()
+        # pprint(string)
         constraints_with_data = get_constraints_with_data(string)
         with open(f'output/{file_name}.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
@@ -1459,3 +1488,5 @@ if __name__ == "__main__":
             f.write(constraints_with_data['svg_string'])
         with open('../web_page/chosen_json/latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
+
+    

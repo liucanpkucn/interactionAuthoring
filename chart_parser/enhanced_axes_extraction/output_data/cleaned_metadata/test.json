@@ -1,0 +1,212 @@
+{
+  "x": [
+    {
+      "type": "x",
+      "main": true,
+      "attr_type": "Categorical",
+      "fixed_distance": 42.111111111111114,
+      "range": {
+        "begin": 84.5,
+        "end": 463.5
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 84.5,
+            "y": 320.0
+          },
+          "content": "2013"
+        },
+        {
+          "position": {
+            "x": 126.5,
+            "y": 320.0
+          },
+          "content": "2014"
+        },
+        {
+          "position": {
+            "x": 168.5,
+            "y": 320.0
+          },
+          "content": "2015"
+        },
+        {
+          "position": {
+            "x": 210.5,
+            "y": 320.0
+          },
+          "content": "2016"
+        },
+        {
+          "position": {
+            "x": 253.5,
+            "y": 320.0
+          },
+          "content": "2017"
+        },
+        {
+          "position": {
+            "x": 295.5,
+            "y": 320.0
+          },
+          "content": "2018"
+        },
+        {
+          "position": {
+            "x": 337.5,
+            "y": 320.0
+          },
+          "content": "2019"
+        },
+        {
+          "position": {
+            "x": 379.5,
+            "y": 320.0
+          },
+          "content": "2020"
+        },
+        {
+          "position": {
+            "x": 421.5,
+            "y": 320.0
+          },
+          "content": "2021"
+        },
+        {
+          "position": {
+            "x": 463.5,
+            "y": 320.0
+          },
+          "content": "2022"
+        }
+      ]
+    }
+  ],
+  "y": [
+    {
+      "type": "y",
+      "main": false,
+      "attr_type": "Categorical",
+      "fixed_distance": 17.4,
+      "range": {
+        "begin": 34.0,
+        "end": 295.0
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 68.0,
+            "y": 295.0
+          },
+          "content": "500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 278.0
+          },
+          "content": "1,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 261.0
+          },
+          "content": "1,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 243.0
+          },
+          "content": "2,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 226.0
+          },
+          "content": "2,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 208.0
+          },
+          "content": "3,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 191.0
+          },
+          "content": "3,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 174.0
+          },
+          "content": "4,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 156.0
+          },
+          "content": "4,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 139.0
+          },
+          "content": "5,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 121.0
+          },
+          "content": "5,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 104.0
+          },
+          "content": "6,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 86.0
+          },
+          "content": "6,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 69.0
+          },
+          "content": "7,000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 52.0
+          },
+          "content": "7,500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 34.0
+          },
+          "content": "8,000"
+        }
+      ]
+    }
+  ]
+}
