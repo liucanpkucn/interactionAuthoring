@@ -1,0 +1,120 @@
+{
+    "begin_point": {
+        "x": 323,
+        "y": 446.5
+    },
+    "pre_action_list": [
+        {
+            "type": "move_mark",
+            "status": {
+                "shaking": false,
+                "drag_small": false,
+                "main_direction": "y",
+                "fast": false
+            },
+            "move_vo_list": [
+                4
+            ],
+            "absolute_mouse_point": {
+                "x": 1031,
+                "y": 1235
+            },
+            "relative_mouse_point": {
+                "x": 657.625732421875,
+                "y": 738.5029907226562
+            },
+            "current_vo_id": 4,
+            "change_position": {
+                "dx": -54.0001220703125,
+                "dy": 456.0011291503906
+            },
+            "coordinate_id": 0,
+            "canvas_id": 0
+        },
+        {
+            "type": "move_background",
+            "change_position": {
+                "dx": -220,
+                "dy": -353
+            }
+        },
+        {
+            "click_position": {
+                "x": 128,
+                "y": 170
+            },
+            "type": "copy",
+            "canvas_id": 0
+        },
+        {
+            "type": "move_mark",
+            "status": {
+                "shaking": false,
+                "drag_small": false,
+                "main_direction": "y",
+                "fast": false
+            },
+            "move_vo_list": [
+                3
+            ],
+            "absolute_mouse_point": {
+                "x": 2207,
+                "y": 926
+            },
+            "relative_mouse_point": {
+                "x": 136.6280059814453,
+                "y": 429.5013732910156
+            },
+            "current_vo_id": 3,
+            "change_position": {
+                "dx": 39.000091552734375,
+                "dy": 149.0003662109375
+            },
+            "coordinate_id": 0,
+            "canvas_id": 2
+        },
+        {
+            "type": "move_mark",
+            "status": {
+                "shaking": false,
+                "drag_small": false,
+                "main_direction": "x",
+                "fast": false
+            },
+            "move_vo_list": [
+                2
+            ],
+            "absolute_mouse_point": {
+                "x": 1248,
+                "y": 1519
+            },
+            "relative_mouse_point": {
+                "x": -821.3743286132812,
+                "y": 1022.5028076171875
+            },
+            "current_vo_id": 2,
+            "change_position": {
+                "dx": -943.0022964477539,
+                "dy": 715.0017395019531
+            },
+            "coordinate_id": 0,
+            "canvas_id": 2
+        },
+        {
+            "click_position": {
+                "x": 136,
+                "y": 127
+            },
+            "type": "delete",
+            "canvas_id": 0
+        },
+        {
+            "type": "move_canvas",
+            "new_position": {
+                "x": 469,
+                "y": 446.5
+            },
+            "canvas_id": 1
+        }
+    ]
+}

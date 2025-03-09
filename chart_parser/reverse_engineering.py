@@ -1486,7 +1486,8 @@ if __name__ == "__main__":
             json.dump(constraints_with_data, f, indent = 2)
         with open('tmp/tmp.svg', 'w', encoding= 'utf8') as f:
             f.write(constraints_with_data['svg_string'])
-        with open('../web_page/chosen_json/latest_result.json', "w", encoding='utf8') as f:
+        with open('./test_webpage/chosen_json/latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
 
+    
     

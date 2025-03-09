@@ -8,7 +8,8 @@
  
 #然后返回给这里, 给的就是最后return的axes_array
 
-api_key = ''
+with open("enhanced_axes_extraction/api_key.txt", 'r') as f:
+    api_key = f.read().strip()
 
 from enhanced_axes_extraction.run_enhanced_axes_extraction import run_enhanced_extraction
 
