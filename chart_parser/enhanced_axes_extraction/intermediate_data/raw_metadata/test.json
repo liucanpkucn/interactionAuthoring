@@ -14,77 +14,56 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "2013"
+        "content": "1880"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2014"
+        "content": "1900"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2015"
+        "content": "1920"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2016"
+        "content": "1940"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2017"
+        "content": "1960"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2018"
+        "content": "1980"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2019"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "2020"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "2021"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "2022"
+        "content": "2000"
       }
     ]
   },
   "y": {
     "type": "y",
     "main": false,
-    "attr_type": "Categorical",
+    "attr_type": "Quantitative",
     "fixed_distance": "wait",
     "range": {
       "begin": "wait",
@@ -96,112 +75,70 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "500"
+        "content": "0"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1,000"
+        "content": "10,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1,500"
+        "content": "20,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2,000"
+        "content": "30,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2,500"
+        "content": "40,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "3,000"
+        "content": "50,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "3,500"
+        "content": "60,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "4,000"
+        "content": "70,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "4,500"
+        "content": "80,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "5,000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "5,500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "6,000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "6,500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "7,000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "7,500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "8,000"
+        "content": "90,000"
       }
     ]
   }

@@ -1448,7 +1448,9 @@ if __name__ == "__main__":
     # file_name = '20210819_bar'
     # file_name = "multi_line"
     # file_name = "20210819_bar"
-    file_name = "download"
+    file_name = "20210817_linechart"
+    # file_name = "download"
+
 
     with open(f'test_example/{file_name}.svg') as f:
         string = f.read()

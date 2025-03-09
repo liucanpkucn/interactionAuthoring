@@ -2,8 +2,7 @@ from openai import OpenAI
 import base64
 import json
 import os
-import cairosvg
-
+from playwright.sync_api import sync_playwright
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_PATH = os.path.join(BASE_DIR, "test_image.png")
@@ -11,33 +10,31 @@ IMAGE_PATH = os.path.join(BASE_DIR, "test_image.png")
 SVG_PATH = os.path.join(BASE_DIR, "input_data", "test.svg")
 PNG_OUTPUT_PATH = os.path.join(BASE_DIR, "test_image.png")
 
-import re
-import cairosvg
-
-import re
-import cairosvg
 
 def convert_svg_to_png():
-    """将 SVG 文件转换为 PNG 图像"""
+    """使用 Playwright 打开 SVG 并截图为 PNG 图像"""
     try:
-        with open(SVG_PATH, "r", encoding="utf-8") as svg_file:
-            svg_content = svg_file.read()
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+            with open(SVG_PATH, "r", encoding="utf-8") as svg_file:
+                svg_content = svg_file.read()
 
-        # 添加白色背景矩形（推荐，最稳定）
-        svg_content = svg_content.replace(
-            "<svg",
-            '<svg><rect x="0" y="0" width="100%" height="100%" fill="white"/>',
-        )
+            if "width" not in svg_content or "height" not in svg_content:
+                svg_content = svg_content.replace(
+                    "<svg", '<svg width="1000" height="750" viewBox="0 0 1000 750"'
+                )
+          
+            svg_base64 = base64.b64encode(svg_content.encode('utf-8')).decode('utf-8')
+            data_url = f"data:image/svg+xml;base64,{svg_base64}"
 
-        # 转换 SVG 到 PNG（指定输出尺寸）
-        png_data = cairosvg.svg2png(
-            bytestring=svg_content.encode('utf-8'),
-            output_width=2000,   # 强制指定输出宽度
-            output_height=1500   # 强制指定输出高度
-        )
+            # 加载 SVG 
+            page.set_content(f'<img src="{data_url}" style="background-color: white;"/>')
+            page.wait_for_timeout(1000)  
 
-        with open(PNG_OUTPUT_PATH, "wb") as png_file:
-            png_file.write(png_data)
+            # 截图并保存
+            page.screenshot(path=PNG_OUTPUT_PATH, clip={"x": 0, "y": 0, "width": 1000, "height": 750})
+            browser.close()
 
         print(f"SVG successfully converted to PNG: {PNG_OUTPUT_PATH}")
         return PNG_OUTPUT_PATH
@@ -48,11 +45,8 @@ def convert_svg_to_png():
 
 
 
-
-
 def clean_openai_json(response_text):
     """Clean OpenAI JSON response by removing Markdown formatting and extra whitespace."""
-    # 去掉 Markdown 代码块标记 ```json ... ```
     if response_text.startswith("```json"):
         response_text = response_text[7:]
     if response_text.endswith("```"):
@@ -61,7 +55,6 @@ def clean_openai_json(response_text):
     response_text = response_text.strip()
     response_text = response_text.replace("\n", "").replace("\t", "").strip()
 
-    # 解析 JSON 并返回
     try:
         return json.loads(response_text)
     except json.JSONDecodeError as e:
