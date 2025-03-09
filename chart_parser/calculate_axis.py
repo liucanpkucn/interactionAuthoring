@@ -48,6 +48,7 @@ def get_ticks_robust(svg_string, visual_object):
                             tick["visual_object"] = None  # 未找到则填 None，避免后续逻辑出错
 
     print("DEBUG: axes_array AFTER loop =", axes_array)
+
     return axes_array
 
 

@@ -667,12 +667,12 @@ def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
     # 根据svg_string 信息，获得轴的信息，再根据轴的信息 和 visual element 的信息来推断约束
     axes_info = get_axes_from_selected_svg_string(svg_string, no_soup = False, axisdata=axisdata)
     original_visual_object = axes_info['visual_object']
-    parse_axis_type(axes_info["axes_array"], original_visual_object)
-    return parse_constraint_axes_vis_cons(
-                axes_info,
-                fromfront = (axisdata is not None),
-                remove_soup=remove_soup
-                ), original_visual_object
+    # parse_axis_type(axes_info["axes_array"], original_visual_object)
+    # return parse_constraint_axes_vis_cons(
+    #             axes_info,
+    #             fromfront = (axisdata is not None),
+    #             remove_soup=remove_soup
+    #             ), original_visual_object
 
 def get_axis_value(position, axis, direction = "x", value_type = 'absolute'):
     

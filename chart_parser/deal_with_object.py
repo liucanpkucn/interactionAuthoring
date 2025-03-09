@@ -975,7 +975,7 @@ def re_interpolate_visual_area(
             end_x = move_start_end(end_x, useful_tick[-1], eps)
 
 
-            print("Interpolate:", start_x, end_x, eps)
+            # print("Interpolate:", start_x, end_x, eps)
 
             if start_x == end_x:
                 for tick in useful_tick:
