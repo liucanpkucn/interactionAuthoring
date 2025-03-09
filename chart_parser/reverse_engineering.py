@@ -406,6 +406,47 @@ def get_area(coord_sys, axes_array, width, height):
 
     return
 
+import json
+
+def convert_to_serializable(obj):
+    """递归遍历并转换不可 JSON 序列化的对象"""
+    if isinstance(obj, dict):  # 处理字典
+        return {key: convert_to_serializable(value) for key, value in obj.items()}
+    elif isinstance(obj, list):  # 处理列表
+        return [convert_to_serializable(item) for item in obj]
+    elif isinstance(obj, tuple):  # 处理元组，转换为列表以保持 JSON 兼容
+        return tuple(convert_to_serializable(item) for item in obj)
+    elif isinstance(obj, set):  # 处理集合，转换为列表
+        return {convert_to_serializable(item) for item in obj}
+    else:
+        try:
+            json.dumps(obj)  # 测试是否可 JSON 序列化
+            return obj
+        except TypeError:
+            return str(obj)  # 转换为字符串
+    
+def json_dumps_safe(data):
+    """将数据转换为可 JSON 序列化格式后再序列化"""
+    return json.dumps(convert_to_serializable(data), indent=4)
+
+# # 示例数据
+# data = {
+#     "name": "example",
+#     "nested": {
+#         "level1": {
+#             "level2": {
+#                 "tag": some_tag_object,  # 无法直接 JSON 序列化的对象
+#                 "items": [1, 2, {"deep_tag": another_tag_object}]
+#             }
+#         }
+#     }
+# }
+
+# json_str = json_dumps_safe(data)
+# print(json_str)  # 现在所有不可序列化的对象都会变成字符串
+
+
+
 def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None):
     # pprint(svg_string)
     return_obj = parse_unknown_svg_visual_elements(svg_string, need_text = True, min_len = 1000)
@@ -414,9 +455,10 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     height = return_obj[2]
     svg_soup = return_obj[3]
     
-    print(return_obj)
+    # print(return_obj)
     
     with open("tmp/visual_obj.txt", 'w') as f:
+        
         f.write(str(visual_objs))
     
     width = int(float(width))
@@ -435,7 +477,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     if axisdata and (axisdata != "null"):
         axes_array = json.loads(axisdata)
     else:
-        pprint("visual_object", visual_object)
+        # pprint("visual_object", visual_object)
         axes_array = get_ticks_robust(svg_string, visual_object)
         
         with open('tmp/axis.json', 'w') as f:
@@ -667,12 +709,16 @@ def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
     # 根据svg_string 信息，获得轴的信息，再根据轴的信息 和 visual element 的信息来推断约束
     axes_info = get_axes_from_selected_svg_string(svg_string, no_soup = False, axisdata=axisdata)
     original_visual_object = axes_info['visual_object']
-    # parse_axis_type(axes_info["axes_array"], original_visual_object)
-    # return parse_constraint_axes_vis_cons(
-    #             axes_info,
-    #             fromfront = (axisdata is not None),
-    #             remove_soup=remove_soup
-    #             ), original_visual_object
+    parse_axis_type(axes_info["axes_array"], original_visual_object)
+    print("What is wront", axes_info)
+    with open("tmp/axes_info.json", "w") as f:
+        f.write(json_dumps_safe(axes_info))
+        
+    return parse_constraint_axes_vis_cons(
+                axes_info,
+                fromfront = (axisdata is not None),
+                remove_soup=remove_soup
+                ), original_visual_object
 
 def get_axis_value(position, axis, direction = "x", value_type = 'absolute'):
     
@@ -1309,21 +1355,6 @@ def get_vo_center(visual_object):
     position['height'] = abs(visual_object['up'] - visual_object['down'])
     return position
 
-def reverse_engineering(svg_string):
-    """
-    Get data from an svg string
-    """
-    json_data, original_vo = deducing_chart_separate(svg_string)
-    if 'svg_soup' in json_data:
-        del json_data['svg_soup']
-    with open("tmp/current.json", "w", encoding="utf8") as f:
-        json.dump(json_data, f, indent = 2)
-    data_information = reverse_engineering_from_constraints(json_data,  original_vo)
-    json_data['parsed_data'] = data_information
-    with open('tmp/constraints_with_data.json', "w", encoding="utf8") as f:
-        json.dump(json_data, f, indent=2)
-    return data_information
-
 def update_coord_sys_area_by_axis(main_coord_sys, axis):
     """
     Unify the range according to the area of coordinate system and axis
@@ -1363,10 +1394,11 @@ def only_keep_important_coord(
     else:
         data_constraints['axis']['x'] = [data_constraints['axis']['x'][x_axis_index]]
         update_coord_sys_area_by_axis(main_coord_sys, data_constraints['axis']['x'][0])
-        for mapping in data_constraints['parsed_data']['mapping']:
-            if mapping['direction'] != "x":
-                continue
-            mapping['value_range'] = data_constraints['axis']['x'][0]['value_range']
+        if ('mapping' in data_constraints['parsed_data']):
+            for mapping in data_constraints['parsed_data']['mapping']:
+                if mapping['direction'] != "x":
+                    continue
+                mapping['value_range'] = data_constraints['axis']['x'][0]['value_range']
         main_coord_sys['x_axis'] = 0
     if y_axis_index is None:
         data_constraints['axis']['y'] = []

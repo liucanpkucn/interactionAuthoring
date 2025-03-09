@@ -63,7 +63,7 @@
   "y": {
     "type": "y",
     "main": false,
-    "attr_type": "Quantitative",
+    "attr_type": "Categorical",
     "fixed_distance": "wait",
     "range": {
       "begin": "wait",

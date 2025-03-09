@@ -109,6 +109,8 @@ def parse_scale_non_text(ticks, direction):
     current_suffix = ''
 
     domain_list = [tick['position'][direction] for tick in ticks]
+    
+    print('domain list', domain_list)
 
     min_domain = min(domain_list)
     max_domain = max(domain_list)

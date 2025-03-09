@@ -1,4 +1,140 @@
 {
-  "x": [],
-  "y": []
+  "x": [
+    {
+      "type": "x",
+      "main": true,
+      "attr_type": "Categorical",
+      "fixed_distance": 51.083333333333336,
+      "range": {
+        "begin": 34.5,
+        "end": 341.0
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 34.5,
+            "y": 200.5
+          },
+          "content": "1880",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 85.5,
+            "y": 200.5
+          },
+          "content": "1900",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 136.5,
+            "y": 200.5
+          },
+          "content": "1920",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 187.5,
+            "y": 200.5
+          },
+          "content": "1940",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 238.5,
+            "y": 200.5
+          },
+          "content": "1960",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 289.5,
+            "y": 200.5
+          },
+          "content": "1980",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 341.0,
+            "y": 200.5
+          },
+          "content": "2000",
+          "controlled": null,
+          "visual_object": null
+        }
+      ],
+      "align": "up"
+    }
+  ],
+  "y": [
+    {
+      "type": "y",
+      "main": false,
+      "attr_type": "Categorical",
+      "fixed_distance": 40.25,
+      "range": {
+        "begin": 32.5,
+        "end": 193.5
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 22.5,
+            "y": 193.5
+          },
+          "content": "0",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 22.0,
+            "y": 153.5
+          },
+          "content": "50,000",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 22.0,
+            "y": 112.5
+          },
+          "content": "100,000",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 22.0,
+            "y": 72.5
+          },
+          "content": "150,000",
+          "controlled": null,
+          "visual_object": null
+        },
+        {
+          "position": {
+            "x": 22.5,
+            "y": 32.5
+          },
+          "content": "200,000",
+          "controlled": null,
+          "visual_object": null
+        }
+      ],
+      "align": "right"
+    }
+  ]
 }
