@@ -7,8 +7,11 @@
 #然后在那边依次调用转图片, 获取metadata,获取最终要求的formatter, 
  
 #然后返回给这里, 给的就是最后return的axes_array
+import os
+base_dir = os.path.dirname(os.path.abspath(__file__))
+api_key_path = os.path.join(base_dir, "enhanced_axes_extraction/api_key.txt")
 
-with open("enhanced_axes_extraction/api_key.txt", 'r') as f:
+with open(api_key_path, 'r') as f:
     api_key = f.read().strip()
 
 from enhanced_axes_extraction.run_enhanced_axes_extraction import run_enhanced_extraction

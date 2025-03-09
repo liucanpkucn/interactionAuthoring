@@ -1,6 +1,14 @@
 
 # import copy
 from uuid import uuid5, UUID
+import os
+def pprint(*args, file="tmp/1_debug_output.txt", encoding="utf8"):
+    """
+    Print to file instead of terminal. Overwrites the file on each call.
+    """
+    os.makedirs(os.path.dirname(file), exist_ok=True)  
+    with open(file, "w", encoding=encoding) as f:  
+        f.write(" ".join(map(str, args)) + "\n")
 
 def obj_in_selected_area(current_obj, selected_area):
 
@@ -322,6 +330,8 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
     for obj in visual_object:
         obj["uuid"] = str(uuid5(UUID(int=0), f'{obj["type"]}-{obj["id"]}'))
         obj["original_soup"]['uuid_mani'] = obj['uuid']
+
+    # pprint(visual_object)
     return control_point, visual_object, non_soup_visual_object
 
 def pack_point(x, y, index, obj_id, radius = 0, fixed = False):
