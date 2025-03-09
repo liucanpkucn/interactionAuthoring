@@ -1,0 +1,17 @@
+
+<svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="main" transform="translate(-664.000000, -241.000000)">
+            <g id="reset" transform="translate(663.000000, 240.000000)">
+                <rect id="Rectangle" x="1" y="0" width="18" height="18"></rect>
+                <path d="M1.25,17 L18.5,17" id="Path" stroke="#797979"></path>
+                <g id="Group" transform="translate(2.000000, 2.000000)">
+                    <g id="Path">
+                        <path d="M1.625,2.80769231 C2.875,1.30769231 4.625,0.269230769 6.875,0.153846154 C10.875,-0.192307692 14.5,2.57692308 14.875,6.26923077 C15.25,9.96153846 12.25,13.3076923 8.25,13.6538462 C5.125,13.8846154 2.125,12.2692308 0.875,9.73076923" stroke="#797979"></path>
+                        <polygon fill="#797979" fill-rule="nonzero" points="3.625 3.26923077 0.5 5.11538462 0.25 1.65384615"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

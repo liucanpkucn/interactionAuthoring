@@ -1,0 +1,36 @@
+
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="main" transform="translate(-664.000000, -263.000000)">
+            <g id="View" transform="translate(268.000000, 165.000000)">
+                <g id="force_up" transform="translate(396.000000, 98.000000)">
+                    <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="18" height="18"></rect>
+                    <g transform="translate(1.000000, 1.000000)">
+                        <path d="M0,15 L16,15" id="Path" stroke="#797979"></path>
+                        <g id="Group" transform="translate(1.000000, 0.000000)">
+                            <path d="M1.5,0 L1.5,13" id="Path"></path>
+                            <g id="Path">
+                                <path d="M1.93684211,3.08 L1.93684211,12.88" stroke="#797979"></path>
+                                <polygon fill="#797979" fill-rule="nonzero" points="0.0421052632 3.64 1.93684211 0 3.83157895 3.64"></polygon>
+                            </g>
+                        </g>
+                        <g id="Group" transform="translate(6.000000, 0.000000)">
+                            <path d="M1.5,0 L1.5,13" id="Path"></path>
+                            <g id="Path">
+                                <path d="M1.93684211,3.08 L1.93684211,12.88" stroke="#797979"></path>
+                                <polygon fill="#797979" fill-rule="nonzero" points="0.0421052632 3.64 1.93684211 0 3.83157895 3.64"></polygon>
+                            </g>
+                        </g>
+                        <g id="Group" transform="translate(11.000000, 0.000000)">
+                            <path d="M1.5,0 L1.5,13" id="Path"></path>
+                            <g id="Path">
+                                <path d="M1.93684211,3.08 L1.93684211,12.88" stroke="#797979"></path>
+                                <polygon fill="#797979" fill-rule="nonzero" points="0.0421052632 3.64 1.93684211 0 3.83157895 3.64"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

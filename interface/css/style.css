@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Cafe24Behappy';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Behappy.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Cafe24Behappy', sans-serif;
+}
+
+#micSpace {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 10%;
+    top: 50%;
+    z-index: 5px;
+    height: 250px;
+    align-items: end;
+}
+
+#myButton {
+    background-color: white;
+    width: 70px;
+    height: 70px;
+    border-width: 0.1px;
+}
+
+#speechBubble {
+    display: none;
+    width: 80%;
+    height: 100%;
+    position: relative;
+}
+
+#sbImg {
+    width: 450px;
+    opacity: 0.8;
+    z-index: 10px;
+}
+
+#recognizedText {
+    position: absolute;
+    top: 45%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+    font-size: 30px !important;
+    color: black;
+    width: 300px;
+    height: 170px;
+}
