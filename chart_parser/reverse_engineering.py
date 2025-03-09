@@ -435,10 +435,12 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     if axisdata and (axisdata != "null"):
         axes_array = json.loads(axisdata)
     else:
-        axes_array = get_ticks(control_point, visual_object)  # get the possible axis from control point and visual object
-        
         pprint("visual_object", visual_object)
-        axes_array = get_ticks_robust(svg_string,visual_object)
+        axes_array = get_ticks_robust(svg_string, visual_object)
+        
+        with open('tmp/axis.json', 'w') as f:
+            json.dump(axes_array, f, indent = 2)
+            
         # axes_array = get_ticks_robust(control_point, visual_object)
         # pprint(axes_array)
         # print("DEBUG: axes_array =", type(axes_array), axes_array)
@@ -671,36 +673,6 @@ def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
                 fromfront = (axisdata is not None),
                 remove_soup=remove_soup
                 ), original_visual_object
-
-def parse_legend(legend_axis, other_coords, original_vo):
-    legend_info = []
-    for legend_item in legend_axis['tick']:
-        min_dis = 10000000
-        min_object = -1
-        if type(legend_item['visual_object']) != int:
-            continue
-        text_vo = original_vo[legend_item['visual_object']]
-        text_center = {
-            "x": (text_vo['left'] + text_vo['right']) / 2,
-            "y": (text_vo['up'] + text_vo['down']) / 2}
-
-        for current_coords in other_coords:
-            for vo in current_coords['visual_object']:
-                if vo['x_max'] - vo['x_min'] > 100:
-                    continue
-                if vo['y_max'] - vo['y_min'] > 100:
-                    continue
-                vo_center = {"x": (vo['left'] + vo['right']) / 2, "y": (vo['up'] + vo['down']) / 2}
-                distance = ((vo_center['x'] - text_center['x']) ** 2 + (vo_center['y']\
-                    - text_center['y']) ** 2) ** 0.5
-                print("distance", distance)
-                if distance < min_dis and distance < 100:
-                    min_dis = distance
-                    min_object = vo
-        if min_object != -1:
-            legend_info.append({"text": text_vo['content'], "fill": min_object['fill']})
-    
-    return legend_info
 
 def get_axis_value(position, axis, direction = "x", value_type = 'absolute'):
     
