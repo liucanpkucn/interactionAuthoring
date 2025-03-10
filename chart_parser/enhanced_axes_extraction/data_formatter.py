@@ -109,20 +109,26 @@ def process_metadata_data():
 
         # 补全 tick 位置
         for axis in ["x", "y"]:
-            for axis_item in metadata[axis]:  # 此时 metadata[axis] 是一个列表
+            for axis_item in metadata[axis]: 
                 if "tick" in axis_item:
+                    # 仅保留匹配成功的 tick
+                    valid_ticks = []
+
                     for tick in axis_item["tick"]:
                         normalized_tick_content = normalize_text_content(tick["content"])
-                        tick["position"] = {"x": "wait", "y": "wait"}  # 默认填充
 
-                        # 在 SimVec 里找匹配的文本
                         for text_item in simvec_data["text"]:
                             if normalized_tick_content == text_item["content"]:
                                 tick["position"] = {
                                     "x": text_item["position"][0],
                                     "y": text_item["position"][1]
                                 }
-                                break
+                                valid_ticks.append(tick)  
+                                break  
+
+                    # 仅保留匹配成功的 tick
+                    axis_item["tick"] = valid_ticks
+
 
         # 补全 range
         for axis in ["x", "y"]:

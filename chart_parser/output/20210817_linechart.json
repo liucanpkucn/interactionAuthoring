@@ -26,7 +26,7 @@
           0
         ]
       },
-      "x_axis": null,
+      "x_axis": 0,
       "y_axis": null,
       "main_axis": {
         "type": "x",
@@ -17693,9 +17693,9 @@
       "visual_object_num": 9,
       "constraints": [],
       "area": {
-        "x": 0,
+        "x": 60.0,
         "y": 0,
-        "width": 460,
+        "width": 377.0,
         "height": 400
       },
       "size": {
@@ -17714,7 +17714,108 @@
     }
   ],
   "axis": {
-    "x": [],
+    "x": [
+      {
+        "type": "x",
+        "main": true,
+        "attr_type": "Categorical",
+        "fixed_distance": 59.666666666666664,
+        "range": {
+          "begin": 60.0,
+          "end": 437.0
+        },
+        "tick": [
+          {
+            "position": {
+              "x": 79.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          },
+          {
+            "position": {
+              "x": 139.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          },
+          {
+            "position": {
+              "x": 198.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          },
+          {
+            "position": {
+              "x": 258.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          },
+          {
+            "position": {
+              "x": 318.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          },
+          {
+            "position": {
+              "x": 377.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          },
+          {
+            "position": {
+              "x": 437.0,
+              "y": 415.0
+            },
+            "content": null,
+            "controlled": null,
+            "visual_object": null
+          }
+        ],
+        "align": "up",
+        "scale_type": "quantize",
+        "value_range": [
+          "#{'position': {'x': 79.0, 'y': 415.0}, 'content': '1880', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 139.0, 'y': 415.0}, 'content': '1900', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 198.0, 'y': 415.0}, 'content': '1920', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 258.0, 'y': 415.0}, 'content': '1940', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 318.0, 'y': 415.0}, 'content': '1960', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 377.0, 'y': 415.0}, 'content': '1980', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 437.0, 'y': 415.0}, 'content': '2000', 'controlled': None, 'visual_object': None}"
+        ],
+        "pixel_domain": [
+          49.16666666666667,
+          466.8333333333333
+        ],
+        "prefix": "",
+        "suffix": "",
+        "area": {
+          "x": 60.0,
+          "y": 410.0,
+          "width": 377.0,
+          "height": 10.0
+        },
+        "use_num": 1,
+        "another_attr": 415.0
+      }
+    ],
     "y": []
   },
   "size": {
