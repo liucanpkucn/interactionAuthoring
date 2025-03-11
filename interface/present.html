@@ -24,7 +24,7 @@
 
 	<!-- Chat UI -->
 	<div id="chat-container"
-		style="position: absolute; top: 50px; right: 0%; width: 35%; height: 100%; background-color: white;">
+		style="position: absolute; top: 50px; right: 0%; width: 35%; background-color: white;">
 		<div id="chat-body"
 			style="position: absolute; top: 1%; right: 0%; width: 98%; height: 65%; overflow-y: scroll; font-size: 28px;"></div>
 		<textarea 
@@ -122,9 +122,15 @@
             chatService.set_default_input("Hello! How can I assist you?");
         });
 
-
-
-
+		function updateHeight() {
+			let chatContainer = document.getElementById("chat-container");
+			if (chatContainer) {
+				chatContainer.style.height = (window.innerHeight - 50) + "px";
+			}
+		}	
+		
+		document.addEventListener("DOMContentLoaded", updateHeight);
+		window.addEventListener("resize", updateHeight);
 
 	    	// d3.json('file_name.json')
 	    	// 	.then(function(file_name){

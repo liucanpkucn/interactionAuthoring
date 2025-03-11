@@ -207,7 +207,7 @@ let draw_axis = function (canvas, axis, current_canvas_object) {
   // }
 
   this.activate_rescale = function () {
-    zoomEnabled = !zoomEnabled;
+    zoomEnabled = true;
     console.log("zoomEnabled 상태:", zoomEnabled);
   
     if (zoomEnabled) {

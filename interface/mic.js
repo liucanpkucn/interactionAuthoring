@@ -81,6 +81,8 @@ function getSpeak() {
                 // _chart_object[0].CoordSys[2].activate_move_to_bottom();
                 // _chart_object[0].CoordSys[2].activate_value_tooltip('x');
                 // _chart_object[0].CoordSys[2].activate_allow_overlap();
+                // activate_axis_zoom_rescale();
+                // _chart_object[0].x_axis_object_list[0].activate_sort("contextmenu", "auto");
                 console.log("HI");
             }
         };

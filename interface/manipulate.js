@@ -20,6 +20,141 @@ async function getAnswer(message) {
       console.error("There are no API tokens!");
       return "API Token is not set.";
   }
+
+  const prompt = `
+  ### **INSTRUCTION** ###
+  Your task is to convert user input (natural language instructions) into a structured JSON format.
+  The JSON structure must strictly follow this schema:
+
+  {
+      "action": {
+          "target": ( "visual mark" | "axis" | "button" ),
+          "action": ( "click" | "double click" | "right button click" | "mouseover" | "drag" | "zoom" ),
+          "parameter": ( "x" | "y" | "all" | "<behavior value>" | "" )  
+      },
+      "result": {
+          "target": ( "visual mark" | "axis" | "tooltip" ),
+          "behavior": ( "remove" | "rescale" | "resort" | "reorder" | "add" | "show" | "overlap" ),
+          "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" ),
+          "parameter": ( "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
+      }
+  }
+
+  ### **RULES FOR JSON FORMATTING** ###
+  1. **action.target** must be one of: "visual mark", "axis", or "button".
+    - If "axis", then parameter must be "x", "y", or "all".
+    - If "button", then parameter must match the **exact value of result.behavior**.
+    - If "visual mark", then parameter must be an **empty string** ("").
+
+  2. **action.action** must be one of: "click", "double click", "right button click", "mouseover", "drag", or "zoom".
+
+  3. **result.target** must be one of: "visual mark", "axis", or "tooltip".
+
+  4. **result.behavior** must be one of: "remove", "rescale", "resort", "reorder", "add", "show", or "overlap".
+
+  5. **result.by** must be one of: "height", "opacity", "color", "axis", "value", or "auto".
+    - If "color", then parameter must be one of:
+      **"black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown"**.
+    - If "axis", then parameter must be "x", "y", or "all".
+    - If "value", then parameter must be "x", "y", or "all" (only used when target = "tooltip").
+    - If "height", "opacity", or "auto", then parameter must be an **empty string** ("").
+
+  ---
+
+  ### **EXAMPLES OF INPUT AND EXPECTED OUTPUT** ###
+
+  #### **Example 1:**
+  **Input:**  
+  "When the user clicks on the x-axis, reorder the elements based on opacity."
+
+  **Output:**
+  \`\`\`json
+  {
+      "action": {
+          "target": "axis",
+          "action": "click",
+          "parameter": "x"
+      },
+      "result": {
+          "target": "visual mark",
+          "behavior": "resort",
+          "by": "opacity",
+          "parameter": ""
+      }
+  }
+  \`\`\`
+
+  #### **Example 2:**
+  **Input:**  
+  "When the user hovers over the chart, show a tooltip based on the x-axis."
+
+  **Output:**
+  \`\`\`json
+  {
+      "action": {
+          "target": "visual mark",
+          "action": "mouseover",
+          "parameter": ""
+      },
+      "result": {
+          "target": "tooltip",
+          "behavior": "show",
+          "by": "value",
+          "parameter": "x"
+      }
+  }
+  \`\`\`
+
+  #### **Example 3:**
+  **Input:**  
+  "When a button is clicked, change the color to red."
+
+  **Output:**
+  \`\`\`json
+  {
+      "action": {
+          "target": "button",
+          "action": "click",
+          "parameter": "add"
+      },
+      "result": {
+          "target": "visual mark",
+          "behavior": "add",
+          "by": "color",
+          "parameter": "red"
+      }
+  }
+  \`\`\`
+
+  #### **Example 4:**
+  **Input:**  
+  "When the button is clicked, remove the visual mark."
+
+  **Output:**
+  \`\`\`json
+  {
+      "action": {
+          "target": "button",
+          "action": "click",
+          "parameter": "remove"
+      },
+      "result": {
+          "target": "visual mark",
+          "behavior": "remove",
+          "by": "auto",
+          "parameter": ""
+      }
+  }
+  \`\`\`
+
+  ### **INPUT** ###
+  \`\`\`
+  ${JSON.stringify(message)}
+  \`\`\`
+
+  ### **RESPONSE (Strictly JSON format, no additional text)** ###
+  Return only a valid JSON object based on the input above. Do not provide explanations, comments, or extra text.
+  Ensure the response is **strictly valid JSON**.`;
   
   var myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${token}`);
@@ -30,7 +165,7 @@ async function getAnswer(message) {
     "messages": [
         {
           "role": "user",
-          "content": message
+          "content": prompt
         }
     ],
     "max_tokens": 1688,
@@ -52,49 +187,84 @@ async function getAnswer(message) {
     const result = await response.json();
     console.log("result", result);
     return result.choices[0].message.content;
-} catch (error) {
-    console.error("error", error);
-    return "Error fetching response";
-}
+  } catch (error) {
+      console.error("error", error);
+      return "Error fetching response";
+  }
 }
 
-function receiveJson(parsedJson){
+function activateInteraction(parsedJson){
   let action = parsedJson.action;
   let result = parsedJson.result;
+
+  // mouse action
+  let mouse_action;
+  if (action.action === "click" || action.action === "mouseover" || action.action === "drag" || action.action === "zoom") {
+    mouse_action = action.action;
+  } else if (action.action === "double click") {
+    mouse_action = "dbclick";
+  } else if (action.action === "right button click") {
+    mouse_action = "contextmenu";
+  }
+
   console.log(action);
   console.log(result);
-  const color = extractColorFromResult(result);
-  console.log('result color', color);
-  // button create
-  if(action.target.type === "button"){
-    console.log("Create Button");
-    buttonCreation(action.target.label, color);
-  }
+  console.log(mouse_action);
+
+
   // rescale axis
-  if(action.type === "zoom" && action.target.type === "axis" && result.type === "rescale"){
+  if(action.action === "zoom" && action.target === "axis" && result.behavior === "rescale"){
     console.log("Rescale Axis");
-    axis_zoom_rescale();
+    activate_axis_zoom_rescale();
+    alert("Rescale Axis");
+  }
+  // annotate visual mark
+  if(result.target === "tooltip") {
+    console.log("Annotate Visual Mark");
+    _chart_object[0].CoordSys[2].activate_value_tooltip(result.parameter);
+    alert("Annotate Visual Mark");
   }
   // resort axis by height/opacity/color - bar chart
-  if(result.type === "sort"){
+  if(result.behavior === "resort" || result.behavior === "reorder"){
     console.log("Resort Axis");
-    let sort_action;
     let sort_by;
-    
-    // click / dbclick / contextmenu
-    sort_action = "contextmenu";
 
     // min_value / max_value / diff / color / opacity
-    if(result.parameter === 'height') {
+    if(result.by === 'height' || result.by === "value") {
       sort_by = 'min_value';
-    } else {
+    } else if (result.by === "color" || result.by === "opacity" || result.by === "auto") {
+      sort_by = result.by;
+    }
+    else  {
       sort_by = 'auto';
     }
-    _chart_object[0].x_axis_object_list[0].activate_sort(sort_action, sort_by);
+    _chart_object[0].x_axis_object_list[0].activate_sort(mouse_action, sort_by);
+    alert("Resort Axis");
   }
-  // resort the stacked bar chart
-  console.log("Resort Area");
-  _chart_object[0].CoordSys[2].activate_move_to_bottom();
+  // remove area
+  if(result.behavior === "remove") {
+    console.log("Remove Area");
+    // button create
+    if(action.target === "button"){
+      console.log("Create Button");
+      buttonCreation(action.parameter, result.parameter);
+    } else {
+      console.log("Please write again.");
+    }
+    alert("Remove Area");
+  }
+  // overlap area
+  if(result.behavior === "overlap") {
+    console.log("Overlap Area");
+    _chart_object[0].CoordSys[2].activate_allow_overlap();
+    alert("Overlap Area");
+  }
+  // move to bottom area
+  if(result.target === "visual mark" && action.action === "click") {
+    console.log("Move Area");
+    _chart_object[0].CoordSys[2].activate_move_to_bottom();
+    alert("Move Area");
+  }
 }
 
 
@@ -202,7 +372,7 @@ function number_of_visual_element() {
   return i;
 }
 
-function axis_zoom_rescale() {
+function activate_axis_zoom_rescale() {
   _chart_object[0].x_axis_object_list[0].activate_rescale();
   _chart_object[0].y_axis_object_list[0].activate_rescale();
 }

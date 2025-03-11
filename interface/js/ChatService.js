@@ -118,18 +118,27 @@ class ChatService {
         // 按 sendbutton 发送消息
         this.sendButton.addEventListener("click", async () => {
             const userMessage = this.chatInput.value.trim();
+            let answer;
 
             if (userMessage) {
                 this.UserMessage(userMessage);
+                this.chatInput.value = "";
                 
-                let answer = await getAnswer(userMessage);
+                answer = await getAnswer(userMessage);
                 console.log("answer!!!!!!!", answer);
+                try {
+                    const cleanedJsonString = answer.replace(/```json|```/g, "").trim();
+                    const parsedJson = JSON.parse(cleanedJsonString);  // JSON 문자열을 객체로 변환
+                    activateInteraction(parsedJson);
+                } catch (error) {
+                    console.error("Failed to parse JSON:", error);
+                }
         
                 this.SystemResponse(answer);
             }
 
             // 清空输入框并滚动到底部
-            this.chatInput.value = "";
+            
             this.chatBody.scrollTop = this.chatBody.scrollHeight;
 
             // 隐藏发送按钮
