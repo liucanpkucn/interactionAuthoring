@@ -446,6 +446,10 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     width = return_obj[1]
     height = return_obj[2]
     svg_soup = return_obj[3]
+    # pprint("visual_objs:", visual_objs)
+    # pprint("width:", width)
+    # pprint("height:", height)
+    # pprint("svg_soup:", svg_soup)
     
     # print(return_obj)
     
@@ -465,11 +469,14 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
         height,
         selected_area,
         False)  # convert to control point and visual object format
-    
+    # pprint("control_point:", control_point)
+    # pprint("visual_object:", visual_object)
+    # pprint("_", _)
+
     if axisdata and (axisdata != "null"):
         axes_array = json.loads(axisdata)
     else:
-        pprint("visual_object:", visual_object)
+        # pprint("visual_object:", visual_object)
         axes_array = get_ticks_robust(svg_string, visual_object)
         
         with open('tmp/axis.json', 'w') as f:
@@ -1485,9 +1492,9 @@ if __name__ == "__main__":
             json.dump(constraints_with_data, f, indent = 2)
 
         #用于debug存文件,可以删除
-        with open('tmp/1_debug_constraints_with_data.json', "w", encoding='utf8') as f:
+        with open('DEBUG/1_debug_constraints_with_data.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent=2)
-        with open('tmp/1_debug_svg_string.svg', "w", encoding='utf8') as f:
+        with open('DEBUG/1_debug_svg_string.svg', "w", encoding='utf8') as f:
             f.write(constraints_with_data['svg_string'])
-        with open('tmp/1_debug__latest_result.json', "w", encoding='utf8') as f:
+        with open('DEBUG/1_debug__latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent=2)

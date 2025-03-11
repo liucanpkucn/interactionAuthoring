@@ -1,4 +1,4 @@
-# 与主函数的接口是parse_unknown_svg_visual_elements
+# extract_svg与主函数的接口是parse_unknown_svg_visual_elements
 '''
 def parse_unknown_svg_visual_elements(
     svg_string, 
@@ -6,14 +6,16 @@ def parse_unknown_svg_visual_elements(
     need_text = False, 
     min_len = 10)
     
+
+    ...
+    rects_attr.extend(path_array)
+    rects_attr.extend(circle_array)
+    rects_attr.extend(line_segments)
     
     return rects_attr, width, height, svg
 '''
 
-
-
 # -*- coding: UTF-8 -*-
-
 import json
 import bs4
 # import os
@@ -31,8 +33,8 @@ import svg.path
 from cssutils import parseStyle
 
 from svgsimpletool import find_center
+from utils import pprint
 # def get_attr_by_style(element):
-    #
 
 svg_x = 0
 svg_y = 0

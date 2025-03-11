@@ -1,4 +1,4 @@
-###与主函数的接口是 get_control_point
+###parse_control_point与主函数的接口是 get_control_point
 '''
 def get_control_point(
     visual_objs, 
