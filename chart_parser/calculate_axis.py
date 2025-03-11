@@ -8,6 +8,8 @@
  
 #然后返回给这里, 给的就是最后return的axes_array
 import os
+from utils import pprint
+
 base_dir = os.path.dirname(os.path.abspath(__file__))
 api_key_path = os.path.join(base_dir, "enhanced_axes_extraction/api_key.txt")
 

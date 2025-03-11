@@ -20,17 +20,7 @@ from calculate_axis import get_ticks_robust
 from deal_with_object import classify_groups_by_size
 from axes_parser import parse_axes, parse_temp_list, is_time_list, is_single_time
 from shapely.geometry import Point, Polygon
-
-
-
-
-def pprint(*args, file="tmp/1_debug_output.txt", encoding="utf8"):
-    """
-    Print to file instead of terminal. Overwrites the file on each call.
-    """
-    os.makedirs(os.path.dirname(file), exist_ok=True)  
-    with open(file, "w", encoding=encoding) as f:  
-        f.write(" ".join(map(str, args)) + "\n")
+from utils import pprint
 
 
 
@@ -451,7 +441,6 @@ def json_dumps_safe(data):
 
 
 def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None):
-    # pprint(svg_string)
     return_obj = parse_unknown_svg_visual_elements(svg_string, need_text = True, min_len = 1000)
     visual_objs = return_obj[0]
     width = return_obj[1]
@@ -480,15 +469,13 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     if axisdata and (axisdata != "null"):
         axes_array = json.loads(axisdata)
     else:
-        # pprint("visual_object", visual_object)
-        pprint(visual_object)
+        pprint("visual_object:", visual_object)
         axes_array = get_ticks_robust(svg_string, visual_object)
         
         with open('tmp/axis.json', 'w') as f:
             json.dump(axes_array, f, indent = 2)
             
         # axes_array = get_ticks_robust(control_point, visual_object)
-        # pprint(axes_array)
         # print("DEBUG: axes_array =", type(axes_array), axes_array)
 
 
@@ -1487,10 +1474,8 @@ if __name__ == "__main__":
     # file_name = "download"
     # file_name = "20210811_stack"
 
-
     with open(f'test_example/{file_name}.svg') as f:
         string = f.read()
-        # pprint(string)
         constraints_with_data = get_constraints_with_data(string)
         with open(f'output/{file_name}.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
@@ -1499,5 +1484,10 @@ if __name__ == "__main__":
         with open('./test_webpage/chosen_json/latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
 
-    
-    
+        #用于debug存文件,可以删除
+        with open('tmp/1_debug_constraints_with_data.json', "w", encoding='utf8') as f:
+            json.dump(constraints_with_data, f, indent=2)
+        with open('tmp/1_debug_svg_string.svg', "w", encoding='utf8') as f:
+            f.write(constraints_with_data['svg_string'])
+        with open('tmp/1_debug__latest_result.json', "w", encoding='utf8') as f:
+            json.dump(constraints_with_data, f, indent=2)

@@ -1,14 +1,22 @@
+###与主函数的接口是 get_control_point
+'''
+def get_control_point(
+    visual_objs, 
+    width, height, 
+    selected_area = '', 
+    need_selected_vo = False)
+    
+
+    
+    return control_point, visual_object, non_soup_visual_object
+'''
+
 
 # import copy
 from uuid import uuid5, UUID
-import os
-def pprint(*args, file="tmp/1_debug_output.txt", encoding="utf8"):
-    """
-    Print to file instead of terminal. Overwrites the file on each call.
-    """
-    os.makedirs(os.path.dirname(file), exist_ok=True)  
-    with open(file, "w", encoding=encoding) as f:  
-        f.write(" ".join(map(str, args)) + "\n")
+from utils import pprint
+
+
 
 def obj_in_selected_area(current_obj, selected_area):
 

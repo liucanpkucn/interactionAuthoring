@@ -11,15 +11,8 @@ import bs4
 
 from dateutil.parser import parse
 import datetime
+from utils import pprint
 
-import os
-def pprint(*args, file="tmp/1_debug_output.txt", encoding="utf8"):
-    """
-    Print to file instead of terminal. Overwrites the file on each call.
-    """
-    os.makedirs(os.path.dirname(file), exist_ok=True)  
-    with open(file, "w", encoding=encoding) as f:  
-        f.write(" ".join(map(str, args)) + "\n")
 
 
 def parse_axes(axes_array, visual_objects, control_points):
@@ -128,7 +121,6 @@ def parse_single_axis(axis, visual_objects, control_points):
     Add uuid to the visual marks
     Parse a axis to get its type.
     """
-    # pprint(axis)
     for item in axis['tick']:
         if isinstance(item['visual_object'], dict):
             item['visual_object'] = item['visual_object']['id']

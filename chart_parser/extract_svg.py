@@ -1,3 +1,17 @@
+# 与主函数的接口是parse_unknown_svg_visual_elements
+'''
+def parse_unknown_svg_visual_elements(
+    svg_string, 
+    need_data_soup = False, 
+    need_text = False, 
+    min_len = 10)
+    
+    
+    return rects_attr, width, height, svg
+'''
+
+
+
 # -*- coding: UTF-8 -*-
 
 import json
@@ -1222,12 +1236,4 @@ if __name__ == "__main__":
     # need_text = True
 
 
-    # a_numpy, id_array, soup, text, focus_array = parse_svg_string(svg_string, min_element_num=svg_number, simple = True, need_text = need_text, need_focus = True)
-    # verify_parsed_results()
-    # parse_unknown_svg_visual_elements(svg_string)
-        # print(svg_string)
-    # a_numpy, id_array = parse_svg_string(svg_string)
-    # print("numpy's size", a_numpy.shape)
-
-    # # uniform_elements, data, soup = parse_unknown_svg(svg_string)
-    # print(a_numpy)
+    
