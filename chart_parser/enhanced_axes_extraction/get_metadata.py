@@ -3,6 +3,7 @@ import base64
 import json
 import os
 from playwright.sync_api import sync_playwright
+from utils import pprint
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_PATH = os.path.join(BASE_DIR, "test_image.png")
@@ -10,6 +11,9 @@ IMAGE_PATH = os.path.join(BASE_DIR, "test_image.png")
 SVG_PATH = os.path.join(BASE_DIR, "input_data", "test.svg")
 PNG_OUTPUT_PATH = os.path.join(BASE_DIR, "test_image.png")
 
+import base64
+from playwright.sync_api import sync_playwright
+import re
 
 def convert_svg_to_png():
     """使用 Playwright 打开 SVG 并截图为 PNG 图像"""
@@ -20,20 +24,40 @@ def convert_svg_to_png():
             with open(SVG_PATH, "r", encoding="utf-8") as svg_file:
                 svg_content = svg_file.read()
 
-            if "width" not in svg_content or "height" not in svg_content:
+            # 使用正则表达式精准提取 width 和 height
+            width_match = re.search(r'width\s*=\s*["\']?([\d.]+)', svg_content)
+            height_match = re.search(r'height\s*=\s*["\']?([\d.]+)', svg_content)
+            viewbox_match = re.search(r'viewBox="([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)"', svg_content)
+
+            # 提取尺寸并设置默认值
+            if width_match and height_match:
+                width, height = float(width_match.group(1)), float(height_match.group(1))
+            elif viewbox_match:
+                _, _, width, height = map(float, viewbox_match.groups())
+            else:
+                width, height = 1000, 750  # 默认尺寸
+
+            # 替换或添加 viewBox，确保尺寸一致
+            if viewbox_match:
+                svg_content = re.sub(r'viewBox="([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)"',
+                                     f'viewBox="0 0 {width} {height}"', svg_content)
+            else:
                 svg_content = svg_content.replace(
-                    "<svg", '<svg width="1000" height="750" viewBox="0 0 1000 750"'
+                    "<svg", f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}"'
                 )
-          
+
+            # 清除 transform_matrix 的偏移
+            svg_content = re.sub(r'transform_matrix="{.*?}"', 'transform_matrix="{a:1,b:0,c:0,d:1,e:0,f:0}"', svg_content)
+
             svg_base64 = base64.b64encode(svg_content.encode('utf-8')).decode('utf-8')
             data_url = f"data:image/svg+xml;base64,{svg_base64}"
 
             # 加载 SVG 
             page.set_content(f'<img src="{data_url}" style="background-color: white;"/>')
-            page.wait_for_timeout(1000)  
+            page.wait_for_timeout(1000)
 
-            # 截图并保存
-            page.screenshot(path=PNG_OUTPUT_PATH, clip={"x": 0, "y": 0, "width": 1000, "height": 750})
+            # 动态设置 clip 参数，确保截图完整
+            page.screenshot(path=PNG_OUTPUT_PATH, clip={"x": 0, "y": 0, "width": width, "height": height})
             browser.close()
 
         print(f"SVG successfully converted to PNG: {PNG_OUTPUT_PATH}")
@@ -42,8 +66,6 @@ def convert_svg_to_png():
     except Exception as e:
         print(f"Error during SVG to PNG conversion: {e}")
         return None
-
-
 
 def clean_openai_json(response_text):
     """Clean OpenAI JSON response by removing Markdown formatting and extra whitespace."""

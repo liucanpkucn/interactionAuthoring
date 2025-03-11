@@ -5,11 +5,11 @@ import copy
 import re
 import os
 
-### 这两个家伙准备换掉
+### 这个家伙准备换掉
 from extract_svg import parse_unknown_svg_visual_elements
-from parse_control_point import get_control_point
 #####################
 
+from parse_control_point import get_control_point
 from dateutil.parser import parse
 from cal_constraints import (
     perpendicular_gravity_new,
@@ -1477,8 +1477,8 @@ if __name__ == "__main__":
     # file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
     # file_name = "multi_line"
     # file_name = "20210819_bar"
-    file_name = "20210817_linechart"
-    # file_name = "download"
+    # file_name = "20210817_linechart"
+    file_name = "download"
     # file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:
@@ -1492,9 +1492,7 @@ if __name__ == "__main__":
             json.dump(constraints_with_data, f, indent = 2)
 
         #用于debug存文件,可以删除
-        with open('DEBUG/1_debug_constraints_with_data.json', "w", encoding='utf8') as f:
-            json.dump(constraints_with_data, f, indent=2)
         with open('DEBUG/1_debug_svg_string.svg', "w", encoding='utf8') as f:
             f.write(constraints_with_data['svg_string'])
-        with open('DEBUG/1_debug__latest_result.json', "w", encoding='utf8') as f:
+        with open('DEBUG/1_debug_latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent=2)
