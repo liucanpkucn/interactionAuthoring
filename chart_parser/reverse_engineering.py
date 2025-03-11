@@ -5,13 +5,16 @@ import copy
 import re
 import os
 
+### 这两个家伙准备换掉
 from extract_svg import parse_unknown_svg_visual_elements
+from parse_control_point import get_control_point
+#####################
+
 from dateutil.parser import parse
 from cal_constraints import (
     perpendicular_gravity_new,
     add_should_axis_constraints,
     add_quantity_constraints)
-from parse_control_point import get_control_point
 from svganalysis import get_ticks
 from calculate_axis import get_ticks_robust
 from deal_with_object import classify_groups_by_size
@@ -478,6 +481,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
         axes_array = json.loads(axisdata)
     else:
         # pprint("visual_object", visual_object)
+        pprint(visual_object)
         axes_array = get_ticks_robust(svg_string, visual_object)
         
         with open('tmp/axis.json', 'w') as f:

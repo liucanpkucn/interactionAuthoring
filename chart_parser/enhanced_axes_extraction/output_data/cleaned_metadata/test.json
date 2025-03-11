@@ -66,7 +66,7 @@
     {
       "type": "y",
       "main": false,
-      "attr_type": "Quantitative",
+      "attr_type": "Categorical",
       "fixed_distance": 39.22222222222222,
       "range": {
         "begin": 48.0,

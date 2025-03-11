@@ -21,7 +21,21 @@
           "x": "wait",
           "y": "wait"
         },
+        "content": "1890"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
         "content": "1900"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1910"
       },
       {
         "position": {
@@ -35,7 +49,21 @@
           "x": "wait",
           "y": "wait"
         },
+        "content": "1930"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
         "content": "1940"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1950"
       },
       {
         "position": {
@@ -49,7 +77,21 @@
           "x": "wait",
           "y": "wait"
         },
+        "content": "1970"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
         "content": "1980"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1990"
       },
       {
         "position": {
@@ -63,7 +105,7 @@
   "y": {
     "type": "y",
     "main": false,
-    "attr_type": "Quantitative",
+    "attr_type": "Categorical",
     "fixed_distance": "wait",
     "range": {
       "begin": "wait",

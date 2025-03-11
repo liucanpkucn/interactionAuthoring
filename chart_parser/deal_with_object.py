@@ -8,7 +8,7 @@ import time
 
 import copy
 
-from parse_control_point import pack_point
+# from parse_control_point import pack_point
 
 import numpy as np 
 
@@ -22,6 +22,15 @@ import math
 # the bars are classified into several groups
 # the several area are classified.
 # width, height, left, right, top, bottom, color
+
+def pack_point(x, y, index, obj_id, radius = 0, fixed = False):
+
+    point = {"ox": x, "oy": y, "id": index, 'obj_id': obj_id, "radius": radius }
+    # if index == 3030:
+    #     print("asdfasdf", point)
+    if fixed:
+        point['fixed'] = True
+    return point
 
 def classify_groups_by_size(visual_objects, control_points, axes_candidate, remove_soup = True):
     """

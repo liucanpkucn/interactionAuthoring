@@ -147,7 +147,6 @@ function auto_change_quantitative_scale(chart_object, direction = "y") {
   let interspace = { x: "width", y: "height" };
   let min_axis_position = chosen_axis.axis.area[direction];
   let max_axis_position = chosen_axis.axis.area[interspace[direction]];
-
   let stable_point = min_position;
   let changed_point = max_position;
   let changed_after_point = max_axis_position;

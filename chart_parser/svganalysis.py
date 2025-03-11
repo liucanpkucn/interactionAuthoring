@@ -1,7 +1,15 @@
 import math
 import copy
 
-from parse_control_point import pack_point
+# from parse_control_point import pack_point
+def pack_point(x, y, index, obj_id, radius = 0, fixed = False):
+
+    point = {"ox": x, "oy": y, "id": index, 'obj_id': obj_id, "radius": radius }
+    # if index == 3030:
+    #     print("asdfasdf", point)
+    if fixed:
+        point['fixed'] = True
+    return point
 
 def same_value(x, y, delta):
     if abs(x-y) < delta:
