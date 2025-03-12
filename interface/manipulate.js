@@ -37,7 +37,8 @@ async function getAnswer(message) {
           "behavior": ( "remove" | "rescale" | "resort" | "reorder" | "add" | "show" | "overlap" ),
           "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" ),
           "parameter": ( "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
-      }
+      },
+      "description": "<A concise and user-friendly explanation of the interaction>"
   }
 
   ### **RULES FOR JSON FORMATTING** ###
@@ -59,7 +60,29 @@ async function getAnswer(message) {
     - If "value", then parameter must be "x", "y", or "all" (only used when target = "tooltip").
     - If "height", "opacity", or "auto", then parameter must be an **empty string** ("").
 
-  ---
+    6. **description** must be a concise, human-readable explanation of the interaction, formatted in full sentences.  
+    - It should clearly describe **what happens** and **how the user can trigger it**.  
+    - If the action requires user interaction, mention it explicitly.  
+    - Examples:  
+      - \`"description": "Clicking the x-axis reorders the elements based on opacity."\`  
+      - \`"description": "Hovering over the chart displays a tooltip with information from the x-axis."\`  
+      - \`"description": "Zooming on the x-axis adjusts the scale for better visualization."\`  
+      - \`"description": "Clicking the button removes all unselected objects from view."\`  
+      - \`"description": "Dragging over the visual marks highlights the selected area."\`
+
+  7. **Axis Rescaling Rule**  
+    - If **result.target** is \`"axis"\` and **result.behavior** is \`"rescale"\`, then:  
+      - **action.target** must be \`"axis"\`.  
+      - **action.action** must be \`"zoom"\`.  
+      - **action.parameter** must be \`"x"\`, \`"y"\`, or \`"all"\`, depending on the axis being rescaled.
+  
+  8. **Overlap Behavior Rule**  
+    - If **result.behavior** is \`"overlap"\`, then:  
+      - **action.target** must be \`"visual mark"\`.  
+      - **action.action** must be \`"drag"\`.  
+      - **action.parameter** must be an **empty string** (\`""\`).
+
+---
 
   ### **EXAMPLES OF INPUT AND EXPECTED OUTPUT** ###
 
@@ -80,7 +103,8 @@ async function getAnswer(message) {
           "behavior": "resort",
           "by": "opacity",
           "parameter": ""
-      }
+      },
+      "description": "When the user clicks the x-axis, the elements are reordered based on opacity."
   }
   \`\`\`
 
@@ -101,7 +125,8 @@ async function getAnswer(message) {
           "behavior": "show",
           "by": "value",
           "parameter": "x"
-      }
+      },
+      "description": "Hovering over the chart displays a tooltip with information from the x-axis."
   }
   \`\`\`
 
@@ -122,7 +147,8 @@ async function getAnswer(message) {
           "behavior": "add",
           "by": "color",
           "parameter": "red"
-      }
+      },
+      "description": "Clicking the button changes the color of the visual marks to red."
   }
   \`\`\`
 
@@ -143,7 +169,8 @@ async function getAnswer(message) {
           "behavior": "remove",
           "by": "auto",
           "parameter": ""
-      }
+      },
+      "description": "Clicking the button removes the visual mark."
   }
   \`\`\`
 
@@ -152,9 +179,8 @@ async function getAnswer(message) {
   ${JSON.stringify(message)}
   \`\`\`
 
-  ### **RESPONSE (Strictly JSON format, no additional text)** ###
-  Return only a valid JSON object based on the input above. Do not provide explanations, comments, or extra text.
-  Ensure the response is **strictly valid JSON**.`;
+  RESPONSE (Strictly JSON format, no additional text)
+  Return only a valid JSON object based on the input above. Do not provide explanations, comments, or extra text. Ensure the response is strictly valid JSON.`;
   
   var myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${token}`);
@@ -196,6 +222,7 @@ async function getAnswer(message) {
 function activateInteraction(parsedJson){
   let action = parsedJson.action;
   let result = parsedJson.result;
+  let description = parsedJson.description;
 
   // mouse action
   let mouse_action;
@@ -213,16 +240,23 @@ function activateInteraction(parsedJson){
 
 
   // rescale axis
-  if(action.action === "zoom" && action.target === "axis" && result.behavior === "rescale"){
+  if(action.action === "zoom"){
     console.log("Rescale Axis");
     activate_axis_zoom_rescale();
     alert("Rescale Axis");
+    // return "Rescale Axis";
   }
   // annotate visual mark
   if(result.target === "tooltip") {
     console.log("Annotate Visual Mark");
-    _chart_object[0].CoordSys[2].activate_value_tooltip(result.parameter);
+    if(result.parameter){
+      _chart_object[0].CoordSys[2].activate_value_tooltip(result.parameter);
+    } else {
+      _chart_object[0].CoordSys[2].activate_value_tooltip("all");
+    }
+    
     alert("Annotate Visual Mark");
+    // return "Annotate Visual Mark";
   }
   // resort axis by height/opacity/color - bar chart
   if(result.behavior === "resort" || result.behavior === "reorder"){
@@ -240,6 +274,7 @@ function activateInteraction(parsedJson){
     }
     _chart_object[0].x_axis_object_list[0].activate_sort(mouse_action, sort_by);
     alert("Resort Axis");
+    // return "Resort Axis";
   }
   // remove area
   if(result.behavior === "remove") {
@@ -252,19 +287,23 @@ function activateInteraction(parsedJson){
       console.log("Please write again.");
     }
     alert("Remove Area");
+    // return "Remove Area";
   }
   // overlap area
   if(result.behavior === "overlap") {
     console.log("Overlap Area");
     _chart_object[0].CoordSys[2].activate_allow_overlap();
     alert("Overlap Area");
+    // return "Overlap Area";
   }
   // move to bottom area
   if(result.target === "visual mark" && action.action === "click") {
     console.log("Move Area");
     _chart_object[0].CoordSys[2].activate_move_to_bottom();
     alert("Move Area");
+    // return "Move Area";
   }
+  return description;
 }
 
 

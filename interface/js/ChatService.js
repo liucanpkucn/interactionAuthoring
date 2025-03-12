@@ -119,6 +119,7 @@ class ChatService {
         this.sendButton.addEventListener("click", async () => {
             const userMessage = this.chatInput.value.trim();
             let answer;
+            let reply;
 
             if (userMessage) {
                 this.UserMessage(userMessage);
@@ -129,12 +130,12 @@ class ChatService {
                 try {
                     const cleanedJsonString = answer.replace(/```json|```/g, "").trim();
                     const parsedJson = JSON.parse(cleanedJsonString);  // JSON 문자열을 객체로 변환
-                    activateInteraction(parsedJson);
+                    reply = activateInteraction(parsedJson);
                 } catch (error) {
                     console.error("Failed to parse JSON:", error);
                 }
         
-                this.SystemResponse(answer);
+                this.SystemResponse(reply);
             }
 
             // 清空输入框并滚动到底部

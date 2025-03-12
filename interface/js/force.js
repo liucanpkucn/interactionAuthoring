@@ -35,7 +35,7 @@ let canvas_main = function(data){
   // Set up the main svg
 
   let svg_contain = d3.select("#canvas").append("svg")
-    .attr("width", window_width/1.4)
+    .attr("width", window_width)
     .attr("height", window_height)
     .attr("id", "canvas_svg")
     .attr("xmlns", "http://www.w3.org/2000/svg")
@@ -63,7 +63,7 @@ let canvas_main = function(data){
   console.log(resize)
   let chart_object = []
   // let try_draw = new draw_a_canvas(svg, chart_json, {x: 100, y: 100}, loop_flag, move_current, try_polar, show_should = show_should, need_back_end_cal, resize = 1, node_radius = 0.1, svg_string = svg_string)
-  let begin_point = {x: (window_width - data.size.width * resize) / 2 - chart_margin.x, y: (window_height - data.size.height * resize) / 2 - chart_margin.y}
+  let begin_point = {x: (window_width - data.size.width * resize) / 2 - chart_margin.x*5.7, y: (window_height - data.size.height * resize) / 2 - chart_margin.y}
   let try_draw = new draw_a_canvas(svg, new_chart_json, begin_point, resize = resize)
 
   console.log("begin_point", begin_point)
