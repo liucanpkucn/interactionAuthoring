@@ -238,19 +238,70 @@ if (!fs.existsSync(outputDirectory)) {
     function get_all_rects(current_svg) {
       let rects = current_svg.getElementsByTagName("rect");
       rects = [...rects].map((element) => {
-        element.focus();
-        computed_style = window.getComputedStyle(element);
-        return {
-          type: "rect",
-          x: element.getBoundingClientRect().x,
-          y: element.getBoundingClientRect().y,
-          width: element.getBoundingClientRect().width,
-          height: element.getBoundingClientRect().height,
-          fill: computed_style.fill,
-          stroke: computed_style.stroke,
-          stroke_width: computed_style.strokeWidth,
-        };
+          element.focus();
+          const computed_style = window.getComputedStyle(element);
+
+          const bbox = element.getBoundingClientRect();
+
+          const width = element.hasAttribute('real_width') 
+              ? parseFloat(element.getAttribute('real_width')) 
+              : bbox.width;
+
+          const height = element.hasAttribute('real_height') 
+              ? parseFloat(element.getAttribute('real_height')) 
+              : bbox.height;
+
+          const left = bbox.x;
+          const right = bbox.x + width;
+          const up = bbox.y;
+          const down = bbox.y + height;
+
+          const new_rect = element.cloneNode(true);
+          const origin = new_rect.outerHTML;
+          const original_soup = element.outerHTML;
+
+          const fillColor = rgbStringToRGB(computed_style.fill);
+          const opacity = parseFloat(computed_style.opacity) || 1.0;
+          const fill_opacity = parseFloat(computed_style.fillOpacity) || 1.0;
+
+          const value = element.hasAttribute('q0')
+              ? parseFloat(element.getAttribute('q0')) 
+              : 0.0;
+
+          const ctm = element.getCTM();
+          const transform_matrix = {
+              a: ctm.a,
+              b: ctm.b,
+              c: ctm.c,
+              d: ctm.d,
+              e: ctm.e,
+              f: ctm.f
+          };
+
+          return {
+              type: "rect",
+              origin: origin,
+              original_soup: original_soup,
+              width: width,
+              height: height,
+              left: left,
+              right: right,
+              value: value,
+              fill: fillColor,
+              fill_opacity: fill_opacity,
+              stroke: computed_style.stroke || "none",
+              stroke_width: computed_style.strokeWidth || "1px",
+              opacity: opacity,
+              x: left,
+              y: up,
+              up: up,
+              down: down,
+              text: "",
+              transform_matrix: transform_matrix
+          };
       });
+
+
       let circles = current_svg.getElementsByTagName("circle");
       for (let i = 0; i < circles.length; i++) {
         const element = circles[i];
@@ -267,30 +318,7 @@ if (!fs.existsSync(outputDirectory)) {
           stroke_width: computed_style.strokeWidth,
         });
       }
-      // texts = current_svg.getElementsByTagName("text");
-      // for (let i = 0; i < texts.length; i++) {
-      //   const element = texts[i];
-      //   if (window.getComputedStyle(element).display === "none" || window.getComputedStyle(element).opacity === '0') {
-      //     continue;
-      //   }
-      //   element.focus();
-
-      //   computed_style = window.getComputedStyle(element);
-
-      //   // console.log("Text", element.textContent, computed_style.opacity);
-
-      //   rects.push({
-      //     type: "text",
-      //     //这里处理了text,匹配时候要注意
-      //     content: element.textContent.replaceAll(' ', '_').replaceAll('\u2212', '-').replaceAll(',', ''),
-      //     x: element.getBoundingClientRect().x,
-      //     y: element.getBoundingClientRect().y,
-      //     width: element.getBoundingClientRect().width,
-      //     height: element.getBoundingClientRect().height,
-      //     fill: computed_style.fill,
-      //     stroke: computed_style.stroke,
-      //   });
-      // }
+      
       texts = current_svg.getElementsByTagName("text");
       for (let i = 0; i < texts.length; i++) {
           const element = texts[i];
@@ -300,7 +328,13 @@ if (!fs.existsSync(outputDirectory)) {
               continue;
           }
           const computed_style = window.getComputedStyle(element);
-          const textContent = element.textContent.trim();  // 提取文字内容
+          
+          //这里处理了text,匹配时候要注意
+          const textContent = element.textContent.trim()
+            .replaceAll(' ', '_')        // 空格替换为下划线
+            .replaceAll('\u2212', '-')   // Unicode减号替换为普通减号
+            .replaceAll(',', '');        // 删除逗号
+           // 提取文字内容
           const fillColor = rgbStringToRGB(computed_style.fill); // 转换为 [r, g, b] 格式
           const bbox = element.getBoundingClientRect(); // 获取位置和尺寸信息
           const left = bbox.x;
@@ -310,6 +344,8 @@ if (!fs.existsSync(outputDirectory)) {
 
           rects.push({
               type: "text",
+
+              //这里origin也使用的是原始svg,没有处理
               origin: element.outerHTML,            // 原始 HTML/SVG 标签
               original_soup: element.outerHTML,     // 完整原始代码块
               width: bbox.width,                    // 宽度
