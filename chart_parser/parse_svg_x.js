@@ -4,7 +4,7 @@ const path = require('path');
 const { SingleBar } = require('cli-progress');
 const { console } = require("inspector");
 
-const inputFileName = "20210817_linechart";  
+const inputFileName = "20210831_bubble_stack_nyt";  
 const inputFilePath = `test_example/${inputFileName}.svg`;
 const outputDirectory = "DEBUG";
 
@@ -236,6 +236,8 @@ if (!fs.existsSync(outputDirectory)) {
     }
 
     function get_all_rects(current_svg) {
+
+      //已经修改
       let rects = current_svg.getElementsByTagName("rect");
       rects = [...rects].map((element) => {
           element.focus();
@@ -301,24 +303,46 @@ if (!fs.existsSync(outputDirectory)) {
           };
       });
 
-
+      //已经修改
       let circles = current_svg.getElementsByTagName("circle");
       for (let i = 0; i < circles.length; i++) {
-        const element = circles[i];
-        element.focus();
-        computed_style = window.getComputedStyle(element);
-        rects.push({
-          type: "circle",
-          x: element.getBoundingClientRect().x,
-          y: element.getBoundingClientRect().y,
-          width: element.getBoundingClientRect().width,
-          height: element.getBoundingClientRect().height,
-          fill: computed_style.fill,
-          stroke: computed_style.stroke,
-          stroke_width: computed_style.strokeWidth,
-        });
+          const element = circles[i];
+          element.focus();
+
+          const computed_style = window.getComputedStyle(element);
+          const radius = parseFloat(element.getAttribute("r") || "0");
+          const bbox = element.getBoundingClientRect();
+
+          const cx = bbox.x + bbox.width / 2;
+          const cy = bbox.y + bbox.height / 2;
+
+          const left = cx - radius;
+          const right = cx + radius;
+          const up = cy - radius;
+          const down = cy + radius;
+
+          rects.push({
+              type: "circle",
+              origin: element.outerHTML,         // 保留原始 HTML
+              original_soup: element.outerHTML,  // 保留完整 HTML
+              width: bbox.width,
+              height: bbox.height,
+              left: left,
+              right: right,
+              fill: rgbStringToRGB(computed_style.fill || "rgb(0, 0, 0)"),
+              stroke: rgbStringToRGB(computed_style.stroke || "rgb(0, 0, 0)"),
+              stroke_width: computed_style.strokeWidth || "1px",
+              opacity: parseFloat(computed_style.opacity) || 1.0,
+              fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
+              x: cx,
+              y: cy,
+              up: up,
+              down: down,
+              r: radius
+          });
       }
-      
+
+      //已经修改
       texts = current_svg.getElementsByTagName("text");
       for (let i = 0; i < texts.length; i++) {
           const element = texts[i];
@@ -367,6 +391,7 @@ if (!fs.existsSync(outputDirectory)) {
           });
       }
 
+      //未修改
       paths = current_svg.getElementsByTagName("path");
       for (let i = 0; i < paths.length; i++) {
         const element = paths[i];
