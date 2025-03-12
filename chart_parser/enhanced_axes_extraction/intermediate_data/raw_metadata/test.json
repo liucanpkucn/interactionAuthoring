@@ -14,70 +14,91 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "2013"
+        "content": "10%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2014"
+        "content": "15%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2015"
+        "content": "20%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2016"
+        "content": "25%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2017"
+        "content": "30%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2018"
+        "content": "35%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2019"
+        "content": "40%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2020"
+        "content": "45%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2021"
+        "content": "50%"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2022"
+        "content": "55%"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "60%"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "65%"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Avg."
       }
     ]
   },
@@ -96,119 +117,14 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "0"
+        "content": "Most vulnerable"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "2000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "2500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "3000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "3500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "4000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "4500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "5000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "5500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "6000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "6500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "7000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "7500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "8000"
+        "content": "Least vulnerable"
       }
     ]
   }

@@ -3541,19 +3541,19 @@
         "type": "K",
         "direction": "legend",
         "map": {
-          "[92, 180, 145]": "Apple",
-          "[174, 215, 233]": "Adobe",
-          "[199, 29, 30]": "Mozilla",
-          "[220, 117, 136]": "Linux",
           "[37, 121, 183]": "Linux",
-          "[227, 115, 51]": "Linux"
+          "[199, 29, 30]": "Mozilla",
+          "[92, 180, 145]": "Apple",
+          "[227, 115, 51]": "Linux",
+          "[174, 215, 233]": "Adobe",
+          "[220, 117, 136]": "Linux"
         },
         "value_range": [
-          "Apple",
-          "Adobe",
+          "Linux",
           "Mozilla",
+          "Apple",
           "Linux",
-          "Linux",
+          "Adobe",
           "Linux"
         ]
       },

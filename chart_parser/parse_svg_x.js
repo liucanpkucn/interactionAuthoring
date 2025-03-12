@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer");
 const fs = require("fs");
 const path = require('path');
 const { SingleBar } = require('cli-progress');
+const { console } = require("inspector");
 
 const inputFileName = "20210817_linechart";  
 const inputFilePath = `test_example/${inputFileName}.svg`;
@@ -35,62 +36,19 @@ if (!fs.existsSync(outputDirectory)) {
     svg_width = Math.max(svg_width, svg_height);
     svg_height = Math.max(svg_width, svg_height);
 
+    function rgbStringToRGB(rgbString) {
 
-    // function rgbToHsl(r, g, b) {
-    //   r /= 255;
-    //   g /= 255;
-    //   b /= 255;
-
-    //   const max = Math.max(r, g, b);
-    //   const min = Math.min(r, g, b);
-    //   let h, s, l = (max + min) / 2;
-
-    //   if (max === min) {
-    //     h = s = 0; // achromatic
-    //   } else {
-    //     const d = max - min;
-    //     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-    //     switch (max) {
-    //       case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-    //       case g: h = (b - r) / d + 2; break;
-    //       case b: h = (r - g) / d + 4; break;
-    //     }
-
-    //     h /= 6;
-    //   }
-
-    //   return [Math.round(h * 20), Math.round(s * 20), Math.round(l * 20)];
-    // }
-
-
-
-
-    function rgbStringToHex(rgbString) {
-      // 使用正则表达式提取RGB值
+      // 检查是否为 undefined、null 或空字符串
+      if (!rgbString || rgbString === "none" || rgbString === "transparent") {
+          return [0, 0, 0];  // 默认返回黑色
+      }
+  
       const result = rgbString.match(/\d+/g);
       if (!result || result.length !== 3) {
-        return 'None'
+          return [0, 0, 0];  // 如果不是标准 RGB 格式，仍返回黑色
       }
-
-      // 将提取的RGB值转换为整数
-      const r = parseInt(result[0], 10);
-      const g = parseInt(result[1], 10);
-      const b = parseInt(result[2], 10);
-
-
-      // hsl_20 = rgbToHsl(r, g, b);
-      return '(' + r + ',' + g + ',' + b + ')';
-
-      // return '(' + hsl_20[0] + ',' + hsl_20[1] + ',' + hsl_20[2] + ')';
-
-      // 将颜色值转换为两位的十六进制字符串
-      // const toHex = (c) => c.toString(16).padStart(2, '0');
-
-      // // 组合为六位十六进制字符串
-      // const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-
-      // return hex;
+  
+      return [parseInt(result[0], 10), parseInt(result[1], 10), parseInt(result[2], 10)];
     }
 
     function isAxisAlignedRectangle(points) {
@@ -116,8 +74,6 @@ if (!fs.existsSync(outputDirectory)) {
       return isHorizontal1 && isVertical1 && isHorizontal2 && isVertical2;
     }
   
-
-
     function isCirclePathData(d) {
       // 解析路径数据
       const commands = d.match(/[a-zA-Z][^a-zA-Z]*/g).map(command => {
@@ -146,8 +102,6 @@ if (!fs.existsSync(outputDirectory)) {
 
       return arcsMatch && circleFormed;
     }
-
-
 
     function parsePath(d, transform_matrix) {
       const commands = d.match(/[a-z][^a-z]*/gi);
@@ -281,8 +235,6 @@ if (!fs.existsSync(outputDirectory)) {
       return absolute_points;
     }
 
-    
-
     function get_all_rects(current_svg) {
       let rects = current_svg.getElementsByTagName("rect");
       rects = [...rects].map((element) => {
@@ -315,30 +267,70 @@ if (!fs.existsSync(outputDirectory)) {
           stroke_width: computed_style.strokeWidth,
         });
       }
+      // texts = current_svg.getElementsByTagName("text");
+      // for (let i = 0; i < texts.length; i++) {
+      //   const element = texts[i];
+      //   if (window.getComputedStyle(element).display === "none" || window.getComputedStyle(element).opacity === '0') {
+      //     continue;
+      //   }
+      //   element.focus();
+
+      //   computed_style = window.getComputedStyle(element);
+
+      //   // console.log("Text", element.textContent, computed_style.opacity);
+
+      //   rects.push({
+      //     type: "text",
+      //     //这里处理了text,匹配时候要注意
+      //     content: element.textContent.replaceAll(' ', '_').replaceAll('\u2212', '-').replaceAll(',', ''),
+      //     x: element.getBoundingClientRect().x,
+      //     y: element.getBoundingClientRect().y,
+      //     width: element.getBoundingClientRect().width,
+      //     height: element.getBoundingClientRect().height,
+      //     fill: computed_style.fill,
+      //     stroke: computed_style.stroke,
+      //   });
+      // }
       texts = current_svg.getElementsByTagName("text");
       for (let i = 0; i < texts.length; i++) {
-        const element = texts[i];
-        if (window.getComputedStyle(element).display === "none" || window.getComputedStyle(element).opacity === '0') {
-          continue;
-        }
-        element.focus();
+          const element = texts[i];
+          // console.log(element);
+          // 忽略不可见元素
+          if (window.getComputedStyle(element).display === "none" || window.getComputedStyle(element).opacity === '0') {
+              continue;
+          }
+          const computed_style = window.getComputedStyle(element);
+          const textContent = element.textContent.trim();  // 提取文字内容
+          const fillColor = rgbStringToRGB(computed_style.fill); // 转换为 [r, g, b] 格式
+          const bbox = element.getBoundingClientRect(); // 获取位置和尺寸信息
+          const left = bbox.x;
+          const right = bbox.x + bbox.width;
+          const up = bbox.y;
+          const down = bbox.y + bbox.height;
 
-        computed_style = window.getComputedStyle(element);
-
-        // console.log("Text", element.textContent, computed_style.opacity);
-
-        rects.push({
-          type: "text",
-          //这里处理了text,匹配时候要注意
-          content: element.textContent.replaceAll(' ', '_').replaceAll('\u2212', '-').replaceAll(',', ''),
-          x: element.getBoundingClientRect().x,
-          y: element.getBoundingClientRect().y,
-          width: element.getBoundingClientRect().width,
-          height: element.getBoundingClientRect().height,
-          fill: computed_style.fill,
-          stroke: computed_style.stroke,
-        });
+          rects.push({
+              type: "text",
+              origin: element.outerHTML,            // 原始 HTML/SVG 标签
+              original_soup: element.outerHTML,     // 完整原始代码块
+              width: bbox.width,                    // 宽度
+              height: bbox.height,                  // 高度
+              left: left,                           // 左边界
+              right: right,                         // 右边界
+              value: 0,                             // 默认为 0
+              fill: computed_style.fill,            // 原始填充信息 (可能为空)
+              fill_color: fillColor,                // RGB 数组格式
+              opacity: parseFloat(computed_style.opacity) || 1.0,
+              fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
+              ox: (left + right) / 2,               // 中心点 x 坐标
+              oy: (up + down) / 2,                  // 中心点 y 坐标
+              x: left,                              // 左上角 x 坐标
+              y: up,                                // 左上角 y 坐标
+              up: up,                               // 上边界
+              down: down,                           // 下边界
+              text: textContent                     // 文字内容
+          });
       }
+
       paths = current_svg.getElementsByTagName("path");
       for (let i = 0; i < paths.length; i++) {
         const element = paths[i];
@@ -429,7 +421,6 @@ if (!fs.existsSync(outputDirectory)) {
       return rects;
     }
 
-
     const rects = get_all_rects(svg);
 
     const granularity = 500;
@@ -440,8 +431,8 @@ if (!fs.existsSync(outputDirectory)) {
       rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
       rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
       rect.uniform_height = parseInt((rect.height * granularity) / svg_height);
-      rect.fill_hex = rgbStringToHex(rect.fill)
-      rect.stroke_hex = rgbStringToHex(rect.stroke)
+      // rect.fill_hex = rgbStringToHex(rect.fill)
+      // rect.stroke_hex = rgbStringToHex(rect.stroke)
       if (rect.hasOwnProperty("points")) {
         rect.uniform_points = rect.points.map((point) => {
           return {
@@ -506,7 +497,6 @@ if (!fs.existsSync(outputDirectory)) {
       }
     });
 
-
     svg_data = {
       x: svg.getBoundingClientRect().x,
       y: svg.getBoundingClientRect().y,
@@ -519,7 +509,7 @@ if (!fs.existsSync(outputDirectory)) {
 
     return svg_data;
   });
-
+  // console.log("Data:");
   // console.log(data);
   fs.writeFileSync(
     `${outputDirectory}/1_debug_all_js_parse.json`,

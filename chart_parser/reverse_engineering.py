@@ -446,7 +446,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     width = return_obj[1]
     height = return_obj[2]
     svg_soup = return_obj[3]
-    # pprint("visual_objs:", visual_objs)
+    pprint(visual_objs)
     # pprint("width:", width)
     # pprint("height:", height)
     # pprint("svg_soup:", svg_soup)
@@ -1477,8 +1477,9 @@ if __name__ == "__main__":
     # file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
     # file_name = "multi_line"
     # file_name = "20210819_bar"
+    file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
-    file_name = "download"
+    # file_name = "download"
     # file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:

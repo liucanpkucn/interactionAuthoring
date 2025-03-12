@@ -8,6 +8,10 @@ def parse_unknown_svg_visual_elements(
     
 
     ...
+
+    rects_attr = [parse_a_rect(rect) for rect in rects]
+    if need_text:
+        rects_attr.extend(texts_attr)
     rects_attr.extend(path_array)
     rects_attr.extend(circle_array)
     rects_attr.extend(line_segments)
