@@ -38,6 +38,7 @@ async function getAnswer(message) {
           "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" ),
           "parameter": ( "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
       },
+      "similar": (true | false),
       "description": "<A concise and user-friendly explanation of the interaction>"
   }
 
@@ -60,35 +61,55 @@ async function getAnswer(message) {
     - If "value", then parameter must be "x", "y", or "all" (only used when target = "tooltip").
     - If "height", "opacity", or "auto", then parameter must be an **empty string** ("").
 
-    6. **description** must be a concise, human-readable explanation of the interaction, formatted in full sentences.  
-    - It should clearly describe **what happens** and **how the user can trigger it**.  
-    - If the action requires user interaction, mention it explicitly.  
-    - Examples:  
-      - \`"description": "Clicking the x-axis reorders the elements based on opacity."\`  
-      - \`"description": "Hovering over the chart displays a tooltip with information from the x-axis."\`  
-      - \`"description": "Zooming on the x-axis adjusts the scale for better visualization."\`  
-      - \`"description": "Clicking the button removes all unselected objects from view."\`  
-      - \`"description": "Dragging over the visual marks highlights the selected area."\`
+  6. **Handling Insufficient Information**  
+    - If the user input **does not provide enough details**, return:
+      \`\`\`json
+      {
+          "action": {
+              "target": "<best guess>",
+              "action": "<best guess>",
+              "parameter": "<best guess>"
+          },
+          "result": {
+              "target": "<best guess>",
+              "behavior": "<best guess>",
+              "by": "<best guess>",
+              "parameter": "<best guess>"
+          },
+          "similar": true,
+          "description": "Based on the input, we inferred the most likely interaction."
+      }
+      \`\`\`
 
-  7. **Axis Rescaling Rule**  
-    - If **result.target** is \`"axis"\` and **result.behavior** is \`"rescale"\`, then:  
-      - **action.target** must be \`"axis"\`.  
-      - **action.action** must be \`"zoom"\`.  
-      - **action.parameter** must be \`"x"\`, \`"y"\`, or \`"all"\`, depending on the axis being rescaled.
-  
-  8. **Overlap Behavior Rule**  
-    - If **result.behavior** is \`"overlap"\`, then:  
-      - **action.target** must be \`"visual mark"\`.  
-      - **action.action** must be \`"drag"\`.  
-      - **action.parameter** must be an **empty string** (\`""\`).
+  7. **Handling Completely Unmatched Input**  
+    - If the user input **does not match any valid interaction**, return:
+      \`\`\`json
+      {
+          "action": {},
+          "result": {},
+          "similar": false,
+          "description": "Please provide more information."
+      }
+      \`\`\`
 
----
+  8.. **Description Formatting (No Extra Words!)**
+   - The **description must directly describe the action and result** without any extra phrases like "Based on the input" or "We inferred that".
+   - Example formatting:
+     - ✅ \`"Clicking on the x-axis reorders the elements based on opacity."\`
+     - ✅ \`"Hovering over the visual mark shows a tooltip with all values."\`
+     - ✅ \`"Dragging over the chart resizes the visual marks automatically."\`
+   - Avoid vague or unnecessary words like:
+     - ❌ \`"Based on the input, clicking the x-axis will reorder the elements."\`
+     - ❌ \`"We inferred that hovering over the chart will show a tooltip."\`
+     - ❌ \`"When the user hovers, a tooltip appears."\`
+
+  ---
 
   ### **EXAMPLES OF INPUT AND EXPECTED OUTPUT** ###
 
-  #### **Example 1:**
+  #### **Example 1 (Exact Match):**
   **Input:**  
-  "When the user clicks on the x-axis, reorder the elements based on opacity."
+  *"When the user clicks on the x-axis, reorder the elements based on opacity."*
 
   **Output:**
   \`\`\`json
@@ -104,84 +125,59 @@ async function getAnswer(message) {
           "by": "opacity",
           "parameter": ""
       },
-      "description": "When the user clicks the x-axis, the elements are reordered based on opacity."
+      "similar": false,
+      "description": "Clicking on the x-axis reorders the elements based on opacity."
   }
   \`\`\`
 
-  #### **Example 2:**
+  #### **Example 2 (Similar Match due to Missing Details):**
   **Input:**  
-  "When the user hovers over the chart, show a tooltip based on the x-axis."
+  *"Move the chart."*
 
   **Output:**
   \`\`\`json
   {
       "action": {
-          "target": "visual mark",
-          "action": "mouseover",
-          "parameter": ""
-      },
-      "result": {
-          "target": "tooltip",
-          "behavior": "show",
-          "by": "value",
-          "parameter": "x"
-      },
-      "description": "Hovering over the chart displays a tooltip with information from the x-axis."
-  }
-  \`\`\`
-
-  #### **Example 3:**
-  **Input:**  
-  "When a button is clicked, change the color to red."
-
-  **Output:**
-  \`\`\`json
-  {
-      "action": {
-          "target": "button",
-          "action": "click",
-          "parameter": "add"
+          "target": "axis",
+          "action": "drag",
+          "parameter": "all"
       },
       "result": {
           "target": "visual mark",
-          "behavior": "add",
-          "by": "color",
-          "parameter": "red"
-      },
-      "description": "Clicking the button changes the color of the visual marks to red."
-  }
-  \`\`\`
-
-  #### **Example 4:**
-  **Input:**  
-  "When the button is clicked, remove the visual mark."
-
-  **Output:**
-  \`\`\`json
-  {
-      "action": {
-          "target": "button",
-          "action": "click",
-          "parameter": "remove"
-      },
-      "result": {
-          "target": "visual mark",
-          "behavior": "remove",
+          "behavior": "rescale",
           "by": "auto",
           "parameter": ""
       },
-      "description": "Clicking the button removes the visual mark."
+      "similar": true,
+      "description": "Based on the input, we inferred that dragging the axis will rescale the chart."
   }
   \`\`\`
 
-  ### **INPUT** ###
+  #### **Example 3 (Completely Unmatched Input):**
+  **Input:**  
+  *"Tell me about the latest news."*
+
+  **Output:**
+  \`\`\`json
+  {
+      "action": {},
+      "result": {},
+      "similar": false,
+      "description": "Please provide more information."
+  }
+  \`\`\`
+
+  ---
+
+  ### **INPUT FROM USER** ###
   \`\`\`
   ${JSON.stringify(message)}
   \`\`\`
 
-  RESPONSE (Strictly JSON format, no additional text)
-  Return only a valid JSON object based on the input above. Do not provide explanations, comments, or extra text. Ensure the response is strictly valid JSON.`;
-  
+  ### **RESPONSE FORMAT**
+  Return **only a valid JSON object** based on the input above. Do **not** provide explanations, comments, or extra text. Ensure the response is strictly valid JSON.
+  `;
+
   var myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${token}`);
   myHeaders.append("Content-Type", "application/json");
@@ -243,7 +239,7 @@ function activateInteraction(parsedJson){
   if(action.action === "zoom"){
     console.log("Rescale Axis");
     activate_axis_zoom_rescale();
-    alert("Rescale Axis");
+    // alert("Rescale Axis");
     // return "Rescale Axis";
   }
   // annotate visual mark
@@ -255,7 +251,7 @@ function activateInteraction(parsedJson){
       _chart_object[0].CoordSys[2].activate_value_tooltip("all");
     }
     
-    alert("Annotate Visual Mark");
+    // alert("Annotate Visual Mark");
     // return "Annotate Visual Mark";
   }
   // resort axis by height/opacity/color - bar chart
@@ -273,7 +269,7 @@ function activateInteraction(parsedJson){
       sort_by = 'auto';
     }
     _chart_object[0].x_axis_object_list[0].activate_sort(mouse_action, sort_by);
-    alert("Resort Axis");
+    // alert("Resort Axis");
     // return "Resort Axis";
   }
   // remove area
@@ -286,24 +282,23 @@ function activateInteraction(parsedJson){
     } else {
       console.log("Please write again.");
     }
-    alert("Remove Area");
+    // alert("Remove Area");
     // return "Remove Area";
   }
   // overlap area
   if(result.behavior === "overlap") {
     console.log("Overlap Area");
     _chart_object[0].CoordSys[2].activate_allow_overlap();
-    alert("Overlap Area");
+    // alert("Overlap Area");
     // return "Overlap Area";
   }
   // move to bottom area
   if(result.target === "visual mark" && action.action === "click") {
     console.log("Move Area");
     _chart_object[0].CoordSys[2].activate_move_to_bottom();
-    alert("Move Area");
+    // alert("Move Area");
     // return "Move Area";
   }
-  return description;
 }
 
 

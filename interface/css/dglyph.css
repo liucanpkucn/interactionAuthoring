@@ -567,3 +567,22 @@ input:focus {
 .hidden-select {
     display: none;
 }
+
+.confirm-button {
+    background: #64d375;
+    color: white;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.confirm-button.selected {
+    background: #c3dbc7;
+}

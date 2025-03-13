@@ -119,23 +119,25 @@ class ChatService {
         this.sendButton.addEventListener("click", async () => {
             const userMessage = this.chatInput.value.trim();
             let answer;
-            let reply;
 
             if (userMessage) {
                 this.UserMessage(userMessage);
                 this.chatInput.value = "";
-                
-                answer = await getAnswer(userMessage);
-                console.log("answer!!!!!!!", answer);
-                try {
-                    const cleanedJsonString = answer.replace(/```json|```/g, "").trim();
-                    const parsedJson = JSON.parse(cleanedJsonString);  // JSON 문자열을 객체로 변환
-                    reply = activateInteraction(parsedJson);
-                } catch (error) {
-                    console.error("Failed to parse JSON:", error);
-                }
+                this.showLoadingMessage();
         
-                this.SystemResponse(reply);
+                answer = await getAnswer(userMessage);
+                answer = JSON.parse(answer.replace(/```json|```/g, "").trim());
+                console.log("answer!!!!!!!", answer);
+                this.removeLoadingMessage();
+
+                if (Object.keys(answer.action).length === 0 && Object.keys(answer.result).length === 0) {
+                    return this.SystemResponse(answer.description);
+                } else {
+                    if(answer.similar){
+                        this.SystemResponse("Please check this is correct.");
+                    }
+                    this.askForConfirmation(answer);
+                }
             }
 
             // 清空输入框并滚动到底部
@@ -199,15 +201,77 @@ class ChatService {
         // }
     }
 
+    showLoadingMessage() {
+        this.removeLoadingMessage(); // 기존 로딩 메시지 제거
+
+        this.loadingMessageDiv = this.document.createElement("div");
+        this.loadingMessageDiv.className = "chat-message assistant loading";
+        this.chatBody.appendChild(this.loadingMessageDiv);
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+
+        // 로딩 애니메이션 시작
+        let dots = 1;
+        this.loadingInterval = setInterval(() => {
+            this.loadingMessageDiv.innerHTML = `<div class="message-text">${'. '.repeat(dots).trim()}</div>`;
+            dots = dots % 3 + 1; // 1 → 2 → 3 → 1 반복
+        }, 500);
+    }
+
+    removeLoadingMessage() {
+        if (this.loadingInterval) {
+            clearInterval(this.loadingInterval);
+            this.loadingInterval = null;
+        }
+
+        if (this.loadingMessageDiv && this.loadingMessageDiv.parentNode) {
+            this.loadingMessageDiv.parentNode.removeChild(this.loadingMessageDiv);
+            this.loadingMessageDiv = null;
+        }
+    }
+
+    askForConfirmation(answer) {
+        const { description } = answer;
+    
+        const confirmationDiv = this.document.createElement("div");
+        confirmationDiv.className = "chat-message assistant";
+        confirmationDiv.innerHTML = `
+            <div class="message-text">
+                <p>${description}</p>
+                <button id="confirm-yes" class="confirm-button">Yes</button>
+                <button id="confirm-no" class="confirm-button">No</button>
+            </div>
+        `;
+    
+        this.chatBody.appendChild(confirmationDiv);
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    
+        const confirmYes = this.document.getElementById("confirm-yes");
+        const confirmNo = this.document.getElementById("confirm-no");
+    
+        confirmYes.addEventListener("click", () => {
+            confirmYes.classList.add("selected"); // 클릭 시 스타일 변경
+            activateInteraction(answer);
+            this.SystemResponse(description);
+            confirmationDiv.remove();
+        });
+    
+        confirmNo.addEventListener("click", () => {
+            confirmNo.classList.add("selected"); // 클릭 시 스타일 변경
+            this.SystemResponse(description);
+            this.SystemResponse("Please provide more information.");
+            confirmationDiv.remove();
+        });
+    }
+    
+
     // 系统回复
     SystemResponse(response) {
-        // 시스템 메시지를 대화창에 추가
         const systemMessageDiv = this.document.createElement("div");
         systemMessageDiv.className = "chat-message assistant";
         systemMessageDiv.innerHTML = `<div class="message-text">${response}</div>`;
         
         this.chatBody.appendChild(systemMessageDiv);
-        this.chatBody.scrollTop = this.chatBody.scrollHeight; // 채팅창 자동 스크롤
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
     // SystemResponse (response) {
     //     // 保存系统回复

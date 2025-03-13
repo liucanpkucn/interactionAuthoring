@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Glyph Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/json/json.min.js"></script>
+
+    <script src="js/DataExpander.js"></script>
+    <script src="js/SVGRenderer.js"></script>
+    <script src="js/RelationProcessor.js"></script>
+    <script src="js/PatternGenerator.js"></script>
+    <!-- <link rel="stylesheet" href="css/dsl_renderer_style.css"> -->
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1>Data Glyph Gallery</h1>
+        <button id="dark-mode-toggle">Theme</button>
+    </nav>
+
+
+    <div class="gallery-container" id="gallery">
+        <!-- Gallery items will be dynamically inserted here -->
+    </div>
+    <script>
+
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        // 读取本地存储并设置模式
+        if (localStorage.getItem("dark-mode") === "enabled") {
+            document.body.classList.add("dark-mode");
+        }
+
+        // 监听点击事件切换模式
+        darkModeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("dark-mode", "enabled");
+            } else {
+                localStorage.removeItem("dark-mode");
+            }
+        });
+
+        const files = [
+            // '20250213_SVGcode.json',
+            'snow_source_unify.json',
+            'example.json',
+            'flower.json',
+            'multi_snow_dict.json',
+            'multi_snow.json',
+            'snow.json',
+            'prototype_snow.json',
+            'heatmap.json',
+            'multi_flower.json'
+        ];
+
+
+        const gallery = document.getElementById('gallery');
+
+        // 首先加载示例文件列表
+        fetch('dsl_setting/all_example_list.txt')
+            .then(response => response.text())
+            .then(text => {
+                // 获取文件列表并过滤空行
+                const exampleFiles = text.split('\n').filter(line => line.trim());
+
+                console.log("exampleFiles", exampleFiles)
+
+                // 渲染示例文件
+                exampleFiles.forEach(file => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+
+                    const previewId = `preview-${file.replace('.json', '')}`;
+
+                    item.innerHTML = `
+                    <div class="theme-switch"></div>
+                    <div class="preview">
+                        <div id="${previewId}"></div>
+                    </div>
+                    <div class="item-info">
+                        <h2 class="item-title">${file
+                            .replace('.json', '')
+                            .replace(/_/g, ' ')
+                            .split(' ')
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                            .join(' ')}
+                        </h2>
+                        <a href="dsl_renderer.html?file=${file}&type=setting" class="view-button">View Pattern</a>
+                    </div>
+                `;
+
+                    gallery.appendChild(item);
+
+                    // 添加暗色模式切换功能
+                    const themeSwitch = item.querySelector('.theme-switch');
+                    themeSwitch.addEventListener('click', () => {
+                        item.classList.toggle('dark-mode');
+                    });
+
+                    // 加载并渲染示例文件
+                    fetch('dsl_setting/' + file)
+                        .then(response => response.json())
+                        .then(data => {
+
+                            const pattern = new PatternGenerator(previewId);
+                            pattern.generateFromJSON(data.dsl);
+
+                            // 添加 defs
+                            if (data.defs_string) {
+                                const svgElement = document.querySelector(`#${previewId} svg`);
+                                if (svgElement) {
+                                    const defsElement = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                                    defsElement.innerHTML = data.defs_string;
+                                    svgElement.insertBefore(defsElement, svgElement.firstChild);
+                                }
+                            }
+
+                            if (data.backgound_color){
+                                let container = document.querySelector(`#${previewId}`)
+                                container.style.backgroundColor = data.backgound_color
+                            }
+
+                            // 调整 SVG 视图
+                            const svgElement = document.querySelector(`#${previewId} svg`);
+                            if (svgElement) {
+                                const bbox = svgElement.getBBox();
+                                svgElement.setAttribute('viewBox',
+                                    `${bbox.x - 10} ${bbox.y - 10} ${bbox.width + 20} ${bbox.height + 20}`);
+                                svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+                            }
+                        })
+                        .catch(error => console.error(`Error rendering ${file}:`, error));
+                });
+
+                // 然后渲染原有的文件列表
+                const files = [
+                    'snow_source_unify.json',
+                    'example.json',
+                    'flower.json',
+                    'multi_snow_dict.json',
+                    'multi_snow.json',
+                    'snow.json',
+                    'prototype_snow.json',
+                    'heatmap.json',
+                    'multi_flower.json'
+                ];
+
+                files.forEach(file => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+
+                    const previewId = `preview-${file.replace('.json', '')}`;
+
+                    item.innerHTML = `
+                    <div class="theme-switch"></div>
+                    <div class="preview">
+                        <div id="${previewId}"></div>
+                    </div>
+                    <div class="item-info">
+                        <h2 class="item-title">${file
+                            .replace('.json', '')
+                            .replace(/_/g, ' ')
+                            .split(' ')
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                            .join(' ')}
+                        </h2>
+                        <a href="dsl_renderer.html?file=${file}" class="view-button">View Pattern</a>
+                    </div>
+                `;
+
+                    gallery.appendChild(item);
+
+                    const themeSwitch = item.querySelector('.theme-switch');
+                    themeSwitch.addEventListener('click', () => {
+                        item.classList.toggle('dark-mode');
+                    });
+
+                    // 加载并渲染原有文件
+                    fetch('dsl_json/' + file)
+                        .then(response => response.json())
+                        .then(data => {
+                            const pattern = new PatternGenerator(previewId);
+                            pattern.generateFromJSON(data);
+
+                            const svgElement = document.querySelector(`#${previewId} svg`);
+                            if (svgElement) {
+                                const bbox = svgElement.getBBox();
+                                svgElement.setAttribute('viewBox',
+                                    `${bbox.x - 10} ${bbox.y - 10} ${bbox.width + 20} ${bbox.height + 20}`);
+                                svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+                            }
+                        })
+                        .catch(error => console.error(`Error rendering ${file}:`, error));
+                });
+            })
+            .catch(error => console.error('Error loading example list:', error));
+    </script>
+</body>
+
+</html>
