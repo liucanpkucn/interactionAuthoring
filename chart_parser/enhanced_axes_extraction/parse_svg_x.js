@@ -393,24 +393,24 @@ if (!fs.existsSync(outputDirectory)) {
 
     const rects = get_all_rects(svg);
 
-    const granularity = 500;
+    // const granularity = 500;
 
     rects.forEach((rect) => {
-      rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
-      // rect.uniform_x = parseInt((rect.x + rect.width / 2) * granularity / svg_width); // 顶部中点的 x 坐标
-      rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
-      rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
-      rect.uniform_height = parseInt((rect.height * granularity) / svg_height);
+      // rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
+      // rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
+      // rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
+      // rect.uniform_height = parseInt((rect.height * granularity) / svg_height);
       rect.fill_hex = rgbStringToHex(rect.fill)
       rect.stroke_hex = rgbStringToHex(rect.stroke)
       if (rect.hasOwnProperty("points")) {
-        rect.uniform_points = rect.points.map((point) => {
-          return {
-            x: Math.round((point.x * granularity) / svg_width),
-            y: Math.round((point.y * granularity) / svg_height),
-          };
+        rect.points = rect.points.map((point) => {
+            return {
+                x: point.x,  // 使用原始坐标
+                y: point.y   // 使用原始坐标
+            };
         })
       }
+    
     });
 
     let filtered_rects = rects.filter(
@@ -418,15 +418,16 @@ if (!fs.existsSync(outputDirectory)) {
     )
 
     filtered_rects.forEach((rect) => {
-      let point_string = `[${rect.uniform_x},${rect.uniform_y},${rect.uniform_width},${rect.uniform_height}]`
-      if (rect.hasOwnProperty('uniform_points')) {
-        point_string = rect.uniform_points.map((point) => `${point.x},${point.y}`).join(';')
+      let point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
+
+      if (rect.hasOwnProperty('points')) {
+        point_string = rect.points.map((point) => `${point.x},${point.y}`).join(';');
         rect.point_string = point_string
       }
 
       if (rect.type === 'text') {
         // 使用左上角坐标
-        point_string = `[${rect.uniform_x},${rect.uniform_y},${rect.uniform_width},${rect.uniform_height}]`;
+        point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
         rect.sim_description = `${rect.type} ${rect.content}`;
       }
     
@@ -478,14 +479,13 @@ if (!fs.existsSync(outputDirectory)) {
     return svg_data;
   });
 
-  //不需要储存完整的JSON
+  //储存为完整的JSON
   //   console.log(data);
   // fs.writeFileSync(
   //   `${outputDirectory}/${file.split('.')[0]}.json`,
   //   JSON.stringify(data, null, 2)
   // );
   
-  // 处理 sim_vector 并保存为 TXT 文件
   const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
   
   fs.writeFileSync(

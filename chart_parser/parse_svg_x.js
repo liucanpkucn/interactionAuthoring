@@ -487,21 +487,20 @@ if (!fs.existsSync(outputDirectory)) {
     const granularity = 500;
 
     rects.forEach((rect) => {
-      rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
-      // rect.uniform_x = parseInt((rect.x + rect.width / 2) * granularity / svg_width); // 顶部中点的 x 坐标
-      rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
-      rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
-      rect.uniform_height = parseInt((rect.height * granularity) / svg_height);
+      // rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
+      // rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
+      // rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
+      // rect.uniform_height = parseInt((rect.height * granularity) / svg_height);
       // rect.fill_hex = rgbStringToHex(rect.fill)
       // rect.stroke_hex = rgbStringToHex(rect.stroke)
-      if (rect.hasOwnProperty("points")) {
-        rect.uniform_points = rect.points.map((point) => {
-          return {
-            x: Math.round((point.x * granularity) / svg_width),
-            y: Math.round((point.y * granularity) / svg_height),
-          };
-        })
-      }
+      // if (rect.hasOwnProperty("points")) {
+      //   rect.uniform_points = rect.points.map((point) => {
+      //     return {
+      //       x: Math.round((point.x * granularity) / svg_width),
+      //       y: Math.round((point.y * granularity) / svg_height),
+      //     };
+      //   })
+      // }
     });
 
     let filtered_rects = rects.filter(
@@ -517,10 +516,8 @@ if (!fs.existsSync(outputDirectory)) {
 
 
       if (rect.type === 'text') {
-        // 对 text 类型计算中心点并保留小数
-        const center_x = (rect.uniform_x + rect.uniform_width / 2).toFixed(1);
-        const center_y = (rect.uniform_y + rect.uniform_height / 2).toFixed(1);
-        point_string = `[${center_x},${center_y},${rect.uniform_width},${rect.uniform_height}]`;
+        // 使用左上角坐标
+        point_string = `[${rect.uniform_x},${rect.uniform_y},${rect.uniform_width},${rect.uniform_height}]`;
         rect.sim_description = `${rect.type} ${rect.content}`;
       }
       else if (rect.type === 'line') {
