@@ -1763,21 +1763,21 @@
         "type": "x",
         "main": true,
         "attr_type": "Categorical",
-        "fixed_distance": 39.72222222222222,
+        "fixed_distance": 63.666666666666664,
         "range": {
-          "begin": 84.0,
+          "begin": 85.0,
           "end": 724.2549175187653
         },
         "tick": [
           {
             "position": {
-              "x": 84.0,
-              "y": 242.0
+              "x": 116,
+              "y": 382
             },
             "content": "Jan",
             "controlled": null,
             "visual_object": 11,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-84.0\" y=\"-230.25\">Jan</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-116.0\" y=\"-370.25\">Jan</text>",
             "visual_object_uuid": "2d11ee0c-3bfa-5459-9106-0200111f46f7",
             "text_point": {
               "x": 0.0,
@@ -1786,13 +1786,13 @@
           },
           {
             "position": {
-              "x": 124.0,
-              "y": 242.0
+              "x": 179,
+              "y": 382
             },
             "content": "Feb",
             "controlled": null,
             "visual_object": 12,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-124.0\" y=\"-230.25\">Feb</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-179.0\" y=\"-370.25\">Feb</text>",
             "visual_object_uuid": "450ece06-4a4a-527a-949e-9e8af30d4585",
             "text_point": {
               "x": 0.0,
@@ -1801,13 +1801,13 @@
           },
           {
             "position": {
-              "x": 164.5,
-              "y": 242.0
+              "x": 242,
+              "y": 382
             },
             "content": "Mar",
             "controlled": null,
             "visual_object": 13,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-164.421875\" y=\"-230.25\">Mar</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-241.921875\" y=\"-370.25\">Mar</text>",
             "visual_object_uuid": "e2d76293-df22-593f-ad0d-9bbd177d2cfb",
             "text_point": {
               "x": 0.078125,
@@ -1816,13 +1816,13 @@
           },
           {
             "position": {
-              "x": 203.0,
-              "y": 242.0
+              "x": 307,
+              "y": 382
             },
             "content": "Apr",
             "controlled": null,
             "visual_object": 14,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-202.921875\" y=\"-230.25\">Apr</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-306.921875\" y=\"-370.25\">Apr</text>",
             "visual_object_uuid": "17780a49-7c65-5e08-af32-f146278f38cf",
             "text_point": {
               "x": 0.078125,
@@ -1831,13 +1831,13 @@
           },
           {
             "position": {
-              "x": 244.0,
-              "y": 242.0
+              "x": 369,
+              "y": 382
             },
             "content": "May",
             "controlled": null,
             "visual_object": 15,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-244.0\" y=\"-230.234375\">May</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-369.0\" y=\"-370.234375\">May</text>",
             "visual_object_uuid": "59a2c847-7c32-56f7-aadf-2614c129da93",
             "text_point": {
               "x": 0.0,
@@ -1846,13 +1846,13 @@
           },
           {
             "position": {
-              "x": 283.0,
-              "y": 242.0
+              "x": 434,
+              "y": 382
             },
             "content": "Jun",
             "controlled": null,
             "visual_object": 16,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-283.0\" y=\"-230.25\">Jun</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-434.0\" y=\"-370.25\">Jun</text>",
             "visual_object_uuid": "bd8ba211-2ebf-51be-909e-b97f2dec42b9",
             "text_point": {
               "x": 0.0,
@@ -1861,13 +1861,13 @@
           },
           {
             "position": {
-              "x": 321.5,
-              "y": 242.0
+              "x": 500,
+              "y": 382
             },
             "content": "Jul",
             "controlled": null,
             "visual_object": 17,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-321.5\" y=\"-230.25\">Jul</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-500.0\" y=\"-370.25\">Jul</text>",
             "visual_object_uuid": "2181b9b9-9762-50c3-9c4d-5884911891cc",
             "text_point": {
               "x": 0.0,
@@ -1876,13 +1876,13 @@
           },
           {
             "position": {
-              "x": 362.5,
-              "y": 242.0
+              "x": 560,
+              "y": 382
             },
             "content": "Aug",
             "controlled": null,
             "visual_object": 18,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-362.5078125\" y=\"-230.234375\">Aug</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-560.0078125\" y=\"-370.234375\">Aug</text>",
             "visual_object_uuid": "04e51222-39e8-5c4a-b824-2d9255159b34",
             "text_point": {
               "x": -0.0078125,
@@ -1891,13 +1891,13 @@
           },
           {
             "position": {
-              "x": 402.5,
-              "y": 242.0
+              "x": 624,
+              "y": 382
             },
             "content": "Sep",
             "controlled": null,
             "visual_object": 19,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-402.5\" y=\"-230.25\">Sep</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-624.0\" y=\"-370.25\">Sep</text>",
             "visual_object_uuid": "0dd77222-eac3-5186-a6a5-eedb1f056041",
             "text_point": {
               "x": 0.0,
@@ -1906,13 +1906,13 @@
           },
           {
             "position": {
-              "x": 441.5,
-              "y": 242.0
+              "x": 689,
+              "y": 382
             },
             "content": "Oct",
             "controlled": null,
             "visual_object": 20,
-            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-441.5\" y=\"-230.25\">Oct</text>",
+            "origin": "<text data-org-x=\"0\" data-org-y=\"10\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle;\nfill: rgb(255, 255, 255);\nfill-opacity: 1;\nfont-family: Arial;\nfont-size: 12px;\ndominant-baseline: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" x=\"-689.0\" y=\"-370.25\">Oct</text>",
             "visual_object_uuid": "83728e28-0ac5-57de-bbe6-0b7a26c2b968",
             "text_point": {
               "x": 0.0,
@@ -1927,8 +1927,8 @@
           "Oct 01 2022"
         ],
         "pixel_domain": [
-          84.0,
-          441.5
+          116,
+          689
         ],
         "prefix": "",
         "suffix": "",
@@ -1939,7 +1939,7 @@
           "height": 13.53125
         },
         "use_num": 2,
-        "another_attr": 242.0
+        "another_attr": 382
       }
     ],
     "y": []

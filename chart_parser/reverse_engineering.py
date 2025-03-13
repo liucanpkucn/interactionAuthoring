@@ -1480,8 +1480,8 @@ if __name__ == "__main__":
     # file_name = "multi_line"
     # file_name = "20210819_bar"
     # file_name = "20210831_bubble_stack_nyt"
-    file_name = "20210817_linechart"
-    # file_name = "download"
+    # file_name = "20210817_linechart"
+    file_name = "download"
     # file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:
@@ -1493,6 +1493,8 @@ if __name__ == "__main__":
             f.write(constraints_with_data['svg_string'])
         with open('./test_webpage/chosen_json/latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
+        # with open('../web_page/chosen_json/latest_result.json', "w", encoding='utf8') as f:
+        #     json.dump(constraints_with_data, f, indent = 2)    
 
         #用于debug存文件,可以删除
         with open('DEBUG/1_debug_svg_string.svg', "w", encoding='utf8') as f:

@@ -14,175 +14,70 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "1880"
+        "content": "2013"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1885"
+        "content": "2014"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1890"
+        "content": "2015"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1895"
+        "content": "2016"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1900"
+        "content": "2017"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1905"
+        "content": "2018"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1910"
+        "content": "2019"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1915"
+        "content": "2020"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1920"
+        "content": "2021"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1925"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1930"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1935"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1940"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1945"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1950"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1955"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1960"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1965"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1970"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1975"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1980"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1985"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1990"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "1995"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "2000"
+        "content": "2022"
       }
     ]
   },
@@ -208,63 +103,112 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "10,000"
+        "content": "500"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "20,000"
+        "content": "1000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "30,000"
+        "content": "1500"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "40,000"
+        "content": "2000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "50,000"
+        "content": "2500"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "60,000"
+        "content": "3000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "70,000"
+        "content": "3500"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "80,000"
+        "content": "4000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "90,000"
+        "content": "4500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "5000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "5500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "6000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "6500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "7000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "7500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "8000"
       }
     ]
   }

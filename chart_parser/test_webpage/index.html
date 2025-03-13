@@ -46,7 +46,7 @@
   <script>
     window.language = 'en'
     server_position = "";
-    let file_url = "chosen_json/latest_result.json";
+    let file_url = "chosen_json/latest_result.json?" + new Date().getTime();  // 强制刷新数据
     if (window.location.href.toString().indexOf("?") > 0) {
       let file_name = window.location.href.toString().split("?")[1];
       file_url = "chosen_json/" + file_name + ".json";
