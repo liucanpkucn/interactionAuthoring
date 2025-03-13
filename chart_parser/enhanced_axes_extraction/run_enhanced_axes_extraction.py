@@ -41,21 +41,27 @@ def run_enhanced_extraction(svg_string, api_key):
 
     save_svg(svg_string)
 
+    print("Step 1: Running Node.js script...")
     if not run_node_script(PARSE_SCRIPT):
+        print("ERROR: Node.js script failed.")
         return None
 
+    print("Step 2: Processing SimVec data...")
     if not process_simvec_data():
-        print("SimVec processing failed")
-        return None
-
-    if not process_metadata(api_key):
-        print("Metadata extraction failed")
+        print("ERROR: SimVec processing failed")
         return None
     
+    print("Step 3: Processing metadata with API key...")
+    if not process_metadata(api_key):
+        print("ERROR: Metadata extraction failed")
+        return None
+    
+    print("Step 4: Processing cleaned metadata...")
     if not process_metadata_data():
-        print("Metadata processing failed")
+        print("ERROR: Metadata processing failed")
         return None
 
+    print("Step 5: Loading axes array...")
     axes_array = load_axes_array()
     if axes_array:
         print("Enhanced axes extraction completed")

@@ -4,102 +4,81 @@
       "type": "x",
       "main": true,
       "attr_type": "Categorical",
-      "fixed_distance": 33.833333333333336,
+      "fixed_distance": 42.111111111111114,
       "range": {
-        "begin": 71.5,
-        "end": 477.5
+        "begin": 84.5,
+        "end": 463.5
       },
       "tick": [
         {
           "position": {
-            "x": 71.5,
-            "y": 2.0
+            "x": 84.5,
+            "y": 320.0
           },
-          "content": "10%"
+          "content": "2013"
         },
         {
           "position": {
-            "x": 108.5,
-            "y": 2.0
+            "x": 126.5,
+            "y": 320.0
           },
-          "content": "15%"
+          "content": "2014"
         },
         {
           "position": {
-            "x": 145.5,
-            "y": 2.0
+            "x": 168.5,
+            "y": 320.0
           },
-          "content": "20%"
+          "content": "2015"
         },
         {
           "position": {
-            "x": 182.5,
-            "y": 2.0
+            "x": 210.5,
+            "y": 320.0
           },
-          "content": "25%"
+          "content": "2016"
         },
         {
           "position": {
-            "x": 219.5,
-            "y": 2.0
+            "x": 253.5,
+            "y": 320.0
           },
-          "content": "30%"
+          "content": "2017"
         },
         {
           "position": {
-            "x": 256.5,
-            "y": 2.0
+            "x": 295.5,
+            "y": 320.0
           },
-          "content": "35%"
+          "content": "2018"
         },
         {
           "position": {
-            "x": 293.5,
-            "y": 2.0
+            "x": 337.5,
+            "y": 320.0
           },
-          "content": "40%"
+          "content": "2019"
         },
         {
           "position": {
-            "x": 330.5,
-            "y": 2.0
+            "x": 379.5,
+            "y": 320.0
           },
-          "content": "45%"
+          "content": "2020"
         },
         {
           "position": {
-            "x": 367.5,
-            "y": 2.0
+            "x": 421.5,
+            "y": 320.0
           },
-          "content": "50%"
+          "content": "2021"
         },
         {
           "position": {
-            "x": 403.5,
-            "y": 2.0
+            "x": 463.5,
+            "y": 320.0
           },
-          "content": "55%"
-        },
-        {
-          "position": {
-            "x": 440.5,
-            "y": 2.0
-          },
-          "content": "60%"
-        },
-        {
-          "position": {
-            "x": 477.5,
-            "y": 2.0
-          },
-          "content": "65%"
-        },
-        {
-          "position": {
-            "x": 344.5,
-            "y": 16.0
-          },
-          "content": "Avg."
+          "content": "2022"
         }
       ]
     }
@@ -109,25 +88,130 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 153.0,
+      "fixed_distance": 17.4375,
       "range": {
-        "begin": 50.0,
-        "end": 203.0
+        "begin": 34.0,
+        "end": 313.0
       },
       "tick": [
         {
           "position": {
-            "x": 58.0,
-            "y": 50.0
+            "x": 68.0,
+            "y": 313.0
           },
-          "content": "Most vulnerable"
+          "content": "0"
         },
         {
           "position": {
-            "x": 58.5,
-            "y": 203.0
+            "x": 68.0,
+            "y": 295.0
           },
-          "content": "Least vulnerable"
+          "content": "500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 278.0
+          },
+          "content": "1000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 261.0
+          },
+          "content": "1500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 243.0
+          },
+          "content": "2000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 226.0
+          },
+          "content": "2500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 208.0
+          },
+          "content": "3000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 191.0
+          },
+          "content": "3500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 174.0
+          },
+          "content": "4000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 156.0
+          },
+          "content": "4500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 139.0
+          },
+          "content": "5000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 121.0
+          },
+          "content": "5500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 104.0
+          },
+          "content": "6000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 86.0
+          },
+          "content": "6500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 69.0
+          },
+          "content": "7000"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 52.0
+          },
+          "content": "7500"
+        },
+        {
+          "position": {
+            "x": 68.5,
+            "y": 34.0
+          },
+          "content": "8000"
         }
       ]
     }

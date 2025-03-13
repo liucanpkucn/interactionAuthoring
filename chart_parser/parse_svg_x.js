@@ -487,8 +487,8 @@ if (!fs.existsSync(outputDirectory)) {
     const granularity = 500;
 
     rects.forEach((rect) => {
-      // rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
-      rect.uniform_x = parseInt((rect.x + rect.width / 2) * granularity / svg_width); // 顶部中点的 x 坐标
+      rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
+      // rect.uniform_x = parseInt((rect.x + rect.width / 2) * granularity / svg_width); // 顶部中点的 x 坐标
       rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
       rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
       rect.uniform_height = parseInt((rect.height * granularity) / svg_height);

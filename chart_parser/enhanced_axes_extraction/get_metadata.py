@@ -16,6 +16,7 @@ from playwright.sync_api import sync_playwright
 import re
 
 def convert_svg_to_png():
+    print("Converting SVG to PNG...")
     """使用 Playwright 打开 SVG 并截图为 PNG 图像"""
     try:
         with sync_playwright() as p:
@@ -195,6 +196,7 @@ Please strictly follow the JSON format below for output:
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(metadata_dict, f, indent=2)
         print(f"Metadata saved to {output_file}")
+        print("Metadata extraction completed")
         return True
     else:
         print("Failed to parse metadata from OpenAI response")

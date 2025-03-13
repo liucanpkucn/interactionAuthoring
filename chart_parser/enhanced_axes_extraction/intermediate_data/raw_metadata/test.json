@@ -14,91 +14,70 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "10%"
+        "content": "2013"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "15%"
+        "content": "2014"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "20%"
+        "content": "2015"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "25%"
+        "content": "2016"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "30%"
+        "content": "2017"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "35%"
+        "content": "2018"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "40%"
+        "content": "2019"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "45%"
+        "content": "2020"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "50%"
+        "content": "2021"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "55%"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "60%"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "65%"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "Avg."
+        "content": "2022"
       }
     ]
   },
@@ -117,14 +96,119 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "Most vulnerable"
+        "content": "0"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "Least vulnerable"
+        "content": "500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "2000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "2500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "3000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "3500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "4000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "4500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "5000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "5500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "6000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "6500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "7000"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "7500"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "8000"
       }
     ]
   }
