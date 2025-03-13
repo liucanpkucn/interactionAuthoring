@@ -16,7 +16,7 @@
                             "x": 48,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "1880",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -25,7 +25,7 @@
                             "x": 102,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "1900",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -34,7 +34,7 @@
                             "x": 157,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "1920",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -43,7 +43,7 @@
                             "x": 212,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "1940",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -52,7 +52,7 @@
                             "x": 267,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "1960",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -61,7 +61,7 @@
                             "x": 322,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "1980",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -70,7 +70,7 @@
                             "x": 376,
                             "y": 376
                         },
-                        "content": null,
+                        "content": "2000",
                         "controlled": null,
                         "visual_object": null
                     }
@@ -118,7 +118,7 @@
                             "x": 45,
                             "y": 363
                         },
-                        "content": null,
+                        "content": "0",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -127,7 +127,7 @@
                             "x": 19,
                             "y": 327
                         },
-                        "content": null,
+                        "content": "10,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -136,7 +136,7 @@
                             "x": 19,
                             "y": 291
                         },
-                        "content": null,
+                        "content": "20,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -145,7 +145,7 @@
                             "x": 19,
                             "y": 255
                         },
-                        "content": null,
+                        "content": "30,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -154,7 +154,7 @@
                             "x": 19,
                             "y": 219
                         },
-                        "content": null,
+                        "content": "40,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -163,7 +163,7 @@
                             "x": 19,
                             "y": 183
                         },
-                        "content": null,
+                        "content": "50,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -172,7 +172,7 @@
                             "x": 19,
                             "y": 147
                         },
-                        "content": null,
+                        "content": "60,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -181,7 +181,7 @@
                             "x": 19,
                             "y": 110
                         },
-                        "content": null,
+                        "content": "70,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -190,7 +190,7 @@
                             "x": 19,
                             "y": 74
                         },
-                        "content": null,
+                        "content": "80,000",
                         "controlled": null,
                         "visual_object": null
                     },
@@ -199,7 +199,7 @@
                             "x": 19,
                             "y": 38
                         },
-                        "content": null,
+                        "content": "90,000",
                         "controlled": null,
                         "visual_object": null
                     }

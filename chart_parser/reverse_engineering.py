@@ -446,7 +446,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     width = return_obj[1]
     height = return_obj[2]
     svg_soup = return_obj[3]
-    pprint(visual_objs)
+    # pprint(visual_objs)
     # pprint("width:", width)
     # pprint("height:", height)
     # pprint("svg_soup:", svg_soup)
@@ -511,7 +511,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     # with open('tmp/axis.json', 'w') as f:
     #     json.dump(axes_info, f, indent = 2)
     # print("DEBUG: axes_array =", type(axes_array), axes_array)
-
+    # pprint(axes_info['axes_array'])
     return axes_info
 
 def parse_axis_type(
@@ -519,12 +519,13 @@ def parse_axis_type(
     visual_object: list
 ):
 
+    # pprint("visual_object", visual_object)
     def parse_current_axis(current_axis, direction):
-        for tick in current_axis['tick']:
-            if isinstance(tick['visual_object'], int):
-                tick['content'] = visual_object[tick['visual_object']]['content']
-            else:
-                tick['content'] = None
+        # for tick in current_axis['tick']:
+        #     if isinstance(tick['visual_object'], int):
+        #         tick['content'] = visual_object[tick['visual_object']]['content']
+        #     else:
+        #         tick['content'] = None
 
         if current_axis['scale_type'] == "quantize":
             if is_time_list(current_axis['value_range']):
@@ -707,8 +708,9 @@ def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
     # 根据svg_string 信息，获得轴的信息，再根据轴的信息 和 visual element 的信息来推断约束
     axes_info = get_axes_from_selected_svg_string(svg_string, no_soup = False, axisdata=axisdata)
     original_visual_object = axes_info['visual_object']
+
+    #这里有问题! 经过这个函数, 会把content变为null!!!
     parse_axis_type(axes_info["axes_array"], original_visual_object)
-    print("What is wront", axes_info)
     with open("tmp/axes_info.json", "w") as f:
         f.write(json_dumps_safe(axes_info))
         
