@@ -17693,9 +17693,9 @@
       "visual_object_num": 9,
       "constraints": [],
       "area": {
-        "x": 60.0,
+        "x": 48,
         "y": 0,
-        "width": 377.0,
+        "width": 382.0,
         "height": 400
       },
       "size": {
@@ -17719,16 +17719,16 @@
         "type": "x",
         "main": true,
         "attr_type": "Categorical",
-        "fixed_distance": 59.666666666666664,
+        "fixed_distance": 54.666666666666664,
         "range": {
-          "begin": 60.0,
-          "end": 437.0
+          "begin": 48,
+          "end": 430.0
         },
         "tick": [
           {
             "position": {
-              "x": 79.0,
-              "y": 415.0
+              "x": 48,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17736,8 +17736,8 @@
           },
           {
             "position": {
-              "x": 139.0,
-              "y": 415.0
+              "x": 102,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17745,8 +17745,8 @@
           },
           {
             "position": {
-              "x": 198.0,
-              "y": 415.0
+              "x": 157,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17754,8 +17754,8 @@
           },
           {
             "position": {
-              "x": 258.0,
-              "y": 415.0
+              "x": 212,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17763,8 +17763,8 @@
           },
           {
             "position": {
-              "x": 318.0,
-              "y": 415.0
+              "x": 267,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17772,8 +17772,8 @@
           },
           {
             "position": {
-              "x": 377.0,
-              "y": 415.0
+              "x": 322,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17781,8 +17781,8 @@
           },
           {
             "position": {
-              "x": 437.0,
-              "y": 415.0
+              "x": 376,
+              "y": 376
             },
             "content": null,
             "controlled": null,
@@ -17792,28 +17792,28 @@
         "align": "up",
         "scale_type": "quantize",
         "value_range": [
-          "#{'position': {'x': 79.0, 'y': 415.0}, 'content': '1880', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 139.0, 'y': 415.0}, 'content': '1900', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 198.0, 'y': 415.0}, 'content': '1920', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 258.0, 'y': 415.0}, 'content': '1940', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 318.0, 'y': 415.0}, 'content': '1960', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 377.0, 'y': 415.0}, 'content': '1980', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 437.0, 'y': 415.0}, 'content': '2000', 'controlled': None, 'visual_object': None}"
+          "#{'position': {'x': 48, 'y': 376}, 'content': '1880', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 102, 'y': 376}, 'content': '1900', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 157, 'y': 376}, 'content': '1920', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 212, 'y': 376}, 'content': '1940', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 267, 'y': 376}, 'content': '1960', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 322, 'y': 376}, 'content': '1980', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 376, 'y': 376}, 'content': '2000', 'controlled': None, 'visual_object': None}"
         ],
         "pixel_domain": [
-          49.16666666666667,
-          466.8333333333333
+          20.666666666666668,
+          403.3333333333333
         ],
         "prefix": "",
         "suffix": "",
         "area": {
-          "x": 60.0,
-          "y": 410.0,
-          "width": 377.0,
-          "height": 10.0
+          "x": 48,
+          "y": 371,
+          "width": 382.0,
+          "height": 10
         },
         "use_num": 1,
-        "another_attr": 415.0
+        "another_attr": 376
       }
     ],
     "y": []

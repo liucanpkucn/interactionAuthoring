@@ -14,70 +14,91 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "2013"
+        "content": "1880"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2014"
+        "content": "1890"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2015"
+        "content": "1900"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2016"
+        "content": "1910"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2017"
+        "content": "1920"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2018"
+        "content": "1930"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2019"
+        "content": "1940"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2020"
+        "content": "1950"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2021"
+        "content": "1960"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2022"
+        "content": "1970"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1980"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "1990"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "2000"
       }
     ]
   },
@@ -103,112 +124,63 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "500"
+        "content": "10,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1000"
+        "content": "20,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "1500"
+        "content": "30,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2000"
+        "content": "40,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "2500"
+        "content": "50,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "3000"
+        "content": "60,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "3500"
+        "content": "70,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "4000"
+        "content": "80,000"
       },
       {
         "position": {
           "x": "wait",
           "y": "wait"
         },
-        "content": "4500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "5000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "5500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "6000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "6500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "7000"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "7500"
-      },
-      {
-        "position": {
-          "x": "wait",
-          "y": "wait"
-        },
-        "content": "8000"
+        "content": "90,000"
       }
     ]
   }

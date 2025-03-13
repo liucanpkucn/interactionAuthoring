@@ -3285,21 +3285,21 @@
         "type": "x",
         "main": true,
         "attr_type": "Categorical",
-        "fixed_distance": 42.111111111111114,
+        "fixed_distance": 159.44444444444446,
         "range": {
-          "begin": 84.5,
+          "begin": 251,
           "end": 1758.5865455547355
         },
         "tick": [
           {
             "position": {
-              "x": 84.5,
-              "y": 320.0
+              "x": 251,
+              "y": 1196
             },
             "content": "2013",
             "controlled": null,
             "visual_object": 0,
-            "origin": "<text content=\"2013\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"243.13576126098633\" y=\"896.5341531729771\">2013</text>",
+            "origin": "<text content=\"2013\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"76.63576126098633\" y=\"20.534153172977085\">2013</text>",
             "visual_object_uuid": "409c928f-10b6-5df1-a870-70186c9ed37a",
             "text_point": {
               "x": 327.6357612609863,
@@ -3308,13 +3308,13 @@
           },
           {
             "position": {
-              "x": 126.5,
-              "y": 320.0
+              "x": 410,
+              "y": 1196
             },
             "content": "2014",
             "controlled": null,
             "visual_object": 1,
-            "origin": "<text content=\"2014\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"319.90570068359375\" y=\"896.5341531729771\">2014</text>",
+            "origin": "<text content=\"2014\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"36.40570068359375\" y=\"20.534153172977085\">2014</text>",
             "visual_object_uuid": "b2c5f52d-2a1e-5379-bd80-9eb07bcb3c57",
             "text_point": {
               "x": 446.40570068359375,
@@ -3323,13 +3323,13 @@
           },
           {
             "position": {
-              "x": 168.5,
-              "y": 320.0
+              "x": 570,
+              "y": 1196
             },
             "content": "2015",
             "controlled": null,
             "visual_object": 2,
-            "origin": "<text content=\"2015\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"437.2127685546875\" y=\"896.5341531729771\">2015</text>",
+            "origin": "<text content=\"2015\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.7127685546875\" y=\"20.534153172977085\">2015</text>",
             "visual_object_uuid": "eddbe3a6-33c0-5b32-802e-896dfbcf5a0b",
             "text_point": {
               "x": 605.7127685546875,
@@ -3338,13 +3338,13 @@
           },
           {
             "position": {
-              "x": 210.5,
-              "y": 320.0
+              "x": 729,
+              "y": 1196
             },
             "content": "2016",
             "controlled": null,
             "visual_object": 3,
-            "origin": "<text content=\"2016\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"554.519775390625\" y=\"896.5341531729771\">2016</text>",
+            "origin": "<text content=\"2016\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"36.019775390625\" y=\"20.534153172977085\">2016</text>",
             "visual_object_uuid": "2b7a5741-8d6e-5747-ba8a-cf9a09c46914",
             "text_point": {
               "x": 765.019775390625,
@@ -3353,13 +3353,13 @@
           },
           {
             "position": {
-              "x": 253.5,
-              "y": 320.0
+              "x": 889,
+              "y": 1196
             },
             "content": "2017",
             "controlled": null,
             "visual_object": 4,
-            "origin": "<text content=\"2017\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"671.2633056640625\" y=\"896.5341531729771\">2017</text>",
+            "origin": "<text content=\"2017\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.7633056640625\" y=\"20.534153172977085\">2017</text>",
             "visual_object_uuid": "83723125-3bb1-524c-b432-9a0480459b5e",
             "text_point": {
               "x": 924.7633056640625,
@@ -3368,13 +3368,13 @@
           },
           {
             "position": {
-              "x": 295.5,
-              "y": 320.0
+              "x": 1048,
+              "y": 1196
             },
             "content": "2018",
             "controlled": null,
             "visual_object": 5,
-            "origin": "<text content=\"2018\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"788.5704345703125\" y=\"896.5341531729771\">2018</text>",
+            "origin": "<text content=\"2018\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"36.0704345703125\" y=\"20.534153172977085\">2018</text>",
             "visual_object_uuid": "62389c03-1989-5734-8db1-2cdc022b972c",
             "text_point": {
               "x": 1084.0704345703125,
@@ -3383,13 +3383,13 @@
           },
           {
             "position": {
-              "x": 337.5,
-              "y": 320.0
+              "x": 1207,
+              "y": 1196
             },
             "content": "2019",
             "controlled": null,
             "visual_object": 6,
-            "origin": "<text content=\"2019\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"905.87744140625\" y=\"896.5341531729771\">2019</text>",
+            "origin": "<text content=\"2019\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"36.37744140625\" y=\"20.534153172977085\">2019</text>",
             "visual_object_uuid": "5020aaef-716f-5857-a6be-f61191812597",
             "text_point": {
               "x": 1243.37744140625,
@@ -3398,13 +3398,13 @@
           },
           {
             "position": {
-              "x": 379.5,
-              "y": 320.0
+              "x": 1367,
+              "y": 1196
             },
             "content": "2020",
             "controlled": null,
             "visual_object": 7,
-            "origin": "<text content=\"2020\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"1023.1843719482422\" y=\"896.5341531729771\">2020</text>",
+            "origin": "<text content=\"2020\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.68437194824219\" y=\"20.534153172977085\">2020</text>",
             "visual_object_uuid": "22183689-325f-56e4-ac15-ea8d46ca3de7",
             "text_point": {
               "x": 1402.6843719482422,
@@ -3413,13 +3413,13 @@
           },
           {
             "position": {
-              "x": 421.5,
-              "y": 320.0
+              "x": 1526,
+              "y": 1196
             },
             "content": "2021",
             "controlled": null,
             "visual_object": 8,
-            "origin": "<text content=\"2021\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"1140.927978515625\" y=\"896.5341531729771\">2021</text>",
+            "origin": "<text content=\"2021\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"36.427978515625\" y=\"20.534153172977085\">2021</text>",
             "visual_object_uuid": "8a46570c-8e57-5734-9c24-cb0d5149eccb",
             "text_point": {
               "x": 1562.427978515625,
@@ -3428,13 +3428,13 @@
           },
           {
             "position": {
-              "x": 463.5,
-              "y": 320.0
+              "x": 1686,
+              "y": 1196
             },
             "content": "2022",
             "controlled": null,
             "visual_object": 9,
-            "origin": "<text content=\"2022\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"1217.697998046875\" y=\"896.5341531729771\">2022</text>",
+            "origin": "<text content=\"2022\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"-4.802001953125\" y=\"20.534153172977085\">2022</text>",
             "visual_object_uuid": "9f81ad31-d9d7-52d2-b0e2-ea1377d81f73",
             "text_point": {
               "x": 1681.197998046875,
@@ -3449,8 +3449,8 @@
           "Jan 01 2022"
         ],
         "pixel_domain": [
-          84.5,
-          463.5
+          251,
+          1686
         ],
         "prefix": "",
         "suffix": "",
@@ -3461,7 +3461,7 @@
           "height": 30.625
         },
         "use_num": 2,
-        "another_attr": 320.0
+        "another_attr": 1196
       }
     ],
     "y": [
@@ -3469,21 +3469,21 @@
         "type": "y",
         "main": false,
         "attr_type": "Categorical",
-        "fixed_distance": 17.4375,
+        "fixed_distance": 66.0,
         "range": {
-          "begin": 34.0,
-          "end": 313.0
+          "begin": 112,
+          "end": 1168
         },
         "tick": [
           {
             "position": {
-              "x": 68.0,
-              "y": 313.0
+              "x": 243,
+              "y": 1168
             },
             "content": "0",
             "controlled": null,
             "visual_object": 11,
-            "origin": "<text content=\"0\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"183.2515869140625\" y=\"876.1098367667271\">0</text>",
+            "origin": "<text content=\"0\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"8.2515869140625\" y=\"21.109836766727085\">0</text>",
             "visual_object_uuid": "2d11ee0c-3bfa-5459-9106-0200111f46f7",
             "text_point": {
               "x": 251.2515869140625,
@@ -3492,13 +3492,13 @@
           },
           {
             "position": {
-              "x": 68.0,
-              "y": 295.0
+              "x": 207,
+              "y": 1102
             },
             "content": "500",
             "controlled": null,
             "visual_object": 12,
-            "origin": "<text content=\"500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"162.9830322265625\" y=\"828.1199686026646\">500</text>",
+            "origin": "<text content=\"500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"23.9830322265625\" y=\"21.119968602664585\">500</text>",
             "visual_object_uuid": "450ece06-4a4a-527a-949e-9e8af30d4585",
             "text_point": {
               "x": 230.9830322265625,
@@ -3513,8 +3513,8 @@
           500.0
         ],
         "pixel_domain": [
-          313.0,
-          295.0
+          1168,
+          1102
         ],
         "prefix": "",
         "suffix": "",
@@ -3525,7 +3525,7 @@
           "height": 977.6846674166359
         },
         "use_num": 2,
-        "another_attr": 68.0
+        "another_attr": 243
       }
     ]
   },
@@ -3587,9 +3587,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 22.96446504454434,
-        "Q value": 637.9,
+        "Q value": 173.97,
         "O pixel": 286.2,
-        "O value": 1508109849498,
+        "O value": 1363935932655,
         "related_vo": 0,
         "related_point": [
           0,
@@ -3604,9 +3604,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 97.40100691306793,
-        "Q value": 2705.58,
+        "Q value": 737.89,
         "O pixel": 286.2,
-        "O value": 1508109849498,
+        "O value": 1363935932655,
         "related_vo": 1,
         "related_point": [
           18,
@@ -3621,9 +3621,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 26.659896201137826,
-        "Q value": 740.55,
+        "Q value": 201.97,
         "O pixel": 286.2,
-        "O value": 1508109849498,
+        "O value": 1363935932655,
         "related_vo": 2,
         "related_point": [
           36,
@@ -3638,9 +3638,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 24.680200938677217,
-        "Q value": 685.56,
+        "Q value": 186.97,
         "O pixel": 286.2,
-        "O value": 1508109849498,
+        "O value": 1363935932655,
         "related_vo": 3,
         "related_point": [
           54,
@@ -3655,9 +3655,9 @@
         "K value": "Adobe",
         "unit": "",
         "Q pixel": 24.548221254513237,
-        "Q value": 681.9,
+        "Q value": 185.97,
         "O pixel": 286.2,
-        "O value": 1508109849498,
+        "O value": 1363935932655,
         "related_vo": 4,
         "related_point": [
           72,
@@ -3672,9 +3672,9 @@
         "K value": "Mozilla",
         "unit": "",
         "Q pixel": 76.15227776265601,
-        "Q value": 2115.34,
+        "Q value": 576.91,
         "O pixel": 286.2,
-        "O value": 1508109849498,
+        "O value": 1363935932655,
         "related_vo": 5,
         "related_point": [
           89,
@@ -3689,9 +3689,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 16.761419888834098,
-        "Q value": 465.59,
+        "Q value": 126.98,
         "O pixel": 445.5,
-        "O value": 1627478425329,
+        "O value": 1395462546062,
         "related_vo": 0,
         "related_point": [
           1,
@@ -3706,9 +3706,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 46.85278787823722,
-        "Q value": 1301.47,
+        "Q value": 354.95,
         "O pixel": 445.5,
-        "O value": 1627478425329,
+        "O value": 1395462546062,
         "related_vo": 1,
         "related_point": [
           19,
@@ -3723,9 +3723,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 56.61928450637697,
-        "Q value": 1572.76,
+        "Q value": 428.93,
         "O pixel": 445.5,
-        "O value": 1627478425329,
+        "O value": 1395462546062,
         "related_vo": 2,
         "related_point": [
           37,
@@ -3740,9 +3740,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 17.157358941326493,
-        "Q value": 476.59,
+        "Q value": 129.98,
         "O pixel": 445.5,
-        "O value": 1627478425329,
+        "O value": 1395462546062,
         "related_vo": 3,
         "related_point": [
           55,
@@ -3757,9 +3757,9 @@
         "K value": "Adobe",
         "unit": "",
         "Q pixel": 31.807103883535547,
-        "Q value": 883.53,
+        "Q value": 240.96,
         "O pixel": 445.5,
-        "O value": 1627478425329,
+        "O value": 1395462546062,
         "related_vo": 4,
         "related_point": [
           73,
@@ -3774,9 +3774,9 @@
         "K value": "Mozilla",
         "unit": "",
         "Q pixel": 37.48223030258964,
-        "Q value": 1041.17,
+        "Q value": 283.96,
         "O pixel": 445.5,
-        "O value": 1627478425329,
+        "O value": 1395462546062,
         "related_vo": 5,
         "related_point": [
           90,
@@ -3791,9 +3791,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 41.04568177501915,
-        "Q value": 1140.16,
+        "Q value": 310.95,
         "O pixel": 604.9,
-        "O value": 1746921934353,
+        "O value": 1427008950188,
         "related_vo": 0,
         "related_point": [
           2,
@@ -3808,9 +3808,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 197.705566877745,
-        "Q value": 5491.82,
+        "Q value": 1497.77,
         "O pixel": 604.9,
-        "O value": 1746921934353,
+        "O value": 1427008950188,
         "related_vo": 1,
         "related_point": [
           20,
@@ -3825,9 +3825,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 166.03044267837322,
-        "Q value": 4611.96,
+        "Q value": 1257.81,
         "O pixel": 604.9,
-        "O value": 1746921934353,
+        "O value": 1427008950188,
         "related_vo": 2,
         "related_point": [
           38,
@@ -3842,9 +3842,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 10.558374733123856,
-        "Q value": 293.29,
+        "Q value": 79.99,
         "O pixel": 604.9,
-        "O value": 1746921934353,
+        "O value": 1427008950188,
         "related_vo": 3,
         "related_point": [
           56,
@@ -3859,9 +3859,9 @@
         "K value": "Adobe",
         "unit": "",
         "Q pixel": 209.18779940001718,
-        "Q value": 5810.77,
+        "Q value": 1584.76,
         "O pixel": 604.9,
-        "O value": 1746921934353,
+        "O value": 1427008950188,
         "related_vo": 4,
         "related_point": [
           74,
@@ -3876,9 +3876,9 @@
         "K value": "Mozilla",
         "unit": "",
         "Q pixel": 36.03045377678518,
-        "Q value": 1000.85,
+        "Q value": 272.96,
         "O pixel": 604.9,
-        "O value": 1746921934353,
+        "O value": 1427008950188,
         "related_vo": 5,
         "related_point": [
           91,
@@ -3893,9 +3893,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 131.84770447988467,
-        "Q value": 3662.44,
+        "Q value": 998.85,
         "O pixel": 923.9,
-        "O value": 1985958818786,
+        "O value": 1490141339874,
         "related_vo": 0,
         "related_point": [
           3,
@@ -3910,9 +3910,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 260.2639371715038,
-        "Q value": 7229.55,
+        "Q value": 1971.7,
         "O pixel": 923.9,
-        "O value": 1985958818786,
+        "O value": 1490141339874,
         "related_vo": 1,
         "related_point": [
           21,
@@ -3927,9 +3927,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 192.55835919534707,
-        "Q value": 5348.84,
+        "Q value": 1458.78,
         "O pixel": 923.9,
-        "O value": 1985958818786,
+        "O value": 1490141339874,
         "related_vo": 2,
         "related_point": [
           39,
@@ -3944,9 +3944,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 59.6548172421501,
-        "Q value": 1657.08,
+        "Q value": 451.93,
         "O pixel": 923.9,
-        "O value": 1985958818786,
+        "O value": 1490141339874,
         "related_vo": 3,
         "related_point": [
           57,
@@ -3961,9 +3961,9 @@
         "K value": "Adobe",
         "unit": "",
         "Q pixel": 126.96445616581485,
-        "Q value": 3526.79,
+        "Q value": 961.85,
         "O pixel": 923.9,
-        "O value": 1985958818786,
+        "O value": 1490141339874,
         "related_vo": 4,
         "related_point": [
           75,
@@ -3980,7 +3980,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 923.9,
-        "O value": 1985958818786,
+        "O value": 1490141339874,
         "related_vo": 5,
         "related_point": [
           92,
@@ -3995,9 +3995,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 102.41623491130167,
-        "Q value": 2844.9,
+        "Q value": 775.88,
         "O pixel": 1083.2,
-        "O value": 2105327394617,
+        "O value": 1521667953282,
         "related_vo": 0,
         "related_point": [
           4,
@@ -4012,9 +4012,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 152.96445394613238,
-        "Q value": 4249.01,
+        "Q value": 1158.82,
         "O pixel": 1083.2,
-        "O value": 2105327394617,
+        "O value": 1521667953282,
         "related_vo": 1,
         "related_point": [
           22,
@@ -4031,7 +4031,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1083.2,
-        "O value": 2105327394617,
+        "O value": 1521667953282,
         "related_vo": 2,
         "related_point": [
           40,
@@ -4046,9 +4046,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 23.756343149528902,
-        "Q value": 659.9,
+        "Q value": 179.97,
         "O pixel": 1083.2,
-        "O value": 2105327394617,
+        "O value": 1521667953282,
         "related_vo": 3,
         "related_point": [
           58,
@@ -4063,9 +4063,9 @@
         "K value": "Adobe",
         "unit": "",
         "Q pixel": 78.92385113010118,
-        "Q value": 2192.33,
+        "Q value": 597.91,
         "O pixel": 1083.2,
-        "O value": 2105327394617,
+        "O value": 1521667953282,
         "related_vo": 4,
         "related_point": [
           76,
@@ -4080,9 +4080,9 @@
         "K value": "Mozilla",
         "unit": "",
         "Q pixel": 90.53806333653733,
-        "Q value": 2514.95,
+        "Q value": 685.89,
         "O pixel": 1083.2,
-        "O value": 2105327394617,
+        "O value": 1521667953282,
         "related_vo": 5,
         "related_point": [
           93,
@@ -4097,9 +4097,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 110.99491438196492,
-        "Q value": 3083.19,
+        "Q value": 840.87,
         "O pixel": 1242.5,
-        "O value": 2224695970448,
+        "O value": 1553194566689,
         "related_vo": 0,
         "related_point": [
           5,
@@ -4114,9 +4114,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 381.0253481816085,
-        "Q value": 10584.04,
+        "Q value": 2886.56,
         "O pixel": 1242.5,
-        "O value": 2224695970448,
+        "O value": 1553194566689,
         "related_vo": 1,
         "related_point": [
           23,
@@ -4131,9 +4131,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 193.35023730033134,
-        "Q value": 5370.84,
+        "Q value": 1464.77,
         "O pixel": 1242.5,
-        "O value": 2224695970448,
+        "O value": 1553194566689,
         "related_vo": 2,
         "related_point": [
           41,
@@ -4148,9 +4148,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 38.406088091738184,
-        "Q value": 1066.84,
+        "Q value": 290.96,
         "O pixel": 1242.5,
-        "O value": 2224695970448,
+        "O value": 1553194566689,
         "related_vo": 3,
         "related_point": [
           59,
@@ -4165,9 +4165,9 @@
         "K value": "Adobe",
         "unit": "",
         "Q pixel": 114.29440648606612,
-        "Q value": 3174.84,
+        "Q value": 865.87,
         "O pixel": 1242.5,
-        "O value": 2224695970448,
+        "O value": 1553194566689,
         "related_vo": 4,
         "related_point": [
           77,
@@ -4184,7 +4184,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1242.5,
-        "O value": 2224695970448,
+        "O value": 1553194566689,
         "related_vo": 5,
         "related_point": [
           94,
@@ -4199,9 +4199,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 155.34008826108544,
-        "Q value": 4315,
+        "Q value": 1176.82,
         "O pixel": 1401.8,
-        "O value": 2344064546279,
+        "O value": 1584721180097,
         "related_vo": 0,
         "related_point": [
           6,
@@ -4216,9 +4216,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 582.426346215947,
-        "Q value": 16178.51,
+        "Q value": 4412.32,
         "O pixel": 1401.8,
-        "O value": 2344064546279,
+        "O value": 1584721180097,
         "related_vo": 1,
         "related_point": [
           24,
@@ -4233,9 +4233,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 176.98475646398924,
-        "Q value": 4916.24,
+        "Q value": 1340.79,
         "O pixel": 1401.8,
-        "O value": 2344064546279,
+        "O value": 1584721180097,
         "related_vo": 2,
         "related_point": [
           42,
@@ -4252,7 +4252,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1401.8,
-        "O value": 2344064546279,
+        "O value": 1584721180097,
         "related_vo": 3,
         "related_point": [
           60,
@@ -4269,7 +4269,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1401.8,
-        "O value": 2344064546279,
+        "O value": 1584721180097,
         "related_vo": 4,
         "related_point": [
           78,
@@ -4284,9 +4284,9 @@
         "K value": "Mozilla",
         "unit": "",
         "Q pixel": 20.588830729591336,
-        "Q value": 571.91,
+        "Q value": 155.98,
         "O pixel": 1401.8,
-        "O value": 2344064546279,
+        "O value": 1584721180097,
         "related_vo": 5,
         "related_point": [
           95,
@@ -4301,9 +4301,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 159.695417838499,
-        "Q value": 4435.98,
+        "Q value": 1209.81,
         "O pixel": 1561.6,
-        "O value": 2463807788073,
+        "O value": 1616346747094,
         "related_vo": 0,
         "related_point": [
           7,
@@ -4318,9 +4318,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 384.0608809173816,
-        "Q value": 10668.36,
+        "Q value": 2909.55,
         "O pixel": 1561.6,
-        "O value": 2463807788073,
+        "O value": 1616346747094,
         "related_vo": 1,
         "related_point": [
           25,
@@ -4335,9 +4335,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 263.5634292756051,
-        "Q value": 7321.21,
+        "Q value": 1996.69,
         "O pixel": 1561.6,
-        "O value": 2463807788073,
+        "O value": 1616346747094,
         "related_vo": 2,
         "related_point": [
           43,
@@ -4354,7 +4354,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1561.6,
-        "O value": 2463807788073,
+        "O value": 1616346747094,
         "related_vo": 3,
         "related_point": [
           61,
@@ -4371,7 +4371,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1561.6,
-        "O value": 2463807788073,
+        "O value": 1616346747094,
         "related_vo": 4,
         "related_point": [
           79,
@@ -4388,7 +4388,7 @@
         "Q pixel": 0.0,
         "Q value": 0,
         "O pixel": 1561.6,
-        "O value": 2463807788073,
+        "O value": 1616346747094,
         "related_vo": 5,
         "related_point": [
           96,
@@ -4403,9 +4403,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 230.04058949793688,
-        "Q value": 6390.02,
+        "Q value": 1742.73,
         "O pixel": 1720.9,
-        "O value": 2583176363905,
+        "O value": 1647873360501,
         "related_vo": 0,
         "related_point": [
           8,
@@ -4420,9 +4420,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 583.3502040050951,
-        "Q value": 16204.17,
+        "Q value": 4419.32,
         "O pixel": 1720.9,
-        "O value": 2583176363905,
+        "O value": 1647873360501,
         "related_vo": 1,
         "related_point": [
           26,
@@ -4437,9 +4437,9 @@
         "K value": "Apple",
         "unit": "",
         "Q pixel": 110.20303627698064,
-        "Q value": 3061.2,
+        "Q value": 834.87,
         "O pixel": 1720.9,
-        "O value": 2583176363905,
+        "O value": 1647873360501,
         "related_vo": 2,
         "related_point": [
           44,
@@ -4454,9 +4454,9 @@
         "K value": "Linux",
         "unit": "",
         "Q pixel": 40.91370209085517,
-        "Q value": 1136.49,
+        "Q value": 309.95,
         "O pixel": 1720.9,
-        "O value": 2583176363905,
+        "O value": 1647873360501,
         "related_vo": 3,
         "related_point": [
           62,
