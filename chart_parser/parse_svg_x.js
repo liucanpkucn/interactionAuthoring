@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require('path');
 const { SingleBar } = require('cli-progress');
 const { console } = require("inspector");
-const inputFileName = "20210831_bubble_stack_nyt";  
+const inputFileName = "20210817_linechart";  
 const inputFilePath = `test_example/${inputFileName}.svg`;
 const outputDirectory = "DEBUG";
 // 确保输出目录存在 
@@ -395,7 +395,7 @@ if (!fs.existsSync(outputDirectory)) {
           });
       }
 
-      //未修改
+      //已经修改
       paths = current_svg.getElementsByTagName("path");
       for (let i = 0; i < paths.length; i++) {
         const element = paths[i];
@@ -446,23 +446,37 @@ if (!fs.existsSync(outputDirectory)) {
           continue;
         } 
 
-
         let points = parsePath(element.getAttribute("d"), matrixArray)
-
 
         if (points.length === 0) {
           continue
         }
 
         //注意这里称为polygon,不再叫area了
-        //先假设是line, 如果是闭合的, 就是polygon
         let path_type = "line"
+
+        // 处理 polygon
         if (points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y && computed_style.fill !== 'none') {
           points.pop();
           path_type = 'polygon'
+          rects.push({
+            type: "polygon",
+            origin: element.outerHTML,
+            original_soup: element.outerHTML,
+            fill: rgbStringToRGB(computed_style.fill) || "",
+            stroke: rgbStringToRGB(computed_style.stroke),
+            opacity: parseFloat(computed_style.opacity) || 1.0,
+            fill_opacity: parseFloat(computed_style.fillOpacity) || 0,
+            stroke_width: computed_style.strokeWidth || "0px",
+            polygon: points.map(point => `(${point.x}, ${point.y})`),
+            text: "",
+            center: null,
+            append_info: Array(points.length).fill(null)
+          });
+          continue;
         }
 
-        // 判断是否是矩形
+        // 处理rect
         if (isAxisAlignedRectangle(points)) {
             rects.push({
                 type: "rect",
@@ -485,19 +499,20 @@ if (!fs.existsSync(outputDirectory)) {
             continue;
         }
 
+        // 处理 line
         rects.push({
-          type: path_type,
-          origin: element.outerHTML,
-          original_soup: element.outerHTML,
-          fill: rgbStringToRGB(computed_style.fill) || "",
-          stroke: rgbStringToRGB(computed_style.stroke),
-          opacity: parseFloat(computed_style.opacity) || 1.0,
-          fill_opacity: parseFloat(computed_style.fillOpacity) || 0,
-          stroke_width: computed_style.strokeWidth || "0px",
-          polygon: points.map(point => `(${point.x}, ${point.y})`),
-          text: "",
-          center: null,
-          append_info: Array(points.length).fill(null)
+            type: "line",
+            origin: element.outerHTML,
+            original_soup: element.outerHTML,
+            fill: "",
+            stroke: rgbStringToRGB(computed_style.stroke),
+            opacity: parseFloat(computed_style.opacity) || 1.0,
+            fill_opacity: 0,
+            stroke_width: computed_style.strokeWidth || "0px",
+            polygon: points.map(point => `(${point.x}, ${point.y})`),
+            text: "",
+            center: null,
+            append_info: Array(points.length).fill(null)
         });
       }
 
@@ -541,28 +556,63 @@ if (!fs.existsSync(outputDirectory)) {
 
     //生成简略的sim_vector用的
     filtered_rects.forEach((rect) => {
-      let point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
+      let rounded_x = Math.round(rect.x);
+      let rounded_y = Math.round(rect.y);
+      let rounded_width = Math.round(rect.width);
+      let rounded_height = Math.round(rect.height);
   
-      if (rect.hasOwnProperty('points')) {
-          point_string = rect.points.map((point) => `${Math.round(point.x)},${Math.round(point.y)}`).join(';');
+      let point_string = `[${rounded_x},${rounded_y},${rounded_width},${rounded_height}]`;
+  
+      if (rect.hasOwnProperty('polygon')) {
+          point_string = rect.polygon.map((point) => `(${Math.round(point.x)}, ${Math.round(point.y)})`).join(';');
           rect.point_string = point_string;
       }
   
       if (rect.type === 'text') {
-          // 使用左上角坐标
-          point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
-          rect.sim_description = `${rect.type} ${rect.content}`;
+          rect.sim_description = `${rect.type} ${rect.text} ${point_string}`;
       } 
       else if (rect.type === 'line') {
-          rect.sim_description = `${rect.type} ${rect.stroke_hex}`;
-      } 
-      else {
-          rect.sim_description = `${rect.type} ${rect.fill_hex}`;
+          rect.sim_description = `${rect.type} ${JSON.stringify(rect.stroke)} ${point_string}`;
       }
-  
-      rect.sim_description += ` ${point_string}`;
+      else if (rect.type === 'polygon') {
+          rect.sim_description = `${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) ${point_string}`;
+      }
+      else if (rect.type === 'circle') {
+          let rounded_r = Math.round(rect.r);  // 圆的半径也需要保留整数
+          rect.sim_description = `${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) [${rounded_x},${rounded_y},${rounded_r * 2},${rounded_r * 2}]`;
+      }
+      else {
+          rect.sim_description = `${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) ${point_string}`;
+      }
     });
-
+  
+  
+    
+    // filtered_rects.forEach((rect) => {
+    //   let point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
+  
+    //   if (rect.hasOwnProperty('polygon')) {
+    //       point_string = rect.polygon.map((point) => `${point}`).join(';');
+    //       rect.point_string = point_string;
+    //   }
+  
+    //   if (rect.type === 'text') {
+    //       point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
+    //       rect.sim_description = `${rect.type} ${rect.content}`;
+    //   } 
+    //   else if (rect.type === 'line') {
+    //       rect.sim_description = `${rect.type} ${JSON.stringify(rect.stroke)}`;
+    //   }
+    //   else if (rect.type === 'polygon') {
+    //       rect.sim_description = `${rect.type} ${JSON.stringify(rect.fill)}`;
+    //   }
+    //   else {
+    //       rect.sim_description = `${rect.type} ${JSON.stringify(rect.fill)}`;
+    //   }
+  
+    //   rect.sim_description += ` ${point_string}`;
+    // });
+    
     //排序
     filtered_rects.sort(function (a, b) {
       let type_list = ['rect', 'circle', 'path', 'line', 'text', 'area'];
