@@ -121,12 +121,14 @@ def parse_single_axis(axis, visual_objects, control_points):
     Add uuid to the visual marks
     Parse a axis to get its type.
     """
+    # pprint('visual_objects', visual_objects)
     for item in axis['tick']:
         if isinstance(item['visual_object'], dict):
             item['visual_object'] = item['visual_object']['id']
 
     for item in axis['tick']:
         if isinstance(item['visual_object'], int):
+            # pprint('item', item)
             current_vo = visual_objects[item['visual_object']]
             item['origin'] = current_vo['origin']
             item['visual_object_uuid'] = current_vo['uuid']
@@ -137,12 +139,17 @@ def parse_single_axis(axis, visual_objects, control_points):
             new_text['y'] = item['text_point']['y'] - item['position']['y']
             item['origin'] = str(new_text)
 
-    # print('axis tick ', axis['tick'])
+    # pprint('axis tick ', axis['tick'])
     
+    ##
+    # pprint('axis', axis)
     tick_obj_id = [{'vid': item['visual_object'], 'position': item['position']}\
         for item in axis['tick'] if isinstance(item['visual_object'], int)]
+        # for item in axis['tick'] ]
 
     tick_obj = [visual_objects[item['vid']] for item in tick_obj_id]
+
+    # pprint('tick_obj', tick_obj)
     axis_type = axis['type'] # x axis or y axis
     tick_obj_position = [item['position'][axis_type] for item in tick_obj_id]
 
@@ -170,7 +177,8 @@ def parse_single_axis(axis, visual_objects, control_points):
         for item in axis['tick'] if isinstance(item['visual_object'], int)]
 
     tick_obj = [visual_objects[item['vid']] for item in tick_obj_id]
-
+    # pprint('tick_obj', tick_obj)
+    ## 
     if len(tick_obj) > 0:
         current_left = min([item['left'] for item in tick_obj])
         current_right = max([item['right'] for item in tick_obj])
@@ -205,6 +213,7 @@ def parse_single_axis(axis, visual_objects, control_points):
     else:
         axis['another_attr'] = axis['tick'][0]['position']['x']
 
+    # pprint('axis', axis)
     return axis
 
 
