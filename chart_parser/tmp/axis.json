@@ -140,7 +140,7 @@
           },
           "content": "1000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 13
         },
         {
           "position": {
@@ -149,7 +149,7 @@
           },
           "content": "1500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 14
         },
         {
           "position": {
@@ -158,7 +158,7 @@
           },
           "content": "2000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 15
         },
         {
           "position": {
@@ -167,7 +167,7 @@
           },
           "content": "2500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 16
         },
         {
           "position": {
@@ -176,7 +176,7 @@
           },
           "content": "3000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 17
         },
         {
           "position": {
@@ -185,7 +185,7 @@
           },
           "content": "3500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 18
         },
         {
           "position": {
@@ -194,7 +194,7 @@
           },
           "content": "4000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 19
         },
         {
           "position": {
@@ -203,7 +203,7 @@
           },
           "content": "4500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 20
         },
         {
           "position": {
@@ -212,7 +212,7 @@
           },
           "content": "5000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 21
         },
         {
           "position": {
@@ -221,7 +221,7 @@
           },
           "content": "5500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 22
         },
         {
           "position": {
@@ -230,7 +230,7 @@
           },
           "content": "6000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 23
         },
         {
           "position": {
@@ -239,7 +239,7 @@
           },
           "content": "6500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 24
         },
         {
           "position": {
@@ -248,7 +248,7 @@
           },
           "content": "7000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 25
         },
         {
           "position": {
@@ -257,7 +257,7 @@
           },
           "content": "7500",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 26
         },
         {
           "position": {
@@ -266,7 +266,7 @@
           },
           "content": "8000",
           "controlled": null,
-          "visual_object": null
+          "visual_object": 27
         }
       ],
       "align": "right"

@@ -142,8 +142,6 @@ def move_some_visual_mark(chart_json, obj_list = [0, 1]):
         for point in control_point:
             point['y'] -= up - 5
 
-
-
 def vo_in_plotarea(vo, plotarea):
     cx = (vo["left"] + vo['right']) / 2
     cy = (vo['up'] + vo['down']) / 2
@@ -478,15 +476,14 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     else:
         # pprint("visual_object:", visual_object)
         axes_array = get_ticks_robust(svg_string, visual_object)
-        
         with open('tmp/axis.json', 'w') as f:
             json.dump(axes_array, f, indent = 2)
-            
+        
         # axes_array = get_ticks_robust(control_point, visual_object)
-        # print("DEBUG: axes_array =", type(axes_array), axes_array)
 
-
+        # 此函数需要修改parse_axes
         axes_array = parse_axes(axes_array, visual_object, control_point) # 移交前端
+        
     if no_soup:
         for vo in visual_object:
             del vo['original_soup']
@@ -574,7 +571,7 @@ def get_axes_from_svg_string(svg_string):
 
     # get the possible axis from control point and visual object
     axes_array = get_ticks(control_point, visual_object)
-    axes_array = get_ticks_robust(svg_string)
+    axes_array = get_ticks_robust(svg_string,visual_object)
     parse_axis_type(axes_array, visual_object)
     for i, item in enumerate(axes_array['x']):
         item['id'] = i
@@ -709,11 +706,10 @@ def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
     axes_info = get_axes_from_selected_svg_string(svg_string, no_soup = False, axisdata=axisdata)
     original_visual_object = axes_info['visual_object']
 
-    #这里有问题! 经过这个函数, 会把content变为null!!!
+    # pprint("axes_info", axes_info)
     parse_axis_type(axes_info["axes_array"], original_visual_object)
     with open("tmp/axes_info.json", "w") as f:
         f.write(json_dumps_safe(axes_info))
-        
     return parse_constraint_axes_vis_cons(
                 axes_info,
                 fromfront = (axisdata is not None),

@@ -39,16 +39,20 @@ def get_ticks_robust(svg_string, visual_object):
                         tick["controlled"] = None  
 
                         # 匹配 visual_object 中的内容
+                        # pprint("visual_object", visual_object)
+
+                        # 清理字段，去除空格、减号、逗号等干扰项,确保匹配时不会出错
+                        tick_content_cleaned = tick.get("content", "").replace(' ', '_').replace('\u2212', '-').replace(',', '')
                         matching_vo = next((vo for vo in visual_object 
                                             if vo.get("type") == "text" and 
-                                            vo.get("content").strip() == tick.get("content").strip()),
+                                            vo.get("content", "").replace(' ', '_').replace('\u2212', '-').replace(',', '') == tick_content_cleaned),
                                             None)
                         # 若找到匹配项，则补充 visual_object
                         if matching_vo:
                             tick["visual_object"] = matching_vo["id"]
                         else:
                             tick["visual_object"] = None  # 未找到则填 None，避免后续逻辑出错
-
+                            # pprint("Warning: No matching visual object found for tick:", tick)
     print("DEBUG: axes_array AFTER loop =", axes_array)
 
     return axes_array

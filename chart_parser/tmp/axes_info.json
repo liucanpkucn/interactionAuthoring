@@ -224,25 +224,250 @@
                             "x": 230.9830322265625,
                             "y": 1123.1199686026646
                         }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 1036
+                        },
+                        "content": "1000",
+                        "controlled": null,
+                        "visual_object": 13,
+                        "origin": "<text content=\"1,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.15234012366068\">1,000</text>",
+                        "visual_object_uuid": "e2d76293-df22-593f-ad0d-9bbd177d2cfb",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 1057.1523401236607
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 970
+                        },
+                        "content": "1500",
+                        "controlled": null,
+                        "visual_object": 14,
+                        "origin": "<text content=\"1,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.16254825354349\">1,500</text>",
+                        "visual_object_uuid": "17780a49-7c65-5e08-af32-f146278f38cf",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 991.1625482535435
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 904
+                        },
+                        "content": "2000",
+                        "controlled": null,
+                        "visual_object": 15,
+                        "origin": "<text content=\"2,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.17268008948099\">2,000</text>",
+                        "visual_object_uuid": "59a2c847-7c32-56f7-aadf-2614c129da93",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 925.172680089481
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 838
+                        },
+                        "content": "2500",
+                        "controlled": null,
+                        "visual_object": 16,
+                        "origin": "<text content=\"2,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.182895848758335\">2,500</text>",
+                        "visual_object_uuid": "bd8ba211-2ebf-51be-909e-b97f2dec42b9",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 859.1828958487583
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 772
+                        },
+                        "content": "3000",
+                        "controlled": null,
+                        "visual_object": 17,
+                        "origin": "<text content=\"3,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.19306583166849\">3,000</text>",
+                        "visual_object_uuid": "2181b9b9-9762-50c3-9c4d-5884911891cc",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 793.1930658316685
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 706
+                        },
+                        "content": "3500",
+                        "controlled": null,
+                        "visual_object": 18,
+                        "origin": "<text content=\"3,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.20319766760599\">3,500</text>",
+                        "visual_object_uuid": "04e51222-39e8-5c4a-b824-2d9255159b34",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 727.203197667606
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 640
+                        },
+                        "content": "4000",
+                        "controlled": null,
+                        "visual_object": 19,
+                        "origin": "<text content=\"4,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.0865478515625\" y=\"21.213352391727085\">4,000</text>",
+                        "visual_object_uuid": "0dd77222-eac3-5186-a6a5-eedb1f056041",
+                        "text_point": {
+                            "x": 217.0865478515625,
+                            "y": 661.2133523917271
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 574
+                        },
+                        "content": "4500",
+                        "controlled": null,
+                        "visual_object": 20,
+                        "origin": "<text content=\"4,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.0865478515625\" y=\"21.22352237463724\">4,500</text>",
+                        "visual_object_uuid": "83728e28-0ac5-57de-bbe6-0b7a26c2b968",
+                        "text_point": {
+                            "x": 217.0865478515625,
+                            "y": 595.2235223746372
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 508
+                        },
+                        "content": "5000",
+                        "controlled": null,
+                        "visual_object": 21,
+                        "origin": "<text content=\"5,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.23371524573099\">5,000</text>",
+                        "visual_object_uuid": "33c71495-9212-5a94-9b58-e0a62c0a86ee",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 529.233715245731
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 442
+                        },
+                        "content": "5500",
+                        "controlled": null,
+                        "visual_object": 22,
+                        "origin": "<text content=\"5,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.243847081668548\">5,500</text>",
+                        "visual_object_uuid": "099f335c-8147-5fef-8766-b7d2117990ff",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 463.24384708166855
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 376
+                        },
+                        "content": "6000",
+                        "controlled": null,
+                        "visual_object": 23,
+                        "origin": "<text content=\"6,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.254001805789642\">6,000</text>",
+                        "visual_object_uuid": "15f22c72-4ae3-5ded-9e64-624320b6488c",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 397.25400180578964
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 310
+                        },
+                        "content": "6500",
+                        "controlled": null,
+                        "visual_object": 24,
+                        "origin": "<text content=\"6,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.264133641727142\">6,500</text>",
+                        "visual_object_uuid": "a6cd9dda-f3a4-5f58-8b57-206074e297cc",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 331.26413364172714
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 244
+                        },
+                        "content": "7000",
+                        "controlled": null,
+                        "visual_object": 25,
+                        "origin": "<text content=\"7,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.274326512820892\">7,000</text>",
+                        "visual_object_uuid": "e80eb8be-d3e6-5e5f-8a4b-e7d8c766b775",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 265.2743265128209
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 178
+                        },
+                        "content": "7500",
+                        "controlled": null,
+                        "visual_object": 26,
+                        "origin": "<text content=\"7,500\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.284458348758392\">7,500</text>",
+                        "visual_object_uuid": "6925cc4b-58e5-5411-9b03-90aaf8dad2a2",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 199.2844583487584
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 182,
+                            "y": 112
+                        },
+                        "content": "8000",
+                        "controlled": null,
+                        "visual_object": 27,
+                        "origin": "<text content=\"8,000\" fill=\"rgb(0, 0, 0)\" font-family=\"Lato\" font-size=\"18px\" my_fill=\"rgb(0, 0, 0)\" my_fill_opacity=\"1\" my_font_size=\"18px\" opacity=\"1\" style=\"font-family: Lato;\nfont-size: 30px;\ndominant-baseline: middle;\ntext-anchor: middle;\ntransform: translate(0, 0)\" text-anchor=\"middle\" vivisfy_selected=\"yes\" x=\"35.1451416015625\" y=\"21.294651219852142\">8,000</text>",
+                        "visual_object_uuid": "425ba811-8fef-5afc-93bf-dd1d6efde888",
+                        "text_point": {
+                            "x": 217.1451416015625,
+                            "y": 133.29465121985214
+                        }
                     }
                 ],
                 "align": "right",
                 "scale_type": "linear",
                 "value_range": [
                     0.0,
-                    500.0
+                    8000.0
                 ],
                 "pixel_domain": [
                     1168,
-                    1102
+                    112
                 ],
                 "prefix": "",
                 "suffix": "",
                 "area": {
-                    "x": 200.5777587890625,
-                    "y": 1107.8074686026646,
-                    "width": 60.810546875,
-                    "height": 96.6148681640625
+                    "x": 172.7847900390625,
+                    "y": 117.95987338782089,
+                    "width": 88.603515625,
+                    "height": 1086.4624633789062
                 },
                 "use_num": 0,
                 "another_attr": 243
