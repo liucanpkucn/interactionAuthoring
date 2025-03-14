@@ -299,6 +299,7 @@ function activateInteraction(parsedJson){
     // alert("Move Area");
     // return "Move Area";
   }
+  _chart_object[0].share_json.push(parsedJson);
 }
 
 

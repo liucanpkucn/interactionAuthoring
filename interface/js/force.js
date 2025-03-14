@@ -23,6 +23,11 @@ let canvas_main = function(data){
 
   let window_width = document.getElementById("canvas").clientWidth
   let window_height = document.getElementById("canvas").clientHeight
+  let chat_body_width = document.getElementById("chat-body")?.clientWidth
+  if (chat_body_width){
+    window_width = window_width - chat_body_width
+
+  }
   this.chart_json = chart_json
   this.force_button_click = false
   this.brush_selected = false
@@ -58,12 +63,12 @@ let canvas_main = function(data){
   let resize = 1
 
   if (data.size.width > window_width ){
-    resize = window_width * 0.6 / data.size.width
+    resize = window_width * 0.8 / data.size.width
   }
   console.log(resize)
   let chart_object = []
   // let try_draw = new draw_a_canvas(svg, chart_json, {x: 100, y: 100}, loop_flag, move_current, try_polar, show_should = show_should, need_back_end_cal, resize = 1, node_radius = 0.1, svg_string = svg_string)
-  let begin_point = {x: (window_width - data.size.width * resize) / 2 - chart_margin.x*5.7, y: (window_height - data.size.height * resize) / 2 - chart_margin.y}
+  let begin_point = {x: (window_width - data.size.width * resize) / 2 - chart_margin.x, y: (window_height - data.size.height * resize) / 2 - chart_margin.y}
   let try_draw = new draw_a_canvas(svg, new_chart_json, begin_point, resize = resize)
 
   console.log("begin_point", begin_point)

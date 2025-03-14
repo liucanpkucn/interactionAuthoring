@@ -6,130 +6,17 @@
 	<link rel="stylesheet" href="css/vivisfy.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/dglyph.css">
-	<style>
-		/* ✅ 여기에 제공된 CSS를 그대로 삽입 */
-		body {
-			font-family: 'Inter';
-			margin: 0;
-			display: flex;
-			height: 400px;
-			width: 832px;
-			flex-direction: column;
-			transition: background-color 0.3s ease;
-		}
-		
-		/* ✅ 채팅 컨테이너 적용 */
-		#chat-container {
-			position: absolute;
-			top: 50px;
-			right: 0%;
-			width: 35%;
-			background-color: white;
-			display: flex;
-			flex-direction: column;
-			box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-		}
-		
-		/* ✅ 채팅 메시지 영역 스타일 */
-		#chat-body {
-			flex-grow: 1;
-			width: 98%;
-			height: 65%;
-			overflow-y: auto;
-			font-size: 14px;
-			padding: 10px;
-			scrollbar-width: thin;
-			-ms-overflow-style: none;
-		}
-		
-		/* ✅ 입력창 스타일 */
-		#chat-input {
-			width: calc(100% - 20px);
-			padding: 10px;
-			margin: 10px;
-			border-radius: 8px;
-			border: 1px solid #ccc;
-			resize: none;
-		}
-		
-		/* ✅ 버튼 스타일 */
-		#send-button {
-			position: absolute;
-			border-radius: 8px;
-			background-color: #5bb450;
-			opacity: 0.8;
-			color: white;
-			border: none;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
-
-		#share-button {
-			position: absolute;
-			border-radius: 8px;
-			background-color: #5bb450;
-			opacity: 0.8;
-			color: white;
-			border: none;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
-		
-		#send-button:hover {
-			background-color: #3b8132;
-		}
-		
-	</style>
 </head>
 
 <body>
 	<div id="canvas"></div>
-		<!-- <div id="micSpace">
-			<button id="myButton">
-				<img src="mic-microphone-icon.svg" alt="mic" width="50" height="50">
-			</button>
-			<div id="speechBubble">
-				<img id="sbImg" src="speech-bubble-long.svg" alt="speechBubble" width="400" height="250">
-				<div id="recognizedText" style="margin-top: 20px; font-size: 20px;"></div>
-			</div>
-		</div> -->
-
-	<!-- Chat UI -->
-	<div id="chat-container"
-		style="position: absolute; top: 50px; right: 0%; width: 35%; background-color: white;">
-		<div id="chat-body"
-			style="position: absolute; top: 1%; right: 0%; width: 98%; height: 90%; overflow-y: scroll; font-size: 28px;"></div>
-		<textarea 
-			id="chat-input" 
-			style="position: absolute; bottom: 0%; left: 0%; width: 80%; height: 4rem; padding: 6 10; margin: 0.5rem;"
-			placeholder="Type a message..."></textarea>
-		<button id="send-button" style="position: absolute; height: 4rem; width: 5rem; right: 0%; bottom: 0%; margin: 0.5rem; padding: 5 15 5 15;">Send</button>
-	</div>
 
 	<div id="head"
 		style="position: absolute; top: 0%; left: 0%; width: 100%; height: 50px; margin: 0px; padding: 0px; background: #D8D8D8; user-select:none; justify-content: start;">
 		<div id="header-text" style="width: 20%;">
 			Interaction Authoring
 		</div>
-		<button id="share-button" style="position: absolute; height: 2rem; width: 5rem; right: 0%; bottom: 0%; margin: 0.5rem; padding: 5 15 5 15;">Share</button>
 	</div>
-
-	<!-- Pop-up -->
-	<div class="popup-overlay" id="popup-overlay">
-        <div class="popup-container">
-            <div class="popup-image"></div>
-            <div class="popup-content">
-                <input class="popup-title" type="text" value="Title">
-                <textarea class="popup-description">Description goes here...</textarea>
-                <textarea class="popup-interaction">Interaction content...</textarea>
-                <div class="popup-buttons">
-                    <button class="cancel-button" id="close-popup">Cancel</button>
-                    <button class="share-button">Share</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 	
 	<script src="js/lib/d3v6.min.js"></script>
 	<script src="js/lib/jquery-3.3.1.min.js"></script>
@@ -152,7 +39,7 @@
 		let file_name = window.location.href.toString().split("?")[1]
 		let file_url = "chosen_json/" + file_name + ".json"
 
-		console.log('file_url', file_url);
+		console.log(file_url)
 
 		let queryString = window.location.search;
 		let urlParams = new URLSearchParams(queryString);
@@ -165,7 +52,7 @@
 		if (json_string !== null) {
 
 			file_url = "chosen_json/" + json_string + ".json"
-			console.log('file_url');
+
 			d3.json(file_url)
 				.then(function (data) {
 					let canvas = new canvas_main(data)
@@ -205,6 +92,19 @@
 
 		}
 
+		setTimeout(() => {
+			if (window._begin_point) {
+				let new_x = window._begin_point.x + 200; // X축 이동 (원하는 만큼 조정)
+				let new_y = window._begin_point.y;  // Y축 이동 (원하는 만큼 조정)
+
+				console.log("Moving canvas to:", new_x, new_y);
+
+				_chart_object[0].move_current_canvas({
+					new_position: { x: new_x, y: new_y }
+				});
+			}
+		}, 50); // `canvas_main` 실행 후 약간의 딜레이 후 실행
+
 		document.addEventListener("DOMContentLoaded", function () {
             const chatService = new ChatService(document, "en"); // 영어 설정
 
@@ -222,18 +122,7 @@
 		document.addEventListener("DOMContentLoaded", updateHeight);
 		window.addEventListener("resize", updateHeight);
 
-		document.getElementById("share-button").addEventListener("click", function() {
-			let currentUrl = window.location.href; // 현재 화면의 URL 가져오기
-			let modifiedUrl = currentUrl.replace("present", "show"); // 'present'를 'show'로 변경
-			// alert(modifiedUrl); // 변경된 URL을 alert 창으로 표시
-			console.log(_chart_object[0].share_json);
-
-			document.getElementById("popup-overlay").style.display = "flex";
-		});
-        
-        document.getElementById("close-popup").addEventListener("click", function() {
-            document.getElementById("popup-overlay").style.display = "none";
-        });
+		
 	    	// d3.json('file_name.json')
 	    	// 	.then(function(file_name){
 	    	// 		console.log('file list', file_name)
