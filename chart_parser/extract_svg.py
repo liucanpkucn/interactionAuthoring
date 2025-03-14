@@ -758,7 +758,6 @@ def get_text_information(X_axis, Y_axis, legend, texts_attr):
 
 def parse_path_line(soup, min_len = 10):
     paths = soup.select('path')
-
     path_array = []
     # print(paths)
     for path in paths:

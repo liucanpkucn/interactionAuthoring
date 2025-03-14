@@ -422,20 +422,29 @@ if (!fs.existsSync(outputDirectory)) {
           continue
         }
 
+        // path 为圆形
         if (isCirclePathData(element.getAttribute("d"))) {
-          print('this is a circle', element.getAttribute("d"))
           rects.push({
-            type: "circle",
-            x: element.getBoundingClientRect().x,
-            y: element.getBoundingClientRect().y,
-            width: element.getBoundingClientRect().width,
-            height: element.getBoundingClientRect().height,
-            fill: computed_style.fill,
-            stroke: computed_style.stroke,
-            stroke_width: computed_style.strokeWidth,
+              type: "circle",
+              origin: element.outerHTML,
+              original_soup: element.outerHTML,
+              width: element.getBoundingClientRect().width,
+              height: element.getBoundingClientRect().height,
+              left: element.getBoundingClientRect().x,
+              right: element.getBoundingClientRect().x + element.getBoundingClientRect().width,
+              fill: rgbStringToRGB(computed_style.fill),
+              stroke: rgbStringToRGB(computed_style.stroke),
+              stroke_width: computed_style.strokeWidth || "1px",
+              opacity: parseFloat(computed_style.opacity) || 1.0,
+              fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
+              x: element.getBoundingClientRect().x,
+              y: element.getBoundingClientRect().y,
+              up: element.getBoundingClientRect().y,
+              down: element.getBoundingClientRect().y + element.getBoundingClientRect().height,
+              r: element.getBoundingClientRect().width / 2
           });
-          continue
-        }
+          continue;
+        } 
 
 
         let points = parsePath(element.getAttribute("d"), matrixArray)
@@ -445,38 +454,50 @@ if (!fs.existsSync(outputDirectory)) {
           continue
         }
 
+        //注意这里称为polygon,不再叫area了
+        //先假设是line, 如果是闭合的, 就是polygon
         let path_type = "line"
         if (points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y && computed_style.fill !== 'none') {
           points.pop();
-          path_type = 'area'
+          path_type = 'polygon'
         }
 
-        if (isAxisAlignedRectangle(points)){
-          rects.push({
-            type: "rect",
-            x: element.getBoundingClientRect().x,
-            y: element.getBoundingClientRect().y,
-            width: element.getBoundingClientRect().width,
-            height: element.getBoundingClientRect().height,
-            fill: computed_style.fill,
-            stroke: computed_style.stroke,
-            stroke_width: computed_style.strokeWidth,
-          })
-          continue
+        // 判断是否是矩形
+        if (isAxisAlignedRectangle(points)) {
+            rects.push({
+                type: "rect",
+                origin: element.outerHTML,
+                original_soup: element.outerHTML,
+                width: element.getBoundingClientRect().width,
+                height: element.getBoundingClientRect().height,
+                left: element.getBoundingClientRect().x,
+                right: element.getBoundingClientRect().x + element.getBoundingClientRect().width,
+                fill: rgbStringToRGB(computed_style.fill),
+                stroke: rgbStringToRGB(computed_style.stroke),
+                stroke_width: computed_style.strokeWidth || "1px",
+                opacity: parseFloat(computed_style.opacity) || 1.0,
+                fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
+                x: element.getBoundingClientRect().x,
+                y: element.getBoundingClientRect().y,
+                up: element.getBoundingClientRect().y,
+                down: element.getBoundingClientRect().y + element.getBoundingClientRect().height
+            });
+            continue;
         }
-
 
         rects.push({
           type: path_type,
-          d: element.getAttribute("d"),
-          points: points,
-          x: element.getBoundingClientRect().x,
-          y: element.getBoundingClientRect().y,
-          width: element.getBoundingClientRect().width,
-          height: element.getBoundingClientRect().height,
-          fill: computed_style.fill,
-          stroke: computed_style.stroke,
-          stroke_width: computed_style.strokeWidth,
+          origin: element.outerHTML,
+          original_soup: element.outerHTML,
+          fill: rgbStringToRGB(computed_style.fill) || "",
+          stroke: rgbStringToRGB(computed_style.stroke),
+          opacity: parseFloat(computed_style.opacity) || 1.0,
+          fill_opacity: parseFloat(computed_style.fillOpacity) || 0,
+          stroke_width: computed_style.strokeWidth || "0px",
+          polygon: points.map(point => `(${point.x}, ${point.y})`),
+          text: "",
+          center: null,
+          append_info: Array(points.length).fill(null)
         });
       }
 
@@ -494,7 +515,7 @@ if (!fs.existsSync(outputDirectory)) {
 
 
 
-    
+
     //加uniform的, 已经删除
     // rects.forEach((rect) => {
       // rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
