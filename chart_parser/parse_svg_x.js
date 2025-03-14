@@ -3,39 +3,40 @@ const fs = require("fs");
 const path = require('path');
 const { SingleBar } = require('cli-progress');
 const { console } = require("inspector");
-
 const inputFileName = "20210831_bubble_stack_nyt";  
 const inputFilePath = `test_example/${inputFileName}.svg`;
 const outputDirectory = "DEBUG";
-
 // 确保输出目录存在 
 if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
 }
-
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-
   // 监听 page 的 console 事件
   page.on("console", (msg) => {
     for (let i = 0; i < msg.args().length; ++i)
       console.log(`${i}: ${msg.args()[i]}`);
   });
-
   const filePath = `file://${path.resolve(inputFilePath)}`;
   await page.goto(filePath);
   const data = await page.evaluate(() => {
     const svg = document.getElementsByTagName("svg")[0];
     // const elements = document.getElementsByTagName("rect");
     // const elements = document.getElementsByTagName("path");
-
     let svg_width = svg.getBoundingClientRect().width;
     let svg_height = svg.getBoundingClientRect().height;
-
     svg_width = Math.max(svg_width, svg_height);
     svg_height = Math.max(svg_width, svg_height);
 
+
+
+
+
+
+
+
+    //utils fuctions
     function rgbStringToRGB(rgbString) {
 
       // 检查是否为 undefined、null 或空字符串
@@ -103,6 +104,8 @@ if (!fs.existsSync(outputDirectory)) {
       return arcsMatch && circleFormed;
     }
 
+
+    //解析path
     function parsePath(d, transform_matrix) {
       const commands = d.match(/[a-z][^a-z]*/gi);
       if (!commands) {
@@ -235,6 +238,7 @@ if (!fs.existsSync(outputDirectory)) {
       return absolute_points;
     }
 
+    //主要修改入口
     function get_all_rects(current_svg) {
 
       //已经修改
@@ -441,14 +445,11 @@ if (!fs.existsSync(outputDirectory)) {
           continue
         }
 
-
-
         let path_type = "line"
         if (points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y && computed_style.fill !== 'none') {
           points.pop();
           path_type = 'area'
         }
-
 
         if (isAxisAlignedRectangle(points)){
           rects.push({
@@ -484,9 +485,18 @@ if (!fs.existsSync(outputDirectory)) {
 
     const rects = get_all_rects(svg);
 
-    const granularity = 500;
 
-    rects.forEach((rect) => {
+
+
+
+
+
+
+
+
+    
+    //加uniform的, 已经删除
+    // rects.forEach((rect) => {
       // rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
       // rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
       // rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
@@ -501,37 +511,38 @@ if (!fs.existsSync(outputDirectory)) {
       //     };
       //   })
       // }
-    });
+    // });
 
+    //过滤掉无效的rects
     let filtered_rects = rects.filter(
       (rect) => !(rect.type === "path" && rect.points.length == 0) && !(rect.width == 0 && rect.height == 0)
     )
 
+    //生成简略的sim_vector用的
     filtered_rects.forEach((rect) => {
-      let point_string = `[${rect.uniform_x},${rect.uniform_y},${rect.uniform_width},${rect.uniform_height}]`
-      if (rect.hasOwnProperty('uniform_points')) {
-        point_string = rect.uniform_points.map((point) => `${point.x},${point.y}`).join(';')
-        rect.point_string = point_string
+      let point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
+  
+      if (rect.hasOwnProperty('points')) {
+          point_string = rect.points.map((point) => `${Math.round(point.x)},${Math.round(point.y)}`).join(';');
+          rect.point_string = point_string;
       }
-
-
+  
       if (rect.type === 'text') {
-        // 使用左上角坐标
-        point_string = `[${rect.uniform_x},${rect.uniform_y},${rect.uniform_width},${rect.uniform_height}]`;
-        rect.sim_description = `${rect.type} ${rect.content}`;
-      }
+          // 使用左上角坐标
+          point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
+          rect.sim_description = `${rect.type} ${rect.content}`;
+      } 
       else if (rect.type === 'line') {
-        rect.sim_description = `${rect.type} ${rect.stroke_hex}`
-      }
+          rect.sim_description = `${rect.type} ${rect.stroke_hex}`;
+      } 
       else {
-        rect.sim_description = `${rect.type} ${rect.fill_hex}`
+          rect.sim_description = `${rect.type} ${rect.fill_hex}`;
       }
-
+  
       rect.sim_description += ` ${point_string}`;
-
-      //  ${rect.type === 'text' ? rect.content + ' ' : ''}${rect.type === 'line'?rect.stroke_hex: rect.fill_hex} ${point_string}`;
     });
 
+    //排序
     filtered_rects.sort(function (a, b) {
       let type_list = ['rect', 'circle', 'path', 'line', 'text', 'area'];
       if (a.type !== b.type) {
@@ -555,6 +566,7 @@ if (!fs.existsSync(outputDirectory)) {
       }
     });
 
+    //最后返回的数据格式
     svg_data = {
       x: svg.getBoundingClientRect().x,
       y: svg.getBoundingClientRect().y,
@@ -573,15 +585,12 @@ if (!fs.existsSync(outputDirectory)) {
     `${outputDirectory}/1_debug_all_js_parse.json`,
     JSON.stringify(data, null, 2)
   );
-  
   // 处理 sim_vector 并保存为 TXT 文件
   const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
-  
   fs.writeFileSync(
     `${outputDirectory}/1_debug_simvec.txt`,
     simVectorContent
   );
-
   await browser.close();
 })();
 

@@ -5,7 +5,7 @@ import copy
 import re
 import os
 
-### 这个家伙准备换掉
+### 
 from extract_svg import parse_unknown_svg_visual_elements
 #####################
 
@@ -21,8 +21,6 @@ from deal_with_object import classify_groups_by_size
 from axes_parser import parse_axes, parse_temp_list, is_time_list, is_single_time
 from shapely.geometry import Point, Polygon
 from utils import pprint
-
-
 
 def get_group(
     control_point,
