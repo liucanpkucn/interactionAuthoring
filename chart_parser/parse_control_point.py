@@ -22,8 +22,14 @@ def obj_in_selected_area(current_obj, selected_area):
 
     if selected_area == "":
         return True
-
-    if current_obj['right'] < selected_area[0][0] or current_obj['left'] > selected_area[1][0] or current_obj['up'] > selected_area[1][1] or current_obj['down'] < selected_area[0][1]:
+    
+    # print(current_obj)
+    
+    try:
+        if current_obj['right'] < selected_area[0][0] or current_obj['left'] > selected_area[1][0] or current_obj['up'] > selected_area[1][1] or current_obj['down'] < selected_area[0][1]:
+            return False
+    except:
+        print("current_obj failed", current_obj)
         return False
 
     return True
@@ -337,7 +343,10 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
 
     for obj in visual_object:
         obj["uuid"] = str(uuid5(UUID(int=0), f'{obj["type"]}-{obj["id"]}'))
-        obj["original_soup"]['uuid_mani'] = obj['uuid']
+        try:
+            obj["original_soup"]['uuid'] = obj["uuid"]
+        except:
+            pass
 
     # pprint(visual_object)
     return control_point, visual_object, non_soup_visual_object

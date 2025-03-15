@@ -4,81 +4,81 @@
       "type": "x",
       "main": true,
       "attr_type": "Categorical",
-      "fixed_distance": 159.44444444444446,
+      "fixed_distance": 63.666666666666664,
       "range": {
-        "begin": 251,
-        "end": 1686
+        "begin": 116,
+        "end": 689
       },
       "tick": [
         {
           "position": {
-            "x": 251,
-            "y": 1196
+            "x": 116,
+            "y": 382
           },
-          "content": "2013"
+          "content": "Jan"
         },
         {
           "position": {
-            "x": 410,
-            "y": 1196
+            "x": 179,
+            "y": 382
           },
-          "content": "2014"
+          "content": "Feb"
         },
         {
           "position": {
-            "x": 570,
-            "y": 1196
+            "x": 242,
+            "y": 382
           },
-          "content": "2015"
+          "content": "Mar"
         },
         {
           "position": {
-            "x": 729,
-            "y": 1196
+            "x": 307,
+            "y": 382
           },
-          "content": "2016"
+          "content": "Apr"
         },
         {
           "position": {
-            "x": 889,
-            "y": 1196
+            "x": 369,
+            "y": 382
           },
-          "content": "2017"
+          "content": "May"
         },
         {
           "position": {
-            "x": 1048,
-            "y": 1196
+            "x": 434,
+            "y": 382
           },
-          "content": "2018"
+          "content": "Jun"
         },
         {
           "position": {
-            "x": 1207,
-            "y": 1196
+            "x": 500,
+            "y": 382
           },
-          "content": "2019"
+          "content": "Jul"
         },
         {
           "position": {
-            "x": 1367,
-            "y": 1196
+            "x": 561,
+            "y": 382
           },
-          "content": "2020"
+          "content": "Aug"
         },
         {
           "position": {
-            "x": 1526,
-            "y": 1196
+            "x": 624,
+            "y": 382
           },
-          "content": "2021"
+          "content": "Sep"
         },
         {
           "position": {
-            "x": 1686,
-            "y": 1196
+            "x": 689,
+            "y": 382
           },
-          "content": "2022"
+          "content": "Oct"
         }
       ]
     }
@@ -88,130 +88,60 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 66.0,
+      "fixed_distance": 50.333333333333336,
       "range": {
-        "begin": 112,
-        "end": 1168
+        "begin": 69,
+        "end": 371
       },
       "tick": [
         {
           "position": {
-            "x": 243,
-            "y": 1168
+            "x": 69,
+            "y": 371
           },
           "content": "0"
         },
         {
           "position": {
-            "x": 207,
-            "y": 1102
+            "x": 55,
+            "y": 321
           },
-          "content": "500"
+          "content": "10K"
         },
         {
           "position": {
-            "x": 182,
-            "y": 1036
+            "x": 55,
+            "y": 270
           },
-          "content": "1000"
+          "content": "20K"
         },
         {
           "position": {
-            "x": 182,
-            "y": 970
+            "x": 55,
+            "y": 220
           },
-          "content": "1500"
+          "content": "30K"
         },
         {
           "position": {
-            "x": 182,
-            "y": 904
+            "x": 55,
+            "y": 170
           },
-          "content": "2000"
+          "content": "40K"
         },
         {
           "position": {
-            "x": 182,
-            "y": 838
+            "x": 55,
+            "y": 119
           },
-          "content": "2500"
+          "content": "50K"
         },
         {
           "position": {
-            "x": 182,
-            "y": 772
+            "x": 55,
+            "y": 69
           },
-          "content": "3000"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 706
-          },
-          "content": "3500"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 640
-          },
-          "content": "4000"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 574
-          },
-          "content": "4500"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 508
-          },
-          "content": "5000"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 442
-          },
-          "content": "5500"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 376
-          },
-          "content": "6000"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 310
-          },
-          "content": "6500"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 244
-          },
-          "content": "7000"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 178
-          },
-          "content": "7500"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 112
-          },
-          "content": "8000"
+          "content": "60K"
         }
       ]
     }

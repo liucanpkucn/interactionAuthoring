@@ -4,101 +4,101 @@
       "type": "x",
       "main": true,
       "attr_type": "Categorical",
-      "fixed_distance": 159.44444444444446,
+      "fixed_distance": 63.666666666666664,
       "range": {
-        "begin": 251,
-        "end": 1686
+        "begin": 116,
+        "end": 689
       },
       "tick": [
         {
           "position": {
-            "x": 251,
-            "y": 1196
+            "x": 116,
+            "y": 382
           },
-          "content": "2013",
+          "content": "Jan",
           "controlled": null,
-          "visual_object": 0
+          "visual_object": 11
         },
         {
           "position": {
-            "x": 410,
-            "y": 1196
+            "x": 179,
+            "y": 382
           },
-          "content": "2014",
+          "content": "Feb",
           "controlled": null,
-          "visual_object": 1
+          "visual_object": 12
         },
         {
           "position": {
-            "x": 570,
-            "y": 1196
+            "x": 242,
+            "y": 382
           },
-          "content": "2015",
+          "content": "Mar",
           "controlled": null,
-          "visual_object": 2
+          "visual_object": 13
         },
         {
           "position": {
-            "x": 729,
-            "y": 1196
+            "x": 307,
+            "y": 382
           },
-          "content": "2016",
+          "content": "Apr",
           "controlled": null,
-          "visual_object": 3
+          "visual_object": 14
         },
         {
           "position": {
-            "x": 889,
-            "y": 1196
+            "x": 369,
+            "y": 382
           },
-          "content": "2017",
+          "content": "May",
           "controlled": null,
-          "visual_object": 4
+          "visual_object": 15
         },
         {
           "position": {
-            "x": 1048,
-            "y": 1196
+            "x": 434,
+            "y": 382
           },
-          "content": "2018",
+          "content": "Jun",
           "controlled": null,
-          "visual_object": 5
+          "visual_object": 16
         },
         {
           "position": {
-            "x": 1207,
-            "y": 1196
+            "x": 500,
+            "y": 382
           },
-          "content": "2019",
+          "content": "Jul",
           "controlled": null,
-          "visual_object": 6
+          "visual_object": 17
         },
         {
           "position": {
-            "x": 1367,
-            "y": 1196
+            "x": 561,
+            "y": 382
           },
-          "content": "2020",
+          "content": "Aug",
           "controlled": null,
-          "visual_object": 7
+          "visual_object": 18
         },
         {
           "position": {
-            "x": 1526,
-            "y": 1196
+            "x": 624,
+            "y": 382
           },
-          "content": "2021",
+          "content": "Sep",
           "controlled": null,
-          "visual_object": 8
+          "visual_object": 19
         },
         {
           "position": {
-            "x": 1686,
-            "y": 1196
+            "x": 689,
+            "y": 382
           },
-          "content": "2022",
+          "content": "Oct",
           "controlled": null,
-          "visual_object": 9
+          "visual_object": 20
         }
       ],
       "align": "up"
@@ -109,162 +109,72 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 66.0,
+      "fixed_distance": 50.333333333333336,
       "range": {
-        "begin": 112,
-        "end": 1168
+        "begin": 69,
+        "end": 371
       },
       "tick": [
         {
           "position": {
-            "x": 243,
-            "y": 1168
+            "x": 69,
+            "y": 371
           },
           "content": "0",
-          "controlled": null,
-          "visual_object": 11
-        },
-        {
-          "position": {
-            "x": 207,
-            "y": 1102
-          },
-          "content": "500",
-          "controlled": null,
-          "visual_object": 12
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 1036
-          },
-          "content": "1000",
-          "controlled": null,
-          "visual_object": 13
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 970
-          },
-          "content": "1500",
-          "controlled": null,
-          "visual_object": 14
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 904
-          },
-          "content": "2000",
-          "controlled": null,
-          "visual_object": 15
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 838
-          },
-          "content": "2500",
-          "controlled": null,
-          "visual_object": 16
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 772
-          },
-          "content": "3000",
-          "controlled": null,
-          "visual_object": 17
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 706
-          },
-          "content": "3500",
-          "controlled": null,
-          "visual_object": 18
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 640
-          },
-          "content": "4000",
-          "controlled": null,
-          "visual_object": 19
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 574
-          },
-          "content": "4500",
-          "controlled": null,
-          "visual_object": 20
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 508
-          },
-          "content": "5000",
           "controlled": null,
           "visual_object": 21
         },
         {
           "position": {
-            "x": 182,
-            "y": 442
+            "x": 55,
+            "y": 321
           },
-          "content": "5500",
+          "content": "10K",
           "controlled": null,
           "visual_object": 22
         },
         {
           "position": {
-            "x": 182,
-            "y": 376
+            "x": 55,
+            "y": 270
           },
-          "content": "6000",
+          "content": "20K",
           "controlled": null,
           "visual_object": 23
         },
         {
           "position": {
-            "x": 182,
-            "y": 310
+            "x": 55,
+            "y": 220
           },
-          "content": "6500",
+          "content": "30K",
           "controlled": null,
           "visual_object": 24
         },
         {
           "position": {
-            "x": 182,
-            "y": 244
+            "x": 55,
+            "y": 170
           },
-          "content": "7000",
+          "content": "40K",
           "controlled": null,
           "visual_object": 25
         },
         {
           "position": {
-            "x": 182,
-            "y": 178
+            "x": 55,
+            "y": 119
           },
-          "content": "7500",
+          "content": "50K",
           "controlled": null,
           "visual_object": 26
         },
         {
           "position": {
-            "x": 182,
-            "y": 112
+            "x": 55,
+            "y": 69
           },
-          "content": "8000",
+          "content": "60K",
           "controlled": null,
           "visual_object": 27
         }
