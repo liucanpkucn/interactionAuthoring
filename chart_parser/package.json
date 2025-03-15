@@ -1,0 +1,11 @@
+{
+    "name": "mllm_for_mobile",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+      "cli-progress": "^3.12.0",
+      "puppeteer": "^23.11.1"
+    }
+  }
+  
