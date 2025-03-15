@@ -14,7 +14,7 @@
 }
 
 rect.axis_back {
-  fill: #fff;
+  /* fill: #fff; */
   fill-opacity: 1;
 }
 
@@ -27,7 +27,7 @@ rect.axis_back {
 }
 
 rect.axis_back.highlight {
-  fill: #fcf6dd;
+  /* fill: #fcf6dd; */
   fill-opacity: 1;
 }
 
