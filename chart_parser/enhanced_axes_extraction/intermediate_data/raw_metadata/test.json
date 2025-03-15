@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "x": {
     "type": "x",
@@ -212,4 +213,154 @@
       }
     ]
   }
+=======
+{
+  "x": {
+    "type": "x",
+    "main": true,
+    "attr_type": "Categorical",
+    "fixed_distance": "wait",
+    "range": {
+      "begin": "wait",
+      "end": "wait"
+    },
+    "tick": [
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Jan"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Feb"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Mar"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Apr"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "May"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Jun"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Jul"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Aug"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Sep"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "Oct"
+      }
+    ],
+    "is_base": true,
+    "base_direction": "up"
+  },
+  "y": {
+    "type": "y",
+    "main": false,
+    "attr_type": "Categorical",
+    "fixed_distance": "wait",
+    "range": {
+      "begin": "wait",
+      "end": "wait"
+    },
+    "tick": [
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "0K"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "10K"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "20K"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "30K"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "40K"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "50K"
+      },
+      {
+        "position": {
+          "x": "wait",
+          "y": "wait"
+        },
+        "content": "60K"
+      }
+    ],
+    "is_base": false,
+    "base_direction": "right"
+  }
+>>>>>>> b6a2eed300304ce789c5dc9fd4d6b7b2da28a275
 }

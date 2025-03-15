@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from utils import pprint
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_PATH = os.path.join(BASE_DIR, "test_image.png")
+IMAGE_PATH = os.path.join(BASE_DIR, os.pardir, "parse_tmp", "js_temp_svg.png")
 
 SVG_PATH = os.path.join(BASE_DIR, "input_data", "test.svg")
 PNG_OUTPUT_PATH = os.path.join(BASE_DIR, "test_image.png")
@@ -15,14 +15,14 @@ import base64
 from playwright.sync_api import sync_playwright
 import re
 
-def convert_svg_to_png():
+def convert_svg_to_png(path_to_svg, output_path):
     print("Converting SVG to PNG...")
     """使用 Playwright 打开 SVG 并截图为 PNG 图像"""
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
             page = browser.new_page()
-            with open(SVG_PATH, "r", encoding="utf-8") as svg_file:
+            with open(path_to_svg, "r", encoding="utf-8") as svg_file:
                 svg_content = svg_file.read()
 
             # 使用正则表达式精准提取 width 和 height
@@ -58,11 +58,11 @@ def convert_svg_to_png():
             page.wait_for_timeout(1000)
 
             # 动态设置 clip 参数，确保截图完整
-            page.screenshot(path=PNG_OUTPUT_PATH, clip={"x": 0, "y": 0, "width": width, "height": height})
+            page.screenshot(path=output_path, clip={"x": 0, "y": 0, "width": width, "height": height})
             browser.close()
 
-        print(f"SVG successfully converted to PNG: {PNG_OUTPUT_PATH}")
-        return PNG_OUTPUT_PATH
+        print(f"SVG successfully converted to PNG: {output_path}")
+        return output_path
 
     except Exception as e:
         print(f"Error during SVG to PNG conversion: {e}")
@@ -88,9 +88,8 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
 
-
 def process_metadata(api_key):
-    convert_svg_to_png()
+    # convert_svg_to_png(SVG_PATH,PNG_OUTPUT_PATH)
     client = OpenAI(api_key=api_key)
     base64_image = encode_image(IMAGE_PATH)
 
@@ -123,7 +122,9 @@ Please strictly follow the JSON format below for output:
           "position": { "x": "wait", "y": "wait" },
           "content": "May"
         }
-      ]
+      ],
+      "is_base": true,
+      "base_direction": "up"
     },
   "y":  
     {
@@ -144,7 +145,9 @@ Please strictly follow the JSON format below for output:
           "position": { "x": "wait", "y": "wait" },
           "content": "High"
         }
-      ]
+      ],
+      "is_base": false,
+      "base_direction": "right"
     }
 }
 
@@ -170,7 +173,16 @@ Please strictly follow the JSON format below for output:
 6. **"tick"**: Stores all tick marks on the axis:
    - **"position"**: The coordinate position of the tick mark (both "x" and "y" should always be "wait").
    - **"content"**: The textual label of the tick mark (e.g., "Jan", "Feb", etc.).
-    
+   "is_base":
+7. **"is_base"**:
+true → The axis where the chart elements start (e.g., vertical bar chart → X-axis is true).
+false → The axis where values extend (e.g., vertical bar chart → Y-axis is false).
+8. **"base_direction"**: 
+  "up" → Elements extend upward.
+  "down" → Elements extend downward.
+  "right" → Elements extend rightward.
+  "left" → Elements extend leftward.
+
 '''
 
     response = client.chat.completions.create(

@@ -1,3 +1,6 @@
 api_key.txt
 node_modules/*
 /node_modules/*
+output_data/*
+/output_data/*
+output_data/cleaned_metadata/*

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "x": [
     {
@@ -216,4 +217,151 @@
       ]
     }
   ]
+=======
+{
+  "x": [
+    {
+      "type": "x",
+      "main": true,
+      "attr_type": "Categorical",
+      "fixed_distance": 63.666666666666664,
+      "range": {
+        "begin": 116,
+        "end": 689
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 116,
+            "y": 382
+          },
+          "content": "Jan"
+        },
+        {
+          "position": {
+            "x": 179,
+            "y": 382
+          },
+          "content": "Feb"
+        },
+        {
+          "position": {
+            "x": 242,
+            "y": 382
+          },
+          "content": "Mar"
+        },
+        {
+          "position": {
+            "x": 307,
+            "y": 382
+          },
+          "content": "Apr"
+        },
+        {
+          "position": {
+            "x": 369,
+            "y": 382
+          },
+          "content": "May"
+        },
+        {
+          "position": {
+            "x": 434,
+            "y": 382
+          },
+          "content": "Jun"
+        },
+        {
+          "position": {
+            "x": 500,
+            "y": 382
+          },
+          "content": "Jul"
+        },
+        {
+          "position": {
+            "x": 560,
+            "y": 382
+          },
+          "content": "Aug"
+        },
+        {
+          "position": {
+            "x": 624,
+            "y": 382
+          },
+          "content": "Sep"
+        },
+        {
+          "position": {
+            "x": 689,
+            "y": 382
+          },
+          "content": "Oct"
+        }
+      ],
+      "is_base": true,
+      "base_direction": "up"
+    }
+  ],
+  "y": [
+    {
+      "type": "y",
+      "main": false,
+      "attr_type": "Categorical",
+      "fixed_distance": 50.4,
+      "range": {
+        "begin": 69,
+        "end": 321
+      },
+      "tick": [
+        {
+          "position": {
+            "x": 55,
+            "y": 321
+          },
+          "content": "10K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 270
+          },
+          "content": "20K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 220
+          },
+          "content": "30K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 170
+          },
+          "content": "40K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 119
+          },
+          "content": "50K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 69
+          },
+          "content": "60K"
+        }
+      ],
+      "is_base": false,
+      "base_direction": "right"
+    }
+  ]
+>>>>>>> b6a2eed300304ce789c5dc9fd4d6b7b2da28a275
 }

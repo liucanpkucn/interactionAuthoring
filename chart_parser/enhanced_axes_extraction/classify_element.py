@@ -2,6 +2,8 @@ import base64
 import json
 import os
 from openai import OpenAI
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+API_KEY_PATH = os.path.join(BASE_DIR, "api_key.txt")
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
@@ -22,7 +24,7 @@ def clean_openai_json(response_text):
         return None
 
 def classify_simvec(simvec,path_to_image):
-    with open("enhanced_axes_extraction/api_key.txt", "r") as f:
+    with open(API_KEY_PATH, "r") as f:
         api_key = f.read().strip()
         
     base64_image = encode_image(path_to_image)
@@ -52,9 +54,9 @@ def classify_simvec(simvec,path_to_image):
     SimVec data:
     "{simvec}"
     '''
-
+    
     client = OpenAI(api_key=api_key)
-
+    print("processing simvec with API key...")
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
