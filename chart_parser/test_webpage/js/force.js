@@ -44,7 +44,13 @@ let canvas_main = function (data) {
     .attr("xmlns:xhtml", "http://www.w3.org/1999/xhtml")
     .attr("viewBox", [0, 0, window_width, window_height]);
 
-  draw_mapping(chart_json.parsed_data.mapping);
+  try {
+    draw_mapping(chart_json.parsed_data.mapping);
+  }
+  catch (e) {
+    console.log("No mapping", e);
+  }
+  // draw_mapping(chart_json.parsed_data.mapping);
 
   // add strip
 

@@ -731,6 +731,8 @@ def get_axis_value(position, axis, direction = "x", value_type = 'absolute'):
         # print("pixel_domain", pixel_domain)
         # print('value_range', value_range)
         # print('position', position)
+        print("Value range: ", value_range)
+        print("Pixel domain: ", pixel_domain)
         if value_type == "absolute":
             value = value_range[0] + (value_range[1] - value_range[0])\
                 / (pixel_domain[1] - pixel_domain[0]) * (position - pixel_domain[0])
@@ -1441,10 +1443,18 @@ def get_constraints_with_data(svg_string):
     Get constraints with data from an svg string
     """
     json_data, original_vo = deducing_chart_separate(svg_string, remove_soup = False)
-    data_information = reverse_engineering_from_constraints(json_data,  original_vo)
-    json_data['parsed_data'] = data_information
-    only_keep_important_coord(json_data)
-    return json_data
+    
+    try:
+        data_information = reverse_engineering_from_constraints(json_data,  original_vo)
+        json_data['parsed_data'] = data_information
+        only_keep_important_coord(json_data)
+        return json_data
+    except:
+        print("Error in reverse_engineering_from_constraints")
+        json_data = convert_to_serializable(json_data)
+        return json_data
+
+
 
 
 if __name__ == "__main__":
@@ -1474,7 +1484,7 @@ if __name__ == "__main__":
     file_name = "20210819_bar"
     # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
-    # file_name = "download"
+    file_name = "download"
     # file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:
