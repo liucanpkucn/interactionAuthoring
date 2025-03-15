@@ -5,7 +5,7 @@ const { SingleBar } = require('cli-progress');
 const { console } = require("inspector");
 const inputFileName = "js_temp_svg";  
 const inputFilePath = `tmp/${inputFileName}.svg`;
-const outputDirectory = "tmp";
+const outputDirectory = "parse_tmp";
 // 确保输出目录存在 
 if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
@@ -104,21 +104,19 @@ if (!fs.existsSync(outputDirectory)) {
       return arcsMatch && circleFormed;
     }
 
-
-    //解析path
     function parsePath(d, transform_matrix) {
       const commands = d.match(/[a-z][^a-z]*/gi);
       if (!commands) {
         // console.warn('No commands found in path:', d);
         return [];
       }
-
+    
       let x = 0,
         y = 0;
       let startX = 0,
         startY = 0; // To handle 'Z' command
       const points = [];
-
+    
       for (const command of commands) {
         const type = command[0];
         const args = command
@@ -126,117 +124,239 @@ if (!fs.existsSync(outputDirectory)) {
           .trim()
           .split(/[\s,]+/)
           .map(Number);
-
+    
         switch (type) {
           case "M":
             x = args[0];
             y = args[1];
-            points.push({ x, y });
             startX = x;
             startY = y;
             break;
           case "m":
             x += args[0];
             y += args[1];
-            points.push({ x, y });
             startX = x;
             startY = y;
             break;
           case "L":
             x = args[0];
             y = args[1];
-            points.push({ x, y });
             break;
           case "l":
             x += args[0];
             y += args[1];
-            points.push({ x, y });
             break;
           case "H":
             x = args[0];
-            points.push({ x, y });
             break;
           case "h":
             x += args[0];
-            points.push({ x, y });
             break;
           case "V":
             y = args[0];
-            points.push({ x, y });
             break;
           case "v":
             y += args[0];
-            points.push({ x, y });
             break;
           case "C":
             x = args[4];
             y = args[5];
-            points.push({ x, y });
             break;
           case "c":
             x += args[4];
             y += args[5];
-            points.push({ x, y });
             break;
           case "S":
             x = args[2];
             y = args[3];
-            points.push({ x, y });
             break;
           case "s":
             x += args[2];
             y += args[3];
-            points.push({ x, y });
             break;
           case "Q":
             x = args[2];
             y = args[3];
-            points.push({ x, y });
             break;
           case "q":
             x += args[2];
             y += args[3];
-            points.push({ x, y });
             break;
           case "T":
             x = args[0];
             y = args[1];
-            points.push({ x, y });
             break;
           case "t":
             x += args[0];
             y += args[1];
-            points.push({ x, y });
             break;
           case "A":
             x = args[5];
             y = args[6];
-            points.push({ x, y });
             break;
           case "a":
             x += args[5];
             y += args[6];
-            points.push({ x, y });
             break;
           case "Z":
           case "z":
             x = startX;
             y = startY;
-            points.push({ x, y });
             break;
           default:
             console.warn("Unknown command:", type);
         }
+    
+        // Only push the point if it's different from the last one or if points is empty
+        if (!points.length || points[points.length - 1].x !== x || points[points.length - 1].y !== y) {
+          points.push({ x, y });
+        }
       }
+    
+      // Apply the transformation matrix to all points
       let absolute_points = points.map(point => {
         const { x, y } = point;
         const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
         const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
         return { x: newX, y: newY };
       });
-
+    
       return absolute_points;
     }
+
+
+    // //解析path
+    // function parsePath(d, transform_matrix) {
+    //   const commands = d.match(/[a-z][^a-z]*/gi);
+    //   if (!commands) {
+    //     // console.warn('No commands found in path:', d);
+    //     return [];
+    //   }
+
+    //   let x = 0,
+    //     y = 0;
+    //   let startX = 0,
+    //     startY = 0; // To handle 'Z' command
+    //   const points = [];
+
+    //   for (const command of commands) {
+    //     const type = command[0];
+    //     const args = command
+    //       .slice(1)
+    //       .trim()
+    //       .split(/[\s,]+/)
+    //       .map(Number);
+
+    //     switch (type) {
+    //       case "M":
+    //         x = args[0];
+    //         y = args[1];
+    //         points.push({ x, y });
+    //         startX = x;
+    //         startY = y;
+    //         break;
+    //       case "m":
+    //         x += args[0];
+    //         y += args[1];
+    //         points.push({ x, y });
+    //         startX = x;
+    //         startY = y;
+    //         break;
+    //       case "L":
+    //         x = args[0];
+    //         y = args[1];
+    //         points.push({ x, y });
+    //         break;
+    //       case "l":
+    //         x += args[0];
+    //         y += args[1];
+    //         points.push({ x, y });
+    //         break;
+    //       case "H":
+    //         x = args[0];
+    //         points.push({ x, y });
+    //         break;
+    //       case "h":
+    //         x += args[0];
+    //         points.push({ x, y });
+    //         break;
+    //       case "V":
+    //         y = args[0];
+    //         points.push({ x, y });
+    //         break;
+    //       case "v":
+    //         y += args[0];
+    //         points.push({ x, y });
+    //         break;
+    //       case "C":
+    //         x = args[4];
+    //         y = args[5];
+    //         points.push({ x, y });
+    //         break;
+    //       case "c":
+    //         x += args[4];
+    //         y += args[5];
+    //         points.push({ x, y });
+    //         break;
+    //       case "S":
+    //         x = args[2];
+    //         y = args[3];
+    //         points.push({ x, y });
+    //         break;
+    //       case "s":
+    //         x += args[2];
+    //         y += args[3];
+    //         points.push({ x, y });
+    //         break;
+    //       case "Q":
+    //         x = args[2];
+    //         y = args[3];
+    //         points.push({ x, y });
+    //         break;
+    //       case "q":
+    //         x += args[2];
+    //         y += args[3];
+    //         points.push({ x, y });
+    //         break;
+    //       case "T":
+    //         x = args[0];
+    //         y = args[1];
+    //         points.push({ x, y });
+    //         break;
+    //       case "t":
+    //         x += args[0];
+    //         y += args[1];
+    //         points.push({ x, y });
+    //         break;
+    //       case "A":
+    //         x = args[5];
+    //         y = args[6];
+    //         points.push({ x, y });
+    //         break;
+    //       case "a":
+    //         x += args[5];
+    //         y += args[6];
+    //         points.push({ x, y });
+    //         break;
+    //       case "Z":
+    //       case "z":
+    //         x = startX;
+    //         y = startY;
+    //         points.push({ x, y });
+    //         break;
+    //       default:
+    //         console.warn("Unknown command:", type);
+    //     }
+    //   }
+    //   let absolute_points = points.map(point => {
+    //     const { x, y } = point;
+    //     const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
+    //     const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
+    //     return { x: newX, y: newY };
+    //   });
+
+    //   return absolute_points;
+    // }
 
     //主要修改入口
     function get_all_rects(current_svg) {
@@ -365,6 +485,8 @@ if (!fs.existsSync(outputDirectory)) {
            // 提取文字内容
           const fillColor = rgbStringToRGB(computed_style.fill); // 转换为 [r, g, b] 格式
           const bbox = element.getBoundingClientRect(); // 获取位置和尺寸信息
+
+          console.log(bbox);
           const left = bbox.x;
           const right = bbox.x + bbox.width;
           const up = bbox.y;
@@ -468,7 +590,12 @@ if (!fs.existsSync(outputDirectory)) {
             opacity: parseFloat(computed_style.opacity) || 1.0,
             fill_opacity: parseFloat(computed_style.fillOpacity) || 0,
             stroke_width: computed_style.strokeWidth || "0px",
-            polygon: points.map(point => `(${point.x}, ${point.y})`),
+            polygon: points.map(point => [point.x, point.y]),
+            point: points,
+            left: Math.min(...points.map(point => point.x)),
+            right: Math.max(...points.map(point => point.x)),
+            up: Math.min(...points.map(point => point.y)),
+            down: Math.max(...points.map(point => point.y)),
             text: "",
             center: null,
             append_info: Array(points.length).fill(null)
@@ -509,10 +636,15 @@ if (!fs.existsSync(outputDirectory)) {
             opacity: parseFloat(computed_style.opacity) || 1.0,
             fill_opacity: 0,
             stroke_width: computed_style.strokeWidth || "0px",
-            polygon: points.map(point => `(${point.x}, ${point.y})`),
+            polygon: points.map(point => [point.x, point.y]),
+            points: points,
             text: "",
+            left: Math.min(...points.map(point => point.x)),
+            right: Math.max(...points.map(point => point.x)),
+            up: Math.min(...points.map(point => point.y)),
+            down: Math.max(...points.map(point => point.y)),
             center: null,
-            append_info: Array(points.length).fill(null)
+            append_info: Array(points.length).fill(null),
         });
       }
 

@@ -1,11 +1,11 @@
+# pylint: disable=import-error
+
 import json
 from datetime import datetime
 import time
-import copy
 import re
-import os
 
-### 
+
 from extract_svg import parse_unknown_svg_visual_elements
 #####################
 
@@ -20,7 +20,6 @@ from calculate_axis import get_ticks_robust
 from deal_with_object import classify_groups_by_size
 from axes_parser import parse_axes, parse_temp_list, is_time_list, is_single_time
 from shapely.geometry import Point, Polygon
-from utils import pprint
 
 def get_group(
     control_point,
@@ -450,7 +449,6 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     # print(return_obj)
     
     with open("tmp/visual_obj.txt", 'w') as f:
-        
         f.write(str(visual_objs))
     
     width = int(float(width))
@@ -1194,10 +1192,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
 
     other_name = "x" if main_name == "y" else 'y'
     
-    print("important_axis", important_axis)
-    
-    
-
+    # print("important_axis", important_axis)
     if important_axis[main_name] is not None and important_axis[main_name]["scale_type"] == "quantize":
         direction_dict['K'] = main_name
     else:

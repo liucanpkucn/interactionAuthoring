@@ -1765,7 +1765,7 @@
         "attr_type": "Categorical",
         "fixed_distance": 63.666666666666664,
         "range": {
-          "begin": 99.74510192871094,
+          "begin": 85,
           "end": 724.2549438476562
         },
         "tick": [
@@ -1938,7 +1938,7 @@
           "width": 624.5098419189453,
           "height": 13.525390625
         },
-        "use_num": 1,
+        "use_num": 2,
         "another_attr": 382
       }
     ],
@@ -2077,7 +2077,7 @@
           "width": 21.3515625,
           "height": 315.5
         },
-        "use_num": 1,
+        "use_num": 2,
         "another_attr": 69
       }
     ]
@@ -2109,7 +2109,7 @@
         ]
       }
     ],
-    "chosen_coord": 0,
+    "chosen_coord": 1,
     "Q": "value",
     "O": "time",
     "data_list": [
@@ -2295,6 +2295,6 @@
       }
     ],
     "unit": "",
-    "important_coord": 0
+    "important_coord": 1
   }
 }

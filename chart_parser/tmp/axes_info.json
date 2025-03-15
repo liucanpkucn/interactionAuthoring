@@ -954,6 +954,27 @@
             "left": 328,
             "right": 468.1015625,
             "uuid": "9cff4b73-18bc-5a21-8dc4-a3dfeda35fb1"
+        },
+        {
+            "id": 29,
+            "type": "line",
+            "opacity": 1,
+            "stroke": [
+                255,
+                255,
+                255
+            ],
+            "original_soup": "<path xmlns=\"http://www.w3.org/2000/svg\" class=\"filler\" d=\"M0,0V0H2V0\" stroke-width=\"2\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-opacity=\"1\" transform_matrix=\"{&quot;a&quot;:1,&quot;b&quot;:0,&quot;c&quot;:0,&quot;d&quot;:1,&quot;e&quot;:85,&quot;f&quot;:377}\" my_stoke=\"rgb(255, 255, 255)\" my_stoke_width=\"2px\" my_stoke_opacity=\"1\" my_fill=\"none\" my_fill_opacity=\"1\" my_font_size=\"16px\" opacity=\"1\"/>",
+            "stroke_width": "2px",
+            "control_point": [
+                135,
+                136
+            ],
+            "left": 85,
+            "right": 87,
+            "up": 377,
+            "down": 377,
+            "uuid": "117e3f62-045b-52ab-9215-521fdb964a07"
         }
     ],
     "control_point": [
@@ -1900,6 +1921,20 @@
             "oy": 40.75,
             "id": 134,
             "obj_id": 28,
+            "radius": 0
+        },
+        {
+            "ox": 85,
+            "oy": 377,
+            "id": 135,
+            "obj_id": 29,
+            "radius": 0
+        },
+        {
+            "ox": 87,
+            "oy": 377,
+            "id": 136,
+            "obj_id": 29,
             "radius": 0
         }
     ],

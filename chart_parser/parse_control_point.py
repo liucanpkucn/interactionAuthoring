@@ -79,6 +79,8 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
 
             if not obj_in_selected_area(current_obj, selected_area):
                 continue
+            
+            
             if need_selected_vo:
                 if not current_obj["original_soup"].has_attr("vivisfy_selected"):
                     continue
