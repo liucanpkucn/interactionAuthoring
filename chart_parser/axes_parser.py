@@ -272,7 +272,7 @@ def parse_temp_list(temp_list):
         if year_list[i] != False and year_list[i] not in temp:
             temp = f"{temp} {year_list[i]}"
 
-        # print(temp)
+        print(temp)
         current_date = parse(temp, default=datetime.datetime(2022, 1, 1))
         date_list.append(current_date) 
         final_date_list.append(temp)

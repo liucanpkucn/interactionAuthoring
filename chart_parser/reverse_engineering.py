@@ -1484,7 +1484,7 @@ if __name__ == "__main__":
     file_name = "20210819_bar"
     # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
-    # file_name = "download"
+    file_name = "download"
     # file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:

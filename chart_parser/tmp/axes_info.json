@@ -49,10 +49,10 @@
                         "content": "Mar",
                         "controlled": null,
                         "visual_object": 13,
-                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-10.34375,\"y\":5,\"w\":20.84375,\"h\":13.5}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":252.686279296875,\"f\":377}' x=\"10.935302734375\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Mar</text>",
+                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-10.34375,\"y\":5,\"w\":20.84375,\"h\":13.5}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":252.686279296875,\"f\":377}' x=\"10.765380859375\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Mar</text>",
                         "visual_object_uuid": "e2d76293-df22-593f-ad0d-9bbd177d2cfb",
                         "text_point": {
-                            "x": 252.935302734375,
+                            "x": 252.765380859375,
                             "y": 388.75
                         }
                     },
@@ -64,10 +64,10 @@
                         "content": "Apr",
                         "controlled": null,
                         "visual_object": 14,
-                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-9.359375,\"y\":5,\"w\":18.875,\"h\":13.5}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":316.41175842285156,\"f\":377}' x=\"9.4107666015625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Apr</text>",
+                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-9.359375,\"y\":5,\"w\":18.875,\"h\":13.5}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":316.41175842285156,\"f\":377}' x=\"9.4820556640625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Apr</text>",
                         "visual_object_uuid": "17780a49-7c65-5e08-af32-f146278f38cf",
                         "text_point": {
-                            "x": 316.4107666015625,
+                            "x": 316.4820556640625,
                             "y": 388.75
                         }
                     },
@@ -79,11 +79,11 @@
                         "content": "May",
                         "controlled": null,
                         "visual_object": 15,
-                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-11.34375,\"y\":5,\"w\":22.6875,\"h\":13.53125}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":380.13726806640625,\"f\":377}' x=\"11.38629150390625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">May</text>",
+                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-11.34375,\"y\":5,\"w\":22.6875,\"h\":13.53125}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":380.13726806640625,\"f\":377}' x=\"11.13726806640625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.7626953125\">May</text>",
                         "visual_object_uuid": "59a2c847-7c32-56f7-aadf-2614c129da93",
                         "text_point": {
-                            "x": 380.38629150390625,
-                            "y": 388.75
+                            "x": 380.13726806640625,
+                            "y": 388.7626953125
                         }
                     },
                     {
@@ -118,17 +118,17 @@
                     },
                     {
                         "position": {
-                            "x": 560,
+                            "x": 561,
                             "y": 382
                         },
                         "content": "Aug",
                         "controlled": null,
                         "visual_object": 18,
-                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-10.703125,\"y\":5,\"w\":21.390625,\"h\":13.53125}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":571.313720703125,\"f\":377}' x=\"11.063720703125\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Aug</text>",
+                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-10.703125,\"y\":5,\"w\":21.390625,\"h\":13.53125}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":571.313720703125,\"f\":377}' x=\"10.304931640625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.7626953125\">Aug</text>",
                         "visual_object_uuid": "04e51222-39e8-5c4a-b824-2d9255159b34",
                         "text_point": {
-                            "x": 571.063720703125,
-                            "y": 388.75
+                            "x": 571.304931640625,
+                            "y": 388.7626953125
                         }
                     },
                     {
@@ -154,10 +154,10 @@
                         "content": "Oct",
                         "controlled": null,
                         "visual_object": 20,
-                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-9.34375,\"y\":5,\"w\":18.6875,\"h\":13.5}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":698.7647094726562,\"f\":377}' x=\"9.84576416015625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Oct</text>",
+                        "origin": "<text data-org-x=\"0\" data-org-y=\"10\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: middle; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-9.34375,\"y\":5,\"w\":18.6875,\"h\":13.5}' transform=\"rotate(0, 0, 10)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":698.7647094726562,\"f\":377}' x=\"9.76470947265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">Oct</text>",
                         "visual_object_uuid": "83728e28-0ac5-57de-bbe6-0b7a26c2b968",
                         "text_point": {
-                            "x": 698.8457641601562,
+                            "x": 698.7647094726562,
                             "y": 388.75
                         }
                     }
@@ -177,8 +177,8 @@
                 "area": {
                     "x": 115.55950927734375,
                     "y": 382,
-                    "width": 592.7032470703125,
-                    "height": 13.5
+                    "width": 592.5411376953125,
+                    "height": 13.525390625
                 },
                 "use_num": 0,
                 "another_attr": 382
@@ -218,10 +218,10 @@
                         "content": "10K",
                         "controlled": null,
                         "visual_object": 22,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":325.6666717529297}' x=\"10.572265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.41668701171875\">10K</text>",
+                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":325.6666717529297}' x=\"10.32421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.41668701171875\">10K</text>",
                         "visual_object_uuid": "099f335c-8147-5fef-8766-b7d2117990ff",
                         "text_point": {
-                            "x": 65.572265625,
+                            "x": 65.32421875,
                             "y": 327.41668701171875
                         }
                     },
@@ -233,10 +233,10 @@
                         "content": "20K",
                         "controlled": null,
                         "visual_object": 23,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":275.3333282470703}' x=\"10.572265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.08331298828125\">20K</text>",
+                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":275.3333282470703}' x=\"10.32421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.08331298828125\">20K</text>",
                         "visual_object_uuid": "15f22c72-4ae3-5ded-9e64-624320b6488c",
                         "text_point": {
-                            "x": 65.572265625,
+                            "x": 65.32421875,
                             "y": 277.08331298828125
                         }
                     },
@@ -248,10 +248,10 @@
                         "content": "30K",
                         "controlled": null,
                         "visual_object": 24,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":225}' x=\"10.572265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">30K</text>",
+                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":225}' x=\"10.32421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">30K</text>",
                         "visual_object_uuid": "a6cd9dda-f3a4-5f58-8b57-206074e297cc",
                         "text_point": {
-                            "x": 65.572265625,
+                            "x": 65.32421875,
                             "y": 226.75
                         }
                     },
@@ -263,10 +263,10 @@
                         "content": "40K",
                         "controlled": null,
                         "visual_object": 25,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":174.66666412353516}' x=\"10.572265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.416656494140625\">40K</text>",
+                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":174.66666412353516}' x=\"10.32421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.416656494140625\">40K</text>",
                         "visual_object_uuid": "e80eb8be-d3e6-5e5f-8a4b-e7d8c766b775",
                         "text_point": {
-                            "x": 65.572265625,
+                            "x": 65.32421875,
                             "y": 176.41665649414062
                         }
                     },
@@ -278,10 +278,10 @@
                         "content": "50K",
                         "controlled": null,
                         "visual_object": 26,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":124.33333206176758}' x=\"10.572265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.0833282470703125\">50K</text>",
+                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":124.33333206176758}' x=\"10.32421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.0833282470703125\">50K</text>",
                         "visual_object_uuid": "6925cc4b-58e5-5411-9b03-90aaf8dad2a2",
                         "text_point": {
-                            "x": 65.572265625,
+                            "x": 65.32421875,
                             "y": 126.08332824707031
                         }
                     },
@@ -293,10 +293,10 @@
                         "content": "60K",
                         "controlled": null,
                         "visual_object": 27,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":74}' x=\"10.572265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">60K</text>",
+                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-31.359375,\"y\":-5,\"w\":21.359375,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":74}' x=\"10.32421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">60K</text>",
                         "visual_object_uuid": "425ba811-8fef-5afc-93bf-dd1d6efde888",
                         "text_point": {
-                            "x": 65.572265625,
+                            "x": 65.32421875,
                             "y": 75.75
                         }
                     }
@@ -316,7 +316,7 @@
                 "area": {
                     "x": 54.6484375,
                     "y": 69,
-                    "width": 21.84765625,
+                    "width": 21.3515625,
                     "height": 315.5
                 },
                 "use_num": 0,
@@ -592,7 +592,7 @@
             "up": 405.5,
             "down": 423.5,
             "left": 387.984375,
-            "right": 436.0703125,
+            "right": 436.015625,
             "uuid": "e25c50fa-33be-5d1e-9868-99c09f5382f9"
         },
         {
@@ -652,7 +652,7 @@
             "up": 382,
             "down": 395.5,
             "left": 242.350341796875,
-            "right": 263.520263671875,
+            "right": 263.180419921875,
             "uuid": "e2d76293-df22-593f-ad0d-9bbd177d2cfb"
         },
         {
@@ -671,8 +671,8 @@
             ],
             "up": 382,
             "down": 395.5,
-            "left": 306.5718994140625,
-            "right": 326.2496337890625,
+            "left": 307.0543212890625,
+            "right": 325.9097900390625,
             "uuid": "17780a49-7c65-5e08-af32-f146278f38cf"
         },
         {
@@ -690,9 +690,9 @@
                 69
             ],
             "up": 382,
-            "down": 395.5,
+            "down": 395.525390625,
             "left": 368.80133056640625,
-            "right": 391.97125244140625,
+            "right": 391.47320556640625,
             "uuid": "59a2c847-7c32-56f7-aadf-2614c129da93"
         },
         {
@@ -750,8 +750,8 @@
                 84
             ],
             "up": 382,
-            "down": 395.5,
-            "left": 560.137939453125,
+            "down": 395.525390625,
+            "left": 560.620361328125,
             "right": 581.989501953125,
             "uuid": "04e51222-39e8-5c4a-b824-2d9255159b34"
         },
@@ -792,7 +792,7 @@
             "up": 382,
             "down": 395.5,
             "left": 689.4287719726562,
-            "right": 708.2627563476562,
+            "right": 708.1006469726562,
             "uuid": "83728e28-0ac5-57de-bbe6-0b7a26c2b968"
         },
         {
@@ -832,7 +832,7 @@
             "up": 320.66668701171875,
             "down": 334.16668701171875,
             "left": 54.6484375,
-            "right": 76.49609375,
+            "right": 76,
             "uuid": "099f335c-8147-5fef-8766-b7d2117990ff"
         },
         {
@@ -852,7 +852,7 @@
             "up": 270.33331298828125,
             "down": 283.83331298828125,
             "left": 54.6484375,
-            "right": 76.49609375,
+            "right": 76,
             "uuid": "15f22c72-4ae3-5ded-9e64-624320b6488c"
         },
         {
@@ -872,7 +872,7 @@
             "up": 220,
             "down": 233.5,
             "left": 54.6484375,
-            "right": 76.49609375,
+            "right": 76,
             "uuid": "a6cd9dda-f3a4-5f58-8b57-206074e297cc"
         },
         {
@@ -892,7 +892,7 @@
             "up": 169.66665649414062,
             "down": 183.16665649414062,
             "left": 54.6484375,
-            "right": 76.49609375,
+            "right": 76,
             "uuid": "e80eb8be-d3e6-5e5f-8a4b-e7d8c766b775"
         },
         {
@@ -912,7 +912,7 @@
             "up": 119.33332824707031,
             "down": 132.8333282470703,
             "left": 54.6484375,
-            "right": 76.49609375,
+            "right": 76,
             "uuid": "6925cc4b-58e5-5411-9b03-90aaf8dad2a2"
         },
         {
@@ -932,7 +932,7 @@
             "up": 69,
             "down": 82.5,
             "left": 54.6484375,
-            "right": 76.49609375,
+            "right": 76,
             "uuid": "425ba811-8fef-5afc-93bf-dd1d6efde888"
         },
         {
@@ -952,7 +952,7 @@
             "up": 27.5,
             "down": 54,
             "left": 328,
-            "right": 468.4296875,
+            "right": 468.1015625,
             "uuid": "9cff4b73-18bc-5a21-8dc4-a3dfeda35fb1"
         },
         {
@@ -1266,14 +1266,14 @@
             "radius": 0
         },
         {
-            "ox": 436.0703125,
+            "ox": 436.015625,
             "oy": 405.5,
             "id": 41,
             "obj_id": 10,
             "radius": 0
         },
         {
-            "ox": 436.0703125,
+            "ox": 436.015625,
             "oy": 423.5,
             "id": 42,
             "obj_id": 10,
@@ -1287,7 +1287,7 @@
             "radius": 0
         },
         {
-            "ox": 412.02734375,
+            "ox": 412,
             "oy": 414.5,
             "id": 44,
             "obj_id": 10,
@@ -1371,14 +1371,14 @@
             "radius": 0
         },
         {
-            "ox": 263.520263671875,
+            "ox": 263.180419921875,
             "oy": 382,
             "id": 56,
             "obj_id": 13,
             "radius": 0
         },
         {
-            "ox": 263.520263671875,
+            "ox": 263.180419921875,
             "oy": 395.5,
             "id": 57,
             "obj_id": 13,
@@ -1392,42 +1392,42 @@
             "radius": 0
         },
         {
-            "ox": 252.935302734375,
+            "ox": 252.765380859375,
             "oy": 388.75,
             "id": 59,
             "obj_id": 13,
             "radius": 0
         },
         {
-            "ox": 306.5718994140625,
+            "ox": 307.0543212890625,
             "oy": 382,
             "id": 60,
             "obj_id": 14,
             "radius": 0
         },
         {
-            "ox": 326.2496337890625,
+            "ox": 325.9097900390625,
             "oy": 382,
             "id": 61,
             "obj_id": 14,
             "radius": 0
         },
         {
-            "ox": 326.2496337890625,
+            "ox": 325.9097900390625,
             "oy": 395.5,
             "id": 62,
             "obj_id": 14,
             "radius": 0
         },
         {
-            "ox": 306.5718994140625,
+            "ox": 307.0543212890625,
             "oy": 395.5,
             "id": 63,
             "obj_id": 14,
             "radius": 0
         },
         {
-            "ox": 316.4107666015625,
+            "ox": 316.4820556640625,
             "oy": 388.75,
             "id": 64,
             "obj_id": 14,
@@ -1441,29 +1441,29 @@
             "radius": 0
         },
         {
-            "ox": 391.97125244140625,
+            "ox": 391.47320556640625,
             "oy": 382,
             "id": 66,
             "obj_id": 15,
             "radius": 0
         },
         {
-            "ox": 391.97125244140625,
-            "oy": 395.5,
+            "ox": 391.47320556640625,
+            "oy": 395.525390625,
             "id": 67,
             "obj_id": 15,
             "radius": 0
         },
         {
             "ox": 368.80133056640625,
-            "oy": 395.5,
+            "oy": 395.525390625,
             "id": 68,
             "obj_id": 15,
             "radius": 0
         },
         {
-            "ox": 380.38629150390625,
-            "oy": 388.75,
+            "ox": 380.13726806640625,
+            "oy": 388.7626953125,
             "id": 69,
             "obj_id": 15,
             "radius": 0
@@ -1539,7 +1539,7 @@
             "radius": 0
         },
         {
-            "ox": 560.137939453125,
+            "ox": 560.620361328125,
             "oy": 382,
             "id": 80,
             "obj_id": 18,
@@ -1554,21 +1554,21 @@
         },
         {
             "ox": 581.989501953125,
-            "oy": 395.5,
+            "oy": 395.525390625,
             "id": 82,
             "obj_id": 18,
             "radius": 0
         },
         {
-            "ox": 560.137939453125,
-            "oy": 395.5,
+            "ox": 560.620361328125,
+            "oy": 395.525390625,
             "id": 83,
             "obj_id": 18,
             "radius": 0
         },
         {
-            "ox": 571.063720703125,
-            "oy": 388.75,
+            "ox": 571.304931640625,
+            "oy": 388.7626953125,
             "id": 84,
             "obj_id": 18,
             "radius": 0
@@ -1616,14 +1616,14 @@
             "radius": 0
         },
         {
-            "ox": 708.2627563476562,
+            "ox": 708.1006469726562,
             "oy": 382,
             "id": 91,
             "obj_id": 20,
             "radius": 0
         },
         {
-            "ox": 708.2627563476562,
+            "ox": 708.1006469726562,
             "oy": 395.5,
             "id": 92,
             "obj_id": 20,
@@ -1637,7 +1637,7 @@
             "radius": 0
         },
         {
-            "ox": 698.8457641601562,
+            "ox": 698.7647094726562,
             "oy": 388.75,
             "id": 94,
             "obj_id": 20,
@@ -1686,14 +1686,14 @@
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 320.66668701171875,
             "id": 101,
             "obj_id": 22,
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 334.16668701171875,
             "id": 102,
             "obj_id": 22,
@@ -1707,7 +1707,7 @@
             "radius": 0
         },
         {
-            "ox": 65.572265625,
+            "ox": 65.32421875,
             "oy": 327.41668701171875,
             "id": 104,
             "obj_id": 22,
@@ -1721,14 +1721,14 @@
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 270.33331298828125,
             "id": 106,
             "obj_id": 23,
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 283.83331298828125,
             "id": 107,
             "obj_id": 23,
@@ -1742,7 +1742,7 @@
             "radius": 0
         },
         {
-            "ox": 65.572265625,
+            "ox": 65.32421875,
             "oy": 277.08331298828125,
             "id": 109,
             "obj_id": 23,
@@ -1756,14 +1756,14 @@
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 220,
             "id": 111,
             "obj_id": 24,
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 233.5,
             "id": 112,
             "obj_id": 24,
@@ -1777,7 +1777,7 @@
             "radius": 0
         },
         {
-            "ox": 65.572265625,
+            "ox": 65.32421875,
             "oy": 226.75,
             "id": 114,
             "obj_id": 24,
@@ -1791,14 +1791,14 @@
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 169.66665649414062,
             "id": 116,
             "obj_id": 25,
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 183.16665649414062,
             "id": 117,
             "obj_id": 25,
@@ -1812,7 +1812,7 @@
             "radius": 0
         },
         {
-            "ox": 65.572265625,
+            "ox": 65.32421875,
             "oy": 176.41665649414062,
             "id": 119,
             "obj_id": 25,
@@ -1826,14 +1826,14 @@
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 119.33332824707031,
             "id": 121,
             "obj_id": 26,
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 132.8333282470703,
             "id": 122,
             "obj_id": 26,
@@ -1847,7 +1847,7 @@
             "radius": 0
         },
         {
-            "ox": 65.572265625,
+            "ox": 65.32421875,
             "oy": 126.08332824707031,
             "id": 124,
             "obj_id": 26,
@@ -1861,14 +1861,14 @@
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 69,
             "id": 126,
             "obj_id": 27,
             "radius": 0
         },
         {
-            "ox": 76.49609375,
+            "ox": 76,
             "oy": 82.5,
             "id": 127,
             "obj_id": 27,
@@ -1882,7 +1882,7 @@
             "radius": 0
         },
         {
-            "ox": 65.572265625,
+            "ox": 65.32421875,
             "oy": 75.75,
             "id": 129,
             "obj_id": 27,
@@ -1896,14 +1896,14 @@
             "radius": 0
         },
         {
-            "ox": 468.4296875,
+            "ox": 468.1015625,
             "oy": 27.5,
             "id": 131,
             "obj_id": 28,
             "radius": 0
         },
         {
-            "ox": 468.4296875,
+            "ox": 468.1015625,
             "oy": 54,
             "id": 132,
             "obj_id": 28,
@@ -1917,7 +1917,7 @@
             "radius": 0
         },
         {
-            "ox": 398.21484375,
+            "ox": 398.05078125,
             "oy": 40.75,
             "id": 134,
             "obj_id": 28,
