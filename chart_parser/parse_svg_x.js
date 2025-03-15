@@ -3,9 +3,9 @@ const fs = require("fs");
 const path = require('path');
 const { SingleBar } = require('cli-progress');
 const { console } = require("inspector");
-const inputFileName = "20210817_linechart";  
-const inputFilePath = `test_example/${inputFileName}.svg`;
-const outputDirectory = "DEBUG";
+const inputFileName = "js_temp_svg";  
+const inputFilePath = `tmp/${inputFileName}.svg`;
+const outputDirectory = "tmp";
 // 确保输出目录存在 
 if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
@@ -652,16 +652,20 @@ if (!fs.existsSync(outputDirectory)) {
   });
   // console.log("Data:");
   // console.log(data);
+  // fs.writeFileSync(
+  //   `$DEBUG/1_debug_all_js_parse.json`,
+  //   JSON.stringify(data, null, 2)
+  // );
   fs.writeFileSync(
-    `${outputDirectory}/1_debug_all_js_parse.json`,
+    `${outputDirectory}/svg_parse.json`,
     JSON.stringify(data, null, 2)
   );
   // 处理 sim_vector 并保存为 TXT 文件
-  const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
-  fs.writeFileSync(
-    `${outputDirectory}/1_debug_simvec.txt`,
-    simVectorContent
-  );
+  // const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
+  // fs.writeFileSync(
+  //   `${outputDirectory}/1_debug_simvec.txt`,
+  //   simVectorContent
+  // );
   await browser.close();
 })();
 

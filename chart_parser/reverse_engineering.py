@@ -437,7 +437,7 @@ def json_dumps_safe(data):
 
 
 def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None):
-    return_obj = parse_unknown_svg_visual_elements(svg_string, need_text = True, min_len = 1000)
+    return_obj = parse_unknown_svg_visual_elements(svg_string)
     visual_objs = return_obj[0]
     width = return_obj[1]
     height = return_obj[2]
@@ -544,7 +544,7 @@ def parse_axis_type(
 
 
 def get_axes_from_svg_string(svg_string):
-    return_obj = parse_unknown_svg_visual_elements(svg_string, need_text = True, min_len = 1000)
+    return_obj = parse_unknown_svg_visual_elements(svg_string)
     visual_objs = return_obj[0]
     width = return_obj[1]
     height = return_obj[2]
@@ -1472,10 +1472,10 @@ if __name__ == "__main__":
 
     # file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
     # file_name = "multi_line"
-    # file_name = "20210819_bar"
+    file_name = "20210819_bar"
     # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
-    file_name = "download"
+    # file_name = "download"
     # file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:
