@@ -4,81 +4,102 @@
       "type": "x",
       "main": true,
       "attr_type": "Categorical",
-      "fixed_distance": 159.0,
+      "fixed_distance": 71.08333333333333,
       "range": {
-        "begin": 254,
-        "end": 1685
+        "begin": 120,
+        "end": 973
       },
       "tick": [
         {
           "position": {
-            "x": 254,
-            "y": 1196
+            "x": 120,
+            "y": -4
           },
-          "content": "2013"
+          "content": "10%"
         },
         {
           "position": {
-            "x": 413,
-            "y": 1196
+            "x": 198,
+            "y": -4
           },
-          "content": "2014"
+          "content": "15%"
         },
         {
           "position": {
-            "x": 572,
-            "y": 1196
+            "x": 275,
+            "y": -4
           },
-          "content": "2015"
+          "content": "20%"
         },
         {
           "position": {
-            "x": 731,
-            "y": 1196
+            "x": 353,
+            "y": -4
           },
-          "content": "2016"
+          "content": "25%"
         },
         {
           "position": {
-            "x": 892,
-            "y": 1196
+            "x": 430,
+            "y": -4
           },
-          "content": "2017"
+          "content": "30%"
         },
         {
           "position": {
-            "x": 1051,
-            "y": 1196
+            "x": 508,
+            "y": -4
           },
-          "content": "2018"
+          "content": "35%"
         },
         {
           "position": {
-            "x": 1210,
-            "y": 1196
+            "x": 585,
+            "y": -4
           },
-          "content": "2019"
+          "content": "40%"
         },
         {
           "position": {
-            "x": 1366,
-            "y": 1196
+            "x": 663,
+            "y": -4
           },
-          "content": "2020"
+          "content": "45%"
         },
         {
           "position": {
-            "x": 1529,
-            "y": 1196
+            "x": 740,
+            "y": -4
           },
-          "content": "2021"
+          "content": "50%"
         },
         {
           "position": {
-            "x": 1685,
-            "y": 1196
+            "x": 818,
+            "y": -4
           },
-          "content": "2022"
+          "content": "55%"
+        },
+        {
+          "position": {
+            "x": 895,
+            "y": -4
+          },
+          "content": "60%"
+        },
+        {
+          "position": {
+            "x": 973,
+            "y": -4
+          },
+          "content": "65%"
+        },
+        {
+          "position": {
+            "x": 693,
+            "y": 27
+          },
+          "content": "Avg."
         }
       ]
     }
@@ -88,130 +109,25 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 66.0,
+      "fixed_distance": 320.0,
       "range": {
-        "begin": 112,
-        "end": 1168
+        "begin": 96,
+        "end": 416
       },
       "tick": [
         {
           "position": {
-            "x": 243,
-            "y": 1168
+            "x": 0,
+            "y": 96
           },
-          "content": "0"
+          "content": "Most vulnerable"
         },
         {
           "position": {
-            "x": 207,
-            "y": 1102
+            "x": 0,
+            "y": 416
           },
-          "content": "500"
-        },
-        {
-          "position": {
-            "x": 187,
-            "y": 1036
-          },
-          "content": "1000"
-        },
-        {
-          "position": {
-            "x": 187,
-            "y": 970
-          },
-          "content": "1500"
-        },
-        {
-          "position": {
-            "x": 181,
-            "y": 904
-          },
-          "content": "2000"
-        },
-        {
-          "position": {
-            "x": 180,
-            "y": 838
-          },
-          "content": "2500"
-        },
-        {
-          "position": {
-            "x": 181,
-            "y": 772
-          },
-          "content": "3000"
-        },
-        {
-          "position": {
-            "x": 181,
-            "y": 706
-          },
-          "content": "3500"
-        },
-        {
-          "position": {
-            "x": 181,
-            "y": 640
-          },
-          "content": "4000"
-        },
-        {
-          "position": {
-            "x": 180,
-            "y": 574
-          },
-          "content": "4500"
-        },
-        {
-          "position": {
-            "x": 181,
-            "y": 508
-          },
-          "content": "5000"
-        },
-        {
-          "position": {
-            "x": 180,
-            "y": 442
-          },
-          "content": "5500"
-        },
-        {
-          "position": {
-            "x": 180,
-            "y": 376
-          },
-          "content": "6000"
-        },
-        {
-          "position": {
-            "x": 180,
-            "y": 310
-          },
-          "content": "6500"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 244
-          },
-          "content": "7000"
-        },
-        {
-          "position": {
-            "x": 182,
-            "y": 178
-          },
-          "content": "7500"
-        },
-        {
-          "position": {
-            "x": 181,
-            "y": 112
-          },
-          "content": "8000"
+          "content": "Least vulnerable"
         }
       ]
     }

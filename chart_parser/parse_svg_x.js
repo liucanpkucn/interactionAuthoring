@@ -4,7 +4,7 @@ const path = require('path');
 const { SingleBar } = require('cli-progress');
 const { console } = require("inspector");
 const inputFileName = "js_temp_svg";  
-const inputFilePath = `tmp/${inputFileName}.svg`;
+const inputFilePath = `parse_tmp/${inputFileName}.svg`;
 const outputDirectory = "parse_tmp";
 // 确保输出目录存在 
 if (!fs.existsSync(outputDirectory)) {
@@ -359,11 +359,14 @@ if (!fs.existsSync(outputDirectory)) {
     // }
 
     //主要修改入口
+    let vidCounter = 0;  // 新增一个计数器
+
     function get_all_rects(current_svg) {
 
       //已经修改
       let rects = current_svg.getElementsByTagName("rect");
       rects = [...rects].map((element) => {
+          const vid = vidCounter++;  // 修改为纯数字形式
           element.focus();
           const computed_style = window.getComputedStyle(element);
 
@@ -406,6 +409,7 @@ if (!fs.existsSync(outputDirectory)) {
 
           return {
               type: "rect",
+              vid: vid,   // 新增vid字段
               origin: origin,
               original_soup: original_soup,
               width: width,
@@ -430,6 +434,8 @@ if (!fs.existsSync(outputDirectory)) {
       //已经修改
       let circles = current_svg.getElementsByTagName("circle");
       for (let i = 0; i < circles.length; i++) {
+          const vid = vidCounter++;  // 修改为纯数字形式
+
           const element = circles[i];
           element.focus();
 
@@ -447,6 +453,7 @@ if (!fs.existsSync(outputDirectory)) {
 
           rects.push({
               type: "circle",
+              vid: vid,   // 新增vid字段
               origin: element.outerHTML,         // 保留原始 HTML
               original_soup: element.outerHTML,  // 保留完整 HTML
               width: bbox.width,
@@ -469,6 +476,8 @@ if (!fs.existsSync(outputDirectory)) {
       //已经修改
       texts = current_svg.getElementsByTagName("text");
       for (let i = 0; i < texts.length; i++) {
+          const vid = vidCounter++;  // 修改为纯数字形式
+
           const element = texts[i];
           // console.log(element);
           // 忽略不可见元素
@@ -494,6 +503,7 @@ if (!fs.existsSync(outputDirectory)) {
 
           rects.push({
               type: "text",
+              vid: vid,   // 新增vid字段
 
               //这里origin也使用的是原始svg,没有处理
               origin: element.outerHTML,            // 原始 HTML/SVG 标签
@@ -520,6 +530,7 @@ if (!fs.existsSync(outputDirectory)) {
       //已经修改
       paths = current_svg.getElementsByTagName("path");
       for (let i = 0; i < paths.length; i++) {
+        const vid = vidCounter++;  // 修改为纯数字形式
         const element = paths[i];
         element.focus();
         computed_style = window.getComputedStyle(element);
@@ -548,6 +559,7 @@ if (!fs.existsSync(outputDirectory)) {
         if (isCirclePathData(element.getAttribute("d"))) {
           rects.push({
               type: "circle",
+              vid: vid,   // 新增vid字段
               origin: element.outerHTML,
               original_soup: element.outerHTML,
               width: element.getBoundingClientRect().width,
@@ -583,6 +595,7 @@ if (!fs.existsSync(outputDirectory)) {
           path_type = 'polygon'
           rects.push({
             type: "polygon",
+            vid: vid,   // 新增vid字段
             origin: element.outerHTML,
             original_soup: element.outerHTML,
             fill: rgbStringToRGB(computed_style.fill) || "",
@@ -607,6 +620,7 @@ if (!fs.existsSync(outputDirectory)) {
         if (isAxisAlignedRectangle(points)) {
             rects.push({
                 type: "rect",
+                vid: vid,   // 新增vid字段
                 origin: element.outerHTML,
                 original_soup: element.outerHTML,
                 width: element.getBoundingClientRect().width,
@@ -629,6 +643,7 @@ if (!fs.existsSync(outputDirectory)) {
         // 处理 line
         rects.push({
             type: "line",
+            vid: vid,   // 新增vid字段
             origin: element.outerHTML,
             original_soup: element.outerHTML,
             fill: "",
@@ -701,20 +716,20 @@ if (!fs.existsSync(outputDirectory)) {
       }
   
       if (rect.type === 'text') {
-          rect.sim_description = `${rect.type} ${rect.text} ${point_string}`;
+        rect.sim_description = `${rect.vid} ${rect.type} ${rect.text} ${point_string}`;
       } 
       else if (rect.type === 'line') {
-          rect.sim_description = `${rect.type} ${JSON.stringify(rect.stroke)} ${point_string}`;
+        rect.sim_description = `${rect.vid} ${rect.type} ${JSON.stringify(rect.stroke)} ${point_string}`;
       }
       else if (rect.type === 'polygon') {
-          rect.sim_description = `${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) ${point_string}`;
+        rect.sim_description = `${rect.vid} ${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) ${point_string}`;
       }
       else if (rect.type === 'circle') {
-          let rounded_r = Math.round(rect.r);  // 圆的半径也需要保留整数
-          rect.sim_description = `${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) [${rounded_x},${rounded_y},${rounded_r * 2},${rounded_r * 2}]`;
+        let rounded_r = Math.round(rect.r);  // 圆的半径也需要保留整数
+        rect.sim_description = `${rect.vid} ${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) [${rounded_x},${rounded_y},${rounded_r * 2},${rounded_r * 2}]`;
       }
       else {
-          rect.sim_description = `${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) ${point_string}`;
+        rect.sim_description = `${rect.vid} ${rect.type} (${rect.fill[0]}, ${rect.fill[1]}, ${rect.fill[2]}) ${point_string}`;
       }
     });
   

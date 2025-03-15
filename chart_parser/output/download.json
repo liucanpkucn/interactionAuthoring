@@ -1883,15 +1883,15 @@
         "type": "x",
         "main": true,
         "attr_type": "Categorical",
-        "fixed_distance": 159.0,
+        "fixed_distance": 159.44444444444446,
         "range": {
           "begin": 99.74510192871094,
-          "end": 1685
+          "end": 1686
         },
         "tick": [
           {
             "position": {
-              "x": 254,
+              "x": 251,
               "y": 1196
             },
             "content": "2013",
@@ -1900,7 +1900,7 @@
           },
           {
             "position": {
-              "x": 413,
+              "x": 410,
               "y": 1196
             },
             "content": "2014",
@@ -1909,7 +1909,7 @@
           },
           {
             "position": {
-              "x": 572,
+              "x": 570,
               "y": 1196
             },
             "content": "2015",
@@ -1918,7 +1918,7 @@
           },
           {
             "position": {
-              "x": 731,
+              "x": 729,
               "y": 1196
             },
             "content": "2016",
@@ -1927,7 +1927,7 @@
           },
           {
             "position": {
-              "x": 892,
+              "x": 889,
               "y": 1196
             },
             "content": "2017",
@@ -1936,7 +1936,7 @@
           },
           {
             "position": {
-              "x": 1051,
+              "x": 1048,
               "y": 1196
             },
             "content": "2018",
@@ -1945,7 +1945,7 @@
           },
           {
             "position": {
-              "x": 1210,
+              "x": 1207,
               "y": 1196
             },
             "content": "2019",
@@ -1954,7 +1954,7 @@
           },
           {
             "position": {
-              "x": 1366,
+              "x": 1367,
               "y": 1196
             },
             "content": "2020",
@@ -1963,7 +1963,7 @@
           },
           {
             "position": {
-              "x": 1529,
+              "x": 1526,
               "y": 1196
             },
             "content": "2021",
@@ -1972,7 +1972,7 @@
           },
           {
             "position": {
-              "x": 1685,
+              "x": 1686,
               "y": 1196
             },
             "content": "2022",
@@ -1983,27 +1983,27 @@
         "align": "up",
         "scale_type": "quantize",
         "value_range": [
-          "#{'position': {'x': 254, 'y': 1196}, 'content': '2013', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 413, 'y': 1196}, 'content': '2014', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 572, 'y': 1196}, 'content': '2015', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 731, 'y': 1196}, 'content': '2016', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 892, 'y': 1196}, 'content': '2017', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 1051, 'y': 1196}, 'content': '2018', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 1210, 'y': 1196}, 'content': '2019', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 1366, 'y': 1196}, 'content': '2020', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 1529, 'y': 1196}, 'content': '2021', 'controlled': None, 'visual_object': None}",
-          "#{'position': {'x': 1685, 'y': 1196}, 'content': '2022', 'controlled': None, 'visual_object': None}"
+          "#{'position': {'x': 251, 'y': 1196}, 'content': '2013', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 410, 'y': 1196}, 'content': '2014', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 570, 'y': 1196}, 'content': '2015', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 729, 'y': 1196}, 'content': '2016', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 889, 'y': 1196}, 'content': '2017', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 1048, 'y': 1196}, 'content': '2018', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 1207, 'y': 1196}, 'content': '2019', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 1367, 'y': 1196}, 'content': '2020', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 1526, 'y': 1196}, 'content': '2021', 'controlled': None, 'visual_object': None}",
+          "#{'position': {'x': 1686, 'y': 1196}, 'content': '2022', 'controlled': None, 'visual_object': None}"
         ],
         "pixel_domain": [
-          174.5,
-          1764.5
+          171.27777777777777,
+          1765.7222222222222
         ],
         "prefix": "",
         "suffix": "",
         "area": {
-          "x": 254,
+          "x": 251,
           "y": 1191,
-          "width": 1431,
+          "width": 1435,
           "height": 10
         },
         "use_num": 1,
