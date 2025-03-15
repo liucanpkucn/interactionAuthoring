@@ -4,102 +4,81 @@
       "type": "x",
       "main": true,
       "attr_type": "Categorical",
-      "fixed_distance": 71.08333333333333,
+      "fixed_distance": 63.666666666666664,
       "range": {
-        "begin": 120,
-        "end": 973
+        "begin": 116,
+        "end": 689
       },
       "tick": [
         {
           "position": {
-            "x": 120,
-            "y": -4
+            "x": 116,
+            "y": 382
           },
-          "content": "10%"
+          "content": "Jan"
         },
         {
           "position": {
-            "x": 198,
-            "y": -4
+            "x": 179,
+            "y": 382
           },
-          "content": "15%"
+          "content": "Feb"
         },
         {
           "position": {
-            "x": 275,
-            "y": -4
+            "x": 242,
+            "y": 382
           },
-          "content": "20%"
+          "content": "Mar"
         },
         {
           "position": {
-            "x": 353,
-            "y": -4
+            "x": 307,
+            "y": 382
           },
-          "content": "25%"
+          "content": "Apr"
         },
         {
           "position": {
-            "x": 430,
-            "y": -4
+            "x": 369,
+            "y": 382
           },
-          "content": "30%"
+          "content": "May"
         },
         {
           "position": {
-            "x": 508,
-            "y": -4
+            "x": 434,
+            "y": 382
           },
-          "content": "35%"
+          "content": "Jun"
         },
         {
           "position": {
-            "x": 585,
-            "y": -4
+            "x": 500,
+            "y": 382
           },
-          "content": "40%"
+          "content": "Jul"
         },
         {
           "position": {
-            "x": 663,
-            "y": -4
+            "x": 560,
+            "y": 382
           },
-          "content": "45%"
+          "content": "Aug"
         },
         {
           "position": {
-            "x": 740,
-            "y": -4
+            "x": 624,
+            "y": 382
           },
-          "content": "50%"
+          "content": "Sep"
         },
         {
           "position": {
-            "x": 818,
-            "y": -4
+            "x": 689,
+            "y": 382
           },
-          "content": "55%"
-        },
-        {
-          "position": {
-            "x": 895,
-            "y": -4
-          },
-          "content": "60%"
-        },
-        {
-          "position": {
-            "x": 973,
-            "y": -4
-          },
-          "content": "65%"
-        },
-        {
-          "position": {
-            "x": 693,
-            "y": 27
-          },
-          "content": "Avg."
+          "content": "Oct"
         }
       ]
     }
@@ -109,25 +88,60 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 320.0,
+      "fixed_distance": 50.333333333333336,
       "range": {
-        "begin": 96,
-        "end": 416
+        "begin": 69,
+        "end": 371
       },
       "tick": [
         {
           "position": {
-            "x": 0,
-            "y": 96
+            "x": 69,
+            "y": 371
           },
-          "content": "Most vulnerable"
+          "content": "0"
         },
         {
           "position": {
-            "x": 0,
-            "y": 416
+            "x": 55,
+            "y": 321
           },
-          "content": "Least vulnerable"
+          "content": "10K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 270
+          },
+          "content": "20K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 220
+          },
+          "content": "30K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 170
+          },
+          "content": "40K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 119
+          },
+          "content": "50K"
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 69
+          },
+          "content": "60K"
         }
       ]
     }

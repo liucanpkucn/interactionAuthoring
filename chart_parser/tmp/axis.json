@@ -4,128 +4,101 @@
       "type": "x",
       "main": true,
       "attr_type": "Categorical",
-      "fixed_distance": 71.08333333333333,
+      "fixed_distance": 63.666666666666664,
       "range": {
-        "begin": 120,
-        "end": 973
+        "begin": 116,
+        "end": 689
       },
       "tick": [
         {
           "position": {
-            "x": 120,
-            "y": -4
+            "x": 116,
+            "y": 382
           },
-          "content": "10%",
+          "content": "Jan",
           "controlled": null,
-          "visual_object": 2748
+          "visual_object": 11
         },
         {
           "position": {
-            "x": 198,
-            "y": -4
+            "x": 179,
+            "y": 382
           },
-          "content": "15%",
+          "content": "Feb",
           "controlled": null,
-          "visual_object": 2749
+          "visual_object": 12
         },
         {
           "position": {
-            "x": 275,
-            "y": -4
+            "x": 242,
+            "y": 382
           },
-          "content": "20%",
+          "content": "Mar",
           "controlled": null,
-          "visual_object": 2750
+          "visual_object": 13
         },
         {
           "position": {
-            "x": 353,
-            "y": -4
+            "x": 307,
+            "y": 382
           },
-          "content": "25%",
+          "content": "Apr",
           "controlled": null,
-          "visual_object": 2751
+          "visual_object": 14
         },
         {
           "position": {
-            "x": 430,
-            "y": -4
+            "x": 369,
+            "y": 382
           },
-          "content": "30%",
+          "content": "May",
           "controlled": null,
-          "visual_object": 2752
+          "visual_object": 15
         },
         {
           "position": {
-            "x": 508,
-            "y": -4
+            "x": 434,
+            "y": 382
           },
-          "content": "35%",
+          "content": "Jun",
           "controlled": null,
-          "visual_object": 2753
+          "visual_object": 16
         },
         {
           "position": {
-            "x": 585,
-            "y": -4
+            "x": 500,
+            "y": 382
           },
-          "content": "40%",
+          "content": "Jul",
           "controlled": null,
-          "visual_object": 2754
+          "visual_object": 17
         },
         {
           "position": {
-            "x": 663,
-            "y": -4
+            "x": 560,
+            "y": 382
           },
-          "content": "45%",
+          "content": "Aug",
           "controlled": null,
-          "visual_object": 2755
+          "visual_object": 18
         },
         {
           "position": {
-            "x": 740,
-            "y": -4
+            "x": 624,
+            "y": 382
           },
-          "content": "50%",
+          "content": "Sep",
           "controlled": null,
-          "visual_object": 2756
+          "visual_object": 19
         },
         {
           "position": {
-            "x": 818,
-            "y": -4
+            "x": 689,
+            "y": 382
           },
-          "content": "55%",
+          "content": "Oct",
           "controlled": null,
-          "visual_object": 2757
-        },
-        {
-          "position": {
-            "x": 895,
-            "y": -4
-          },
-          "content": "60%",
-          "controlled": null,
-          "visual_object": 2758
-        },
-        {
-          "position": {
-            "x": 973,
-            "y": -4
-          },
-          "content": "65%",
-          "controlled": null,
-          "visual_object": 2759
-        },
-        {
-          "position": {
-            "x": 693,
-            "y": 27
-          },
-          "content": "Avg.",
-          "controlled": null,
-          "visual_object": 2762
+          "visual_object": 20
         }
       ],
       "align": "up"
@@ -136,29 +109,74 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 320.0,
+      "fixed_distance": 50.333333333333336,
       "range": {
-        "begin": 96,
-        "end": 416
+        "begin": 69,
+        "end": 371
       },
       "tick": [
         {
           "position": {
-            "x": 0,
-            "y": 96
+            "x": 69,
+            "y": 371
           },
-          "content": "Most vulnerable",
+          "content": "0",
           "controlled": null,
-          "visual_object": 2761
+          "visual_object": 21
         },
         {
           "position": {
-            "x": 0,
-            "y": 416
+            "x": 55,
+            "y": 321
           },
-          "content": "Least vulnerable",
+          "content": "10K",
           "controlled": null,
-          "visual_object": 2763
+          "visual_object": 22
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 270
+          },
+          "content": "20K",
+          "controlled": null,
+          "visual_object": 23
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 220
+          },
+          "content": "30K",
+          "controlled": null,
+          "visual_object": 24
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 170
+          },
+          "content": "40K",
+          "controlled": null,
+          "visual_object": 25
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 119
+          },
+          "content": "50K",
+          "controlled": null,
+          "visual_object": 26
+        },
+        {
+          "position": {
+            "x": 55,
+            "y": 69
+          },
+          "content": "60K",
+          "controlled": null,
+          "visual_object": 27
         }
       ],
       "align": "right"

@@ -1481,8 +1481,8 @@ if __name__ == "__main__":
 
     # file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
     # file_name = "multi_line"
-    # file_name = "20210819_bar"
-    file_name = "20210831_bubble_stack_nyt"
+    file_name = "20210819_bar"
+    # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
     # file_name = "download"
     # file_name = "20210811_stack"
