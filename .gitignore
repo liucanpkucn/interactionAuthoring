@@ -17,3 +17,6 @@ chart_parser/package-lock.json
 chart_parser/parse_tmp/js_temp_svg.svg
 
 chart_parser/parse_tmp/*
+
+
+tmp/*
