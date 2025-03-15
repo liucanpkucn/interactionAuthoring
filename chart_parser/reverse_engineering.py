@@ -1421,7 +1421,11 @@ def only_keep_important_coord(
     svg_soup = data_constraints['svg_soup']
     # remove the visual marks that have shown in the main coordinator
     for visual_object in main_coord_sys['visual_object']:
-        svg_soup.find_all(attrs={"uuid_mani": visual_object['uuid']})[0].decompose()
+        try:
+            svg_soup.find_all(attrs={"uuid_mani": visual_object['uuid']})[0].decompose()
+        except:
+            print("Delete UUID")
+            print(visual_object['uuid'])
 
     # remove the tick content used
     for axis in data_constraints['axis']['x'] + data_constraints['axis']['y']:
