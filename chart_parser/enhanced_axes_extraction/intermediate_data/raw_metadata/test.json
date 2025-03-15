@@ -79,7 +79,9 @@
         },
         "content": "Oct"
       }
-    ]
+    ],
+    "is_base": true,
+    "base_direction": "up"
   },
   "y": {
     "type": "y",
@@ -96,7 +98,7 @@
           "x": "wait",
           "y": "wait"
         },
-        "content": "0"
+        "content": "0K"
       },
       {
         "position": {
@@ -140,6 +142,8 @@
         },
         "content": "60K"
       }
-    ]
+    ],
+    "is_base": false,
+    "base_direction": "right"
   }
 }

@@ -80,7 +80,9 @@
           },
           "content": "Oct"
         }
-      ]
+      ],
+      "is_base": true,
+      "base_direction": "up"
     }
   ],
   "y": [
@@ -88,19 +90,12 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 50.333333333333336,
+      "fixed_distance": 50.4,
       "range": {
         "begin": 69,
-        "end": 371
+        "end": 321
       },
       "tick": [
-        {
-          "position": {
-            "x": 69,
-            "y": 371
-          },
-          "content": "0"
-        },
         {
           "position": {
             "x": 55,
@@ -143,7 +138,9 @@
           },
           "content": "60K"
         }
-      ]
+      ],
+      "is_base": false,
+      "base_direction": "right"
     }
   ]
 }

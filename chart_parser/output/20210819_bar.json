@@ -1707,7 +1707,7 @@
         "x": 99.74510192871094,
         "y": 69,
         "width": 624.5098419189453,
-        "height": 315.5
+        "height": 307.0
       },
       "size": {
         "width": 800,
@@ -1920,6 +1920,8 @@
             }
           }
         ],
+        "is_base": true,
+        "base_direction": "up",
         "align": "up",
         "scale_type": "time",
         "value_range": [
@@ -1947,27 +1949,12 @@
         "type": "y",
         "main": false,
         "attr_type": "Categorical",
-        "fixed_distance": 50.333333333333336,
+        "fixed_distance": 50.4,
         "range": {
           "begin": 69,
-          "end": 371
+          "end": 321
         },
         "tick": [
-          {
-            "position": {
-              "x": 69,
-              "y": 371
-            },
-            "content": "0",
-            "controlled": null,
-            "visual_object": 21,
-            "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-16.6875,\"y\":-5,\"w\":6.6875,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":376}' x=\"3.66015625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">0</text>",
-            "visual_object_uuid": "33c71495-9212-5a94-9b58-e0a62c0a86ee",
-            "text_point": {
-              "x": 72.66015625,
-              "y": 377.75
-            }
-          },
           {
             "position": {
               "x": 55,
@@ -2059,14 +2046,16 @@
             }
           }
         ],
+        "is_base": false,
+        "base_direction": "right",
         "align": "right",
         "scale_type": "linear",
         "value_range": [
-          0.0,
+          10.0,
           60.0
         ],
         "pixel_domain": [
-          371,
+          321,
           69
         ],
         "prefix": "",
@@ -2075,10 +2064,10 @@
           "x": 54.6484375,
           "y": 69,
           "width": 21.84765625,
-          "height": 315.5
+          "height": 307.0
         },
         "use_num": 2,
-        "another_attr": 69
+        "another_attr": 55
       }
     ]
   },
@@ -2090,12 +2079,12 @@
   "parsed_data": {
     "mapping": [
       {
-        "name": "value",
+        "name": "0",
         "type": "Q",
         "direction": "y",
         "unit": "",
         "value_range": [
-          0.0,
+          10.0,
           60.0
         ]
       },
@@ -2110,12 +2099,12 @@
       }
     ],
     "chosen_coord": 1,
-    "Q": "value",
+    "Q": "0",
     "O": "time",
     "data_list": [
       {
         "Q pixel": 195.80169677734375,
-        "Q value": 38.9,
+        "Q value": 38.85,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2128,12 +2117,12 @@
           2,
           3
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 77.93612670898438,
-        "Q value": 15.48,
+        "Q value": 15.46,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2146,12 +2135,12 @@
           6,
           7
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 154.35220336914062,
-        "Q value": 30.67,
+        "Q value": 30.63,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2164,12 +2153,12 @@
           10,
           11
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 170.6300048828125,
-        "Q value": 33.9,
+        "Q value": 33.86,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2182,12 +2171,12 @@
           14,
           15
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 207.26763916015625,
-        "Q value": 41.18,
+        "Q value": 41.12,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2200,12 +2189,12 @@
           18,
           19
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 173.54429626464844,
-        "Q value": 34.48,
+        "Q value": 34.43,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2218,12 +2207,12 @@
           22,
           23
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 208.531005859375,
-        "Q value": 41.43,
+        "Q value": 41.38,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2236,12 +2225,12 @@
           26,
           27
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 201.16220092773438,
-        "Q value": 39.97,
+        "Q value": 39.91,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2254,12 +2243,12 @@
           30,
           31
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 163.351806640625,
-        "Q value": 32.45,
+        "Q value": 32.41,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2272,12 +2261,12 @@
           34,
           35
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       },
       {
         "Q pixel": 255.8997039794922,
-        "Q value": 50.84,
+        "Q value": 50.77,
         "unit": "",
         "O pixel": [
           "should_x"
@@ -2290,7 +2279,7 @@
           38,
           39
         ],
-        "Q": "value",
+        "Q": "0",
         "O": "time"
       }
     ],

@@ -162,6 +162,8 @@
                         }
                     }
                 ],
+                "is_base": true,
+                "base_direction": "up",
                 "align": "up",
                 "scale_type": "time",
                 "value_range": [
@@ -189,27 +191,12 @@
                 "type": "y",
                 "main": false,
                 "attr_type": "Categorical",
-                "fixed_distance": 50.333333333333336,
+                "fixed_distance": 50.4,
                 "range": {
                     "begin": 69,
-                    "end": 371
+                    "end": 321
                 },
                 "tick": [
-                    {
-                        "position": {
-                            "x": 69,
-                            "y": 371
-                        },
-                        "content": "0",
-                        "controlled": null,
-                        "visual_object": 21,
-                        "origin": "<text data-org-x=\"-10\" data-org-y=\"0\" dy=\"6\" fill=\"rgb(255, 255, 255)\" font-family=\"Arial\" my_fill=\"rgb(255, 255, 255)\" my_fill_opacity=\"1\" my_font_size=\"12px\" my_stoke=\"none\" my_stoke_opacity=\"1\" my_stoke_width=\"1px\" opacity=\"1\" stroke=\"none\" stroke-opacity=\"1\" stroke-width=\"1px\" style=\"text-anchor: end; fill: rgb(255, 255, 255); fill-opacity: 1; font-family: Arial; font-size: 12px;\" text_bbox='{\"x\":-16.6875,\"y\":-5,\"w\":6.6875,\"h\":13.5}' transform=\"rotate(0, -10, 0)translate(0,0)\" transform_matrix='{\"a\":1,\"b\":0,\"c\":0,\"d\":1,\"e\":86,\"f\":376}' x=\"3.66015625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"6.75\">0</text>",
-                        "visual_object_uuid": "33c71495-9212-5a94-9b58-e0a62c0a86ee",
-                        "text_point": {
-                            "x": 72.66015625,
-                            "y": 377.75
-                        }
-                    },
                     {
                         "position": {
                             "x": 55,
@@ -301,14 +288,16 @@
                         }
                     }
                 ],
+                "is_base": false,
+                "base_direction": "right",
                 "align": "right",
                 "scale_type": "linear",
                 "value_range": [
-                    0.0,
+                    10.0,
                     60.0
                 ],
                 "pixel_domain": [
-                    371,
+                    321,
                     69
                 ],
                 "prefix": "",
@@ -317,10 +306,10 @@
                     "x": 54.6484375,
                     "y": 69,
                     "width": 21.84765625,
-                    "height": 315.5
+                    "height": 265.16668701171875
                 },
                 "use_num": 0,
-                "another_attr": 69
+                "another_attr": 55
             }
         ]
     },

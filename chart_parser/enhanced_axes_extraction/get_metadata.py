@@ -122,7 +122,9 @@ Please strictly follow the JSON format below for output:
           "position": { "x": "wait", "y": "wait" },
           "content": "May"
         }
-      ]
+      ],
+      "is_base": true,
+      "base_direction": "up"
     },
   "y":  
     {
@@ -143,7 +145,9 @@ Please strictly follow the JSON format below for output:
           "position": { "x": "wait", "y": "wait" },
           "content": "High"
         }
-      ]
+      ],
+      "is_base": false,
+      "base_direction": "right"
     }
 }
 
@@ -169,7 +173,16 @@ Please strictly follow the JSON format below for output:
 6. **"tick"**: Stores all tick marks on the axis:
    - **"position"**: The coordinate position of the tick mark (both "x" and "y" should always be "wait").
    - **"content"**: The textual label of the tick mark (e.g., "Jan", "Feb", etc.).
-    
+   "is_base":
+7. **"is_base"**:
+true → The axis where the chart elements start (e.g., vertical bar chart → X-axis is true).
+false → The axis where values extend (e.g., vertical bar chart → Y-axis is false).
+8. **"base_direction"**: 
+  "up" → Elements extend upward.
+  "down" → Elements extend downward.
+  "right" → Elements extend rightward.
+  "left" → Elements extend leftward.
+
 '''
 
     response = client.chat.completions.create(

@@ -101,6 +101,8 @@
           "visual_object": 20
         }
       ],
+      "is_base": true,
+      "base_direction": "up",
       "align": "up"
     }
   ],
@@ -109,21 +111,12 @@
       "type": "y",
       "main": false,
       "attr_type": "Categorical",
-      "fixed_distance": 50.333333333333336,
+      "fixed_distance": 50.4,
       "range": {
         "begin": 69,
-        "end": 371
+        "end": 321
       },
       "tick": [
-        {
-          "position": {
-            "x": 69,
-            "y": 371
-          },
-          "content": "0",
-          "controlled": null,
-          "visual_object": 21
-        },
         {
           "position": {
             "x": 55,
@@ -179,6 +172,8 @@
           "visual_object": 27
         }
       ],
+      "is_base": false,
+      "base_direction": "right",
       "align": "right"
     }
   ]
