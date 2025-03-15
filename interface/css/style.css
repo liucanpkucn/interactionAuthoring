@@ -67,20 +67,30 @@ body {
 /* 팝업 컨테이너 */
 .popup-container {
     background: white;
-    width: 60vw;
-    height: 60vh;
+    width: 40vw;
+    height: 50vh;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding: 10 5 20 25;
     border-radius: 10px;
+    align-items: center; /* 세로 중앙 정렬 */
 }
 
 /* 왼쪽 이미지 */
 .popup-image {
     flex: 1;
-    background: url('your-image-url.jpg') no-repeat center;
-    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.popup-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 원본 비율 유지 */
     border-radius: 10px;
 }
 
@@ -88,32 +98,64 @@ body {
 .popup-content {
     flex: 2;
     display: flex;
+    height: 100%;
     flex-direction: column;
-    padding: 20px;
+    justify-content: center;
+    padding: 1rem;
+    margin: 0.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0rem;
+    overflow-y: scroll;
 }
 
-.popup-title {
+/* popup 그룹 */
+.popup-group-title {
     flex: 1;
-    font-size: 1.5rem;
-    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
 }
-
-.popup-description {
+.popup-group {
     flex: 3;
-    font-size: 1rem;
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
+/* 텍스트 */
+.popup-text, .result-text {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+}
+
+/* 제목 */
+.popup-title {
+    font-size: 0.8rem;
+    width: 100%;
+    height: 45%;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+/* 설명 영역 */
+.popup-description,
 .popup-interaction {
-    flex: 3;
-    margin-top: 10px;
+    font-size: 0.8rem;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
 }
 
 /* 버튼 영역 */
 .popup-buttons {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin-top: 0.2rem;
 }
 
 .popup-buttons button {
@@ -125,10 +167,45 @@ body {
 }
 
 .cancel-button {
-    background: #ccc;
+    background: #eee;
 }
 
-.share-button {
+.share-button, .share-confirm-button, .close-share-result {
     background: #5bb450;
     color: white;
+}
+
+.share-result {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 1rem;
+    margin: 0.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0rem;
+}
+
+.sr-success {
+    margin-top: 2rem;
+}
+
+.sr-group {
+    display: flex;
+    flex-direction: column;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.sr-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+#result-title, #result-description, #result-link {
+
+    font-size: 0.8rem;
+    font-weight: 300;
 }

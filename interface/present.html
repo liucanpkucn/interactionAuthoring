@@ -6,80 +6,6 @@
 	<link rel="stylesheet" href="css/vivisfy.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/dglyph.css">
-	<style>
-		/* ✅ 여기에 제공된 CSS를 그대로 삽입 */
-		body {
-			font-family: 'Inter';
-			margin: 0;
-			display: flex;
-			height: 400px;
-			width: 832px;
-			flex-direction: column;
-			transition: background-color 0.3s ease;
-		}
-		
-		/* ✅ 채팅 컨테이너 적용 */
-		#chat-container {
-			position: absolute;
-			top: 50px;
-			right: 0%;
-			width: 35%;
-			background-color: white;
-			display: flex;
-			flex-direction: column;
-			box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-		}
-		
-		/* ✅ 채팅 메시지 영역 스타일 */
-		#chat-body {
-			flex-grow: 1;
-			width: 98%;
-			height: 65%;
-			overflow-y: auto;
-			font-size: 14px;
-			padding: 10px;
-			scrollbar-width: thin;
-			-ms-overflow-style: none;
-		}
-		
-		/* ✅ 입력창 스타일 */
-		#chat-input {
-			width: calc(100% - 20px);
-			padding: 10px;
-			margin: 10px;
-			border-radius: 8px;
-			border: 1px solid #ccc;
-			resize: none;
-		}
-		
-		/* ✅ 버튼 스타일 */
-		#send-button {
-			position: absolute;
-			border-radius: 8px;
-			background-color: #5bb450;
-			opacity: 0.8;
-			color: white;
-			border: none;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
-
-		#share-button {
-			position: absolute;
-			border-radius: 8px;
-			background-color: #5bb450;
-			opacity: 0.8;
-			color: white;
-			border: none;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
-		
-		#send-button:hover {
-			background-color: #3b8132;
-		}
-		
-	</style>
 </head>
 
 <body>
@@ -118,15 +44,53 @@
 	<div class="popup-overlay" id="popup-overlay">
         <div class="popup-container">
             <div class="popup-image"></div>
-            <div class="popup-content">
-                <input class="popup-title" type="text" value="Title">
-                <textarea class="popup-description">Description goes here...</textarea>
-                <textarea class="popup-interaction">Interaction content...</textarea>
-                <div class="popup-buttons">
+            <div class="popup-content" id="popup-content">
+				<div class="popup-group-title">
+					<a class="popup-text">Title</a>
+					<textarea class="popup-title" type="text" placeholder="Title..."></textarea>
+				</div>
+				<div class="popup-group">
+					<a class="popup-text">Description</a>
+					<textarea class="popup-description" type="text" placeholder="Description..."></textarea>
+				</div>
+				<div class="popup-group">
+					<a class="popup-text">Interaction Content</a>
+					<textarea class="popup-interaction" type="text" placeholder="Interaction content..."></textarea>
+                </div>
+				<div class="popup-buttons">
                     <button class="cancel-button" id="close-popup">Cancel</button>
-                    <button class="share-button">Share</button>
+                    <button class="share-confirm-button">Share</button>
                 </div>
             </div>
+
+			<div class="share-result" id="share-result"  style="display: none;">
+				<div>
+
+				</div>
+				<h2 class="sr-success">Shared Successfully</h2>
+				<div class="sr-group">
+					<a class="sr-title">
+						Title: 
+					</a>
+					<a id="result-title"></a>
+				</div>
+				<div class="sr-group">
+					<a class="sr-title">
+						Description: 
+					</a>
+					<a id="result-description"></a>
+				</div>
+				<div class="sr-group">
+					<a class="sr-title">
+						Link: 
+					</a>
+					<a id="result-link" href="#" target="_blank"></a>
+				</div>
+				<!-- <pre id="result-interaction"></pre> -->
+				<div class="popup-buttons">
+					<button class="close-share-result">Close</button>
+				</div>
+			</div>
         </div>
     </div>
 
@@ -146,6 +110,7 @@
 	<script src="js/ChatService.js"></script>
 	<script src="auto_manipulate.js"></script>
 	<script src="manipulate.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 	<script>
 		server_position = ""
 
@@ -223,17 +188,147 @@
 		window.addEventListener("resize", updateHeight);
 
 		document.getElementById("share-button").addEventListener("click", function() {
-			let currentUrl = window.location.href; // 현재 화면의 URL 가져오기
-			let modifiedUrl = currentUrl.replace("present", "show"); // 'present'를 'show'로 변경
-			// alert(modifiedUrl); // 변경된 URL을 alert 창으로 표시
-			console.log(_chart_object[0].share_json);
+			let mainCanvas = document.getElementById("main_canvas"); // <g> 요소 가져오기
 
-			document.getElementById("popup-overlay").style.display = "flex";
+			if (!mainCanvas) {
+				console.error("main_canvas not found!");
+				return;
+			}
+
+			// <svg> 요소를 복사하여 새로운 SVG 생성
+			let svgElement = document.getElementById("canvas_svg").cloneNode(true);
+			let newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			
+			// 원본 SVG의 크기 유지
+			newSvg.setAttribute("width", svgElement.getAttribute("width"));
+			newSvg.setAttribute("height", svgElement.getAttribute("height"));
+			newSvg.setAttribute("viewBox", svgElement.getAttribute("viewBox"));
+			newSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+			// defs 포함 (필요한 스타일 유지)
+			let defs = svgElement.querySelector("defs");
+			if (defs) {
+				newSvg.appendChild(defs.cloneNode(true));
+			}
+
+			// main_canvas만 새 SVG에 추가
+			newSvg.appendChild(mainCanvas.cloneNode(true));
+
+			// SVG를 문자열로 변환
+			let svgData = new XMLSerializer().serializeToString(newSvg);
+			let canvas = document.createElement("canvas");
+			let ctx = canvas.getContext("2d");
+
+			// 원본 SVG 크기에 맞추기
+			canvas.width = svgElement.clientWidth || 800;  // 기본값 설정
+			canvas.height = svgElement.clientHeight || 600;
+
+			// 이미지로 변환하여 캔버스에 그림
+			let img = new Image();
+			img.onload = function() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(img, 0, 0);
+
+				// 팝업에 이미지 삽입
+				let popupImageContainer = document.querySelector(".popup-image");
+				popupImageContainer.innerHTML = "";
+				let finalImg = new Image();
+				finalImg.src = canvas.toDataURL("image/png");
+				finalImg.style.width = "100%";
+				popupImageContainer.appendChild(finalImg);
+
+				// popup-interaction 내부 내용 업데이트
+				let interactionContainer = document.querySelector(".popup-interaction");
+				interactionContainer.value = ""; // 초기화
+
+				if (typeof _chart_object !== "undefined" && _chart_object.length > 0) {
+					let shareData = _chart_object[0].share_json;
+					if (Array.isArray(shareData) && shareData.length > 0) {
+						interactionContainer.value = JSON.stringify(shareData, null, 2);
+					} else {
+						interactionContainer.value = "None";
+					}
+				} else {
+					interactionContainer.value = "None";
+				}
+
+				// 팝업 표시
+				document.getElementById("popup-overlay").style.display = "flex";
+			};
+			
+			// SVG 데이터를 DataURL로 변환
+			img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData);
 		});
-        
-        document.getElementById("close-popup").addEventListener("click", function() {
-            document.getElementById("popup-overlay").style.display = "none";
-        });
+
+		document.querySelector(".share-confirm-button").addEventListener("click", function() {
+			let titleInput = document.querySelector(".popup-title");
+			let descriptionInput = document.querySelector(".popup-description");
+			let interactionData = document.querySelector(".popup-interaction").value;
+
+			let title = titleInput.value.trim();
+			let description = descriptionInput.value.trim();
+
+			// 유효성 검사: title과 description이 비어 있으면 실행 중단
+			if (!title || !description) {
+				if (!title) {
+					titleInput.style.border = "2px solid red";
+				} else {
+					titleInput.style.border = "1px solid #ccc";
+				}
+				
+				if (!description) {
+					descriptionInput.style.border = "2px solid red";
+				} else {
+					descriptionInput.style.border = "1px solid #ccc";
+				}
+				return;
+			}
+
+			// 입력값이 있을 경우 원래 스타일로 복원
+			titleInput.style.border = "1px solid #ccc";
+			descriptionInput.style.border = "1px solid #ccc";
+
+			let jsonData = {
+				"title": title,
+				"description": description,
+				"interaction": interactionData
+			};
+
+			console.log("Saved JSON:", jsonData);
+			alert(JSON.stringify(jsonData, null, 2));
+
+			// 공유 결과 화면에 값 적용
+			document.getElementById("result-title").innerText = title;
+			document.getElementById("result-description").innerText = description;
+
+			document.getElementById("result-link").innerText = window.location.origin + "/interface/show.html?" + title;
+			document.getElementById("result-link").href = window.location.origin + "/interface/show.html?" + title;
+
+			// `popup-content` 숨기고 `share-result` 표시
+			document.getElementById("popup-content").style.display = "none";
+			document.getElementById("share-result").style.display = "flex";
+		});
+
+		function closePopup() {
+			console.log("cancel");
+			document.getElementById("popup-overlay").style.display = "none";
+
+			// 다시 공유 입력 화면으로 복귀
+			document.getElementById("popup-content").style.display = "flex";
+			document.getElementById("share-result").style.display = "none";
+		}
+
+		document.getElementById("close-popup").addEventListener("click", closePopup);
+		document.querySelector(".close-share-result").addEventListener("click", closePopup);
+
+		function resetBorder(event) {
+			if (event.target.value.trim() !== "") {
+				event.target.style.border = "1px solid #ccc";
+			}
+		}
+
+		document.querySelector(".popup-title").addEventListener("input", resetBorder);
+		document.querySelector(".popup-description").addEventListener("input", resetBorder);
 	    	// d3.json('file_name.json')
 	    	// 	.then(function(file_name){
 	    	// 		console.log('file list', file_name)
@@ -265,3 +360,4 @@
 </body>
 
 </html>
+

@@ -63,7 +63,7 @@ let canvas_main = function(data){
   let resize = 1
 
   if (data.size.width > window_width ){
-    resize = window_width * 0.8 / data.size.width
+    resize = window_width * 0.7 / data.size.width
   }
   console.log(resize)
   let chart_object = []
@@ -91,6 +91,8 @@ let draw_a_canvas = function(svg, chart_json, begin_point, resize = 1){
   // main_transform.y_rate *= 2  // This line is to reduce the y_rate into a half.
 
   // console.log("transform: ", chart_json.transform)
+  
+  this.share_json = [];
 
   console.log("axis~~~", chart_json.axis.x[0])
   this.dragOderStatus = 0;

@@ -586,3 +586,75 @@ input:focus {
 .confirm-button.selected {
     background: #c3dbc7;
 }
+
+body {
+    font-family: 'Inter';
+    margin: 0;
+    display: flex;
+    height: 400px;
+    width: 832px;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+}
+
+/* ✅ 채팅 컨테이너 적용 */
+#chat-container {
+    position: absolute;
+    top: 50px;
+    right: 0%;
+    width: 35%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ 채팅 메시지 영역 스타일 */
+#chat-body {
+    flex-grow: 1;
+    width: 98%;
+    height: 65%;
+    overflow-y: auto;
+    font-size: 14px;
+    padding: 10px;
+    scrollbar-width: thin;
+    -ms-overflow-style: none;
+}
+
+/* ✅ 입력창 스타일 */
+#chat-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+/* ✅ 버튼 스타일 */
+#send-button {
+    position: absolute;
+    border-radius: 8px;
+    background-color: #5bb450;
+    opacity: 0.8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#share-button {
+    position: absolute;
+    border-radius: 8px;
+    background-color: #5bb450;
+    opacity: 0.8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#send-button:hover {
+    background-color: #3b8132;
+}
+		
