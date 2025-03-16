@@ -51,6 +51,8 @@ def is_numeric(s):
 
 def is_year(s):
     if len(s.strip()) == 4 and is_numeric(s):
+        if int(s) > 1900 and int(s) < 2100:
+            return True
         return True
     return False
 
@@ -139,10 +141,7 @@ def parse_single_axis(axis, visual_objects, control_points):
             new_text['y'] = item['text_point']['y'] - item['position']['y']
             item['origin'] = str(new_text)
 
-    # pprint('axis tick ', axis['tick'])
-    
-    ##
-    # pprint('axis', axis)
+
     tick_obj_id = [{'vid': item['visual_object'], 'position': item['position']}\
         for item in axis['tick'] if isinstance(item['visual_object'], int)]
         # for item in axis['tick'] ]

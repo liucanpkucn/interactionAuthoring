@@ -9,6 +9,7 @@
 #然后返回给这里, 给的就是最后return的axes_array
 import os
 from utils import pprint
+import json
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 api_key_path = os.path.join(base_dir, "enhanced_axes_extraction/api_key.txt")
@@ -19,8 +20,11 @@ with open(api_key_path, 'r') as f:
 from enhanced_axes_extraction.run_enhanced_axes_extraction import run_enhanced_extraction
 
 def get_ticks_robust(svg_string, visual_object):
+    
+    with open("tmp/visual_object_to_axes.json", "w") as f:
+        json.dump(visual_object, f, indent=4)
+        
     axes_array = run_enhanced_extraction(svg_string, api_key)
-
     if axes_array is None:
         print("Error: Failed to extract axes from SVG.")
         return {"x": [], "y": []}  
@@ -37,9 +41,6 @@ def get_ticks_robust(svg_string, visual_object):
                     for tick in axis["tick"]:
                         # 增加 "controlled": null
                         tick["controlled"] = None  
-
-                        # 匹配 visual_object 中的内容
-                        # pprint("visual_object", visual_object)
 
                         # 清理字段，去除空格、减号、逗号等干扰项,确保匹配时不会出错
                         tick_content_cleaned = tick.get("content", "").replace(' ', '_').replace('\u2212', '-').replace(',', '')
