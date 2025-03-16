@@ -552,47 +552,47 @@ def parse_axis_type(
         parse_current_axis(current_axis, direction)
 
 
-def get_axes_from_svg_string(svg_string):
-    return_obj = parse_unknown_svg_visual_elements(svg_string)
-    visual_objs = return_obj[0]
-    width = return_obj[1]
-    height = return_obj[2]
-    svg_soup = return_obj[3]
-    width = int(float(width))
-    height = int(float(height))
-    selected_area = [[0, 0], [width, height]]
-    if svg_soup.has_attr('selected_area'):
-        selected_area_string = svg_soup['selected_area']
-        selected_area_list = selected_area_string.split(',')
-        selected_area_list = [float(item) for item in selected_area_list]
-        selected_area = [
-            [selected_area_list[0], selected_area_list[1]],
-            [selected_area_list[2], selected_area_list[3]]]
+# def get_axes_from_svg_string(svg_string):
+#     return_obj = parse_unknown_svg_visual_elements(svg_string)
+#     visual_objs = return_obj[0]
+#     width = return_obj[1]
+#     height = return_obj[2]
+#     svg_soup = return_obj[3]
+#     width = int(float(width))
+#     height = int(float(height))
+#     selected_area = [[0, 0], [width, height]]
+#     if svg_soup.has_attr('selected_area'):
+#         selected_area_string = svg_soup['selected_area']
+#         selected_area_list = selected_area_string.split(',')
+#         selected_area_list = [float(item) for item in selected_area_list]
+#         selected_area = [
+#             [selected_area_list[0], selected_area_list[1]],
+#             [selected_area_list[2], selected_area_list[3]]]
 
-    # convert to control point and visual object format
-    control_point, visual_object, _ = get_control_point(
-                                    visual_objs,
-                                    width,
-                                    height,
-                                    selected_area)
+#     # convert to control point and visual object format
+#     control_point, visual_object, _ = get_control_point(
+#                                     visual_objs,
+#                                     width,
+#                                     height,
+#                                     selected_area)
 
-    # get the possible axis from control point and visual object
-    axes_array = get_ticks(control_point, visual_object)
-    axes_array = get_ticks_robust(svg_string,visual_object)
-    parse_axis_type(axes_array, visual_object)
-    for i, item in enumerate(axes_array['x']):
-        item['id'] = i
-    for i, item in enumerate(axes_array['y']):
-        item['id'] = i
-    axes_info = {
-        "axes_array": axes_array,
-        "visual_object": visual_object,
-        "control_point": control_point,
-        "width": width,
-        "height": height,
-        "svg_soup": svg_soup,
-    }
-    return axes_info
+#     # get the possible axis from control point and visual object
+#     axes_array = get_ticks(control_point, visual_object)
+#     axes_array = get_ticks_robust(svg_string,visual_object)
+#     parse_axis_type(axes_array, visual_object)
+#     for i, item in enumerate(axes_array['x']):
+#         item['id'] = i
+#     for i, item in enumerate(axes_array['y']):
+#         item['id'] = i
+#     axes_info = {
+#         "axes_array": axes_array,
+#         "visual_object": visual_object,
+#         "control_point": control_point,
+#         "width": width,
+#         "height": height,
+#         "svg_soup": svg_soup,
+#     }
+#     return axes_info
 
 def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = True):
     """
@@ -625,8 +625,7 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
     
     selected_coord_sys_list = []
     for i, coord_sys in enumerate(coord_sys_list):
-        
-        if coord_sys['coordinate_type'] != "stack_x":
+        if coord_sys['coordinate_type'] not in ["stack_x", "stack_y", "share_width"]:
             continue
         groups = get_coordinate_group(coord_sys)
         get_area(coord_sys, axes_array, width, height)
