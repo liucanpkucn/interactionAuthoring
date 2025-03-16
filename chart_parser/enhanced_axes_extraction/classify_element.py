@@ -42,7 +42,8 @@ def classify_simvec(simvec,path_to_image):
     Return the result in the following JSON format:
 
     [
-        {{ "axis_text": [1, 2, 4] }},
+        {{ "x_axis_text": [1, 2, 4] }},
+        {{ "y_axis_text": [17, 18] }},
         {{ "title_text": [3, 5, 6] }},
         {{ "data_encoded": [7, 8, 9] }},
         {{ "legend": {{ "legend-graphic": [10, 11], "legend text": [12, 13] }} }}

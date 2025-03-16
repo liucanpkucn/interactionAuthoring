@@ -103,6 +103,8 @@ You are a professional data visualization analyst. Output the details in JSON fo
 Please strictly follow the JSON format below for output:
 
 {
+  "chart_type": "bar_chart",
+  "direction": "vertical",
   "x":  
     {
       "type": "x",
@@ -155,6 +157,13 @@ Please strictly follow the JSON format below for output:
 ------
 
 ### **【Rules Explanation】**
+"chart_type": Specifies the type of chart (e.g.,"bar_chart", "stack_bar_chart", "group_bar_chart", "line_chart", "scatter_chart, ""area_chart","pie_chart").
+if a bar chart is neither stacked nor grouped, use "bar_chart".
+"direction": Specifies the primary orientation of data progression.
+
+ - For bar charts: "horizontal" (categories on Y-axis) or "vertical" (categories on X-axis).
+ - For line charts: "left_to_right" (time or sequence progresses from left to right) or "top_to_bottom" (progresses from top to bottom in specialized cases).
+ - For scatter plots or area charts, Use the null value none (not the string "none")if no clear orientation applies.
 
 1. **"type"**: Specifies the type of the axis:
    - "x" represents the X-axis.
