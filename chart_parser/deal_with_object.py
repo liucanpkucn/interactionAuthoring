@@ -40,7 +40,8 @@ def classify_groups_by_size(visual_objects, control_points, axes_candidate, remo
     Get classified groups by size
     """
     x_even_list, y_even_list = get_even_intervals_new(visual_objects, control_points)
-
+    
+    print(x_even_list)
 
     x_even_set = set([item['vid'] for item in x_even_list])
     y_even_set = set([item['vid'] for item in y_even_list])
@@ -291,15 +292,6 @@ def calculate_group(shared_stack_group_x, shared_stack_group_y, shared_width_gro
 
     if (len(vertical_line['vid']) > 0):
         chosen_group.append(vertical_line)
-
-
-    # print("chosen_group", )
-
-
-    # shared_stack_y = [item for item in shared_stack_group_y if len(item['tick']) > 2]
-
-    # print("shared_stack_y", shared_stack_y)
-
 
     return chosen_group
 

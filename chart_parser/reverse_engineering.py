@@ -621,18 +621,30 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
             tick_text_vid_list.extend([tick['visual_object']\
                 for tick in axis['tick'] if isinstance(tick['visual_object'], int)])
     non_tick_text_vid_list = set(text_vid_list) - set(tick_text_vid_list)
-
+    useful_ids = 0
+    
+    selected_coord_sys_list = []
     for i, coord_sys in enumerate(coord_sys_list):
-        coord_sys['id'] = i
+        
+        if coord_sys['coordinate_type'] != "stack_x":
+            continue
         groups = get_coordinate_group(coord_sys)
         get_area(coord_sys, axes_array, width, height)
         # print(groups)
         constraints = []
         # Useful !!!
         print('')
-        print('Coordinate_id', coord_sys['id'])
+        print('Coordinate_id', useful_ids, coord_sys['coordinate_type'])
         print("Control point number:", len(coord_sys['control_point']))
-        print("type", coord_sys['coordinate_type'])
+        print("Visual object control_point number", [len(item['control_point']) for item in coord_sys['visual_object']])
+        print("Left", [item['left'] for item in coord_sys['visual_object']])
+        print("Right", [item['right'] for item in coord_sys['visual_object']])
+        if len(coord_sys['control_point']) < 10:
+            continue
+        useful_ids += 1
+        print("Visual object number:", len(coord_sys['visual_object']))
+        coord_sys['id'] = useful_ids
+        print("Area", coord_sys['area'])
         if coord_sys['coordinate_type'] == "point":
             add_quantity_constraints(coord_sys["control_point"], coord_sys["visual_object"], 'x')
             add_quantity_constraints(coord_sys["control_point"], coord_sys["visual_object"], 'y')
@@ -687,6 +699,10 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
         }
         coord_sys['groups'] = groups
         activate_all_visual_marks(coord_sys)
+        selected_coord_sys_list.append(coord_sys)
+        
+        
+
     begin_text_time = time.time()
     
     for text_obj_idx in non_tick_text_vid_list:
@@ -697,7 +713,7 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
     print("Calculate text cost time", end_text_time - begin_text_time)
     svg_string = str(svg_soup)
     json_data = {
-        "CoordSys": coord_sys_list,
+        "CoordSys": selected_coord_sys_list,
         "axis": axes_array,
         "size": {
             "width": width,
