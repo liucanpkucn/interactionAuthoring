@@ -150,8 +150,10 @@ def parse_single_axis(axis, visual_objects, control_points):
             new_text = bs4.BeautifulSoup(item['origin'], "html5lib").select('text')[0]
             if 'transform' in new_text.attrs:
                 new_text['transform'] = 'translate(0,0)'
+                
             new_text['x'] = item['text_point']['x'] - item['position']['x']
             new_text['y'] = item['text_point']['y'] - item['position']['y']
+            new_text['text-anchor'] = "middle"
             item['origin'] = str(new_text)
 
 
