@@ -10,7 +10,7 @@ TMP_DIR = "tmp"
 if not os.path.exists(TMP_DIR):
     os.mkdir(TMP_DIR)
     
-DEBUG_DIR = "DUBUG"
+DEBUG_DIR = "DEBUG"
 if not os.path.exists(DEBUG_DIR):
     os.mkdir(DEBUG_DIR)
 
@@ -742,8 +742,8 @@ def get_axis_value(position, axis, direction = "x", value_type = 'absolute'):
         # print("pixel_domain", pixel_domain)
         # print('value_range', value_range)
         # print('position', position)
-        print("Value range: ", value_range)
-        print("Pixel domain: ", pixel_domain)
+        # print("Value range: ", value_range)
+        # print("Pixel domain: ", pixel_domain)
         if value_type == "absolute":
             value = value_range[0] + (value_range[1] - value_range[0])\
                 / (pixel_domain[1] - pixel_domain[0]) * (position - pixel_domain[0])
@@ -760,7 +760,7 @@ def get_axis_value(position, axis, direction = "x", value_type = 'absolute'):
             for item in value_range]
         pixel_domain = axis['pixel_domain']
         if value_type == "absolute":
-            print("position", position)
+            # print("position", positions)
             value = value_range[0] + (value_range[1] - value_range[0])\
                 / (pixel_domain[1] - pixel_domain[0]) * (position - pixel_domain[0])
         else:
@@ -1096,7 +1096,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
 
         print("X axis:", x_axis_content)
         for value in important_value:
-            print(value, direction)
+            # print(value, direction)
             value["parsed_" + direction] = get_axis_value(
                                             value[direction],
                                             current_axis,
@@ -1112,8 +1112,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
         
 
         for value in important_value:
-            print(value, direction)
-            
+            # print(value, direction)
             value["parsed_" + direction] = get_axis_value(value[direction],
                                 current_axis,
                                 direction,
@@ -1221,7 +1220,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
         if important_axis['x']['scale_type'] == 'time':
             main_name = 'x'
             other_name = "y"
-            print("aaaaaaa")
+            # print("aaaaaaa")
             direction_dict['O'] = "x"
             if important_axis['y']['scale_type'] == 'linear':
                 direction_dict['Q'] = 'y'
@@ -1309,7 +1308,10 @@ def reverse_engineering_from_constraints(json_data, original_vo):
     format_data['data_list'] = format_data_list
     format_data['unit'] = unit
     format_data['important_coord'] = max_idx
-    print("Format data mapping", format_data)
+    # print("Format data mapping", format_data)
+    with open("tmp/format_data_mapping.json", 'w') as f:
+        json.dump(format_data, f, indent=4, ensure_ascii=False)
+
     return format_data
 
 def get_color_mapping():
@@ -1432,8 +1434,8 @@ def only_keep_important_coord(
         try:
             svg_soup.find_all(attrs={"uuid_mani": visual_object['uuid']})[0].decompose()
         except:
-            print("Delete UUID")
-            print(visual_object['uuid'])
+            print("Delete UUID", visual_object['uuid'], "failed")
+            # print(visual_object['uuid'])
 
     # remove the tick content used
     for axis in data_constraints['axis']['x'] + data_constraints['axis']['y']:
@@ -1444,7 +1446,7 @@ def only_keep_important_coord(
             if len(soup_num) > 0:
                 soup_num[0].decompose()
             else:
-                print(tick)
+                print("Remove tick content", tick['content'])
     data_constraints['svg_string'] = str(svg_soup)
     del data_constraints['svg_soup']
     return
@@ -1501,6 +1503,7 @@ if __name__ == "__main__":
     with open(f'test_example/{file_name}.svg') as f:
         string = f.read()
         constraints_with_data = get_constraints_with_data(string)
+        print("GET constraints with data:")
         with open(f'output/{file_name}.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
         with open('tmp/tmp.svg', 'w', encoding= 'utf8') as f:

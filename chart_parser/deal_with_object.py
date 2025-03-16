@@ -1,3 +1,6 @@
+
+# pylint: disable=import-error
+
 # calcualte the groups of elements
 from os import remove
 import networkx as nx
@@ -361,15 +364,6 @@ def get_crowd_points(visual_objects, control_points, max_inter = 10):
     point_num = len(points)
     inter_dict = {}
 
-    def check_group(id_list):
-        num = len(id_list)
-        for i in range(num):
-            point_i = points[i]
-            for j in range(i + 1, num):
-                point_j = points[j]
-
-
-
     for i in range(point_num):
         point_1 = points[i]
         for j in range(i + 1, point_num):
@@ -441,25 +435,6 @@ def get_axis(visual_objects, control_points, axes_candidate, main_axis_list = []
 
         return list(list_coverage == max_coverage)
 
-
-    def get_closest(candidate, attr_range):
-
-        average_list = []
-
-        for item in candidate:
-            print("another attr", item['another_attr'])
-            axis_position = item['another_attr']
-
-            distance_list = [abs(item - axis_position) for item in attr_range]
-            avg_dis = sum(distance_list) / len(distance_list)
-            print('average distance', avg_dis)
-            average_list.append(avg_dis)
-
-        if len(candidate) == 0:
-            return None
-
-        return candidate[average_list.index(min(average_list))]
-
     def get_closest_idx(candidate, attr_range):
         average_list = []
 
@@ -475,12 +450,7 @@ def get_axis(visual_objects, control_points, axes_candidate, main_axis_list = []
             avg_dis = sum(distance_list) / len(distance_list)
             print('average distance', avg_dis)
             average_list.append(avg_dis)
-
         return average_list.index(min(average_list))
-
-
-
-
     print('length of visual_objects', len(visual_objects))
     print('length of control_points', len(control_points))
 
@@ -498,18 +468,12 @@ def get_axis(visual_objects, control_points, axes_candidate, main_axis_list = []
     y_range = [min(y_list), max(y_list)]
 
     print("x_range", x_range)
-    print('lll', min([item['left'] for item in visual_objects]))
-    print('rrr', max([item['right'] for item in visual_objects]))
-
-
-
     print("y_range", y_range)
 
     for item in axes_candidate['x']:
         print("x axis range,", item['range'])
     for item in axes_candidate['y']:
         print('y axis range.', item['range'])
-
 
     # for x_candicate in axes_candidate['x']:
     #     print("candidate_range", x_candicate['range'])
