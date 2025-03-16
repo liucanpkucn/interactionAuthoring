@@ -13,8 +13,8 @@ if not os.path.exists(TMP_DIR):
 DEBUG_DIR = "DEBUG"
 if not os.path.exists(DEBUG_DIR):
     os.mkdir(DEBUG_DIR)
-
-
+    
+from utils import rect_distance
 
 from extract_svg import parse_unknown_svg_visual_elements
 #####################
@@ -27,7 +27,7 @@ from cal_constraints import (
     add_quantity_constraints)
 from svganalysis import get_ticks
 from calculate_axis import get_ticks_robust
-from deal_with_object import classify_groups_by_size
+from deal_with_object import classify_groups_by_size, classify_groups_by_chart_info
 from axes_parser import parse_axes, parse_temp_list, is_time_list, is_single_time
 from shapely.geometry import Point, Polygon
 
@@ -378,7 +378,17 @@ def append_text_into_coordinate(
         CoordSys['append_text'].append(current_text)
         delete_vo_soup(text_obj)
 
+
+def get_area_from_axis(coord_sys):
+    coord_sys['area'] = {
+        "x": coord_sys['plotarea']['x']['min'],
+        "y": coord_sys['plotarea']['y']['min'],
+        "width": coord_sys['plotarea']['x']['max'] - coord_sys['plotarea']['x']['min'],
+        "height": coord_sys['plotarea']['y']['max'] - coord_sys['plotarea']['y']['min']
+    }
+
 def get_area(coord_sys, axes_array, width, height):
+    
     left_bound = min([item['left'] for item in coord_sys['visual_object']])
     right_bound = max([item['right'] for item in coord_sys['visual_object']])
     up_bound = min([item['up'] for item in coord_sys['visual_object']])
@@ -427,40 +437,12 @@ def json_dumps_safe(data):
     """将数据转换为可 JSON 序列化格式后再序列化"""
     return json.dumps(convert_to_serializable(data), indent=4)
 
-# # 示例数据
-# data = {
-#     "name": "example",
-#     "nested": {
-#         "level1": {
-#             "level2": {
-#                 "tag": some_tag_object,  # 无法直接 JSON 序列化的对象
-#                 "items": [1, 2, {"deep_tag": another_tag_object}]
-#             }
-#         }
-#     }
-# }
-
-# json_str = json_dumps_safe(data)
-# print(json_str)  # 现在所有不可序列化的对象都会变成字符串
-
-
-
 def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None):
-    return_obj = parse_unknown_svg_visual_elements(svg_string)
-    visual_objs = return_obj[0]
-    width = return_obj[1]
-    height = return_obj[2]
-    svg_soup = return_obj[3]
-    # pprint(visual_objs)
-    # pprint("width:", width)
-    # pprint("height:", height)
-    # pprint("svg_soup:", svg_soup)
-    
-    # print(return_obj)
-    
-    
+    visual_objs, width, height, svg_soup = parse_unknown_svg_visual_elements(svg_string)
+        
     with open(f"{TMP_DIR}/visual_objects_before_parse.json", 'w') as f:
         json.dump(visual_objs, f, indent = 2)
+        
     
     width = int(float(width))
     height = int(float(height))
@@ -473,10 +455,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
         width,
         height,
         selected_area,
-        False)  # convert to control point and visual object format
-    # pprint("control_point:", control_point)
-    # pprint("visual_object:", visual_object)
-    # pprint("_", _)
+        False)
 
     if axisdata and (axisdata != "null"):
         axes_array = json.loads(axisdata)
@@ -487,7 +466,6 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
             json.dump(axes_array, f, indent = 2)
         
         # axes_array = get_ticks_robust(control_point, visual_object)
-
         # 此函数需要修改parse_axes
         axes_array = parse_axes(axes_array, visual_object, control_point) # 移交前端
         
@@ -525,12 +503,6 @@ def parse_axis_type(
 
     # pprint("visual_object", visual_object)
     def parse_current_axis(current_axis, direction):
-        # for tick in current_axis['tick']:
-        #     if isinstance(tick['visual_object'], int):
-        #         tick['content'] = visual_object[tick['visual_object']]['content']
-        #     else:
-        #         tick['content'] = None
-
         if current_axis['scale_type'] == "quantize":
             if is_time_list(current_axis['value_range']):
                 is_time_idx = [idx for idx, item in enumerate(current_axis['value_range']) if is_single_time(item)]
@@ -552,64 +524,54 @@ def parse_axis_type(
         parse_current_axis(current_axis, direction)
 
 
-# def get_axes_from_svg_string(svg_string):
-#     return_obj = parse_unknown_svg_visual_elements(svg_string)
-#     visual_objs = return_obj[0]
-#     width = return_obj[1]
-#     height = return_obj[2]
-#     svg_soup = return_obj[3]
-#     width = int(float(width))
-#     height = int(float(height))
-#     selected_area = [[0, 0], [width, height]]
-#     if svg_soup.has_attr('selected_area'):
-#         selected_area_string = svg_soup['selected_area']
-#         selected_area_list = selected_area_string.split(',')
-#         selected_area_list = [float(item) for item in selected_area_list]
-#         selected_area = [
-#             [selected_area_list[0], selected_area_list[1]],
-#             [selected_area_list[2], selected_area_list[3]]]
-
-#     # convert to control point and visual object format
-#     control_point, visual_object, _ = get_control_point(
-#                                     visual_objs,
-#                                     width,
-#                                     height,
-#                                     selected_area)
-
-#     # get the possible axis from control point and visual object
-#     axes_array = get_ticks(control_point, visual_object)
-#     axes_array = get_ticks_robust(svg_string,visual_object)
-#     parse_axis_type(axes_array, visual_object)
-#     for i, item in enumerate(axes_array['x']):
-#         item['id'] = i
-#     for i, item in enumerate(axes_array['y']):
-#         item['id'] = i
-#     axes_info = {
-#         "axes_array": axes_array,
-#         "visual_object": visual_object,
-#         "control_point": control_point,
-#         "width": width,
-#         "height": height,
-#         "svg_soup": svg_soup,
-#     }
-#     return axes_info
-
-def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = True):
+def parse_constraint_axes_vis_cons(chart_info_with_axes, fromfront=False, remove_soup = True):
     """
     Here is the new logic, we deal the visual object by them self.
     """
-    axes_array = axes_info['axes_array']
-    visual_object = axes_info['visual_object']
-    control_point = axes_info['control_point']
-    width = axes_info['width']
-    height = axes_info['height']
-    svg_soup = axes_info['svg_soup']
-    coord_sys_list = classify_groups_by_size(
+    axes_array = chart_info_with_axes['axes_array']
+    visual_object = chart_info_with_axes['visual_object']
+    control_point = chart_info_with_axes['control_point']
+    width = chart_info_with_axes['width']
+    height = chart_info_with_axes['height']
+    svg_soup = chart_info_with_axes['svg_soup']
+    
+    chart_type = axes_array['chart_type']
+    direction = axes_array['direction']
+    
+    if chart_type == "bar_chart":
+        if direction == "vertical":
+            axis = axes_array['x'][0]
+            axis['scale_type'] = "quantize"
+            axis['value_range'] = [item['content'] for item in axis['tick']]
+            fixed_distance = axis['tick'][1]['position']['x'] - axis['tick'][0]['position']['x']
+            axis['pixel_domain'] = [axis['tick'][0]['position']['x'] - fixed_distance / 2, axis['tick'][-1]['position']['x'] + fixed_distance / 2]
+        else:
+            axis = axes_array['y'][0]
+            axis['scale_type'] = "quantize"
+            axis['value_range'] = [item['content'] for item in axis['tick']]
+            fixed_distance = axis['tick'][1]['position']['y'] - axis['tick'][0]['position']['y']
+            axis['pixel_domain'] = [axis['tick'][0]['position']['y'] - fixed_distance / 2, axis['tick'][-1]['position']['y'] + fixed_distance / 2]
+
+
+    for vo in visual_object:
+        if vo['role'] in ["data_encoded", "x_axis_text", "y_axis_text"]:
+            print("Remove UUID", vo['uuid'])
+            try:
+                svg_soup.find_all(attrs={"uuid": vo['uuid']})[0].decompose()
+                print("Success!")
+            except:
+                print("Fail to remove uuid")
+
+    coord_sys_list = classify_groups_by_chart_info(
         visual_object,
         control_point,
         axes_array,
         remove_soup
     )
+
+    with open('tmp/coord_sys.json', 'w', encoding='utf-8') as f:
+        json.dump(coord_sys_list, f, indent = 2)
+
     print("CoordSys_list", len(coord_sys_list))
     text_vid_list = [item['id'] for item in visual_object if item['type'] == "text"]
     print("text num", len(text_vid_list))
@@ -622,13 +584,13 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
                 for tick in axis['tick'] if isinstance(tick['visual_object'], int)])
     non_tick_text_vid_list = set(text_vid_list) - set(tick_text_vid_list)
     useful_ids = 0
-    
+
     selected_coord_sys_list = []
     for i, coord_sys in enumerate(coord_sys_list):
-        if coord_sys['coordinate_type'] not in ["stack_x", "stack_y", "share_width"]:
-            continue
+        # if coord_sys['coordinate_type'] not in ["stack_x", "stack_y", "share_width"]:
+        #     continue
         groups = get_coordinate_group(coord_sys)
-        get_area(coord_sys, axes_array, width, height)
+        get_area_from_axis(coord_sys)
         # print(groups)
         constraints = []
         # Useful !!!
@@ -640,6 +602,7 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
         print("Right", [item['right'] for item in coord_sys['visual_object']])
         if len(coord_sys['control_point']) < 10:
             continue
+   
         useful_ids += 1
         print("Visual object number:", len(coord_sys['visual_object']))
         coord_sys['id'] = useful_ids
@@ -651,11 +614,11 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
                 for current_group in coord_sys['crowd_groups']:
                     for i in current_group['pid']:
                         point = coord_sys["control_point"][i]
-                        point['collide'] = True            
-                        if coord_sys['x_axis'] == None:
+                        point['collide'] = True
+                        if coord_sys['x_axis'] is None:
                             point['should_x'] = current_group['center']['x']
                             point['small_force_x'] = True
-                        if coord_sys['y_axis'] == None:
+                        if coord_sys['y_axis'] is None:
                             point['should_y'] = current_group['center']['y']
                             point['small_force_y'] = True
 
@@ -679,7 +642,7 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
                         coord_sys["visual_object"],
                         coord_sys["second_axis"]))
 
-            elif coord_sys['main_axis'] != None:
+            elif coord_sys['main_axis'] is not None:
                 constraints.extend(
                     perpendicular_gravity_new(
                         coord_sys["control_point"],
@@ -699,14 +662,15 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
         coord_sys['groups'] = groups
         activate_all_visual_marks(coord_sys)
         selected_coord_sys_list.append(coord_sys)
-        
-        
 
     begin_text_time = time.time()
-    
+
     for text_obj_idx in non_tick_text_vid_list:
-        text_obj = visual_object[text_obj_idx]
-        append_text_into_coordinate(text_obj, coord_sys_list)
+        try:
+            text_obj = visual_object[text_obj_idx]
+            append_text_into_coordinate(text_obj, coord_sys_list)
+        except:
+            pass
 
     end_text_time = time.time()
     print("Calculate text cost time", end_text_time - begin_text_time)
@@ -718,22 +682,20 @@ def parse_constraint_axes_vis_cons(axes_info, fromfront=False, remove_soup = Tru
             "width": width,
             "height": height
         },
-        "svg_string": svg_string,
-        'svg_soup': svg_soup
+        "svg_string": svg_string
     }
     return json_data
 
 def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
     # 根据svg_string 信息，获得轴的信息，再根据轴的信息 和 visual element 的信息来推断约束
-    axes_info = get_axes_from_selected_svg_string(svg_string, no_soup = False, axisdata=axisdata)
-    original_visual_object = axes_info['visual_object']
-
+    chart_info_with_axes = get_axes_from_selected_svg_string(svg_string, no_soup = False, axisdata=axisdata)
+    original_visual_object = chart_info_with_axes['visual_object']
     # pprint("axes_info", axes_info)
-    parse_axis_type(axes_info["axes_array"], original_visual_object)
-    with open(f"{TMP_DIR}/axes_info.json", "w") as f:
-        f.write(json_dumps_safe(axes_info))
+    parse_axis_type(chart_info_with_axes["axes_array"], original_visual_object)
+    with open(f"{TMP_DIR}/chart_info_with_axes.json", "w") as f:
+        f.write(json_dumps_safe(chart_info_with_axes))
     return parse_constraint_axes_vis_cons(
-                axes_info,
+                chart_info_with_axes,
                 fromfront = (axisdata is not None),
                 remove_soup=remove_soup
                 ), original_visual_object
@@ -825,8 +787,6 @@ def find_same_color_vo(other_coords, color_set):
 
     return vo_candidate_dict
 
-
-
 def find_same_color_text(other_text, color_set):
     color_str_list = list(color_set)
     print(color_str_list)
@@ -878,47 +838,6 @@ def get_all_text(original_vo):
     all_text = [item for item in original_vo if item['type'] == 'text']
     return all_text
 
-def rect_distance(rect1, rect2):
-    x1 = rect1['x']
-    y1 = rect1['y']
-    x1b = rect1['x'] + rect1['width']
-    y1b = rect1['y'] + rect1['height']
-
-    x2 = rect2['x']
-    y2 = rect2['y']
-    x2b = rect2['x'] + rect2['width']
-    y2b = rect2['y'] + rect2['height']
-
-    def dist(point1, point2):
-        x1 = point1[0]
-        x2 = point1[1]
-        y1 = point2[0]
-        y2 = point2[1]
-        return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
-        
-    left = x2b < x1
-    right = x1b < x2
-    bottom = y2b < y1
-    top = y1b < y2
-    if top and left:
-        return dist((x1, y1b), (x2b, y2))
-    elif left and bottom:
-        return dist((x1, y1), (x2b, y2b))
-    elif bottom and right:
-        return dist((x1b, y1), (x2, y2b))
-    elif right and top:
-        return dist((x1b, y1b), (x2, y2))
-    elif left:
-        return x1 - x2b
-    elif right:
-        return x2 - x1b
-    elif bottom:
-        return y1 - y2b
-    elif top:
-        return y2 - y1b
-    else:             # rectangles intersect
-        return 0
-
 def get_axis_closest(current_axis, text_rect_list):
 
     min_dis = 100000
@@ -929,7 +848,6 @@ def get_axis_closest(current_axis, text_rect_list):
         if dis < min_dis and dis < 100:
             close_text = text 
             min_dis = dis 
-
 
     return close_text
 
@@ -981,11 +899,6 @@ def classify_text(other_text, axis_x, axis_y):
         top_text_str = top_text['text']['content']
     return x_name, y_name, top_text_str
 
-def parsed_legend():
-
-
-
-    return
 
 def reverse_engineering_from_constraints(json_data, original_vo):
     """
@@ -1329,11 +1242,6 @@ def reverse_engineering_from_constraints(json_data, original_vo):
 
     return format_data
 
-def get_color_mapping():
-
-
-    return
-
 def update_data_list(format_data):
     """
     Update the data information according to the axis information
@@ -1471,7 +1379,7 @@ def get_constraints_with_data(svg_string):
     Get constraints with data from an svg string
     """
     json_data, original_vo = deducing_chart_separate(svg_string, remove_soup = False)
-    
+
     try:
         data_information = reverse_engineering_from_constraints(json_data,  original_vo)
         json_data['parsed_data'] = data_information
@@ -1481,9 +1389,6 @@ def get_constraints_with_data(svg_string):
         print("Error in reverse_engineering_from_constraints")
         json_data = convert_to_serializable(json_data)
         return json_data
-
-
-
 
 if __name__ == "__main__":
     # with open("tmp/revenue.svg", encoding='utf8') as f:
@@ -1513,7 +1418,7 @@ if __name__ == "__main__":
     # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
     # file_name = "download"
-    # file_name = "20210811_stack"
+    file_name = "20210811_stack"
 
     with open(f'test_example/{file_name}.svg') as f:
         string = f.read()

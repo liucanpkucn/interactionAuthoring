@@ -4,3 +4,5 @@ node_modules/*
 output_data/*
 /output_data/*
 output_data/cleaned_metadata/*
+intermediate_data/*
+/intermediate_data

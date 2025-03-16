@@ -41,11 +41,13 @@ def parse_unknown_svg_visual_elements(svg_string):
         raise FileNotFoundError(f"找不到 JSON 解析结果文件: {JSON_OUTPUT_PATH}")
 
     with open(JSON_OUTPUT_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
+        chart_info = json.load(f)
+        
+    new_svg_string = chart_info['svg_string']
 
     #调用classify_element.py中的函数
     # 提取 SimVec 数据并调用 classify_simvec
-    simvec_data = data.get("sim_vector", "")
+    simvec_data = chart_info.get("sim_vector", "")
     if not simvec_data:
         raise ValueError("未找到有效的 SimVec 数据")
 
@@ -62,19 +64,17 @@ def parse_unknown_svg_visual_elements(svg_string):
                 vid_to_role.update({vid: category for vid in vids})
 
     # 更新rects中的每个元素，添加role字段
-    for rect in data.get("rects", []):
+    for rect in chart_info.get("rects", []):
         vid = rect.get("vid")
         rect["role"] = vid_to_role.get(vid, "other")
 
-    rects_attr = data.get("rects", [])
-    width = data.get("width", 1000)
-    height = data.get("height", 1000)
+    rects_attr = chart_info.get("rects", [])
+    width = chart_info.get("width", 1000)
+    height = chart_info.get("height", 1000)
 
-    soup = bs4.BeautifulSoup(svg_string, "html5lib")
+    soup = bs4.BeautifulSoup(new_svg_string, "html5lib")
     svg = soup.select_one("svg")
 
     pprint(rects_attr)
-    
-
     return rects_attr, width, height, svg
 

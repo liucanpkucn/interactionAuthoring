@@ -6,6 +6,8 @@ const { console } = require("inspector");
 const inputFileName = "js_temp_svg";  
 const inputFilePath = `parse_tmp/${inputFileName}.svg`;
 const outputDirectory = "parse_tmp";
+const outputFileName = "js_edited_svg";
+const outputFilePath = `parse_tmp/${outputFileName}.svg`;
 // 确保输出目录存在 
 if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
@@ -28,13 +30,6 @@ if (!fs.existsSync(outputDirectory)) {
     let svg_height = svg.getBoundingClientRect().height;
     svg_width = Math.max(svg_width, svg_height);
     svg_height = Math.max(svg_width, svg_height);
-
-
-
-
-
-
-
 
     //utils fuctions
     function rgbStringToRGB(rgbString) {
@@ -103,6 +98,17 @@ if (!fs.existsSync(outputDirectory)) {
 
       return arcsMatch && circleFormed;
     }
+
+
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+
 
     function parsePath(d, transform_matrix) {
       const commands = d.match(/[a-z][^a-z]*/gi);
@@ -223,142 +229,7 @@ if (!fs.existsSync(outputDirectory)) {
     
       return absolute_points;
     }
-
-
-    // //解析path
-    // function parsePath(d, transform_matrix) {
-    //   const commands = d.match(/[a-z][^a-z]*/gi);
-    //   if (!commands) {
-    //     // console.warn('No commands found in path:', d);
-    //     return [];
-    //   }
-
-    //   let x = 0,
-    //     y = 0;
-    //   let startX = 0,
-    //     startY = 0; // To handle 'Z' command
-    //   const points = [];
-
-    //   for (const command of commands) {
-    //     const type = command[0];
-    //     const args = command
-    //       .slice(1)
-    //       .trim()
-    //       .split(/[\s,]+/)
-    //       .map(Number);
-
-    //     switch (type) {
-    //       case "M":
-    //         x = args[0];
-    //         y = args[1];
-    //         points.push({ x, y });
-    //         startX = x;
-    //         startY = y;
-    //         break;
-    //       case "m":
-    //         x += args[0];
-    //         y += args[1];
-    //         points.push({ x, y });
-    //         startX = x;
-    //         startY = y;
-    //         break;
-    //       case "L":
-    //         x = args[0];
-    //         y = args[1];
-    //         points.push({ x, y });
-    //         break;
-    //       case "l":
-    //         x += args[0];
-    //         y += args[1];
-    //         points.push({ x, y });
-    //         break;
-    //       case "H":
-    //         x = args[0];
-    //         points.push({ x, y });
-    //         break;
-    //       case "h":
-    //         x += args[0];
-    //         points.push({ x, y });
-    //         break;
-    //       case "V":
-    //         y = args[0];
-    //         points.push({ x, y });
-    //         break;
-    //       case "v":
-    //         y += args[0];
-    //         points.push({ x, y });
-    //         break;
-    //       case "C":
-    //         x = args[4];
-    //         y = args[5];
-    //         points.push({ x, y });
-    //         break;
-    //       case "c":
-    //         x += args[4];
-    //         y += args[5];
-    //         points.push({ x, y });
-    //         break;
-    //       case "S":
-    //         x = args[2];
-    //         y = args[3];
-    //         points.push({ x, y });
-    //         break;
-    //       case "s":
-    //         x += args[2];
-    //         y += args[3];
-    //         points.push({ x, y });
-    //         break;
-    //       case "Q":
-    //         x = args[2];
-    //         y = args[3];
-    //         points.push({ x, y });
-    //         break;
-    //       case "q":
-    //         x += args[2];
-    //         y += args[3];
-    //         points.push({ x, y });
-    //         break;
-    //       case "T":
-    //         x = args[0];
-    //         y = args[1];
-    //         points.push({ x, y });
-    //         break;
-    //       case "t":
-    //         x += args[0];
-    //         y += args[1];
-    //         points.push({ x, y });
-    //         break;
-    //       case "A":
-    //         x = args[5];
-    //         y = args[6];
-    //         points.push({ x, y });
-    //         break;
-    //       case "a":
-    //         x += args[5];
-    //         y += args[6];
-    //         points.push({ x, y });
-    //         break;
-    //       case "Z":
-    //       case "z":
-    //         x = startX;
-    //         y = startY;
-    //         points.push({ x, y });
-    //         break;
-    //       default:
-    //         console.warn("Unknown command:", type);
-    //     }
-    //   }
-    //   let absolute_points = points.map(point => {
-    //     const { x, y } = point;
-    //     const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
-    //     const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
-    //     return { x: newX, y: newY };
-    //   });
-
-    //   return absolute_points;
-    // }
-
-    //主要修改入口
+    
     let vidCounter = 0;  // 新增一个计数器
 
     function get_all_rects(current_svg) {
@@ -367,6 +238,8 @@ if (!fs.existsSync(outputDirectory)) {
       let rects = current_svg.getElementsByTagName("rect");
       rects = [...rects].map((element) => {
           const vid = vidCounter++;  // 修改为纯数字形式
+          const uuid = generateUUID()
+          element.setAttribute('uuid', uuid);
           element.focus();
           const computed_style = window.getComputedStyle(element);
 
@@ -410,6 +283,7 @@ if (!fs.existsSync(outputDirectory)) {
           return {
               type: "rect",
               vid: vid,   // 新增vid字段
+              uuid: uuid,
               origin: origin,
               original_soup: original_soup,
               width: width,
@@ -420,7 +294,7 @@ if (!fs.existsSync(outputDirectory)) {
               fill: fillColor,
               fill_opacity: fill_opacity,
               stroke: computed_style.stroke || "none",
-              stroke_width: computed_style.strokeWidth || "1px",
+              stroke_width: computed_style.strokeWidth || "0px",
               opacity: opacity,
               x: left,
               y: up,
@@ -438,6 +312,9 @@ if (!fs.existsSync(outputDirectory)) {
 
           const element = circles[i];
           element.focus();
+          const uuid = generateUUID()
+          element.setAttribute('uuid', uuid);
+
 
           const computed_style = window.getComputedStyle(element);
           const radius = parseFloat(element.getAttribute("r") || "0");
@@ -454,6 +331,7 @@ if (!fs.existsSync(outputDirectory)) {
           rects.push({
               type: "circle",
               vid: vid,   // 新增vid字段
+              uuid: uuid,
               origin: element.outerHTML,         // 保留原始 HTML
               original_soup: element.outerHTML,  // 保留完整 HTML
               width: bbox.width,
@@ -462,7 +340,7 @@ if (!fs.existsSync(outputDirectory)) {
               right: right,
               fill: rgbStringToRGB(computed_style.fill || "rgb(0, 0, 0)"),
               stroke: rgbStringToRGB(computed_style.stroke || "rgb(0, 0, 0)"),
-              stroke_width: computed_style.strokeWidth || "1px",
+              stroke_width: computed_style.strokeWidth || "0px",
               opacity: parseFloat(computed_style.opacity) || 1.0,
               fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
               x: cx,
@@ -479,6 +357,9 @@ if (!fs.existsSync(outputDirectory)) {
           const vid = vidCounter++;  // 修改为纯数字形式
 
           const element = texts[i];
+
+          const uuid = generateUUID()
+          element.setAttribute('uuid', uuid);
           // console.log(element);
           // 忽略不可见元素
           if (window.getComputedStyle(element).display === "none" || window.getComputedStyle(element).opacity === '0') {
@@ -504,7 +385,7 @@ if (!fs.existsSync(outputDirectory)) {
           rects.push({
               type: "text",
               vid: vid,   // 新增vid字段
-
+              uuid: uuid,
               //这里origin也使用的是原始svg,没有处理
               origin: element.outerHTML,            // 原始 HTML/SVG 标签
               original_soup: element.outerHTML,     // 完整原始代码块
@@ -534,6 +415,9 @@ if (!fs.existsSync(outputDirectory)) {
         const element = paths[i];
         element.focus();
         computed_style = window.getComputedStyle(element);
+        const uuid = generateUUID()
+        element.setAttribute('uuid', uuid);
+
 
         if (computed_style.fill === "none" && computed_style.stroke === "none") {
           continue;
@@ -560,6 +444,7 @@ if (!fs.existsSync(outputDirectory)) {
           rects.push({
               type: "circle",
               vid: vid,   // 新增vid字段
+              uuid: uuid,
               origin: element.outerHTML,
               original_soup: element.outerHTML,
               width: element.getBoundingClientRect().width,
@@ -568,14 +453,15 @@ if (!fs.existsSync(outputDirectory)) {
               right: element.getBoundingClientRect().x + element.getBoundingClientRect().width,
               fill: rgbStringToRGB(computed_style.fill),
               stroke: rgbStringToRGB(computed_style.stroke),
-              stroke_width: computed_style.strokeWidth || "1px",
+              stroke_width: computed_style.strokeWidth || "0px",
               opacity: parseFloat(computed_style.opacity) || 1.0,
               fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
               x: element.getBoundingClientRect().x,
               y: element.getBoundingClientRect().y,
               up: element.getBoundingClientRect().y,
               down: element.getBoundingClientRect().y + element.getBoundingClientRect().height,
-              r: element.getBoundingClientRect().width / 2
+              r: element.getBoundingClientRect().width / 2,
+              uuid: generateUUID(),
           });
           continue;
         } 
@@ -596,6 +482,7 @@ if (!fs.existsSync(outputDirectory)) {
           rects.push({
             type: "polygon",
             vid: vid,   // 新增vid字段
+            uuid: uuid,
             origin: element.outerHTML,
             original_soup: element.outerHTML,
             fill: rgbStringToRGB(computed_style.fill) || "",
@@ -621,6 +508,7 @@ if (!fs.existsSync(outputDirectory)) {
             rects.push({
                 type: "rect",
                 vid: vid,   // 新增vid字段
+                uuid: uuid,
                 origin: element.outerHTML,
                 original_soup: element.outerHTML,
                 width: element.getBoundingClientRect().width,
@@ -629,7 +517,7 @@ if (!fs.existsSync(outputDirectory)) {
                 right: element.getBoundingClientRect().x + element.getBoundingClientRect().width,
                 fill: rgbStringToRGB(computed_style.fill),
                 stroke: rgbStringToRGB(computed_style.stroke),
-                stroke_width: computed_style.strokeWidth || "1px",
+                stroke_width: computed_style.strokeWidth || '0px',
                 opacity: parseFloat(computed_style.opacity) || 1.0,
                 fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
                 x: element.getBoundingClientRect().x,
@@ -644,6 +532,7 @@ if (!fs.existsSync(outputDirectory)) {
         rects.push({
             type: "line",
             vid: vid,   // 新增vid字段
+            uuid: uuid,
             origin: element.outerHTML,
             original_soup: element.outerHTML,
             fill: "",
@@ -668,33 +557,6 @@ if (!fs.existsSync(outputDirectory)) {
 
     const rects = get_all_rects(svg);
 
-
-
-
-
-
-
-
-
-
-
-    //加uniform的, 已经删除
-    // rects.forEach((rect) => {
-      // rect.uniform_x = parseInt((rect.x * granularity) / svg_width);
-      // rect.uniform_y = parseInt((rect.y * granularity) / svg_height);
-      // rect.uniform_width = parseInt((rect.width * granularity) / svg_width);
-      // rect.uniform_height = parseInt((rect.height * granularity) / svg_height);
-      // rect.fill_hex = rgbStringToHex(rect.fill)
-      // rect.stroke_hex = rgbStringToHex(rect.stroke)
-      // if (rect.hasOwnProperty("points")) {
-      //   rect.uniform_points = rect.points.map((point) => {
-      //     return {
-      //       x: Math.round((point.x * granularity) / svg_width),
-      //       y: Math.round((point.y * granularity) / svg_height),
-      //     };
-      //   })
-      // }
-    // });
 
     //过滤掉无效的rects
     let filtered_rects = rects.filter(
@@ -785,7 +647,7 @@ if (!fs.existsSync(outputDirectory)) {
     });
 
     //最后返回的数据格式
-    svg_data = {
+    let svg_data = {
       x: svg.getBoundingClientRect().x,
       y: svg.getBoundingClientRect().y,
       width: svg.getBoundingClientRect().width,
@@ -793,6 +655,7 @@ if (!fs.existsSync(outputDirectory)) {
       element_len: filtered_rects.length,
       sim_vector: filtered_rects.map((rect) => rect.sim_description).join('|'),
       rects: filtered_rects,
+      svg_string: svg.outerHTML,
     };
 
     return svg_data;
@@ -807,6 +670,8 @@ if (!fs.existsSync(outputDirectory)) {
     `${outputDirectory}/svg_parse.json`,
     JSON.stringify(data, null, 2)
   );
+
+
   // 处理 sim_vector 并保存为 TXT 文件
   // const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
   // fs.writeFileSync(

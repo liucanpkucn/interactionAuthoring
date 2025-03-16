@@ -63,7 +63,10 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "stroke_width": obj['stroke_width'],
                 "control_point": [],
                 "center": obj['center'],
-                "append_info": obj['append_info']
+                "append_info": obj['append_info'],
+                "role": obj['role'] if 'role' in obj else None,
+                "uuid": obj['uuid']
+                
             }
 
             current_obj['left'] = min([item[0] for item in obj['polygon']])
@@ -94,7 +97,6 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
             obj_id += 1
 
         elif obj['type'] == "line":
-
             if obj['opacity'] == 0:
                 continue
             vo_type = "line"
@@ -106,7 +108,9 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "stroke": obj['stroke'], 
                 'original_soup': obj["original_soup"],
                 "stroke_width": obj['stroke_width'],
-                "control_point": []
+                "control_point": [],
+                "role": obj['role'] if 'role' in obj else None,
+                "uuid": obj['uuid']
             }
 
             current_obj['left'] = min([item[0] for item in obj['polygon']])
@@ -188,7 +192,10 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "up": obj["up"],
                 "down": obj['down'],
                 "left": obj['left'],
-                "right": obj['right']
+                "right": obj['right'],
+                "role": obj['role'] if 'role' in obj else None,
+                "uuid": obj['uuid']
+                
             }
 
             if current_obj['right'] < 0 or current_obj['left'] > width or current_obj['up'] > height or current_obj['down'] < 0:
@@ -240,7 +247,10 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "up": obj["up"],
                 "down": obj['down'],
                 "left": obj['left'],
-                "right": obj['right']
+                "right": obj['right'],
+                "role": obj['role'] if 'role' in obj else None,
+                "uuid": obj['uuid']
+                
             }
 
             if current_obj['right'] - current_obj['left'] < 1 and current_obj['down'] - current_obj['up'] < 1:
@@ -309,7 +319,9 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "up": obj["up"],
                 "down": obj['down'],
                 "left": obj['left'],
-                "right": obj['right']
+                "right": obj['right'],
+                "role": obj['role'] if 'role' in obj else None,
+                "uuid": obj['uuid']
             }
 
             if current_obj['right'] < 0 or current_obj['left'] > width or current_obj['up'] > height or current_obj['down'] < 0:
@@ -343,12 +355,12 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
         non_soup_visual_object.append(new_obj)
             # obj['original_soup'] = str(obj['original_soup'])
 
-    for obj in visual_object:
-        obj["uuid"] = str(uuid5(UUID(int=0), f'{obj["type"]}-{obj["id"]}'))
-        try:
-            obj["original_soup"]['uuid'] = obj["uuid"]
-        except:
-            pass
+    # for obj in visual_object:
+    #     obj["uuid"] = str(uuid5(UUID(int=0), f'{obj["type"]}-{obj["id"]}'))
+    #     try:
+    #         obj["original_soup"]['uuid'] = obj["uuid"]
+    #     except:
+    #         pass
 
     # pprint(visual_object)
     return control_point, visual_object, non_soup_visual_object
