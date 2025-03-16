@@ -471,9 +471,9 @@ def get_axis(visual_objects, control_points, axes_candidate, main_axis_list = []
     print("y_range", y_range)
 
     for item in axes_candidate['x']:
-        print("x axis range,", item['range'])
+        print("x axis range: ", item['range'])
     for item in axes_candidate['y']:
-        print('y axis range.', item['range'])
+        print('y axis range: ', item['range'])
 
     # for x_candicate in axes_candidate['x']:
     #     print("candidate_range", x_candicate['range'])

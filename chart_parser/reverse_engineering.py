@@ -1094,7 +1094,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
         important_x_axis = current_axis
         x_axis_content = [item['content'] for item in current_axis['tick'] if 'content' in item]
 
-        print("X axis:", x_axis_content)
+        print("X axis:", current_axis['range'], current_axis['tick']['position']['y'], x_axis_content)
         for value in important_value:
             # print(value, direction)
             value["parsed_" + direction] = get_axis_value(
@@ -1108,7 +1108,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
         current_axis = json_data['axis']['y'][important_coord['y_axis']]
         important_y_axis = current_axis 
         y_axis_content = [item['content'] for item in current_axis['tick'] if 'content' in item]
-        print("Y axis:", y_axis_content)
+        print("Y axis:", current_axis['range'], current_axis['tick']['position']['x'], y_axis_content)
         
 
         for value in important_value:

@@ -53,7 +53,7 @@ def is_year(s):
     if len(s.strip()) == 4 and is_numeric(s):
         if int(s) > 1900 and int(s) < 2100:
             return True
-        return True
+        return False
     return False
 
 def is_time(s):
@@ -272,6 +272,7 @@ def parse_temp_list(temp_list):
             temp = f"{temp} {year_list[i]}"
 
         print(temp)
+        
         current_date = parse(temp, default=datetime.datetime(2022, 1, 1))
         date_list.append(current_date) 
         final_date_list.append(temp)
@@ -361,8 +362,6 @@ def parse_scale(tick_obj_text):
         date_list, new_time_text = parse_temp_list(time_text)
 
         print("new_time_text", new_time_text)
-        default_date = datetime.datetime(2022, 1, 1)
-
         tick_time_idx = [i for i, item in enumerate(tick_is_time) if item]
 
         min_time_tick = tick_obj_text[min(tick_time_idx)]
