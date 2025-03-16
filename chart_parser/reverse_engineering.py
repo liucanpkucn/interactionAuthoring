@@ -4,6 +4,16 @@ import json
 from datetime import datetime
 import time
 import re
+import os
+
+TMP_DIR = "tmp"
+if not os.path.exists(TMP_DIR):
+    os.mkdir(TMP_DIR)
+    
+DEBUG_DIR = "DUBUG"
+if not os.path.exists(DEBUG_DIR):
+    os.mkdir(DEBUG_DIR)
+
 
 
 from extract_svg import parse_unknown_svg_visual_elements
@@ -184,7 +194,7 @@ def recalcualte_control_point_and_visual_objects(
     # console.log(control_point)
     
 
-    with open('tmp/control.json', 'w') as f:
+    with open(f'{TMP_DIR}/control.json', 'w') as f:
         json.dump(control_point, f, indent = 2)
 
     new_control_point = [deepcopy(point) for point in control_point\
@@ -448,7 +458,8 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     
     # print(return_obj)
     
-    with open("tmp/visual_obj.txt", 'w') as f:
+    
+    with open(f"{TMP_DIR}/visual_obj.txt", 'w') as f:
         f.write(str(visual_objs))
     
     width = int(float(width))
@@ -472,7 +483,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     else:
         # pprint("visual_object:", visual_object)
         axes_array = get_ticks_robust(svg_string, visual_object)
-        with open('tmp/axis.json', 'w') as f:
+        with open(f'{TMP_DIR}/axis.json', 'w') as f:
             json.dump(axes_array, f, indent = 2)
         
         # axes_array = get_ticks_robust(control_point, visual_object)
@@ -704,7 +715,7 @@ def deducing_chart_separate(svg_string, axisdata=None, remove_soup = True):
 
     # pprint("axes_info", axes_info)
     parse_axis_type(axes_info["axes_array"], original_visual_object)
-    with open("tmp/axes_info.json", "w") as f:
+    with open(f"{TMP_DIR}/axes_info.json", "w") as f:
         f.write(json_dumps_safe(axes_info))
     return parse_constraint_axes_vis_cons(
                 axes_info,
