@@ -147,7 +147,7 @@ Please strictly follow the JSON format below for output:
         }
       ],
       "is_base": false,
-      "base_direction": "right"
+      "base_direction": none
     }
 }
 
@@ -163,8 +163,10 @@ Please strictly follow the JSON format below for output:
    - If the **chart is vertical** (e.g., **Bar Chart**), the X-axis is the base ("main": true), and the Y-axis is the numerical axis ("main": false).
    - If the **chart is horizontal** (e.g., **Horizontal Bar Chart**), the Y-axis is the base ("main": true), and the X-axis is the numerical axis ("main": false).
 3. **"attr_type"**:
+   - "Time": The axis represents time-based data. This includes calendar dates (e.g., 2020, 2021, 2022), months (e.g., Jan, Feb, Mar), or other chronological indicators that follow a sequential order. Use "Time" for data points that inherently represent time progression, even if they appear as discrete labels.
    - "Quantitative": The axis represents **quantitative (numerical) data**.(e.g., population, sales, height, temperature, or any other real-valued numerical measurement)
-   - "Categorical": The axis represents **categorical (discrete) data**. Years (e.g., 2020, 2021, 2022, etc.) should always be treated as categorical variables, as they represent distinct labels rather than a continuous numerical scale.
+   - "Categorical": The axis represents **non-time-based categorical (discrete) data**. 
+  
 4. **"fixed_distance"**: This field should always be "wait", indicating that the spacing between ticks will be calculated later.
 5. **"range"**:
    - "begin": "wait"
@@ -182,7 +184,7 @@ false → The axis where values extend (e.g., vertical bar chart → Y-axis is f
   "down" → Elements extend downward.
   "right" → Elements extend rightward.
   "left" → Elements extend leftward.
-
+  none → Use the null value none (not the string "none") when the axis is not the base axis (i.e., "is_base": false).
 '''
 
     response = client.chat.completions.create(
