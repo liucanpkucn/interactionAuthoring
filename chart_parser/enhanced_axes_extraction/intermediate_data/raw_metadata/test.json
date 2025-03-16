@@ -2,7 +2,7 @@
   "x": {
     "type": "x",
     "main": true,
-    "attr_type": "Categorical",
+    "attr_type": "Time",
     "fixed_distance": "wait",
     "range": {
       "begin": "wait",
@@ -86,7 +86,7 @@
   "y": {
     "type": "y",
     "main": false,
-    "attr_type": "Categorical",
+    "attr_type": "Quantitative",
     "fixed_distance": "wait",
     "range": {
       "begin": "wait",
@@ -214,6 +214,6 @@
       }
     ],
     "is_base": false,
-    "base_direction": "right"
+    "base_direction": null
   }
 }

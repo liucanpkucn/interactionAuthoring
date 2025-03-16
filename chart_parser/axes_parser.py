@@ -123,7 +123,14 @@ def parse_single_axis(axis, visual_objects, control_points):
     Add uuid to the visual marks
     Parse a axis to get its type.
     """
+    
+    print("Parse axis", axis['type'], axis['attr_type'])
+    
+    attr_type = axis['attr_type']
     # pprint('visual_objects', visual_objects)
+    for item in axis['tick']:
+        item['text_point'] = item['position']
+    
     for item in axis['tick']:
         if isinstance(item['visual_object'], dict):
             item['visual_object'] = item['visual_object']['id']
@@ -134,9 +141,15 @@ def parse_single_axis(axis, visual_objects, control_points):
             current_vo = visual_objects[item['visual_object']]
             item['origin'] = current_vo['origin']
             item['visual_object_uuid'] = current_vo['uuid']
+            print("current_vo", current_vo)
+            
             text_point = control_points[current_vo['control_point'][4]]
             item['text_point'] = {"x": text_point['ox'], "y": text_point['oy']}
+            print("position and text_point", item['position'], item['text_point'])
+            # item['text_point'] = item['positsion']
             new_text = bs4.BeautifulSoup(item['origin'], "html5lib").select('text')[0]
+            if 'transform' in new_text.attrs:
+                new_text['transform'] = 'translate(0,0)'
             new_text['x'] = item['text_point']['x'] - item['position']['x']
             new_text['y'] = item['text_point']['y'] - item['position']['y']
             item['origin'] = str(new_text)
@@ -165,10 +178,20 @@ def parse_single_axis(axis, visual_objects, control_points):
 
     if len(tick_obj_text) > 0:
         value_range, pixel_domain, scale_type, current_prefix, current_suffix =\
-            parse_scale(tick_obj_text)
+            parse_scale(tick_obj_text)            
     else:
         value_range, pixel_domain, scale_type, current_prefix, current_suffix =\
             parse_scale_non_text(axis['tick'], axis['type'])
+    
+    print("old scale_type", scale_type, value_range, pixel_domain)
+    scale_type = 'quantize'
+    if attr_type == "Time":
+        scale_type = 'time'
+    elif attr_type == "Quantitative":
+        scale_type = 'linear'
+
+    print("New scale_type", scale_type, value_range, pixel_domain)
+    
     if scale_type == 'linear':
         axis['tick'] = [item for item in axis['tick'] if item['visual_object'] != None and len(visual_objects[item['visual_object']]['content']) < 15]
 
@@ -319,6 +342,8 @@ def get_number(text):
 
 
 def parse_scale(tick_obj_text):
+    
+    print("parse scale")
 
     tick_is_numeric = [is_numeric(item['text']) for item in tick_obj_text]
     tick_is_year = [is_year(item['text']) for item in tick_obj_text]

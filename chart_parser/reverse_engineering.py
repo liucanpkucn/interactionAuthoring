@@ -459,7 +459,7 @@ def get_axes_from_selected_svg_string(svg_string, no_soup = True, axisdata=None)
     # print(return_obj)
     
     
-    with open(f"{TMP_DIR}/visual_objects.json", 'w') as f:
+    with open(f"{TMP_DIR}/visual_objects_before_parse.json", 'w') as f:
         json.dump(visual_objs, f, indent = 2)
     
     width = int(float(width))
@@ -1508,6 +1508,8 @@ if __name__ == "__main__":
             json.dump(constraints_with_data, f, indent = 2)
         with open('tmp/tmp.svg', 'w', encoding= 'utf8') as f:
             f.write(constraints_with_data['svg_string'])
+        with open('tmp/latest_result.json', "w", encoding='utf8') as f:
+            json.dump(constraints_with_data, f, indent = 2)
         with open('./test_webpage/chosen_json/latest_result.json', "w", encoding='utf8') as f:
             json.dump(constraints_with_data, f, indent = 2)
         # with open('../web_page/chosen_json/latest_result.json', "w", encoding='utf8') as f:
