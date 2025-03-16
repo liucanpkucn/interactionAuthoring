@@ -2,6 +2,8 @@ import base64
 import json
 import os
 from openai import OpenAI
+import time  
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 API_KEY_PATH = os.path.join(BASE_DIR, "api_key.txt")
 
@@ -23,7 +25,7 @@ def clean_openai_json(response_text):
         print(f"Error decoding OpenAI JSON response: {e}")
         return None
 
-def classify_simvec(simvec,path_to_image):
+def classify_simvec(simvec,path_to_image,max_retries=3):
     with open(API_KEY_PATH, "r") as f:
         api_key = f.read().strip()
         
@@ -57,24 +59,37 @@ def classify_simvec(simvec,path_to_image):
     '''
     
     client = OpenAI(api_key=api_key)
-    print("processing simvec with API key...")
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": text_input},
-                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{base64_image}"}},
+    for attempt in range(max_retries):  # 添加重试机制
+        try:
+            print(f"Attempt {attempt + 1} processing SimVec with API key...")
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": text_input},
+                            {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{base64_image}"}},
+                        ],
+                    }
                 ],
-            }
-        ],
-    )
+            )
 
-    metadata_json_str = response.choices[0].message.content
-    metadata_dict = clean_openai_json(metadata_json_str)
+            metadata_json_str = response.choices[0].message.content
+            metadata_dict = clean_openai_json(metadata_json_str)
 
-    return metadata_dict if metadata_dict else "Failed to classify SimVec elements"
+            if isinstance(metadata_dict, list):  # 成功解析成JSON，返回结果
+                return metadata_dict
+            
+            print(metadata_dict)
+            print("Incomplete JSON detected. Retrying...")
+            time.sleep(2)  # 等待2秒后再重试
+
+        except Exception as e:
+            print(f"Error encountered during attempt {attempt + 1}: {e}")
+            time.sleep(2)  # 等待2秒后再重试
+    print("Failed to process SimVec data after multiple attempts.")
+    return False
 
 if __name__ == "__main__":
     
