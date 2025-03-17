@@ -11,13 +11,6 @@ def get_control_point(
     return control_point, visual_object, non_soup_visual_object
 '''
 
-
-# import copy
-from uuid import uuid5, UUID
-from utils import pprint
-
-
-
 def obj_in_selected_area(current_obj, selected_area):
 
     if selected_area == "":
@@ -46,10 +39,7 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 continue
             if obj['fill'] == "none":
                 continue
-            # print(obj)
-            # print("节点数目：", len(obj['polygon']))
-            # print([i[0] for i in obj['polygon']])
-            # print(obj['polygon'])
+
 
             vo_type = "area"
             current_obj = {
