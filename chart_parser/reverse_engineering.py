@@ -27,7 +27,7 @@ from cal_constraints import (
     add_quantity_constraints)
 from svganalysis import get_ticks
 from calculate_axis import get_ticks_robust
-from deal_with_object import classify_groups_by_size, classify_groups_by_chart_info
+from deal_with_object import classify_groups_by_chart_info
 from axes_parser import parse_axes, parse_temp_list, is_time_list, is_single_time
 from shapely.geometry import Point, Polygon
 
@@ -279,33 +279,6 @@ def get_file_name(inputfile):
     output_chart = f"web_page/json/{file_root}_chart.json"
     output_constraint = f"web_page/json/{file_root}_constraint.json"
     return recent_output_chart, output_chart, output_constraint
-
-def remove_axis_original_soup(axis, visual_objects, fromfront=False):
-    """
-    Remove the original soup from the file
-    """
-    # print('remove axis', axis)
-    if axis['use_num'] == 0:
-        return
-    for tick in axis['tick']:
-        vid = tick['visual_object']
-        if isinstance(vid, int):
-            vo = visual_objects[vid]
-            delete_vo_soup(vo)
-    if fromfront:
-        for vo in visual_objects:
-            if ('original_soup' in vo) and (vo["type"] == "text"):
-                left, right = axis["pixel_domain"]
-                xposmid = (vo["left"]+vo["right"])/2
-                yposmid = (vo["up"]+vo["down"])/2
-                if axis["type"] == "x":
-                    oleft, oright = axis["area"]["y"], axis["area"]["y"] + axis["area"]["height"]
-                    if (left < xposmid < right) and (oleft < yposmid < oright):
-                        delete_vo_soup(vo)
-                else:
-                    oleft, oright = axis["area"]["x"], axis["area"]["x"] + axis["area"]["width"]
-                    if (left < xposmid < right) and (oleft < yposmid < oright):
-                        delete_vo_soup(vo)
 
 def append_text_into_coordinate(
     text_obj,
@@ -578,7 +551,6 @@ def parse_constraint_axes_vis_cons(chart_info_with_axes, fromfront=False, remove
 
     tick_text_vid_list = []
     for axis in axes_array['y'] + axes_array['x']:
-        remove_axis_original_soup(axis, visual_object, fromfront=fromfront)
         if axis['use_num'] > 0:
             tick_text_vid_list.extend([tick['visual_object']\
                 for tick in axis['tick'] if isinstance(tick['visual_object'], int)])
@@ -915,7 +887,7 @@ def reverse_engineering_from_constraints(json_data, original_vo):
         value_list = []
         if "main_axis" in current_obj and current_obj['main_axis'] is not None:
             main_axis = current_obj['main_axis']['type']
-            print("main axis", main_axis)
+            # print("main axis", main_axis)
             if main_axis == "x":
                 other_axis = "y"
             else:
@@ -997,9 +969,9 @@ def reverse_engineering_from_constraints(json_data, original_vo):
 
         value_list_array.append(value_list)
     
-    print("Value length", len(value_list_array))
+    # print("Value length", len(value_list_array))
     
-    print('first value list', value_list_array[0])
+    # print('first value list', value_list_array[0])
 
     length_value = [len(item) for item in value_list_array]
 
@@ -1418,7 +1390,14 @@ if __name__ == "__main__":
     # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
     # file_name = "download"
+
+    file_name = "20210822_group_bar"
+    
+    
     file_name = "20210811_stack"
+    
+    file_name = "war_short"
+    
 
     with open(f'test_example/{file_name}.svg') as f:
         string = f.read()

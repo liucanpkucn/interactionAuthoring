@@ -10,11 +10,13 @@ import svgpathtools
 import time
 # from parse_control_point import pack_point
 
-import numpy as np 
+import numpy as np
+import json
 
 from scipy.fftpack import fft
 
 from unionset import DisjointSet
+from interpolate import find_polygon_intersections
 
 import math
 
@@ -24,16 +26,12 @@ import math
 # width, height, left, right, top, bottom, color
 
 def pack_point(x, y, index, obj_id, radius = 0, fixed = False):
-
     point = {"ox": x, "oy": y, "id": index, 'obj_id': obj_id, "radius": radius }
     # if index == 3030:
     #     print("asdfasdf", point)
     if fixed:
         point['fixed'] = True
     return point
-
-
-
 
 def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate, remove_soup = True):
     """
@@ -43,73 +41,115 @@ def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate
     chart_type = axes_candidate['chart_type']
     direction = axes_candidate['direction']
     
+    print("Classify groups by chart info", chart_type, direction)
+
+    
     x_even_list, y_even_list = get_even_intervals_new(visual_objects, control_points)
     
-    print(x_even_list)
+    # print(x_even_list)
 
     x_even_set = set([item['vid'] for item in x_even_list])
     y_even_set = set([item['vid'] for item in y_even_list])
+    
+    
+    # initialize 
+    point_group = None
+    line_group = None
+    vertical_line = None
+    shared_width_group = None
+    shared_height_group = None
+    shared_stack_group_x = None
+    shared_stack_group_y = None
 
-    # cross the size 
-    shared_stack_group_x = find_shared_value_group_by_visual_element(
-                                x_even_set,
-                                visual_objects,
-                                control_points,
-                                direction = "x")
-    shared_stack_group_y = find_shared_value_group_by_visual_element(
-                                y_even_set,
-                                visual_objects,
-                                control_points,
-                                direction = "y")
+    if chart_type == "area_chart":
+        
+        vids = [item['id'] for item in visual_objects if item['role'] == 'data_encoded']
+        print("Data-encoded vid", vids)
+        
+        new_ticks = get_new_ticks(visual_objects, control_points, vids)
+        
+        coor_info = {
+            "vid": vids,
+            "tick": new_ticks,
+            "type": "stack_x"
+        }
 
-    line_group, vertical_line = find_line_group(
-                                visual_objects,
-                                control_points)
-    point_group = find_point_group(visual_objects, control_points)
-    shared_width_group, shared_height_group = get_same_size_group_list(
-                                visual_objects,
-                                similar_rate = 0.05)
+        
+        with open("tmp/coor_info.json", "w") as f:
+            json.dump(coor_info, f, indent = 2)
+        
+        shared_stack_group_x = find_shared_value_group_by_visual_element(
+                    x_even_set,
+                    visual_objects,
+                    control_points,
+                    direction = "x")
+        
+        shared_stack_group_y = find_shared_value_group_by_visual_element(
+                    y_even_set,
+                    visual_objects,
+                    control_points,
+                    direction = "y")
+# bar_chart, stack_bar_chart, group_bar_chart, line_chart, scatter_chart, area_chart,pie_chart
+    elif chart_type.endswith("bar_chart"): #bar_chart, stack_bar_chart, group_bar_chart, 
+        shared_stack_group_x = find_shared_value_group_by_visual_element(
+                    x_even_set,
+                    visual_objects,
+                    control_points,
+                    direction = "x")
+        
+        shared_width_group, shared_height_group = get_same_size_group_list(
+                    visual_objects,
+                    similar_rate = 0.05)
+
+    elif chart_type == "line_chart":
+        line_group, vertical_line = find_line_group(
+                                    visual_objects,
+                                    control_points)
+    
+    elif chart_type == "scatter_chart":
+        point_group = find_point_group(visual_objects, control_points)
+
+
+    chosen_group = calculate_group(
+                                shared_stack_group_x,
+                                shared_stack_group_y,
+                                shared_width_group,
+                                shared_height_group,
+                                point_group,
+                                line_group,
+                                vertical_line)
+
+    for item in chosen_group:
+        print(item['type'], len(item['vid']), item['vid'])
+
+    CoordSys = []
+    coordinate_id = 0
+    chosen_group.reverse()
     
     if chart_type == "area_chart":
-        point_group = None
-        line_group = None
-        vertical_line = None
-        shared_width_group = None
-        shared_height_group = None
-    
-    if chart_type == "bar_chart":
-        point_group = None
-        line_group = None
-        vertical_line = None
-        # shared_width_group = None
-        # shared_height_group = None
+        chosen_group = [coor_info]
     
 
-    chosen_group = calculate_group(
-                                shared_stack_group_x,
-                                shared_stack_group_y,
-                                shared_width_group,
-                                shared_height_group,
-                                point_group,
-                                line_group,
-                                vertical_line)
-
-    for item in chosen_group:
-        print(item['type'], len(item['vid']), item['vid'])
-
-    CoordSys = []
-    coordinate_id = 0
-    chosen_group.reverse()
+    with open("tmp/coord_sys_chosen_group.json", 'w') as f:
+        json.dump(chosen_group, f, indent = 4)
     
     for visual_area_clique in chosen_group:
         if visual_area_clique['type'] == 'stack_x':
-            new_visual_objects, new_control_points, main_axis = re_interpolate_visual_area(
+            # new_visual_objects, new_control_points, main_axis = re_interpolate_visual_area(
+            #     visual_area_clique,
+            #     visual_objects,
+            #     control_points,
+            #     direction = 'x',
+            #     remove_soup = remove_soup
+            # )
+            
+            new_visual_objects, new_control_points, main_axis = reinterpolate_visual_area_new(
                 visual_area_clique,
                 visual_objects,
                 control_points,
-                direction = 'x',
-                remove_soup = remove_soup
+                direction = 'x'
             )
+            
             x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, [main_axis])
             add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis)
             CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis, coordinate_id, coordinate_type = visual_area_clique['type']))
@@ -200,161 +240,54 @@ def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate
     # print(fake_candidate_list)
     return CoordSys
 
-
-
-
-def classify_groups_by_size(visual_objects, control_points, axes_candidate, remove_soup = True):
-    """
-    Get classified groups by size
-    """
-    x_even_list, y_even_list = get_even_intervals_new(visual_objects, control_points)
+def get_new_ticks(visual_objects, control_points, vids):
+    # 筛选出指定id的visual_objects
+    selected_visual_objects = [item for item in visual_objects if item['id'] in vids]
     
-    print("x_even", x_even_list)
-    print("y_even", y_even_list)
-
-    x_even_set = set([item['vid'] for item in x_even_list])
-    y_even_set = set([item['vid'] for item in y_even_list])
-
-    # cross the size 
-    shared_stack_group_x = find_shared_value_group_by_visual_element(
-                                x_even_set,
-                                visual_objects,
-                                control_points,
-                                direction = "x")
-    shared_stack_group_y = find_shared_value_group_by_visual_element(
-                                y_even_set,
-                                visual_objects,
-                                control_points,
-                                direction = "y")
-
-    line_group, vertical_line = find_line_group(
-                                visual_objects,
-                                control_points)
-    point_group = find_point_group(visual_objects, control_points)
-    shared_width_group, shared_height_group = get_same_size_group_list(
-                                visual_objects,
-                                similar_rate = 0.05)
-
-    chosen_group = calculate_group(
-                                shared_stack_group_x,
-                                shared_stack_group_y,
-                                shared_width_group,
-                                shared_height_group,
-                                point_group,
-                                line_group,
-                                vertical_line)
-
-    for item in chosen_group:
-        print(item['type'], len(item['vid']), item['vid'])
-
-    CoordSys = []
-    coordinate_id = 0
-    chosen_group.reverse()
+    # 用于存储所有x坐标
+    all_x_values = []
     
-    for visual_area_clique in chosen_group:
-        if visual_area_clique['type'] == 'stack_x':
-            new_visual_objects, new_control_points, main_axis = re_interpolate_visual_area(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = 'x',
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, [main_axis])
-            add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis, coordinate_id, coordinate_type = visual_area_clique['type']))
-            coordinate_id += 1
-
-        elif visual_area_clique['type'] == 'stack_y':
-            new_visual_objects, new_control_points, main_axis = re_interpolate_visual_area(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = "y",
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, [main_axis])
-            add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis, coordinate_id, coordinate_type = visual_area_clique['type']))
-            coordinate_id += 1
-
-        elif visual_area_clique['type'] == 'shared_width':
-            new_visual_objects, new_control_points, main_axis_list = get_new_vo_cp(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = "x",
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, main_axis_list)
-            for main_axis in main_axis_list:
-                add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis_list, coordinate_id, coordinate_type = visual_area_clique['type']))
-            coordinate_id += 1
-
-        elif visual_area_clique['type'] == 'shared_height':
-            new_visual_objects, new_control_points, main_axis_list = get_new_vo_cp(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = "y",
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, main_axis_list)
-            for main_axis in main_axis_list:
-                add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis_list, coordinate_id, coordinate_type = visual_area_clique['type']))
-            coordinate_id += 1
-
-        elif visual_area_clique['type'] == "line":
-            new_visual_objects, new_control_points, main_axis_list = get_new_vo_cp(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = None,
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, main_axis_list)
-            print("main_axis_list", main_axis_list)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis_list, coordinate_id, coordinate_type = visual_area_clique['type']))
-            coordinate_id += 1
-
-        elif visual_area_clique['type'] == "point":
-            new_visual_objects, new_control_points, main_axis_list = get_new_vo_cp(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = None,
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, main_axis_list)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis_list, coordinate_id, coordinate_type = visual_area_clique['type']))
-            if x_axis is None or y_axis is None:
-                crowd_groups = get_crowd_points(new_visual_objects, new_control_points)
-                CoordSys[-1]['crowd_groups'] = crowd_groups
-            coordinate_id += 1
-            
-        elif visual_area_clique['type'] == "vertical_line":
-            new_visual_objects, new_control_points, main_axis_list = get_new_vo_cp(
-                visual_area_clique,
-                visual_objects,
-                control_points,
-                direction = None,
-                remove_soup = remove_soup
-            )
-            x_axis, y_axis = get_axis(new_visual_objects, new_control_points, axes_candidate, main_axis_list)
-            CoordSys.append(get_fake_coordsys(new_visual_objects, new_control_points, x_axis, y_axis, main_axis_list, coordinate_id, coordinate_type = visual_area_clique['type']))
-            coordinate_id += 1
-            
-
-    # print(fake_candidate_list)
-    return CoordSys
+    print("Point number of each visual object:", [len(item['control_point']) for item in selected_visual_objects])
+    
+    # 从每个visual_object中获取control_points的x坐标
+    for visual_obj in selected_visual_objects:
+        # 获取这个visual_object的control_point id列表
+        cp_ids = visual_obj['control_point']
+        
+        # 根据id从control_points中找到对应的点并获取x坐标
+        for cp_id in cp_ids:
+            # 假设control_points是一个包含坐标的列表/字典
+            # 这里假设control_points[cp_id]返回一个有x和y属性的对象
+            x_value = control_points[cp_id]['ox']
+            # 保留一位小数
+            x_rounded = round(x_value, 0)
+            all_x_values.append(x_rounded)
+    
+    # 统计每个x值的出现次数
+    x_counts = {}
+    for x in all_x_values:
+        x_counts[x] = x_counts.get(x, 0) + 1
+    
+    # 打印结果
+    print("X值统计（保留一位小数）：")
+    
+    new_tick = []
+    for x_value, count in sorted(x_counts.items()):
+        if count > len(vids):
+            new_tick.append(x_value)
+        print(f"x = {x_value}: {count} 次")
+    
+    new_tick.sort()
+    
+    print("New tick from chart info: ", new_tick)
+    
+    return new_tick
 
 def add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis):
 
     # if (isinstance(main_axis, list)):
     #     main_axis_list = main_axis 
-    print("Show Axis", x_axis, y_axis)
+    # print("Show Axis", x_axis, y_axis)
 
     main_axis['direction'] = "larger"
     main_axis['another_scale'] = "linear"
@@ -387,7 +320,7 @@ def add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis):
             # print("origin axis", y_axis)
             text_tick = [tick for tick in y_axis['tick'] if isinstance(tick['visual_object'], int)]
             new_tick = [{"position": tick['position']['y']} for tick in text_tick]
-            print('new tick', new_tick)
+            # print('new tick', new_tick)
             inter = 100
             if (len(new_tick) >= 2):
                 inter = new_tick[1]['position'] - new_tick[0]['position']
@@ -417,26 +350,22 @@ def add_main_axis_info(x_axis, y_axis, axes_candidate, main_axis):
 
 
 
-def calculate_group(shared_stack_group_x, shared_stack_group_y, shared_width_group, shared_height_group, point_group, line_group, vertical_line):
+def calculate_group(shared_stack_group_x = None, shared_stack_group_y = None, shared_width_group = None, shared_height_group = None, point_group = None, line_group = None, vertical_line = None):
     chosen_group = []
-
-    shared_stack_x = [item for item in shared_stack_group_x if len(item['tick']) > 2]
-    shared_stack_y = [item for item in shared_stack_group_y if len(item['tick']) > 2]
-
-    # chosen.extend(shared_stack_x)
-
     shared_stack = []
-    
-    if shared_stack_x:
+    if shared_stack_group_x:
+        shared_stack_x = [item for item in shared_stack_group_x if len(item['tick']) > 2]
         shared_stack.extend(shared_stack_x)
-    if shared_stack_y:
+    
+    if shared_stack_group_y:
+        shared_stack_y = [item for item in shared_stack_group_y if len(item['tick']) > 2]
         shared_stack.extend(shared_stack_y)
 
     shared_stack.sort(key = lambda x: -len(x['vid']))
 
     existed_vid_set = set([])
 
-    print("shared_stack_x", shared_stack_x)
+    # print("shared_stack_x", shared_stack_x)
 
     for current_stack in shared_stack:
         current_stack_vid_set = set(current_stack['vid']) - existed_vid_set
@@ -1084,20 +1013,14 @@ def re_interpolate_visual_area(
 
     if direction == "x":
         main_dim = 'ox'
-        sec_dim = 'oy'
-        another_direction = "y"
     else:
         main_dim = 'oy'
-        sec_dim = 'ox'
-        another_direction = "x"
 
     def move_start_end(value, sim_value, eps):
         if (abs(value - sim_value) < eps):
             return sim_value
         return value
-
-
-
+    
     for i, current_vo in enumerate(new_visual_objects):
         new_point_list = []
         vo_points = current_vo['control_point']
@@ -1129,21 +1052,7 @@ def re_interpolate_visual_area(
 
             elif start_x < end_x:
                 for tick_idx, tick in enumerate(useful_tick):
-                    # if tick_idx == 0:
-                    #     if abs(tick - start_x) < eps:
-                    #         if direction == "x":
-                    #             new_point_list.append({'x': tick, 'y': current_point['oy']})
-                    #         else:
-                    #             new_point_list.append({'x': current_point['ox'], 'y': tick})
-                    
-                    # if tick_idx == len(useful_tick) - 1:
-                    #     if abs(tick - end_x) < eps:
-                    #         if direction == "x":
-                    #             new_point_list.append({'x': tick, 'y': current_point['oy']})
-                    #         else:
-                    #             new_point_list.append({'x': current_point['ox'], 'y': tick})
-                    
-                                
+     
                     if start_x <= tick < end_x:
                         # If tick is near start_x
                         if abs(tick - start_x) < eps and abs(tick - start_x) < abs(tick - end_x):
@@ -1268,6 +1177,68 @@ def re_interpolate_visual_area(
     # print("new_visual_objects", new_visual_objects)
 
     return new_visual_objects, new_control_points, main_axis
+
+def reinterpolate_visual_area_new(
+    visual_area_clique,
+    visual_objects,
+    control_points,
+    direction = "x"):
+    
+    new_visual_objects = []
+    new_control_points = []
+    
+    selected_visual_objects = [vo for vo in visual_objects if vo['id'] in visual_area_clique['vid']]
+    ticks = visual_area_clique['tick']
+    for new_vid, visual_object in enumerate(selected_visual_objects):
+        current_control_points = [control_points[cp_id] for cp_id in visual_object['control_point']]
+        polygon = [(point['ox'], point['oy']) for point in current_control_points]
+        
+        new_vo = deepcopy(visual_object)
+        new_vo.pop('original_soup', None)
+        new_vo['globle_id'] = new_vo['id']
+        new_vo['id'] = new_vid
+        new_points = find_polygon_intersections(polygon, ticks)
+
+        new_vo['control_point'] = []
+        for point in new_points:
+            new_control_point = pack_point(point[0], point[1], len(new_control_points), new_vid)
+            new_vo['control_point'].append(new_control_point['id'])
+            new_control_points.append(new_control_point)
+        new_vo['point_number'] = len(new_points)
+        new_visual_objects.append(new_vo)
+
+    main_axis = get_reinterpolate_main_axis(ticks, direction)
+    return new_visual_objects, new_control_points, main_axis
+
+
+def get_reinterpolate_main_axis(useful_tick, direction):
+    
+    tick_num = len(useful_tick)
+
+    tick_position = []
+
+    for i, tick in enumerate(useful_tick):
+        current_tick = {}
+        current_tick['position'] = tick
+        if i == 0:
+            inter = (useful_tick[1] - tick) / 2
+            current_tick['range'] = [tick - inter, tick + inter]
+        elif i == tick_num - 1:
+            inter = (tick - useful_tick[tick_num - 2]) / 2
+            current_tick['range'] = [tick - inter, tick + inter]
+
+        else:
+            current_tick['range'] = [(tick + useful_tick[i - 1]) / 2, (tick + useful_tick[i + 1]) / 2]
+
+        tick_position.append(current_tick)
+
+    # print("tick position", tick_position)
+
+    main_axis = {'type': direction, "tick_position": tick_position}
+    main_axis['even_type'] = "single"
+    return main_axis
+    
+
 
 def find_tick_group (visual_objects, control_points):
     # Filter those with only two control points

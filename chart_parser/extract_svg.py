@@ -77,4 +77,3 @@ def parse_unknown_svg_visual_elements(svg_string):
 
     pprint(rects_attr)
     return rects_attr, width, height, svg
-

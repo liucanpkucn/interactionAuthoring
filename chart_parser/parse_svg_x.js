@@ -33,12 +33,10 @@ if (!fs.existsSync(outputDirectory)) {
 
     //utils fuctions
     function rgbStringToRGB(rgbString) {
-
       // 检查是否为 undefined、null 或空字符串
       if (!rgbString || rgbString === "none" || rgbString === "transparent") {
-          return [0, 0, 0];  // 默认返回黑色
+          return "none";  // 默认返回黑色
       }
-  
       const result = rgbString.match(/\d+/g);
       if (!result || result.length !== 3) {
           return [0, 0, 0];  // 如果不是标准 RGB 格式，仍返回黑色
@@ -108,19 +106,14 @@ if (!fs.existsSync(outputDirectory)) {
         });
     }
 
-
-
     function parsePath(d, transform_matrix) {
       const commands = d.match(/[a-z][^a-z]*/gi);
       if (!commands) {
-        // console.warn('No commands found in path:', d);
         return [];
       }
     
-      let x = 0,
-        y = 0;
-      let startX = 0,
-        startY = 0; // To handle 'Z' command
+      let x = 0, y = 0;
+      let startX = 0, startY = 0; // To handle 'Z' command
       const points = [];
     
       for (const command of commands) {
@@ -213,13 +206,16 @@ if (!fs.existsSync(outputDirectory)) {
             console.warn("Unknown command:", type);
         }
     
-        // Only push the point if it's different from the last one or if points is empty
-        if (!points.length || points[points.length - 1].x !== x || points[points.length - 1].y !== y) {
-          points.push({ x, y });
+        // 确保每个命令处理后都添加当前点
+        if (typeof x === 'number' && !isNaN(x) && typeof y === 'number' && !isNaN(y)) {
+          // 可以选择是否检查重复点
+          if (!points.length || points[points.length - 1].x !== x || points[points.length - 1].y !== y) {
+            points.push({ x, y });
+          }
         }
       }
     
-      // Apply the transformation matrix to all points
+      // 应用变换矩阵
       let absolute_points = points.map(point => {
         const { x, y } = point;
         const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
@@ -229,6 +225,132 @@ if (!fs.existsSync(outputDirectory)) {
     
       return absolute_points;
     }
+
+    // function parsePath(d, transform_matrix) {
+    //   const commands = d.match(/[a-z][^a-z]*/gi);
+    //   if (!commands) {
+    //     // console.warn('No commands found in path:', d);
+    //     return [];
+    //   }
+    
+    //   let x = 0,
+    //     y = 0;
+    //   let startX = 0,
+    //     startY = 0; // To handle 'Z' command
+    //   const points = [];
+    
+    //   for (const command of commands) {
+    //     const type = command[0];
+    //     const args = command
+    //       .slice(1)
+    //       .trim()
+    //       .split(/[\s,]+/)
+    //       .map(Number);
+    
+    //     switch (type) {
+    //       case "M":
+    //         x = args[0];
+    //         y = args[1];
+    //         startX = x;
+    //         startY = y;
+    //         break;
+    //       case "m":
+    //         x += args[0];
+    //         y += args[1];
+    //         startX = x;
+    //         startY = y;
+    //         break;
+    //       case "L":
+    //         x = args[0];
+    //         y = args[1];
+    //         break;
+    //       case "l":
+    //         x += args[0];
+    //         y += args[1];
+    //         break;
+    //       case "H":
+    //         x = args[0];
+    //         break;
+    //       case "h":
+    //         x += args[0];
+    //         break;
+    //       case "V":
+    //         y = args[0];
+    //         break;
+    //       case "v":
+    //         y += args[0];
+    //         break;
+    //       case "C":
+    //         x = args[4];
+    //         y = args[5];
+    //         break;
+    //       case "c":
+    //         x += args[4];
+    //         y += args[5];
+    //         break;
+    //       case "S":
+    //         x = args[2];
+    //         y = args[3];
+    //         break;
+    //       case "s":
+    //         x += args[2];
+    //         y += args[3];
+    //         break;
+    //       case "Q":
+    //         x = args[2];
+    //         y = args[3];
+    //         break;
+    //       case "q":
+    //         x += args[2];
+    //         y += args[3];
+    //         break;
+    //       case "T":
+    //         x = args[0];
+    //         y = args[1];
+    //         break;
+    //       case "t":
+    //         x += args[0];
+    //         y += args[1];
+    //         break;
+    //       case "A":
+    //         x = args[5];
+    //         y = args[6];
+    //         break;
+    //       case "a":
+    //         x += args[5];
+    //         y += args[6];
+    //         break;
+    //       case "Z":
+    //       case "z":
+    //         x = startX;
+    //         y = startY;
+    //         break;
+    //       default:
+    //         console.warn("Unknown command:", type);
+    //     }
+    
+    //     // Only push the point if it's different from the last one or if points is empty
+    //     if (typeof x === 'number' && !isNaN(x) && typeof y === 'number' && !isNaN(y)){
+    //       if (!points.length || points[points.length - 1].x !== x || points[points.length - 1].y !== y) {
+    //         points.push({ x, y });
+    //       }
+    //     }
+    //   }
+
+    //   let non_null_points = points.filter(point => point.x !== undefined && point.y !== undefined);
+
+    //   console.log(non_null_points);
+    
+    //   // Apply the transformation matrix to all points
+    //   let absolute_points = non_null_points.map(point => {
+    //     const { x, y } = point;
+    //     const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
+    //     const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
+    //     return { x: newX, y: newY };
+    //   });
+    
+    //   return absolute_points;
+    // }
     
     let vidCounter = 0;  // 新增一个计数器
 
@@ -340,7 +462,7 @@ if (!fs.existsSync(outputDirectory)) {
               right: right,
               fill: rgbStringToRGB(computed_style.fill || "rgb(0, 0, 0)"),
               stroke: rgbStringToRGB(computed_style.stroke || "rgb(0, 0, 0)"),
-              stroke_width: computed_style.strokeWidth || "0px",
+              stroke_width: computed_style.strokeWidth || "0",
               opacity: parseFloat(computed_style.opacity) || 1.0,
               fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
               x: cx,
@@ -453,7 +575,7 @@ if (!fs.existsSync(outputDirectory)) {
               right: element.getBoundingClientRect().x + element.getBoundingClientRect().width,
               fill: rgbStringToRGB(computed_style.fill),
               stroke: rgbStringToRGB(computed_style.stroke),
-              stroke_width: computed_style.strokeWidth || "0px",
+              stroke_width: computed_style.strokeWidth || "0",
               opacity: parseFloat(computed_style.opacity) || 1.0,
               fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
               x: element.getBoundingClientRect().x,
@@ -476,8 +598,8 @@ if (!fs.existsSync(outputDirectory)) {
         let path_type = "line"
 
         // 处理 polygon
-        if (points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y && computed_style.fill !== 'none') {
-          points.pop();
+        if ((points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y) || computed_style.fill !== 'none') {
+          // points.pop();
           path_type = 'polygon'
           rects.push({
             type: "polygon",
@@ -491,14 +613,14 @@ if (!fs.existsSync(outputDirectory)) {
             fill_opacity: parseFloat(computed_style.fillOpacity) || 0,
             stroke_width: computed_style.strokeWidth || "0px",
             polygon: points.map(point => [point.x, point.y]),
-            point: points,
+            points: points,
             left: Math.min(...points.map(point => point.x)),
             right: Math.max(...points.map(point => point.x)),
             up: Math.min(...points.map(point => point.y)),
             down: Math.max(...points.map(point => point.y)),
             text: "",
             center: null,
-            append_info: Array(points.length).fill(null)
+            // append_info: Array(points.length).fill(null)
           });
           continue;
         }
@@ -517,7 +639,7 @@ if (!fs.existsSync(outputDirectory)) {
                 right: element.getBoundingClientRect().x + element.getBoundingClientRect().width,
                 fill: rgbStringToRGB(computed_style.fill),
                 stroke: rgbStringToRGB(computed_style.stroke),
-                stroke_width: computed_style.strokeWidth || '0px',
+                stroke_width: computed_style.strokeWidth || '0',
                 opacity: parseFloat(computed_style.opacity) || 1.0,
                 fill_opacity: parseFloat(computed_style.fillOpacity) || 1.0,
                 x: element.getBoundingClientRect().x,
@@ -539,7 +661,7 @@ if (!fs.existsSync(outputDirectory)) {
             stroke: rgbStringToRGB(computed_style.stroke),
             opacity: parseFloat(computed_style.opacity) || 1.0,
             fill_opacity: 0,
-            stroke_width: computed_style.strokeWidth || "0px",
+            stroke_width: computed_style.strokeWidth || "0",
             polygon: points.map(point => [point.x, point.y]),
             points: points,
             text: "",
@@ -548,7 +670,7 @@ if (!fs.existsSync(outputDirectory)) {
             up: Math.min(...points.map(point => point.y)),
             down: Math.max(...points.map(point => point.y)),
             center: null,
-            append_info: Array(points.length).fill(null),
+            // append_info: Array(points.length).fill(null),
         });
       }
 
@@ -572,8 +694,8 @@ if (!fs.existsSync(outputDirectory)) {
   
       let point_string = `[${rounded_x},${rounded_y},${rounded_width},${rounded_height}]`;
   
-      if (rect.hasOwnProperty('polygon')) {
-          point_string = rect.polygon.map((point) => `(${Math.round(point.x)}, ${Math.round(point.y)})`).join(';');
+      if (rect.hasOwnProperty('points')) {
+          point_string = rect.points.map((point) => `(${Math.round(point.x)}, ${Math.round(point.y)})`).join(';');
           rect.point_string = point_string;
       }
   
@@ -670,6 +792,12 @@ if (!fs.existsSync(outputDirectory)) {
     `${outputDirectory}/svg_parse.json`,
     JSON.stringify(data, null, 2)
   );
+
+  fs.writeFileSync(
+    `${outputDirectory}/svg_edited.svg`,
+    data.svg_string
+  );
+
 
 
   // 处理 sim_vector 并保存为 TXT 文件

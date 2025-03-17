@@ -53,11 +53,12 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "stroke_width": obj['stroke_width'],
                 "control_point": [],
                 "center": obj['center'],
-                "append_info": obj['append_info'],
                 "role": obj['role'] if 'role' in obj else None,
                 "uuid": obj['uuid']
                 
             }
+            if 'append_info' in obj:
+                current_obj['append_info'] = obj['append_info']
 
             current_obj['left'] = min([item[0] for item in obj['polygon']])
             current_obj['right'] = max([item[0] for item in obj['polygon']])
@@ -102,12 +103,22 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 "role": obj['role'] if 'role' in obj else None,
                 "uuid": obj['uuid']
             }
-
-            current_obj['left'] = min([item[0] for item in obj['polygon']])
-            current_obj['right'] = max([item[0] for item in obj['polygon']])
-            current_obj['up'] = min([item[1] for item in obj['polygon']])
-            current_obj['down'] = max([item[1] for item in obj['polygon']])
-
+            
+            
+            try:
+                current_obj['left'] = min([item[0] for item in obj['polygon']])
+                current_obj['right'] = max([item[0] for item in obj['polygon']])
+                current_obj['up'] = min([item[1] for item in obj['polygon']])
+                current_obj['down'] = max([item[1] for item in obj['polygon']])
+            except:
+                import json
+                with open('tmp/debug_polygon.json', 'w') as f:
+                    json.dump(obj, f, indent=4)
+                raise Exception('debug')
+            
+            
+            print(len(obj['polygon']))
+            
 
             # filter those straight lines
             
