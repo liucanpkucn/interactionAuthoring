@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 
 <head>
-	<title>Direct Manipulating Static Visualization Modeled by Control Points and Constraints</title>
+	<title>Interaction Authoring</title>
 	<link rel="stylesheet" href="css/vivisfy.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/dglyph.css">
@@ -13,7 +13,7 @@
 
 	<div id="head"
 		style="position: absolute; top: 0%; left: 0%; width: 100%; height: 50px; margin: 0px; padding: 0px; background: #D8D8D8; user-select:none; justify-content: start;">
-		<div id="header-text" style="width: 20%;">
+		<div id="header-text" style="display:flex; align-items:center; justify-content:start; margin-left: 1rem;">
 			Interaction Authoring
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 		server_position = ""
 
 		let file_name = window.location.href.toString().split("?")[1]
-		let file_url = "chosen_json/" + file_name + ".json"
+		let file_url = "shared/chart/" + file_name + ".json"
 
 		console.log(file_url)
 
@@ -51,7 +51,7 @@
 
 		if (json_string !== null) {
 
-			file_url = "chosen_json/" + json_string + ".json"
+			file_url = "shared/chart/" + json_string + ".json"
 
 			d3.json(file_url)
 				.then(function (data) {
@@ -67,7 +67,7 @@
 					}
 				})
 				.catch(function () {
-					d3.json("chosen_json/current.json")
+					d3.json("shared/chart/current.json")
 						.then(function (data) {
 							console.log("We open the old file")
 							let canvas = new canvas_main(data)
@@ -82,7 +82,7 @@
 					let canvas = new canvas_main(data)
 				})
 				.catch(function () {
-					d3.json("chosen_json/current.json")
+					d3.json("shared/chart/current.json")
 						.then(function (data) {
 							console.log("We open the old file")
 							let canvas = new canvas_main(data)
@@ -91,19 +91,6 @@
 				})
 
 		}
-
-		setTimeout(() => {
-			if (window._begin_point) {
-				let new_x = window._begin_point.x + 200; // X축 이동 (원하는 만큼 조정)
-				let new_y = window._begin_point.y;  // Y축 이동 (원하는 만큼 조정)
-
-				console.log("Moving canvas to:", new_x, new_y);
-
-				_chart_object[0].move_current_canvas({
-					new_position: { x: new_x, y: new_y }
-				});
-			}
-		}, 50); // `canvas_main` 실행 후 약간의 딜레이 후 실행
 
 		document.addEventListener("DOMContentLoaded", function () {
             const chatService = new ChatService(document, "en"); // 영어 설정

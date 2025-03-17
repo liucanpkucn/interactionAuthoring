@@ -1,0 +1,305 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    background-color: #ffffff;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    color: #333; 
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+/* 修改 dark mode 按钮样式 */
+#dark-mode-toggle {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid #333;
+    background-color: transparent;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+#dark-mode-toggle::before {
+    content: '🌞';
+    font-size: 1.1rem;
+}
+
+/* Dark mode 样式 */
+body.dark-mode .navbar {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .navbar h1 {
+    color: #ffffff;
+}
+
+body.dark-mode #dark-mode-toggle {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+body.dark-mode #dark-mode-toggle::before {
+    content: '🌙';
+}
+
+.navbar {
+    background-color: #ffffff;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar h1 {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.preview {
+    width: 100%;
+    height: 200px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+}
+
+.preview svg {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.item-info {
+    padding: 16px;
+}
+
+.item-title {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.item-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.view-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.view-button:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+        margin-top: 80px;
+    }
+}
+
+.preview {
+    width: 100%;
+    height: 250px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+
+.preview svg {
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.3s;
+}
+
+/* 添加开关按钮样式 */
+.theme-switch {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.theme-switch::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.3s;
+}
+
+/* 添加暗色模式相关样式 */
+/* .gallery-item.dark-mode {
+    background: #222;
+} */
+
+/* .gallery-item .preview {
+    background: #333;
+} */
+
+/* .gallery-item.dark-mode .item-title {
+    color: #fff;
+} */
+
+.gallery-item.dark-mode .preview {
+    background: #333;
+}
+
+/* .gallery-item.dark-mode .item-title {
+    color: #fff;
+} */
+
+.gallery-item:hover .preview svg {
+    transform: scale(1.05);
+}
+
+.gallery-item.dark-mode .theme-switch {
+    background: #4CAF50;
+}
+
+.gallery-item.dark-mode .theme-switch::after {
+    transform: translateX(20px);
+}
+
+.gallery-item {
+    position: relative;
+    /* 为开关按钮定位 */
+}
+
+#dark-mode-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.dark-mode .navbar {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-mode .gallery-item {
+    background: #2c2c2c;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .preview {
+    background: #444;
+}
+
+.dark-mode .item-title {
+    color: #e0e0e0;
+}
+
+.dark-mode .item-description {
+    color: #bbb;
+}
+
+.dark-mode .view-button {
+    background-color: #666;
+}
+
+.dark-mode .view-button:hover {
+    background-color: #555;
+}
+
+.preview img {
+    display: block !important;
+    width: 100%;
+    height: auto;
+}
