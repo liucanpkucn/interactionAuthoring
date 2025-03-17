@@ -25,6 +25,10 @@ def convert_svg_to_png(path_to_svg, output_path):
             with open(path_to_svg, "r", encoding="utf-8") as svg_file:
                 svg_content = svg_file.read()
 
+            svg_content = re.sub(r'viewBox="([\d.,]+)"', 
+                     lambda m: f'viewBox="{m.group(1).replace(",", " ")}"', 
+                     svg_content)
+            
             # 使用正则表达式精准提取 width 和 height
             width_match = re.search(r'width\s*=\s*["\']?([\d.]+)', svg_content)
             height_match = re.search(r'height\s*=\s*["\']?([\d.]+)', svg_content)
@@ -58,7 +62,7 @@ def convert_svg_to_png(path_to_svg, output_path):
             page.wait_for_timeout(1000)
 
             # 动态设置 clip 参数，确保截图完整
-            page.screenshot(path=output_path, clip={"x": 0, "y": 0, "width": width, "height": height})
+            page.screenshot(path=output_path, clip={"x": 0, "y": 0, "width": width, "height": height + 50})
             browser.close()
 
         print(f"SVG successfully converted to PNG: {output_path}")
@@ -104,10 +108,10 @@ Please strictly follow the JSON format below for output:
 
 {
   "chart_type": "bar_chart",
-  "direction": "vertical",
+  "base_axis": "x",
   "legend": {
-    “labels”: [“Yellow”, “Blue”],
-    “colors”: ["#f2c116", “#0057e7”]
+    "labels": ["Male", "Female"],
+    "colors": ["#f2c116", "#0057e7"]
   },
   "x":  
     {
@@ -163,13 +167,11 @@ Please strictly follow the JSON format below for output:
 ### **【Rules Explanation】**
 "chart_type": Specifies the type of chart (e.g.,"bar_chart", "stack_bar_chart", "group_bar_chart", "line_chart", "scatter_chart, ""area_chart","pie_chart").
 if a bar chart is neither stacked nor grouped, use "bar_chart".
-"direction": Specifies the primary orientation of data progression.
+"base_axis": "x" or "y", The base axis in a chart is the reference axis.
 "legend": Contains the labels and colors of the chart elements.
-if the chart has no legend, Use the null value none (not the string "none") for "labels" and “colors” .
- - For bar charts: "horizontal" (categories on Y-axis) or "vertical" (categories on X-axis).
- - For line charts: "left_to_right" (time or sequence progresses from left to right) or "top_to_bottom" (progresses from top to bottom in specialized cases).
- - For scatter plots or area charts, Use the null value none (not the string "none")if no clear orientation applies.
-
+YOU MUST first identify if there is a legned! If the chart has no legend, make sure to include an empty list for both "labels" and "colors".
+rather than use the example "labels": ["Male", "Female"],"colors": ["#f2c116", "#0057e7"]
+ 
 1. **"type"**: Specifies the type of the axis:
    - "x" represents the X-axis.
    - "y" represents the Y-axis.

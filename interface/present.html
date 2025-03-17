@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 
 <head>
-	<title>Direct Manipulating Static Visualization Modeled by Control Points and Constraints</title>
+	<title>Interaction Authoring</title>
 	<link rel="stylesheet" href="css/vivisfy.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/dglyph.css">
@@ -34,7 +34,7 @@
 
 	<div id="head"
 		style="position: absolute; top: 0%; left: 0%; width: 100%; height: 50px; margin: 0px; padding: 0px; background: #D8D8D8; user-select:none; justify-content: start;">
-		<div id="header-text" style="width: 20%;">
+		<div id="header-text" style="display:flex; align-items:center; justify-content:start; margin-left: 1rem;">
 			Interaction Authoring
 		</div>
 		<button id="share-button" style="position: absolute; height: 2rem; width: 5rem; right: 0%; bottom: 0%; margin: 0.5rem; padding: 5 15 5 15;">Share</button>
@@ -187,6 +187,7 @@
 		document.addEventListener("DOMContentLoaded", updateHeight);
 		window.addEventListener("resize", updateHeight);
 
+		let svgData = "";
 		document.getElementById("share-button").addEventListener("click", function() {
 			let mainCanvas = document.getElementById("main_canvas"); // <g> 요소 가져오기
 
@@ -215,7 +216,7 @@
 			newSvg.appendChild(mainCanvas.cloneNode(true));
 
 			// SVG를 문자열로 변환
-			let svgData = new XMLSerializer().serializeToString(newSvg);
+			svgData = new XMLSerializer().serializeToString(newSvg);
 			let canvas = document.createElement("canvas");
 			let ctx = canvas.getContext("2d");
 
@@ -260,27 +261,17 @@
 			img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData);
 		});
 
-		document.querySelector(".share-confirm-button").addEventListener("click", function() {
+		document.querySelector(".share-confirm-button").addEventListener("click", async function() {
 			let titleInput = document.querySelector(".popup-title");
 			let descriptionInput = document.querySelector(".popup-description");
 			let interactionData = document.querySelector(".popup-interaction").value;
-
 			let title = titleInput.value.trim();
 			let description = descriptionInput.value.trim();
-
+			
 			// 유효성 검사: title과 description이 비어 있으면 실행 중단
 			if (!title || !description) {
-				if (!title) {
-					titleInput.style.border = "2px solid red";
-				} else {
-					titleInput.style.border = "1px solid #ccc";
-				}
-				
-				if (!description) {
-					descriptionInput.style.border = "2px solid red";
-				} else {
-					descriptionInput.style.border = "1px solid #ccc";
-				}
+				if (!title) titleInput.style.border = "2px solid red";
+				if (!description) descriptionInput.style.border = "2px solid red";
 				return;
 			}
 
@@ -288,14 +279,59 @@
 			titleInput.style.border = "1px solid #ccc";
 			descriptionInput.style.border = "1px solid #ccc";
 
+			d3.json(file_url)
+				.then(function (data) {
+					console.log("데이터 로드 완료:", data);
+
+					// 2-1. chart JSON 저장 요청
+					fetch("http://localhost:5001/save-json", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ title, data, type: "chart" }),
+						mode: "cors",
+						credentials: "omit"
+					})
+					.then(response => response.json())
+					.then(data => console.log("Chart JSON 저장 완료:", data))
+					.catch(error => console.error("Chart JSON 저장 오류:", error));
+				})
+				.catch(error => console.error("파일 불러오기 오류:", error));
+
 			let jsonData = {
 				"title": title,
 				"description": description,
 				"interaction": interactionData
 			};
 
+			// 2-2. interaction JSON 데이터 저장 요청
+			fetch("http://localhost:5001/save-json", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({ title, data: jsonData, type: "interaction" }),
+				mode: "cors",
+				credentials: "omit"
+			})
+			.then(response => response.json())
+			.then(data => console.log("Interaction JSON 저장 완료:", data))
+			.catch(error => console.error("Interaction JSON 저장 오류:", error));
+
 			console.log("Saved JSON:", jsonData);
-			alert(JSON.stringify(jsonData, null, 2));
+			// alert(JSON.stringify(jsonData, null, 2));
+
+			// 2-3. SVG 데이터 저장 요청 (share-confirm-button 클릭 시)
+			fetch("http://localhost:5001/save-svg", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ title, svgData }),
+				mode: "cors",
+				credentials: "omit"
+			})
+			.then(response => response.json())
+			.then(data => console.log("SVG 저장 완료:", data))
+			.catch(error => console.error("SVG 저장 오류:", error));
+			
 
 			// 공유 결과 화면에 값 적용
 			document.getElementById("result-title").innerText = title;

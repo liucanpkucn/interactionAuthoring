@@ -3,23 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Data Glyph Gallery</title>
+    <title>Interaction Authoring Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/json/json.min.js"></script>
 
-    <script src="js/DataExpander.js"></script>
-    <script src="js/SVGRenderer.js"></script>
-    <script src="js/RelationProcessor.js"></script>
-    <script src="js/PatternGenerator.js"></script>
     <!-- <link rel="stylesheet" href="css/dsl_renderer_style.css"> -->
     <link rel="stylesheet" href="css/gallery.css">
 </head>
 
 <body>
     <nav class="navbar">
-        <h1>Data Glyph Gallery</h1>
+        <h1>Interaction Authoring Gallery</h1>
         <button id="dark-mode-toggle">Theme</button>
     </nav>
 
@@ -47,160 +43,87 @@
             }
         });
 
-        const files = [
-            // '20250213_SVGcode.json',
-            'snow_source_unify.json',
-            'example.json',
-            'flower.json',
-            'multi_snow_dict.json',
-            'multi_snow.json',
-            'snow.json',
-            'prototype_snow.json',
-            'heatmap.json',
-            'multi_flower.json'
-        ];
+        document.addEventListener("DOMContentLoaded", function () {
+            const files = new Set();
 
+            async function fetchData() {
+                try {
+                    // 🔹 서버에서 Chart 파일 목록 가져오기
+                    const chartResponse = await fetch("http://localhost:5001/get-chart-files");
+                    const chartData = await chartResponse.json();
+                    if (chartData.files) {
+                        chartData.files.forEach(file => files.add(file));
+                        console.log("Chart 파일 목록:", Array.from(files));
+                    } else {
+                        console.error("파일 목록을 가져오는 데 실패:", chartData.error);
+                    }
 
-        const gallery = document.getElementById('gallery');
+                    // 🔹 두 개의 파일 리스트를 합쳐서 renderGallery 실행
+                    renderGallery([...files]);
+                } catch (error) {
+                    console.error("서버 요청 오류:", error);
+                    renderGallery(Array.from(files)); // 요청 실패 시 기본 데이터만 렌더링
+                }
+            }
 
-        // 首先加载示例文件列表
-        fetch('dsl_setting/all_example_list.txt')
-            .then(response => response.text())
-            .then(text => {
-                // 获取文件列表并过滤空行
-                const exampleFiles = text.split('\n').filter(line => line.trim());
+            function renderGallery(fileList) {
+                const gallery = document.getElementById("gallery");
+                gallery.innerHTML = ""; // 기존 갤러리 초기화 (중복 방지)
 
-                console.log("exampleFiles", exampleFiles)
+                fileList.forEach(file => {
+                    const item = document.createElement("div");
+                    item.className = "gallery-item";
 
-                // 渲染示例文件
-                exampleFiles.forEach(file => {
-                    const item = document.createElement('div');
-                    item.className = 'gallery-item';
+                    const fileNameWithoutExt = file.replace(".json", "");
+                    const previewId = `preview-${fileNameWithoutExt}`;
+                    const imagePath = `/interface/shared/image/${fileNameWithoutExt}.svg`;
 
-                    const previewId = `preview-${file.replace('.json', '')}`;
+                    const previewDiv = document.createElement("div");
+                    previewDiv.className = "preview";
+                    previewDiv.id = previewId;
 
-                    item.innerHTML = `
-                    <div class="theme-switch"></div>
-                    <div class="preview">
-                        <div id="${previewId}"></div>
-                    </div>
-                    <div class="item-info">
-                        <h2 class="item-title">${file
-                            .replace('.json', '')
-                            .replace(/_/g, ' ')
-                            .split(' ')
-                            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                            .join(' ')}
-                        </h2>
-                        <a href="dsl_renderer.html?file=${file}&type=setting" class="view-button">View Pattern</a>
-                    </div>
-                `;
-
-                    gallery.appendChild(item);
-
-                    // 添加暗色模式切换功能
-                    const themeSwitch = item.querySelector('.theme-switch');
-                    themeSwitch.addEventListener('click', () => {
-                        item.classList.toggle('dark-mode');
-                    });
-
-                    // 加载并渲染示例文件
-                    fetch('dsl_setting/' + file)
-                        .then(response => response.json())
-                        .then(data => {
-
-                            const pattern = new PatternGenerator(previewId);
-                            pattern.generateFromJSON(data.dsl);
-
-                            // 添加 defs
-                            if (data.defs_string) {
-                                const svgElement = document.querySelector(`#${previewId} svg`);
-                                if (svgElement) {
-                                    const defsElement = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-                                    defsElement.innerHTML = data.defs_string;
-                                    svgElement.insertBefore(defsElement, svgElement.firstChild);
-                                }
+                    // SVG 가져오기
+                    fetch(imagePath)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`SVG 로드 실패: ${response.status}`);
                             }
-
-                            if (data.backgound_color){
-                                let container = document.querySelector(`#${previewId}`)
-                                container.style.backgroundColor = data.backgound_color
-                            }
-
-                            // 调整 SVG 视图
-                            const svgElement = document.querySelector(`#${previewId} svg`);
-                            if (svgElement) {
-                                const bbox = svgElement.getBBox();
-                                svgElement.setAttribute('viewBox',
-                                    `${bbox.x - 10} ${bbox.y - 10} ${bbox.width + 20} ${bbox.height + 20}`);
-                                svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-                            }
+                            return response.text();
                         })
-                        .catch(error => console.error(`Error rendering ${file}:`, error));
-                });
-
-                // 然后渲染原有的文件列表
-                const files = [
-                    'snow_source_unify.json',
-                    'example.json',
-                    'flower.json',
-                    'multi_snow_dict.json',
-                    'multi_snow.json',
-                    'snow.json',
-                    'prototype_snow.json',
-                    'heatmap.json',
-                    'multi_flower.json'
-                ];
-
-                files.forEach(file => {
-                    const item = document.createElement('div');
-                    item.className = 'gallery-item';
-
-                    const previewId = `preview-${file.replace('.json', '')}`;
-
-                    item.innerHTML = `
-                    <div class="theme-switch"></div>
-                    <div class="preview">
-                        <div id="${previewId}"></div>
-                    </div>
-                    <div class="item-info">
-                        <h2 class="item-title">${file
-                            .replace('.json', '')
-                            .replace(/_/g, ' ')
-                            .split(' ')
-                            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                            .join(' ')}
-                        </h2>
-                        <a href="dsl_renderer.html?file=${file}" class="view-button">View Pattern</a>
-                    </div>
-                `;
-
-                    gallery.appendChild(item);
-
-                    const themeSwitch = item.querySelector('.theme-switch');
-                    themeSwitch.addEventListener('click', () => {
-                        item.classList.toggle('dark-mode');
-                    });
-
-                    // 加载并渲染原有文件
-                    fetch('dsl_json/' + file)
-                        .then(response => response.json())
-                        .then(data => {
-                            const pattern = new PatternGenerator(previewId);
-                            pattern.generateFromJSON(data);
-
-                            const svgElement = document.querySelector(`#${previewId} svg`);
-                            if (svgElement) {
-                                const bbox = svgElement.getBBox();
-                                svgElement.setAttribute('viewBox',
-                                    `${bbox.x - 10} ${bbox.y - 10} ${bbox.width + 20} ${bbox.height + 20}`);
-                                svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-                            }
+                        .then(svgContent => {
+                            previewDiv.innerHTML = svgContent;
                         })
-                        .catch(error => console.error(`Error rendering ${file}:`, error));
+                        .catch(error => {
+                            console.error(error);
+                        });
+
+                    // 아이템 정보 추가
+                    const infoDiv = document.createElement("div");
+                    infoDiv.className = "item-info";
+                    infoDiv.innerHTML = `
+                        <h2 class="item-title">${formatFileName(file)}</h2>
+                        <a href="/interface/show.html?${fileNameWithoutExt}" class="view-button">View Chart</a>
+                    `;
+
+                    item.appendChild(previewDiv);
+                    item.appendChild(infoDiv);
+                    gallery.appendChild(item);
                 });
-            })
-            .catch(error => console.error('Error loading example list:', error));
+            }
+
+
+            function formatFileName(fileName) {
+                return fileName
+                    .replace(/\.(json|svg)$/, "")
+                    .replace(/_/g, " ")
+                    .split(" ")
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(" ");
+            }
+
+            fetchData(); // 🚀 fetchData 실행 (최초 한 번만 실행됨)
+        });
+
     </script>
 </body>
 
