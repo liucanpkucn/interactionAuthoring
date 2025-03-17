@@ -107,136 +107,272 @@ if (!fs.existsSync(outputDirectory)) {
     }
 
     function parsePath(d, transform_matrix) {
-      const commands = d.match(/[a-z][^a-z]*/gi);
+      // 预处理路径数据：移除换行符并确保命令之间有空格
+      const cleanD = d.replace(/\n/g, ' ').trim();
+      
+      // 改进的正则表达式，匹配所有SVG路径命令
+      const commands = cleanD.match(/[MLHVCSQTAZmlhvcsqtaz][^MLHVCSQTAZmlhvcsqtaz]*/g);
       if (!commands) {
-        return [];
+          return [];
       }
-    
+  
       let x = 0, y = 0;
-      let startX = 0, startY = 0; // To handle 'Z' command
+      let startX = 0, startY = 0; // 处理'Z'命令
+      let lastControlX = 0, lastControlY = 0; // 用于S和T命令的反射控制点
       const points = [];
-    
+  
       for (const command of commands) {
-        const type = command[0];
-        const args = command
-          .slice(1)
-          .trim()
-          .split(/[\s,]+/)
-          .map(Number);
-    
-        switch (type) {
-          case "M":
-            x = args[0];
-            y = args[1];
-            startX = x;
-            startY = y;
-            break;
-          case "m":
-            x += args[0];
-            y += args[1];
-            startX = x;
-            startY = y;
-            break;
-          case "L":
-            x = args[0];
-            y = args[1];
-            break;
-          case "l":
-            x += args[0];
-            y += args[1];
-            break;
-          case "H":
-            x = args[0];
-            break;
-          case "h":
-            x += args[0];
-            break;
-          case "V":
-            y = args[0];
-            break;
-          case "v":
-            y += args[0];
-            break;
-          case "C":
-            x = args[4];
-            y = args[5];
-            break;
-          case "c":
-            x += args[4];
-            y += args[5];
-            break;
-          case "S":
-            x = args[2];
-            y = args[3];
-            break;
-          case "s":
-            x += args[2];
-            y += args[3];
-            break;
-          case "Q":
-            x = args[2];
-            y = args[3];
-            break;
-          case "q":
-            x += args[2];
-            y += args[3];
-            break;
-          case "T":
-            x = args[0];
-            y = args[1];
-            break;
-          case "t":
-            x += args[0];
-            y += args[1];
-            break;
-          case "A":
-            x = args[5];
-            y = args[6];
-            break;
-          case "a":
-            x += args[5];
-            y += args[6];
-            break;
-          case "Z":
-          case "z":
-            x = startX;
-            y = startY;
-            break;
-          default:
-            console.warn("Unknown command:", type);
-        }
-    
-        // 确保每个命令处理后都添加当前点
-        if (typeof x === 'number' && !isNaN(x) && typeof y === 'number' && !isNaN(y)) {
-          // 可以选择是否检查重复点
-          if (!points.length || points[points.length - 1].x !== x || points[points.length - 1].y !== y) {
-            points.push({ x, y });
+          const type = command[0];
+          // 改进的参数提取，处理多种分隔符
+          const args = command
+              .slice(1)
+              .trim()
+              .split(/[\s,]+/)
+              .filter(arg => arg !== '') // 过滤空字符串
+              .map(Number);
+  
+          // 保存上一个控制点，用于S和T命令
+          let controlX, controlY;
+  
+          switch (type) {
+              case "M": // 绝对移动
+                  x = args[0];
+                  y = args[1];
+                  startX = x;
+                  startY = y;
+                  points.push({ x, y });
+                  
+                  // 处理多个坐标对（隐式L命令）
+                  for (let i = 2; i < args.length; i += 2) {
+                      if (i + 1 < args.length) {
+                          x = args[i];
+                          y = args[i + 1];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "m": // 相对移动
+                  x += args[0];
+                  y += args[1];
+                  startX = x;
+                  startY = y;
+                  points.push({ x, y });
+                  
+                  // 处理多个坐标对（隐式l命令）
+                  for (let i = 2; i < args.length; i += 2) {
+                      if (i + 1 < args.length) {
+                          x += args[i];
+                          y += args[i + 1];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "L": // 绝对线段
+                  for (let i = 0; i < args.length; i += 2) {
+                      if (i + 1 < args.length) {
+                          x = args[i];
+                          y = args[i + 1];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "l": // 相对线段
+                  for (let i = 0; i < args.length; i += 2) {
+                      if (i + 1 < args.length) {
+                          x += args[i];
+                          y += args[i + 1];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "H": // 绝对水平线
+                  for (let i = 0; i < args.length; i++) {
+                      x = args[i];
+                      points.push({ x, y });
+                  }
+                  break;
+                  
+              case "h": // 相对水平线
+                  for (let i = 0; i < args.length; i++) {
+                      x += args[i];
+                      points.push({ x, y });
+                  }
+                  break;
+                  
+              case "V": // 绝对垂直线
+                  for (let i = 0; i < args.length; i++) {
+                      y = args[i];
+                      points.push({ x, y });
+                  }
+                  break;
+                  
+              case "v": // 相对垂直线
+                  for (let i = 0; i < args.length; i++) {
+                      y += args[i];
+                      points.push({ x, y });
+                  }
+                  break;
+                  
+              case "C": // 绝对三次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 6) {
+                      if (i + 5 < args.length) {
+                          controlX = args[i + 2];
+                          controlY = args[i + 3];
+                          x = args[i + 4];
+                          y = args[i + 5];
+                          lastControlX = controlX;
+                          lastControlY = controlY;
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "c": // 相对三次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 6) {
+                      if (i + 5 < args.length) {
+                          controlX = x + args[i + 2];
+                          controlY = y + args[i + 3];
+                          x += args[i + 4];
+                          y += args[i + 5];
+                          lastControlX = controlX;
+                          lastControlY = controlY;
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "S": // 绝对平滑三次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 4) {
+                      if (i + 3 < args.length) {
+                          controlX = args[i];
+                          controlY = args[i + 1];
+                          x = args[i + 2];
+                          y = args[i + 3];
+                          lastControlX = controlX;
+                          lastControlY = controlY;
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "s": // 相对平滑三次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 4) {
+                      if (i + 3 < args.length) {
+                          controlX = x + args[i];
+                          controlY = y + args[i + 1];
+                          x += args[i + 2];
+                          y += args[i + 3];
+                          lastControlX = controlX;
+                          lastControlY = controlY;
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "Q": // 绝对二次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 4) {
+                      if (i + 3 < args.length) {
+                          controlX = args[i];
+                          controlY = args[i + 1];
+                          x = args[i + 2];
+                          y = args[i + 3];
+                          lastControlX = controlX;
+                          lastControlY = controlY;
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "q": // 相对二次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 4) {
+                      if (i + 3 < args.length) {
+                          controlX = x + args[i];
+                          controlY = y + args[i + 1];
+                          x += args[i + 2];
+                          y += args[i + 3];
+                          lastControlX = controlX;
+                          lastControlY = controlY;
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "T": // 绝对平滑二次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 2) {
+                      if (i + 1 < args.length) {
+                          x = args[i];
+                          y = args[i + 1];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "t": // 相对平滑二次贝塞尔曲线
+                  for (let i = 0; i < args.length; i += 2) {
+                      if (i + 1 < args.length) {
+                          x += args[i];
+                          y += args[i + 1];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "A": // 绝对椭圆弧
+                  for (let i = 0; i < args.length; i += 7) {
+                      if (i + 6 < args.length) {
+                          x = args[i + 5];
+                          y = args[i + 6];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "a": // 相对椭圆弧
+                  for (let i = 0; i < args.length; i += 7) {
+                      if (i + 6 < args.length) {
+                          x += args[i + 5];
+                          y += args[i + 6];
+                          points.push({ x, y });
+                      }
+                  }
+                  break;
+                  
+              case "Z":
+              case "z": // 闭合路径
+                  x = startX;
+                  y = startY;
+                  points.push({ x, y });
+                  break;
+                  
+              default:
+                  console.warn("Unknown command:", type);
           }
-        }
       }
-    
+  
       // 应用变换矩阵
       let absolute_points = points.map(point => {
-        const { x, y } = point;
-        const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
-        const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
-        return { x: newX, y: newY };
+          const { x, y } = point;
+          const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
+          const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
+          return { x: newX, y: newY };
       });
-    
+  
       return absolute_points;
-    }
+  };
+  
 
     // function parsePath(d, transform_matrix) {
     //   const commands = d.match(/[a-z][^a-z]*/gi);
     //   if (!commands) {
-    //     // console.warn('No commands found in path:', d);
     //     return [];
     //   }
     
-    //   let x = 0,
-    //     y = 0;
-    //   let startX = 0,
-    //     startY = 0; // To handle 'Z' command
+    //   let x = 0, y = 0;
+    //   let startX = 0, startY = 0; // To handle 'Z' command
     //   const points = [];
     
     //   for (const command of commands) {
@@ -329,20 +465,17 @@ if (!fs.existsSync(outputDirectory)) {
     //         console.warn("Unknown command:", type);
     //     }
     
-    //     // Only push the point if it's different from the last one or if points is empty
-    //     if (typeof x === 'number' && !isNaN(x) && typeof y === 'number' && !isNaN(y)){
+    //     // 确保每个命令处理后都添加当前点
+    //     if (typeof x === 'number' && !isNaN(x) && typeof y === 'number' && !isNaN(y)) {
+    //       // 可以选择是否检查重复点
     //       if (!points.length || points[points.length - 1].x !== x || points[points.length - 1].y !== y) {
     //         points.push({ x, y });
     //       }
     //     }
     //   }
-
-    //   let non_null_points = points.filter(point => point.x !== undefined && point.y !== undefined);
-
-    //   console.log(non_null_points);
     
-    //   // Apply the transformation matrix to all points
-    //   let absolute_points = non_null_points.map(point => {
+    //   // 应用变换矩阵
+    //   let absolute_points = points.map(point => {
     //     const { x, y } = point;
     //     const newX = transform_matrix[0][0] * x + transform_matrix[0][1] * y + transform_matrix[0][2];
     //     const newY = transform_matrix[1][0] * x + transform_matrix[1][1] * y + transform_matrix[1][2];
@@ -351,6 +484,7 @@ if (!fs.existsSync(outputDirectory)) {
     
     //   return absolute_points;
     // }
+
     
     let vidCounter = 0;  // 新增一个计数器
 

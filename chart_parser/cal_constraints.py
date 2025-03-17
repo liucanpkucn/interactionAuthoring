@@ -1000,6 +1000,7 @@ def collision_pair_point_constraints(v1_p1, v1_p2, v2_p1, v2_p2, constraint_type
 
 
 def get_larger_than_constraints(point_array, pid1, pid2, constraint_type = "x_larger_than", dis_type = "exact"):
+    distance = 0
     if constraint_type == "x_larger_than" or constraint_type == "x_smaller_than":
         if dis_type == "exact":
             distance = point_array[pid1]['x'] - point_array[pid2]['x']

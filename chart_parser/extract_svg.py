@@ -1,3 +1,5 @@
+# pylint: disable=import-error
+
 # -*- coding: UTF-8 -*-
 import subprocess
 import json

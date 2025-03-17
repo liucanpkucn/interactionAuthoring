@@ -11,6 +11,8 @@ def get_control_point(
     return control_point, visual_object, non_soup_visual_object
 '''
 
+import json
+
 def obj_in_selected_area(current_obj, selected_area):
 
     if selected_area == "":
@@ -59,12 +61,18 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
             }
             if 'append_info' in obj:
                 current_obj['append_info'] = obj['append_info']
+            try:
+                    
+                current_obj['left'] = min([item[0] for item in obj['polygon']])
+                current_obj['right'] = max([item[0] for item in obj['polygon']])
+                current_obj['up'] = min([item[1] for item in obj['polygon']])
+                current_obj['down'] = max([item[1] for item in obj['polygon']])
 
-            current_obj['left'] = min([item[0] for item in obj['polygon']])
-            current_obj['right'] = max([item[0] for item in obj['polygon']])
-            current_obj['up'] = min([item[1] for item in obj['polygon']])
-            current_obj['down'] = max([item[1] for item in obj['polygon']])
-
+            except:
+                with open('tmp/error_obj.json', 'w') as f:
+                    json.dump(obj, f, indent = 2)
+                continue   
+            
             if current_obj['right'] < 0 or current_obj['left'] > width or current_obj['up'] > height or current_obj['down'] < 0:
                 continue
 

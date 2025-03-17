@@ -39,11 +39,10 @@ def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate
     """
     
     chart_type = axes_candidate['chart_type']
-    direction = axes_candidate['direction']
+    direction = axes_candidate['base_axis']
     
     print("Classify groups by chart info", chart_type, direction)
 
-    
     x_even_list, y_even_list = get_even_intervals_new(visual_objects, control_points)
     
     # print(x_even_list)
@@ -74,9 +73,8 @@ def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate
             "type": "stack_x"
         }
 
-        
-        with open("tmp/coor_info.json", "w") as f:
-            json.dump(coor_info, f, indent = 2)
+        # with open("tmp/coor_info.json", "w") as f:
+        #     json.dump(coor_info, f, indent = 2)
         
         shared_stack_group_x = find_shared_value_group_by_visual_element(
                     x_even_set,
@@ -89,26 +87,40 @@ def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate
                     visual_objects,
                     control_points,
                     direction = "y")
+
 # bar_chart, stack_bar_chart, group_bar_chart, line_chart, scatter_chart, area_chart,pie_chart
     elif chart_type.endswith("bar_chart"): #bar_chart, stack_bar_chart, group_bar_chart, 
-        shared_stack_group_x = find_shared_value_group_by_visual_element(
-                    x_even_set,
-                    visual_objects,
-                    control_points,
-                    direction = "x")
+        # shared_stack_group_x = find_shared_value_group_by_visual_element(
+        #             x_even_set,
+        #             visual_objects,
+        #             control_points,
+        #             direction = "x")
         
         shared_width_group, shared_height_group = get_same_size_group_list(
                     visual_objects,
                     similar_rate = 0.05)
+        vids = [item['id'] for item in visual_objects if item['role'] == 'data_encoded']
+
+        shared_width_group = [{
+            'vid': vids,
+            'size': len(vids),
+            'type': 'shared_width'
+        }]
+        
+        print("Shared width group", shared_width_group)
+        shared_height_group = None
 
     elif chart_type == "line_chart":
         line_group, vertical_line = find_line_group(
                                     visual_objects,
                                     control_points)
+        
+        print("line group", line_group)
     
     elif chart_type == "scatter_chart":
         point_group = find_point_group(visual_objects, control_points)
 
+    print("Shared width", shared_width_group)
 
     chosen_group = calculate_group(
                                 shared_stack_group_x,
@@ -135,14 +147,6 @@ def classify_groups_by_chart_info(visual_objects, control_points, axes_candidate
     
     for visual_area_clique in chosen_group:
         if visual_area_clique['type'] == 'stack_x':
-            # new_visual_objects, new_control_points, main_axis = re_interpolate_visual_area(
-            #     visual_area_clique,
-            #     visual_objects,
-            #     control_points,
-            #     direction = 'x',
-            #     remove_soup = remove_soup
-            # )
-            
             new_visual_objects, new_control_points, main_axis = reinterpolate_visual_area_new(
                 visual_area_clique,
                 visual_objects,

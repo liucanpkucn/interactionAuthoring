@@ -509,10 +509,10 @@ def parse_constraint_axes_vis_cons(chart_info_with_axes, fromfront=False, remove
     svg_soup = chart_info_with_axes['svg_soup']
     
     chart_type = axes_array['chart_type']
-    direction = axes_array['direction']
+    base_axis = axes_array['base_axis']
     
     if chart_type == "bar_chart":
-        if direction == "vertical":
+        if base_axis == "x":
             axis = axes_array['x'][0]
             axis['scale_type'] = "quantize"
             axis['value_range'] = [item['content'] for item in axis['tick']]
@@ -1396,7 +1396,12 @@ if __name__ == "__main__":
     
     file_name = "20210811_stack"
     
-    file_name = "war_short"
+    # file_name = "war_short"
+    
+    
+    # file_name = "20210822_group_bar"
+    
+    # file_name = "multi_line"
     
 
     with open(f'test_example/{file_name}.svg') as f:
