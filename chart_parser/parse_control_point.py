@@ -119,7 +119,6 @@ def get_control_point(visual_objs, width, height, selected_area = '', need_selec
                 current_obj['up'] = min([item[1] for item in obj['polygon']])
                 current_obj['down'] = max([item[1] for item in obj['polygon']])
             except:
-                import json
                 with open('tmp/debug_polygon.json', 'w') as f:
                     json.dump(obj, f, indent=4)
                 raise Exception('debug')
