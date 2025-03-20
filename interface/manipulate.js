@@ -27,143 +27,170 @@ async function getAnswer(message) {
   The JSON structure must strictly follow this schema:
 
   {
-      "action": {
-          "target": ( "visual mark" | "axis" | "button" ),
-          "action": ( "click" | "double click" | "right button click" | "mouseover" | "drag" | "zoom" ),
-          "parameter": ( "x" | "y" | "all" | "<behavior value>" | "" )  
-      },
-      "result": {
-          "target": ( "visual mark" | "axis" | "tooltip" ),
-          "behavior": ( "remove" | "rescale" | "resort" | "reorder" | "add" | "show" | "overlap" ),
-          "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" ),
-          "parameter": ( "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
-      },
-      "similar": (true | false),
-      "description": "<A concise and user-friendly explanation of the interaction>"
+      "data": [
+          {
+              "action": {
+                  "target": ( "visual mark" | "axis" | "button" ),
+                  "action": ( "click" | "double click" | "right button click" | "mouseover" | "drag" | "zoom" ),
+                  "parameter": ( "x" | "y" | "all" | "<behavior value>" | "" )  
+              },
+              "result": {
+                  "target": ( "visual mark" | "axis" | "tooltip" ),
+                  "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" ),
+                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected ),
+                  "parameter": ( "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
+              },
+              "similar": (true | false),
+              "description": "<A concise and user-friendly explanation of the interaction>"
+          }
+      ],
+      "description": "<A high-level explanation of the overall interaction sequence>"
   }
 
   ### **RULES FOR JSON FORMATTING** ###
-  1. **action.target** must be one of: "visual mark", "axis", or "button".
+  1. **Multiple action-result pairs must be included** in the \`data\` array.
+    - Each interaction should be represented as a separate JSON object in the array.
+
+  2. **action.target** must be one of: "visual mark", "axis", or "button".
     - If "axis", then parameter must be "x", "y", or "all".
     - If "button", then parameter must match the **exact value of result.behavior**.
     - If "visual mark", then parameter must be an **empty string** ("").
 
-  2. **action.action** must be one of: "click", "double click", "right button click", "mouseover", "drag", or "zoom".
+  3. **action.action** must be one of: "click", "double click", "right button click", "mouseover", "drag", or "zoom".
 
-  3. **result.target** must be one of: "visual mark", "axis", or "tooltip".
+  4. **result.target** must be one of: "visual mark", "axis", or "tooltip".
 
-  4. **result.behavior** must be one of: "remove", "rescale", "resort", "reorder", "add", "show", or "overlap".
+  5. **result.behavior** must be one of: "remove", "rescale", "resort", "annotate", "overlap", "highlight".
+    - \`"resort"\` is used for both **resort and reorder**.
+    - \`"annotate"\` replaces **add and show** (e.g., highlighting or marking elements).
+    - \`"highlight"\` is used when an element is specifically chosen.
 
-  5. **result.by** must be one of: "height", "opacity", "color", "axis", "value", or "auto".
+  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", or "auto".
     - If "color", then parameter must be one of:
       **"black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown"**.
     - If "axis", then parameter must be "x", "y", or "all".
     - If "value", then parameter must be "x", "y", or "all" (only used when target = "tooltip").
     - If "height", "opacity", or "auto", then parameter must be an **empty string** ("").
 
-  6. **Handling Insufficient Information**  
+  7. **Handling Insufficient Information**  
     - If the user input **does not provide enough details**, return:
       \`\`\`json
       {
-          "action": {
-              "target": "<best guess>",
-              "action": "<best guess>",
-              "parameter": "<best guess>"
-          },
-          "result": {
-              "target": "<best guess>",
-              "behavior": "<best guess>",
-              "by": "<best guess>",
-              "parameter": "<best guess>"
-          },
-          "similar": true,
-          "description": "Based on the input, we inferred the most likely interaction."
+          "data": [
+              {
+                  "action": {
+                      "target": "<best guess>",
+                      "action": "<best guess>",
+                      "parameter": "<best guess>"
+                  },
+                  "result": {
+                      "target": "<best guess>",
+                      "behavior": "<best guess>",
+                      "by": "<best guess>",
+                      "parameter": "<best guess>"
+                  },
+                  "similar": true,
+                  "description": "Based on the input, we inferred the most likely interaction."
+              }
+          ],
+          "description": "The input lacked detail, so we made an educated guess about the intended interactions."
       }
       \`\`\`
 
-  7. **Handling Completely Unmatched Input**  
+  8. **Handling Completely Unmatched Input**  
     - If the user input **does not match any valid interaction**, return:
       \`\`\`json
       {
-          "action": {},
-          "result": {},
-          "similar": false,
+          "data": [],
           "description": "Please provide more information."
       }
       \`\`\`
 
-  8.. **Description Formatting (No Extra Words!)**
-   - The **description must directly describe the action and result** without any extra phrases like "Based on the input" or "We inferred that".
+  9. **Description Formatting (No Extra Words!)**
+   - The **description for each action-result pair must be direct and clear**.
+   - The **overall description must summarize the entire interaction sequence**.
    - Example formatting:
-     - ✅ \`"Clicking on the x-axis reorders the elements based on opacity."\`
-     - ✅ \`"Hovering over the visual mark shows a tooltip with all values."\`
-     - ✅ \`"Dragging over the chart resizes the visual marks automatically."\`
+     - ✅ \`"Clicking on two colors highlights them for comparison."\`
+     - ✅ \`"Clicking the compare button removes unselected visual marks."\`
+     - ✅ \`"Zooming on the y-axis rescales it for better visualization."\`
    - Avoid vague or unnecessary words like:
-     - ❌ \`"Based on the input, clicking the x-axis will reorder the elements."\`
-     - ❌ \`"We inferred that hovering over the chart will show a tooltip."\`
+     - ❌ \`"We inferred that clicking the x-axis will reorder the elements."\`
      - ❌ \`"When the user hovers, a tooltip appears."\`
 
   ---
 
   ### **EXAMPLES OF INPUT AND EXPECTED OUTPUT** ###
 
-  #### **Example 1 (Exact Match):**
+  #### **Example 1 (Multiple Interactions):**
   **Input:**  
-  *"When the user clicks on the x-axis, reorder the elements based on opacity."*
+  *"When the user clicks on two colors and then clicks the compare button, we compare these two colors."*
 
   **Output:**
   \`\`\`json
   {
-      "action": {
-          "target": "axis",
-          "action": "click",
-          "parameter": "x"
-      },
-      "result": {
-          "target": "visual mark",
-          "behavior": "resort",
-          "by": "opacity",
-          "parameter": ""
-      },
-      "similar": false,
-      "description": "Clicking on the x-axis reorders the elements based on opacity."
-  }
-  \`\`\`
-
-  #### **Example 2 (Similar Match due to Missing Details):**
-  **Input:**  
-  *"Move the chart."*
-
-  **Output:**
-  \`\`\`json
-  {
-      "action": {
-          "target": "axis",
-          "action": "drag",
-          "parameter": "all"
-      },
-      "result": {
-          "target": "visual mark",
-          "behavior": "rescale",
-          "by": "auto",
-          "parameter": ""
-      },
-      "similar": true,
-      "description": "Based on the input, we inferred that dragging the axis will rescale the chart."
-  }
-  \`\`\`
-
-  #### **Example 3 (Completely Unmatched Input):**
-  **Input:**  
-  *"Tell me about the latest news."*
-
-  **Output:**
-  \`\`\`json
-  {
-      "action": {},
-      "result": {},
-      "similar": false,
-      "description": "Please provide more information."
+      "data": [
+          {
+              "action": {
+                  "target": "visual mark",
+                  "action": "click",
+                  "parameter": ""
+              },
+              "result": {
+                  "target": "visual mark",
+                  "behavior": "highlight",
+                  "by": "color",
+                  "parameter": "auto"
+              },
+              "similar": false,
+              "description": "Clicking on two colors selects them for comparison."
+          },
+          {
+              "action": {
+                  "target": "button",
+                  "action": "click",
+                  "parameter": "compare"
+              },
+              "result": {
+                  "target": "visual mark",
+                  "behavior": "remove",
+                  "by": "unselected",
+                  "parameter": "auto"
+              },
+              "similar": false,
+              "description": "Clicking the compare button removes unselected visual marks."
+          },
+          {
+              "action": {
+                  "target": "button",
+                  "action": "click",
+                  "parameter": "compare"
+              },
+              "result": {
+                  "target": "visual mark",
+                  "behavior": "overlap",
+                  "by": "auto",
+                  "parameter": ""
+              },
+              "similar": false,
+              "description": "Clicking the compare button overlaps the stacked area chart."
+          },
+          {
+              "action": {
+                  "target": "axis",
+                  "action": "zoom",
+                  "parameter": "y"
+              },
+              "result": {
+                  "target": "axis",
+                  "behavior": "rescale",
+                  "by": "auto",
+                  "parameter": "y"
+              },
+              "similar": false,
+              "description": "Zooming on the y-axis rescales it for better visualization."
+          }
+      ],
+      "description": "To compare two colors, first select two colors by clicking on them. Then, click the compare button to remove unselected visual marks, overlap the stacked area chart, and rescale the y-axis for better visualization."
   }
   \`\`\`
 
@@ -177,6 +204,7 @@ async function getAnswer(message) {
   ### **RESPONSE FORMAT**
   Return **only a valid JSON object** based on the input above. Do **not** provide explanations, comments, or extra text. Ensure the response is strictly valid JSON.
   `;
+
 
   var myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${token}`);
@@ -239,6 +267,8 @@ function activateInteraction(parsedJson){
   if(action.action === "zoom"){
     console.log("Rescale Axis");
     activate_axis_zoom_rescale();
+    _chart_object[0].share_json.push(parsedJson);
+    return true;
     // alert("Rescale Axis");
     // return "Rescale Axis";
   }
@@ -247,12 +277,13 @@ function activateInteraction(parsedJson){
     console.log("Annotate Visual Mark");
     if(result.parameter){
       _chart_object[0].CoordSys[2].activate_value_tooltip(result.parameter);
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
     } else {
       _chart_object[0].CoordSys[2].activate_value_tooltip("all");
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
     }
-    
-    // alert("Annotate Visual Mark");
-    // return "Annotate Visual Mark";
   }
   // resort axis by height/opacity/color - bar chart
   if(result.behavior === "resort" || result.behavior === "reorder"){
@@ -269,8 +300,8 @@ function activateInteraction(parsedJson){
       sort_by = 'auto';
     }
     _chart_object[0].x_axis_object_list[0].activate_sort(mouse_action, sort_by);
-    // alert("Resort Axis");
-    // return "Resort Axis";
+    _chart_object[0].share_json.push(parsedJson);
+    return true;
   }
   // remove area
   if(result.behavior === "remove") {
@@ -282,24 +313,24 @@ function activateInteraction(parsedJson){
     } else {
       console.log("Please write again.");
     }
-    // alert("Remove Area");
-    // return "Remove Area";
+    _chart_object[0].share_json.push(parsedJson);
+    return true;
   }
   // overlap area
   if(result.behavior === "overlap") {
     console.log("Overlap Area");
     _chart_object[0].CoordSys[2].activate_allow_overlap();
-    // alert("Overlap Area");
-    // return "Overlap Area";
+    _chart_object[0].share_json.push(parsedJson);
+    return true;
   }
   // move to bottom area
   if(result.target === "visual mark" && action.action === "click") {
     console.log("Move Area");
     _chart_object[0].CoordSys[2].activate_move_to_bottom();
-    // alert("Move Area");
-    // return "Move Area";
+    _chart_object[0].share_json.push(parsedJson);
+    return true;
   }
-  _chart_object[0].share_json.push(parsedJson);
+  return false;
 }
 
 

@@ -587,6 +587,14 @@ input:focus {
     background: #c3dbc7;
 }
 
+.button-div {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: end;
+    justify-content: end;
+}
+
 body {
     font-family: 'Inter';
     margin: 0;
@@ -657,4 +665,79 @@ body {
 #send-button:hover {
     background-color: #3b8132;
 }
-		
+
+#confirm-no {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+#confirm-yes {
+    background-color: #5bb450;
+}
+
+.message-text .check-list {
+    display: flex;
+    gap: 3px;
+}
+
+.checks {
+    display: flex;
+    padding: 8px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: fit-content;
+    min-width: fit-content;
+}
+
+.check {
+    background-color: #daebf7;
+    height: 24px;
+    padding: 0px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 25px;
+    /* background: var(--Special-Selection-A, #daebf7);
+    color: #0447a4; */
+    background-color: #daebf7;
+    color: #0447a4;
+  
+    /* Body 2/Regular */
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    /* 160% */
+    letter-spacing: 0.1px;
+    flex-direction: row;
+    display: inline-flex;
+}
+  
+.check:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+  
+.check.selected {
+    /* background: var(--Accent-Blue, #18a0fb);
+    color: white; */
+    background-color: #18a0fb;
+    color: white;
+  
+    /* Body 2/Regular */
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    /* 160% */
+    letter-spacing: 0.1px;
+    flex-direction: row;
+}

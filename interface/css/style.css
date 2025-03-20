@@ -204,8 +204,7 @@ body {
     margin-bottom: 0.2rem;
 }
 
-#result-title, #result-description, #result-link {
-
+#result-title, #result-description, #result-link, #gallery-button {
     font-size: 0.8rem;
     font-weight: 300;
 }

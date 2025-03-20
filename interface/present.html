@@ -88,6 +88,7 @@
 				</div>
 				<!-- <pre id="result-interaction"></pre> -->
 				<div class="popup-buttons">
+					<button class="gallery-button">Go to Gallery</button>
 					<button class="close-share-result">Close</button>
 				</div>
 			</div>
@@ -261,7 +262,9 @@
 			img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData);
 		});
 
-		document.querySelector(".share-confirm-button").addEventListener("click", async function() {
+		document.querySelector(".share-confirm-button").addEventListener("click", async function(event) {
+			event.preventDefault();
+			
 			let titleInput = document.querySelector(".popup-title");
 			let descriptionInput = document.querySelector(".popup-description");
 			let interactionData = document.querySelector(".popup-interaction").value;
@@ -272,6 +275,25 @@
 			if (!title || !description) {
 				if (!title) titleInput.style.border = "2px solid red";
 				if (!description) descriptionInput.style.border = "2px solid red";
+				return;
+			}
+
+			// 중복 파일 검사
+			try {
+				const response = await fetch(`http://localhost:5001/check-json/chart/${title}`, {
+					method: "GET",
+					mode: "cors",
+					credentials: "omit"
+				});
+				const data = await response.json();
+				
+				if (data.exists) {
+					titleInput.style.border = "2px solid red";
+					alert("Already exists");
+					return;
+				}
+			} catch (error) {
+				console.error("File duplicate check error:", error);
 				return;
 			}
 
@@ -354,9 +376,13 @@
 			document.getElementById("share-result").style.display = "none";
 		}
 
+		function goToGallery() {
+			window.location.href = "gallery.html";
+		}
+
 		document.getElementById("close-popup").addEventListener("click", closePopup);
 		document.querySelector(".close-share-result").addEventListener("click", closePopup);
-
+		document.querySelector(".gallery-button").addEventListener("click", goToGallery);
 		function resetBorder(event) {
 			if (event.target.value.trim() !== "") {
 				event.target.style.border = "1px solid #ccc";

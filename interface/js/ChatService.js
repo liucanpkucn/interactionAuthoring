@@ -129,14 +129,26 @@ class ChatService {
                 answer = JSON.parse(answer.replace(/```json|```/g, "").trim());
                 console.log("answer!!!!!!!", answer);
                 this.removeLoadingMessage();
+                // answer = {
+                //     description: "Please check this is correct.",
+                //     data: [
+                //         { description: "Option 1" },
+                //         { description: "Option 2" },
+                //     ]
+                // }
 
-                if (Object.keys(answer.action).length === 0 && Object.keys(answer.result).length === 0) {
+                if (Object.keys(answer.data).length === 0) {
                     return this.SystemResponse(answer.description);
                 } else {
-                    if(answer.similar){
-                        this.SystemResponse("Please check this is correct.");
-                    }
-                    this.askForConfirmation(answer);
+                    console.log("answer.data", answer.data);
+                    this.displayAnswerWithCheckboxes(answer);
+                    // this.SystemResponse(answer.description);
+                    // for (let data of answer.data) {
+                    //     if (data.similar) {
+                    //         this.SystemResponse("Please check this is correct.");
+                    //     }
+                    //     this.askForConfirmation(data);
+                    // }
                 }
             }
 
@@ -161,6 +173,110 @@ class ChatService {
                 event.preventDefault(); // 阻止换行行为
                 this.sendButton.click(); // 模拟发送按钮点击事件
             }
+        });
+    }
+
+    displayAnswerWithCheckboxes(answer) {
+        const { description, data } = answer;
+    
+        // Create a new div for the message
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message assistant";
+    
+        // Create a new div for the list
+        const listDiv = document.createElement("div");
+        listDiv.className = "message-text";
+    
+        // 첫 번째 행 (체크박스 없이 description만 표시)
+        if (description) {
+            const descriptionDiv = document.createElement("div");
+            descriptionDiv.className = "check-list";
+            descriptionDiv.textContent = description;
+            listDiv.appendChild(descriptionDiv);
+        }
+    
+        // 체크박스 리스트
+        const checksDiv = document.createElement("div");
+        checksDiv.className = "checks";
+    
+        data.forEach((item, index) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "check selected";
+            itemDiv.style.display = "flex";
+            itemDiv.style.alignItems = "center";
+            itemDiv.style.cursor = "pointer";
+            
+            const label = document.createElement("label");
+            label.className = "check-label selected";
+            label.htmlFor = `checkbox-${index}`;
+            label.textContent = `✓ ${item.description}`; // 기본적으로 체크된 상태
+            
+            // 클릭 시 선택/해제 기능 추가
+            itemDiv.addEventListener("click", () => {
+                if (itemDiv.classList.contains("selected")) {
+                    itemDiv.classList.remove("selected");
+                    label.classList.remove("selected");
+                    label.textContent = item.description;
+                } else {
+                    itemDiv.classList.add("selected");
+                    label.classList.add("selected");
+                    label.textContent = `✓ ${item.description}`;
+                }
+            });
+    
+            itemDiv.appendChild(label);
+            checksDiv.appendChild(itemDiv);
+        });
+
+        const noticeDiv = document.createElement("div");
+        noticeDiv.className = "check-list";
+        noticeDiv.textContent = "Please select interaction and click 'Confirm' to allow.";
+
+        const confirmationDiv = this.document.createElement("div");
+        confirmationDiv.className = "button-div assistant";
+
+        const confirmButton = document.createElement("button");
+        confirmButton.className = "confirm-button";
+        confirmButton.id = "confirm-yes";
+        confirmButton.textContent = "Confirm";
+
+        const noButton = document.createElement("button");
+        noButton.className = "confirm-button";
+        noButton.id = "confirm-no";
+        noButton.textContent = "No";
+
+        confirmationDiv.appendChild(noButton);
+        confirmationDiv.appendChild(confirmButton);
+
+        listDiv.appendChild(checksDiv);
+        listDiv.appendChild(noticeDiv);
+        listDiv.appendChild(confirmationDiv);
+        messageDiv.appendChild(listDiv);
+
+        this.chatBody.appendChild(messageDiv);
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+
+        // Confirm 버튼 클릭 이벤트
+        confirmButton.addEventListener("click", () => {
+            const selectedData = data.filter((_, index) => {
+                return checksDiv.children[index].classList.contains("selected");
+            });
+            console.log("selectedData", selectedData);
+            for (let item of selectedData) {
+                const result = activateInteraction(item)
+                if(result) {
+                    this.SystemResponse("\"" + item.description + "\" is allowed.");
+                } else {
+                    this.SystemResponse("\"" + item.description + "\" is not allowed.");
+                }
+            }
+            confirmationDiv.remove();
+        });
+
+        // No 버튼 클릭 이벤트
+        noButton.addEventListener("click", () => {
+            this.SystemResponse("Please provide more information.");
+            confirmationDiv.remove();
         });
     }
 
@@ -735,8 +851,6 @@ class ChatService {
       }
     
     }
-
-    // this._SystemResponse = SystemResponse
 }
 
 // 优先获取value，如果不存在则获取default_value

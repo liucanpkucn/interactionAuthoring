@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.ignoreFiles": [
+        ".vscode/**",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.ts",
+        "interface/shared/**"  // shared 폴더 내의 모든 파일 무시
+    ]
+} 
