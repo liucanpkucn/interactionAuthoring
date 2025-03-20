@@ -18,8 +18,8 @@ body {
 :root {
     --background: #f0f0f0;
     --option-bg: #DAEBF7;
-    --selected-bg: #5bb450;
-    --text-primary: #3b8132;
+    --selected-bg: #5197d6;
+    --text-primary: #3389d4;
     --text-white: white;
 }
 
@@ -100,7 +100,7 @@ body {
 
 #copy-button {
     padding: 8px 16px;
-    background-color: #5bb450;
+    background-color: #5197d6;
     color: white;
     border: none;
     border-radius: 4px;
@@ -111,7 +111,7 @@ body {
 
 #share-button {
     padding: 8px 16px;
-    background-color: #5bb450;
+    background-color: #5197d6;
     color: white;
     border: none;
     border-radius: 4px;
@@ -120,8 +120,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
+#share-button:hover {
+    background-color: #1565aa;
+}
+
 #copy-button:hover {
-    background-color: #5bb450;
+    background-color: #1565aa;
 }
 
 #copy-button:disabled {
@@ -211,7 +215,7 @@ body {
 }
 
 .user .message-text {
-    background: #5bb450;
+    background: #5197d6;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
@@ -231,12 +235,12 @@ body {
     background: var(--background);
     color: black;
     padding: 10px 15px;
-    border-radius: 12px;
+    border-radius: 5px;
     margin-right: auto;
     max-width: 70%;
 
     display: block;
-    line-height: 24px;
+    /* line-height: 24px; */
     /* 增加元素之间间距 */
     white-space: normal;
     /* 允许换行 */
@@ -249,6 +253,10 @@ body {
     /* 水平间距 */
 }
 
+.assistant .button-div {
+    margin: 0px;
+    margin-top: 1rem;
+}
 
 .input-icon {
     position: relative;
@@ -283,9 +291,8 @@ body {
 }
 
 .input-wrapper:focus-within {
-    border: 1px solid var(--Accent-Blue, #5bb450);
+    border: 1px solid var(--Accent-Blue, #5197d6);
 }
-
 
 input {
     display: inline-block;
@@ -373,7 +380,7 @@ input:focus {
     border-radius: 25px;
     background: var(--Special-Selection-A, #DAEBF7);
 
-    color: #3b8132;
+    color: #3389d4;
 
     /* Body 2/Regular */
     font-family: Inter;
@@ -393,7 +400,7 @@ input:focus {
 }
 
 .option.selected {
-    background: var(--Accent-Blue, #5bb450);
+    background: var(--Accent-Blue, #5197d6);
     color: white;
 
     /* Body 2/Regular */
@@ -405,7 +412,6 @@ input:focus {
     /* 160% */
     letter-spacing: 0.1px;
     flex-direction: row;
-
 }
 
 .chat-input {
@@ -503,13 +509,11 @@ input:focus {
     animation: fade 0.3s ease-in-out;
 }
 
-
 .message-text-input {
     position: relative;
     display: inline-block;
     width: fit-content;
 }
-
 
 .dropdown-display {
     display: flex;
@@ -523,14 +527,13 @@ input:focus {
     background: var(--Basic-White, #FFF);
 }
 
-
 .dropdown-display:hover {
     border: 1px solid var(--Basic-Silver, #E5E5E5);
 }
 
 .dropdown-display:focus,
 .dropdown-display.active {
-    border: 1px solid var(--Accent-Blue, #5bb450);
+    border: 1px solid var(--Accent-Blue, #5197d6);
 }
 
 .dropdown-options {
@@ -557,7 +560,6 @@ input:focus {
     }
 }
 
-
 .option-icon {
     width: 16px;
     height: 16px;
@@ -569,7 +571,7 @@ input:focus {
 }
 
 .confirm-button {
-    background: #64d375;
+    background: #5197d6;
     color: white;
     font-family: Inter;
     font-size: 10px;
@@ -581,6 +583,10 @@ input:focus {
     border-radius: 10px;
     padding: 6px 12px;
     cursor: pointer;
+}
+
+.confirm-button:hover {
+    background-color: #1565aa;
 }
 
 .confirm-button.selected {
@@ -641,10 +647,9 @@ body {
 
 /* ✅ 버튼 스타일 */
 #send-button {
-    position: absolute;
     border-radius: 8px;
-    background-color: #5bb450;
-    opacity: 0.8;
+    background-color: #5197d6;
+    opacity: 1;
     color: white;
     border: none;
     cursor: pointer;
@@ -654,8 +659,8 @@ body {
 #share-button {
     position: absolute;
     border-radius: 8px;
-    background-color: #5bb450;
-    opacity: 0.8;
+    background-color: #5197d6;
+    opacity: 1;
     color: white;
     border: none;
     cursor: pointer;
@@ -663,7 +668,7 @@ body {
 }
 
 #send-button:hover {
-    background-color: #3b8132;
+    background-color: #1565aa;
 }
 
 #confirm-no {
@@ -671,13 +676,21 @@ body {
     color: black;
 }
 
+#confirm-no:hover {
+    background-color: #d0d0d0;
+}
+
 #confirm-yes {
-    background-color: #5bb450;
+    background-color: #5197d6;
+}
+
+#confirm-yes:hover {
+    background-color: #1565aa;
 }
 
 .message-text .check-list {
     display: flex;
-    gap: 3px;
+    /* gap: 3px; */
 }
 
 .checks {
@@ -697,16 +710,16 @@ body {
 
 .check {
     background-color: #daebf7;
-    height: 24px;
+    height: auto;
+    min-height: 24px;
+    max-height: 72px;
     padding: 0px 8px;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    border-radius: 25px;
-    /* background: var(--Special-Selection-A, #daebf7);
-    color: #0447a4; */
+    border-radius: 5px;
     background-color: #daebf7;
-    color: #0447a4;
+    color: #3389d4;
   
     /* Body 2/Regular */
     font-family: Inter;
@@ -721,14 +734,13 @@ body {
 }
   
 .check:hover {
-    background-color: #e0e0e0;
+    background-color: #c5e2f7;
+    /* color: white; */
     cursor: pointer;
 }
   
 .check.selected {
-    /* background: var(--Accent-Blue, #18a0fb);
-    color: white; */
-    background-color: #18a0fb;
+    background-color: #5197d6;
     color: white;
   
     /* Body 2/Regular */
@@ -740,4 +752,8 @@ body {
     /* 160% */
     letter-spacing: 0.1px;
     flex-direction: row;
+}
+
+.check.selected:hover {
+    background-color: #1565aa;
 }

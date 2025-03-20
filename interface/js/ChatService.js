@@ -270,12 +270,19 @@ class ChatService {
                     this.SystemResponse("\"" + item.description + "\" is not allowed.");
                 }
             }
+            Array.from(checksDiv.children).forEach((itemDiv) => {
+                itemDiv.style.pointerEvents = "none";
+            });
+            noticeDiv.remove();
             confirmationDiv.remove();
         });
 
         // No 버튼 클릭 이벤트
         noButton.addEventListener("click", () => {
-            this.SystemResponse("Please provide more information.");
+            Array.from(checksDiv.children).forEach((itemDiv) => {
+                itemDiv.style.pointerEvents = "none";
+            });
+            noticeDiv.remove();
             confirmationDiv.remove();
         });
     }

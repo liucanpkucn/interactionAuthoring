@@ -170,9 +170,17 @@ body {
     background: #eee;
 }
 
+.cancel-button:hover {
+    background-color: #ddd;
+}
+
 .share-button, .share-confirm-button, .close-share-result {
-    background: #5bb450;
+    background: #5197d6;
     color: white;
+}
+
+.share-button:hover, .share-confirm-button:hover, .close-share-result:hover {
+    background-color: #1565aa;
 }
 
 .share-result {

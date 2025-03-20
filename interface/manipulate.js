@@ -262,7 +262,6 @@ function activateInteraction(parsedJson){
   console.log(result);
   console.log(mouse_action);
 
-
   // rescale axis
   if(action.action === "zoom"){
     console.log("Rescale Axis");
@@ -272,6 +271,7 @@ function activateInteraction(parsedJson){
     // alert("Rescale Axis");
     // return "Rescale Axis";
   }
+
   // annotate visual mark
   if(result.target === "tooltip") {
     console.log("Annotate Visual Mark");
@@ -285,6 +285,7 @@ function activateInteraction(parsedJson){
       return true;
     }
   }
+
   // resort axis by height/opacity/color - bar chart
   if(result.behavior === "resort" || result.behavior === "reorder"){
     console.log("Resort Axis");
@@ -303,6 +304,7 @@ function activateInteraction(parsedJson){
     _chart_object[0].share_json.push(parsedJson);
     return true;
   }
+
   // remove area
   if(result.behavior === "remove") {
     console.log("Remove Area");
@@ -316,6 +318,7 @@ function activateInteraction(parsedJson){
     _chart_object[0].share_json.push(parsedJson);
     return true;
   }
+
   // overlap area
   if(result.behavior === "overlap") {
     console.log("Overlap Area");
@@ -323,6 +326,7 @@ function activateInteraction(parsedJson){
     _chart_object[0].share_json.push(parsedJson);
     return true;
   }
+
   // move to bottom area
   if(result.target === "visual mark" && action.action === "click") {
     console.log("Move Area");
