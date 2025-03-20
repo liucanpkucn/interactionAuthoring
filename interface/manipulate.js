@@ -247,7 +247,7 @@ function activateInteraction(parsedJson){
   let action = parsedJson.action;
   let result = parsedJson.result;
   let description = parsedJson.description;
-
+  
   // mouse action
   let mouse_action;
   if (action.action === "click" || action.action === "mouseover" || action.action === "drag" || action.action === "zoom") {
@@ -258,36 +258,43 @@ function activateInteraction(parsedJson){
     mouse_action = "contextmenu";
   }
 
-  console.log(action);
-  console.log(result);
-  console.log(mouse_action);
+  // console.log(action);
+  // console.log(result);
+  // console.log(mouse_action);
+  // "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" ),
 
-  // rescale axis
-  if(action.action === "zoom"){
-    console.log("Rescale Axis");
-    activate_axis_zoom_rescale();
+  // remove area
+  if(result.behavior === "remove") {
+    // button create
+    if(action.target === "button"){
+      console.log("Create Button");
+      if(result.by === "color"){
+        buttonCreation({behavior: "remove", by: result.by, label: action.parameter, color: result.parameter});
+      } else if (result.by === "unselected"){
+        buttonCreation({behavior: "remove", by: result.by, label: action.parameter});
+      }
+    } else if(action.target === "visual mark"){
+      console.log("Remove visual mark by clicking visual mark");
+      _chart_object[0].CoordSys.forEach(coordSys => {
+        coordSys.activate_remove_visual_object();
+      });
+    }
     _chart_object[0].share_json.push(parsedJson);
     return true;
-    // alert("Rescale Axis");
-    // return "Rescale Axis";
   }
 
-  // annotate visual mark
-  if(result.target === "tooltip") {
-    console.log("Annotate Visual Mark");
-    if(result.parameter){
-      _chart_object[0].CoordSys[2].activate_value_tooltip(result.parameter);
-      _chart_object[0].share_json.push(parsedJson);
-      return true;
-    } else {
-      _chart_object[0].CoordSys[2].activate_value_tooltip("all");
+  // rescale
+  if(result.behavior === "rescale"){
+    if(result.target === "axis"){
+      console.log("Rescale Axis");
+      activate_axis_zoom_rescale(result.parameter);
       _chart_object[0].share_json.push(parsedJson);
       return true;
     }
   }
 
   // resort axis by height/opacity/color - bar chart
-  if(result.behavior === "resort" || result.behavior === "reorder"){
+  if(result.behavior === "resort"){
     console.log("Resort Axis");
     let sort_by;
 
@@ -305,24 +312,47 @@ function activateInteraction(parsedJson){
     return true;
   }
 
-  // remove area
-  if(result.behavior === "remove") {
-    console.log("Remove Area");
-    // button create
-    if(action.target === "button"){
-      console.log("Create Button");
-      buttonCreation(action.parameter, result.parameter);
-    } else {
-      console.log("Please write again.");
+  // annotate
+  if(result.behavior === "annotate"){
+    if(result.target === "tooltip") {
+      console.log("Annotate Visual Mark");
+      if(result.parameter){
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          coordSys.activate_value_tooltip(result.parameter);
+        });
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      } else {
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          coordSys.activate_value_tooltip("all");
+        });
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      }
     }
-    _chart_object[0].share_json.push(parsedJson);
-    return true;
   }
 
   // overlap area
   if(result.behavior === "overlap") {
     console.log("Overlap Area");
-    _chart_object[0].CoordSys[2].activate_allow_overlap();
+    if(action.target === "button"){
+      buttonCreation({behavior: "overlap", by: result.by, label: action.parameter});
+      _chart_object[0].CoordSys.forEach(coordSys => {
+        coordSys.activate_allow_overlap();
+      });
+    } 
+    if(action.action === "drag") {
+      _chart_object[0].CoordSys.forEach(coordSys => {
+        coordSys.activate_allow_overlap();
+      });
+    }
+    _chart_object[0].share_json.push(parsedJson);
+    return true;
+  }
+
+  // highlight
+  if(result.behavior === "highlight"){
+    console.log("Highlight Area");
     _chart_object[0].share_json.push(parsedJson);
     return true;
   }
@@ -330,7 +360,9 @@ function activateInteraction(parsedJson){
   // move to bottom area
   if(result.target === "visual mark" && action.action === "click") {
     console.log("Move Area");
-    _chart_object[0].CoordSys[2].activate_move_to_bottom();
+    _chart_object[0].CoordSys.forEach(coordSys => {
+      coordSys.activate_move_to_bottom();
+    });
     _chart_object[0].share_json.push(parsedJson);
     return true;
   }
@@ -338,7 +370,7 @@ function activateInteraction(parsedJson){
 }
 
 
-function buttonCreation(label, color) {
+function buttonCreation({behavior, by, label, color}) {
   console.log("Button Creation");
 
   let mainRect = document.querySelector(".mainrect");
@@ -354,15 +386,41 @@ function buttonCreation(label, color) {
   button.style.left = (mainRect.getBoundingClientRect().right - 170) + "px"; // 오른쪽에 배치
   button.style.top = (mainRect.getBoundingClientRect().bottom - 150) + "px"; // 같은 높이로 정렬
   button.style.padding = "8px 12px";
-  button.style.backgroundColor = color;
+  button.style.backgroundColor = "white";
   button.style.color = "#000";
   button.style.borderWidth = "1px";
   button.style.cursor = "pointer";
   button.style.borderRadius = "5px";
   
-  if(label === "remove"){
+  if(behavior === "remove"){
+    if(by === "color"){
+      console.log("BUTTON - REMOVE COLOR")
+      button.addEventListener("click", function () {
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          coordSys.deactivate_visual_object(find_element_by_color(color));
+        });
+      });
+    } else if (by === "unselected"){
+      console.log("BUTTON - REMOVE UNSELECTED AREA")
+      button.addEventListener("click", function () {
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          let selected_idx = [];
+          coordSys.visual_object.forEach((vo, idx) => {
+            if(vo.selected === false){
+              selected_idx.push(idx);
+            }
+          })
+          coordSys.deactivate_visual_object_group(selected_idx);
+        });
+      });
+    }
+  } else if(behavior === "resort"){
+
+  } else if(behavior === "overlap"){
     button.addEventListener("click", function () {
-      _chart_object[0].CoordSys[2].deactivate_visual_object(find_element_by_color(color));
+      _chart_object[0].CoordSys.forEach(coordSys => {
+        coordSys.overlap(_chart_object[0], _chart_object[0].content_group);
+      });
     });
   }
 
@@ -442,7 +500,13 @@ function number_of_visual_element() {
   return i;
 }
 
-function activate_axis_zoom_rescale() {
-  _chart_object[0].x_axis_object_list[0].activate_rescale();
-  _chart_object[0].y_axis_object_list[0].activate_rescale();
+function activate_axis_zoom_rescale(axis) {
+  if(axis === "x"){
+    _chart_object[0].x_axis_object_list[0].activate_rescale();
+  } else if(axis === "y"){
+    _chart_object[0].y_axis_object_list[0].activate_rescale();
+  } else {
+    _chart_object[0].x_axis_object_list[0].activate_rescale();
+    _chart_object[0].y_axis_object_list[0].activate_rescale();
+  }
 }

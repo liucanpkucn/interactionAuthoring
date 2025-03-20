@@ -136,19 +136,12 @@ class ChatService {
                 //         { description: "Option 2" },
                 //     ]
                 // }
-
+                
                 if (Object.keys(answer.data).length === 0) {
                     return this.SystemResponse(answer.description);
                 } else {
                     console.log("answer.data", answer.data);
                     this.displayAnswerWithCheckboxes(answer);
-                    // this.SystemResponse(answer.description);
-                    // for (let data of answer.data) {
-                    //     if (data.similar) {
-                    //         this.SystemResponse("Please check this is correct.");
-                    //     }
-                    //     this.askForConfirmation(data);
-                    // }
                 }
             }
 

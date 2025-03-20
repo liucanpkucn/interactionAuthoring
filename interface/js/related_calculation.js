@@ -644,8 +644,10 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
 
   this.activate_visual_object_group = function(vid_group, activate = true){
     for (let vid of vid_group){
-      visual_object[vid].activate = activate
-      visual_object[vid].control_point.forEach(d => control_point[d].activate = activate)
+      if (visual_object[vid] && visual_object[vid].activate){
+        visual_object[vid].activate = activate
+        visual_object[vid].control_point.forEach(d => control_point[d].activate = activate)
+      }
     }
 
     update_activate()
@@ -795,6 +797,8 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
 
   let allowMoveToBottom = false;
   let allowOverlap = false;
+  let allowRemoveVisualObject = false;
+
   function dragEndVisualObject(e, d){
     removeHint(main_canvas_object, ()=>{clearTimeout(showHintStart); showHintStart=null});
     let status = judge_drag_status(e)
@@ -803,6 +807,10 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
     if (status.drag_small){
       console.log("This is the in fact click.")
       console.log('click', current_move_list)
+
+      if(allowRemoveVisualObject){
+        _chart_object[0].CoordSys[2].deactivate_visual_object(d.id);
+      }
       if(allowMoveToBottom) {
         console.log('vo_id', d.id);
         _chart_object[0].CoordSys[2].move_to_bottom(d.id);
@@ -1059,7 +1067,15 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
     move_optimization(status, current_move_list, change_xy, mouse_point, current_canvas_position, current_vo_id)
   }
 
+
+  this.overlap = function(current_canvas_position, current_move_list){
+    coordinate_data.groups[0].order = "x";
+    main_canvas_object.dragOderStatus = 1 - (main_canvas_object.dragOderStatus === undefined ? 0 : main_canvas_object.dragOderStatus);
+    current_coordinate_object.simple_change_order_list(current_canvas_position, current_move_list)
+  }
+
   let move_optimization = function(status, current_move_list, change_xy, mouse_point, current_canvas_position, current_vo_id){
+    console.log("아니야아아ㅏ앙");
     restart_all_simulations()
     if (status.fast){
       delete_color_group_by_d(current_vo_id)
@@ -1216,6 +1232,10 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
 
   this.activate_allow_overlap = function () {
     allowOverlap = true;
+  }
+
+  this.activate_remove_visual_object = function(){
+    allowRemoveVisualObject = true;
   }
 
   this.simple_change_order = function(point, vid){
