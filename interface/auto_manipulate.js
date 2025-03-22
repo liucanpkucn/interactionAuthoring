@@ -187,9 +187,16 @@ function auto_change_quantitative_scale(chart_object, direction = "y") {
   }
 
   console.log("stable changed", stable_value, changed_value);
+  chart_object.CoordSys.forEach(function(coordSys){
+    if(coordSys.x_axis && coordSys.y_axis){
+      console.log("coordSys")
+      coordSys.update_data_value((direction = "y"));
+      coordSys.update_data_value((direction = "x"));
+    }
+  });
 
-  chart_object.CoordSys[0].update_data_value((direction = "y"));
-  chart_object.CoordSys[0].update_data_value((direction = "x"));
+  // chart_object.CoordSys[0].update_data_value((direction = "y"));
+  // chart_object.CoordSys[0].update_data_value((direction = "x"));
 
   if (chosen_axis.axis.scale_type === "linear") {
     chosen_axis.begin_change_axis();

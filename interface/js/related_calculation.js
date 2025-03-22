@@ -809,11 +809,15 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
       console.log('click', current_move_list)
 
       if(allowRemoveVisualObject){
-        _chart_object[0].CoordSys[2].deactivate_visual_object(d.id);
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          coordSys.deactivate_visual_object(d.id);
+        });
       }
       if(allowMoveToBottom) {
         console.log('vo_id', d.id);
-        _chart_object[0].CoordSys[2].move_to_bottom(d.id);
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          coordSys.move_to_bottom(d.id);
+        });
       }
       main_canvas_object.brush_selected = false
       main_canvas_object.chart_json.CoordSys.forEach(function(coordinate_data){
@@ -1229,6 +1233,50 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
   this.activate_move_to_bottom = function () {
     allowMoveToBottom = true;
   };
+
+  this.resort_stacked_area_chart = function(criteria) {
+    const validCriteria = ["color", "opacity", "height"];
+    if (!validCriteria.includes(criteria)) {
+      console.warn("Invalid criteria. Use one of:", validCriteria);
+      return;
+    }
+  
+    const visualObjects = _chart_object[0].CoordSys[_chart_object[0].CoordSys.length - 1].visual_object;
+  
+    // 기준에 따라 정렬 값 추출 함수
+    function getSortValue(obj) {
+      switch (criteria) {
+        case "color":
+          return obj.fill.join(",");  // RGB를 문자열로
+        case "opacity":
+          return obj.opacity ?? 1;    // undefined일 경우 1로 처리
+        case "height":
+          return (obj.down ?? obj.y_max ?? 0) - (obj.up ?? obj.y_min ?? 0); // 높이 계산
+      }
+    }
+  
+    // 정렬
+    const sorted = [...visualObjects].sort((a, b) => {
+      const valA = getSortValue(a);
+      const valB = getSortValue(b);
+  
+      // 문자열 비교는 color일 때만, 나머지는 숫자 비교
+      return typeof valA === "string"
+        ? valA.localeCompare(valB)
+        : valA - valB;
+    });
+  
+    // id 기준으로 order_list 갱신
+    let order_list = coordinate_data.groups[0].order_list;
+    order_list.length = 0;
+
+    for (let obj of sorted) {
+      order_list.push(obj.id); // 새 정렬된 순서대로 id 삽입
+    }
+  
+    console.log("Sorted order_list by", criteria, ":", order_list);
+    update_hard_larger_list();  // 변경 반영
+  }
 
   this.activate_allow_overlap = function () {
     allowOverlap = true;

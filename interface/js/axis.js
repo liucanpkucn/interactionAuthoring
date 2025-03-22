@@ -245,14 +245,26 @@ let draw_axis = function (canvas, axis, current_canvas_object) {
     }
   };
 
-  this.activate_sort = function (action, sort_by) {
-    if (action) {
+  this.activate_sort = function (action, sort_by, chart) {
+    let action_action;
+    if(action) {
       if (action === 'dbclick') {
-        axis_canvas.on("dblclick", function (e) {
-          sorted_axis(e, sort_by);
-        });
+        action_action = 'dblclick';
+      } else if (action === 'right button click') {
+        action_action = 'contextmenu';
       } else {
-        axis_canvas.on(action, (e) => sorted_axis(e, sort_by)); 
+        action_action = action;
+      }
+      if (chart === "stacked area") {
+        // stacked area chart
+        axis_canvas.on(action_action, (e) => {
+          _chart_object[0].CoordSys.forEach(coordSys => {
+            coordSys.resort_stacked_area_chart(sort_by);
+          });  
+        });
+      } else if (chart === "bar") {
+        // bar chart
+        axis_canvas.on(action_action, (e) => sorted_axis(e, sort_by));
       }
     } else {
       axis_canvas.on(action, function (e) {
@@ -262,7 +274,7 @@ let draw_axis = function (canvas, axis, current_canvas_object) {
   }
 
   function sorted_axis(e, sort_by) {
-    console.log('contextmenu!!!!')
+    console.log('contextmenu!!!!', e);
     let per_direct = 'y'
     if (axis.type === "y") {
       per_direct = "x"
@@ -311,6 +323,8 @@ let draw_axis = function (canvas, axis, current_canvas_object) {
       update_quantize_end(value_array.map(d => d.value), reverse = true)
     }
   }
+
+  this.sorted_axis = sorted_axis;
 
   this.auto_sorted_axis = function () {
     if (axis.scale_type !== "quantize") {

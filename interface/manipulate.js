@@ -37,8 +37,8 @@ async function getAnswer(message) {
               "result": {
                   "target": ( "visual mark" | "axis" | "tooltip" ),
                   "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" ),
-                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected ),
-                  "parameter": ( "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
+                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected | "move bottom" | "" ),
+                  "parameter": ("bar" | "stacked area" | "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
               },
               "similar": (true | false),
               "description": "<A concise and user-friendly explanation of the interaction>"
@@ -55,6 +55,9 @@ async function getAnswer(message) {
     - If "axis", then parameter must be "x", "y", or "all".
     - If "button", then parameter must match the **exact value of result.behavior**.
     - If "visual mark", then parameter must be an **empty string** ("").
+    - ⚠️ If action.target is "visual mark" and action.action is "click", then:
+      - result.by must be an empty string ("").
+      - result.parameter must be an empty string ("").
 
   3. **action.action** must be one of: "click", "double click", "right button click", "mouseover", "drag", or "zoom".
 
@@ -64,15 +67,28 @@ async function getAnswer(message) {
     - \`"resort"\` is used for both **resort and reorder**.
     - \`"annotate"\` replaces **add and show** (e.g., highlighting or marking elements).
     - \`"highlight"\` is used when an element is specifically chosen.
+    - ⚠️ If result.behavior is \`"resort"\`, then result.parameter must be either \`"bar"\` or \`"stacked area"\`.  
+      - For \`"stacked area"\`, result.by can include \`"move bottom"\`.
+      - result.by can also be \`height\`, \`opacity\`, or \`color\` for both values.
 
-  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", or "auto".
+  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", "auto", "unselected", or "move bottom".
     - If "color", then parameter must be one of:
       **"black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown"**.
     - If "axis", then parameter must be "x", "y", or "all".
     - If "value", then parameter must be "x", "y", or "all" (only used when target = "tooltip").
-    - If "height", "opacity", or "auto", then parameter must be an **empty string** ("").
+    - If "height", "opacity", "move bottom", or "auto", then parameter must be an **empty string** ("").
+    - ⚠️ If result.by is not "color", then result.parameter must not include any of:
+      - "black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown".
 
-  7. **Handling Insufficient Information**  
+  7. **Handling 'compare' in input**  
+    - If the user input includes the word \`compare\`, assume the behavior is \`"overlap"\`, unless explicitly specified otherwise.
+
+  8. **Rescale Behavior Expanded**
+    - If \`result.behavior\` is \`"rescale"\`, then:
+      - action.action can be \`"zoom"\` with action.target = \`"axis"\`
+      - OR action.action can be \`"click"\` with action.target = \`"button"\` and action.parameter = \`"y"\`
+
+  9. **Handling Insufficient Information**  
     - If the user input **does not provide enough details**, return:
       \`\`\`json
       {
@@ -97,7 +113,7 @@ async function getAnswer(message) {
       }
       \`\`\`
 
-  8. **Handling Completely Unmatched Input**  
+  10. **Handling Completely Unmatched Input**  
     - If the user input **does not match any valid interaction**, return:
       \`\`\`json
       {
@@ -106,13 +122,13 @@ async function getAnswer(message) {
       }
       \`\`\`
 
-  9. **Description Formatting (No Extra Words!)**
+  11. **Description Formatting (No Extra Words!)**
    - The **description for each action-result pair must be direct and clear**.
    - The **overall description must summarize the entire interaction sequence**.
    - Example formatting:
      - ✅ \`"Clicking on two colors highlights them for comparison."\`
      - ✅ \`"Clicking the compare button removes unselected visual marks."\`
-     - ✅ \`"Zooming on the y-axis rescales it for better visualization."\`
+     - ✅ \`"Clicking the y-axis rescale button adjusts the axis scale."\`
    - Avoid vague or unnecessary words like:
      - ❌ \`"We inferred that clicking the x-axis will reorder the elements."\`
      - ❌ \`"When the user hovers, a tooltip appears."\`
@@ -125,6 +141,8 @@ async function getAnswer(message) {
   **Input:**  
   *"When the user clicks on two colors and then clicks the compare button, we compare these two colors."*
 
+  **Output:**
+  \`\`\`json
   **Output:**
   \`\`\`json
   {
@@ -176,8 +194,8 @@ async function getAnswer(message) {
           },
           {
               "action": {
-                  "target": "axis",
-                  "action": "zoom",
+                  "target": "button",
+                  "action": "click",
                   "parameter": "y"
               },
               "result": {
@@ -187,10 +205,10 @@ async function getAnswer(message) {
                   "parameter": "y"
               },
               "similar": false,
-              "description": "Zooming on the y-axis rescales it for better visualization."
+              "description": "Clicking the y-axis rescale button adjusts the axis scale."
           }
       ],
-      "description": "To compare two colors, first select two colors by clicking on them. Then, click the compare button to remove unselected visual marks, overlap the stacked area chart, and rescale the y-axis for better visualization."
+      "description": "To compare two colors, first select two colors by clicking on them. Then, click the compare button to remove unselected visual marks, overlap the stacked area chart, and rescale the y-axis using the rescale button."
   }
   \`\`\`
 
@@ -256,6 +274,8 @@ function activateInteraction(parsedJson){
     mouse_action = "dbclick";
   } else if (action.action === "right button click") {
     mouse_action = "contextmenu";
+  } else {
+    mouse_action = "click";
   }
 
   // console.log(action);
@@ -269,27 +289,37 @@ function activateInteraction(parsedJson){
     if(action.target === "button"){
       console.log("Create Button");
       if(result.by === "color"){
-        buttonCreation({behavior: "remove", by: result.by, label: action.parameter, color: result.parameter});
+        buttonCreation({behavior: "remove", by: result.by, color: result.parameter});
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
       } else if (result.by === "unselected"){
-        buttonCreation({behavior: "remove", by: result.by, label: action.parameter});
+        buttonCreation({behavior: "remove", by: result.by});
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
       }
     } else if(action.target === "visual mark"){
       console.log("Remove visual mark by clicking visual mark");
       _chart_object[0].CoordSys.forEach(coordSys => {
         coordSys.activate_remove_visual_object();
       });
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
     }
-    _chart_object[0].share_json.push(parsedJson);
-    return true;
   }
 
   // rescale
   if(result.behavior === "rescale"){
     if(result.target === "axis"){
       console.log("Rescale Axis");
-      activate_axis_zoom_rescale(result.parameter);
-      _chart_object[0].share_json.push(parsedJson);
-      return true;
+      if(action.target === "button"){
+        buttonCreation({behavior: "rescale", by: result.parameter});
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      } else if(action.target === "axis"){
+        activate_axis_zoom_rescale(result.parameter);
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      }
     }
   }
 
@@ -298,18 +328,60 @@ function activateInteraction(parsedJson){
     console.log("Resort Axis");
     let sort_by;
 
-    // min_value / max_value / diff / color / opacity
-    if(result.by === 'height' || result.by === "value") {
-      sort_by = 'min_value';
-    } else if (result.by === "color" || result.by === "opacity" || result.by === "auto") {
-      sort_by = result.by;
+    if(result.parameter === "bar"){
+      // bar chart
+      // min_value / max_value / diff / color / opacity
+      if(result.by === 'height' || result.by === "value") {
+        sort_by = 'min_value';
+      } else if (result.by === "color" || result.by === "opacity" || result.by === "auto") {
+        sort_by = result.by;
+      }
+      else  {
+        sort_by = 'auto';
+      }
+
+      if(action.target === "button"){
+        buttonCreation({behavior: "resort", by: sort_by, chart: result.parameter});
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      } else {
+        _chart_object[0].x_axis_object_list.forEach(axis => {
+          axis.activate_sort(mouse_action, sort_by, result.parameter);
+        });
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      }
+    } else if (result.parameter === "stacked area"){
+      // stacked area chart
+      // sort by color/opacity/height
+      if(result.by === "color" || result.by === "opacity" || result.by === "height"){
+        sort_by = result.by;
+      } else {
+        sort_by = 'height';
+      }
+
+      if(action.target === "button"){
+        buttonCreation({behavior: "resort", by: sort_by, chart: result.parameter});
+        _chart_object[0].share_json.push(parsedJson);
+        return true;
+      } else {
+        if(result.by === "move bottom"){
+          // move to bottom area
+          console.log("Move Area");
+          _chart_object[0].CoordSys.forEach(coordSys => {
+            coordSys.activate_move_to_bottom();
+          });
+          _chart_object[0].share_json.push(parsedJson);
+          return true;
+        } else {
+          _chart_object[0].x_axis_object_list.forEach(axis => {
+            axis.activate_sort(mouse_action, sort_by, result.parameter);
+          });
+          _chart_object[0].share_json.push(parsedJson);
+          return true;
+        }
+      }
     }
-    else  {
-      sort_by = 'auto';
-    }
-    _chart_object[0].x_axis_object_list[0].activate_sort(mouse_action, sort_by);
-    _chart_object[0].share_json.push(parsedJson);
-    return true;
   }
 
   // annotate
@@ -336,18 +408,20 @@ function activateInteraction(parsedJson){
   if(result.behavior === "overlap") {
     console.log("Overlap Area");
     if(action.target === "button"){
-      buttonCreation({behavior: "overlap", by: result.by, label: action.parameter});
+      buttonCreation({behavior: "overlap", by: result.by});
       _chart_object[0].CoordSys.forEach(coordSys => {
         coordSys.activate_allow_overlap();
       });
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
     } 
     if(action.action === "drag") {
       _chart_object[0].CoordSys.forEach(coordSys => {
         coordSys.activate_allow_overlap();
       });
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
     }
-    _chart_object[0].share_json.push(parsedJson);
-    return true;
   }
 
   // highlight
@@ -356,21 +430,11 @@ function activateInteraction(parsedJson){
     _chart_object[0].share_json.push(parsedJson);
     return true;
   }
-
-  // move to bottom area
-  if(result.target === "visual mark" && action.action === "click") {
-    console.log("Move Area");
-    _chart_object[0].CoordSys.forEach(coordSys => {
-      coordSys.activate_move_to_bottom();
-    });
-    _chart_object[0].share_json.push(parsedJson);
-    return true;
-  }
   return false;
 }
 
 
-function buttonCreation({behavior, by, label, color}) {
+function buttonCreation({behavior, by, color, chart}) {
   console.log("Button Creation");
 
   let mainRect = document.querySelector(".mainrect");
@@ -380,51 +444,70 @@ function buttonCreation({behavior, by, label, color}) {
       return;
   }
 
-  let button = document.createElement("button");
-  button.innerText = label;
-  button.style.position = "absolute";
-  button.style.left = (mainRect.getBoundingClientRect().right - 170) + "px"; // 오른쪽에 배치
-  button.style.top = (mainRect.getBoundingClientRect().bottom - 150) + "px"; // 같은 높이로 정렬
-  button.style.padding = "8px 12px";
-  button.style.backgroundColor = "white";
-  button.style.color = "#000";
-  button.style.borderWidth = "1px";
-  button.style.cursor = "pointer";
-  button.style.borderRadius = "5px";
-  
-  if(behavior === "remove"){
-    if(by === "color"){
-      console.log("BUTTON - REMOVE COLOR")
+  let button = document.querySelector(".interaction-button");
+
+  if (!button) {
+    button = document.createElement("button");
+    button.className = "interaction-button";
+    button.id = "interaction-button";
+    button.innerText = behavior;
+    button.style.position = "absolute";
+    button.style.left = (mainRect.getBoundingClientRect().right - 170) + "px"; // 오른쪽에 배치
+    button.style.top = (mainRect.getBoundingClientRect().bottom - 150) + "px"; // 같은 높이로 정렬
+    button.style.padding = "8px 12px";
+    button.style.backgroundColor = "white";
+    button.style.color = "#000";
+    button.style.borderWidth = "1px";
+    button.style.cursor = "pointer";
+    button.style.borderRadius = "5px";
+    document.body.appendChild(button);
+  }
+
+  if (behavior === "remove") {
+    if (by === "color") {
+      console.log("BUTTON - REMOVE COLOR");
       button.addEventListener("click", function () {
         _chart_object[0].CoordSys.forEach(coordSys => {
           coordSys.deactivate_visual_object(find_element_by_color(color));
         });
       });
-    } else if (by === "unselected"){
-      console.log("BUTTON - REMOVE UNSELECTED AREA")
+    } else if (by === "unselected") {
+      console.log("BUTTON - REMOVE UNSELECTED AREA");
       button.addEventListener("click", function () {
         _chart_object[0].CoordSys.forEach(coordSys => {
           let selected_idx = [];
           coordSys.visual_object.forEach((vo, idx) => {
-            if(vo.selected === false){
+            if (vo.selected === false) {
               selected_idx.push(idx);
             }
-          })
+          });
           coordSys.deactivate_visual_object_group(selected_idx);
         });
       });
     }
-  } else if(behavior === "resort"){
-
-  } else if(behavior === "overlap"){
+  } else if (behavior === "resort") {
+    if(chart === "bar"){
+      button.addEventListener("click", function (e) {
+        _chart_object[0].CoordSys[_chart_object[0].CoordSys.length - 1].x_axis.sorted_axis(e, by);
+      });
+    } else if (chart === "stacked area"){
+      button.addEventListener("click", function () {
+        _chart_object[0].CoordSys.forEach(coordSys => {
+          coordSys.resort_stacked_area_chart(by);
+        });
+      });
+    }
+  } else if (behavior === "overlap") {
     button.addEventListener("click", function () {
       _chart_object[0].CoordSys.forEach(coordSys => {
         coordSys.overlap(_chart_object[0], _chart_object[0].content_group);
       });
     });
+  } else if (behavior === "rescale") {
+    button.addEventListener("click", function () {
+      auto_change_quantitative_scale(_chart_object[0], by);
+    });
   }
-
-  document.body.appendChild(button);
 }
 
 function closestColor(r, g, b) {
