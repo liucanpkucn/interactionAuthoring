@@ -109,7 +109,27 @@
 		document.addEventListener("DOMContentLoaded", updateHeight);
 		window.addEventListener("resize", updateHeight);
 
-		
+		let interaction_url = "shared/interaction/" + file_name + ".json"
+		console.log("interaction url", interaction_url);
+		d3.json(interaction_url)
+			.then(function (data) {
+				let interactionArray;
+				try {
+				// 문자열이라면 파싱
+				interactionArray = JSON.parse(data.interaction);
+				} catch (e) {
+				console.error("Parsing error:", e);
+				interactionArray = data.interaction; // 혹시 이미 배열일 경우 대비
+				}
+
+				for (let item of interactionArray) {
+				activateInteraction(item);
+				}
+			})
+			.catch(function () {
+				console.log("interaction data not found");
+			});
+
 	    	// d3.json('file_name.json')
 	    	// 	.then(function(file_name){
 	    	// 		console.log('file list', file_name)
