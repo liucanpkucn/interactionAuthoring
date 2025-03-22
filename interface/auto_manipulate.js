@@ -133,7 +133,7 @@ function auto_sort_axis(chart_object, direction = "y") {
 
 function auto_change_quantitative_scale(chart_object, direction = "y") {
   chart_object.chart_json.parsed_data;
-  let position_list = chart_object.CoordSys[0].control_point
+  let position_list = chart_object.CoordSys[chart_object.CoordSys.length - 1].control_point
     .filter((d) => d.activate)
     .map((d) => d[direction]);
   let min_position = Math.min(...position_list);
