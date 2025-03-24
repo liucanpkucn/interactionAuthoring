@@ -1,3 +1,4 @@
 a.json
 remove.json
+compare area.json
 20210811_stack.json

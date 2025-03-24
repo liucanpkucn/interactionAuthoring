@@ -451,16 +451,10 @@ function buttonCreation({behavior, by, color, chart}) {
     button.className = "interaction-button";
     button.id = "interaction-button";
     button.innerText = behavior;
-    button.style.position = "absolute";
-    button.style.left = (mainRect.getBoundingClientRect().right - 170) + "px"; // 오른쪽에 배치
-    button.style.top = (mainRect.getBoundingClientRect().bottom - 150) + "px"; // 같은 높이로 정렬
-    button.style.padding = "8px 12px";
-    button.style.backgroundColor = "white";
-    button.style.color = "#000";
-    button.style.borderWidth = "1px";
-    button.style.cursor = "pointer";
-    button.style.borderRadius = "5px";
+    button.style.left = (mainRect.getBoundingClientRect().right - 90) + "px"; // 오른쪽에 배치
+    button.style.top = (mainRect.getBoundingClientRect().bottom - 50) + "px"; // 같은 높이로 정렬
     document.body.appendChild(button);
+    makeDraggable(button);
   }
 
   if (behavior === "remove") {
@@ -591,5 +585,36 @@ function activate_axis_zoom_rescale(axis) {
   } else {
     _chart_object[0].x_axis_object_list[0].activate_rescale();
     _chart_object[0].y_axis_object_list[0].activate_rescale();
+  }
+}
+
+function makeDraggable(element) {
+  let offsetX = 0;
+  let offsetY = 0;
+  let isDragging = false;
+
+  element.addEventListener("mousedown", function (e) {
+    isDragging = true;
+    offsetX = e.clientX - element.getBoundingClientRect().left;
+    offsetY = e.clientY - element.getBoundingClientRect().top;
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+  });
+
+  function onMouseMove(e) {
+    if (!isDragging) return;
+
+    const x = e.clientX - offsetX;
+    const y = e.clientY - offsetY;
+
+    element.style.left = `${x}px`;
+    element.style.top = `${y}px`;
+  }
+
+  function onMouseUp() {
+    isDragging = false;
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
   }
 }

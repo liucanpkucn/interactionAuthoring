@@ -26,7 +26,6 @@ let canvas_main = function(data){
   let chat_body_width = document.getElementById("chat-body")?.clientWidth
   if (chat_body_width){
     window_width = window_width - chat_body_width
-
   }
   this.chart_json = chart_json
   this.force_button_click = false
@@ -61,9 +60,11 @@ let canvas_main = function(data){
   new_chart_json = JSON.parse(JSON.stringify(chart_json))
 
   let resize = 1
-
   if (data.size.width > window_width ){
     resize = window_width * 0.7 / data.size.width
+  }
+  if (data.size.height > window_height ){
+    resize = window_height * 0.7 / data.size.height
   }
   console.log(resize)
   let chart_object = []

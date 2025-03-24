@@ -62,6 +62,7 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 30;
 }
 
 /* 팝업 컨테이너 */
@@ -75,6 +76,7 @@ body {
     padding: 10 5 20 25;
     border-radius: 10px;
     align-items: center; /* 세로 중앙 정렬 */
+    z-index: 30;
 }
 
 /* 왼쪽 이미지 */

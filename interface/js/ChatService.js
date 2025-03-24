@@ -119,6 +119,7 @@ class ChatService {
         this.sendButton.addEventListener("click", async () => {
             const userMessage = this.chatInput.value.trim();
             let answer;
+            buttonCreation({behavior: "remove", by: "unselected"})
 
             if (userMessage) {
                 this.UserMessage(userMessage);
