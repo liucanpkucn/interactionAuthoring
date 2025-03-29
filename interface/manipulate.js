@@ -251,7 +251,7 @@ async function getAnswer(message) {
   console.log("requestOptions", requestOptions);
 
   try {
-    const response = await fetch("https://api.gpt.ge/v1/chat/completions", requestOptions);
+    const response = await fetch("https://api.vveai.com/v1/chat/completions", requestOptions);
     const result = await response.json();
     console.log("result", result);
     return result.choices[0].message.content;

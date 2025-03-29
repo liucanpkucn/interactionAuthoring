@@ -282,12 +282,17 @@ let draw_a_canvas = function(svg, chart_json, begin_point, resize = 1){
     _chart_object.push(new_canvas_object)
   }
   function reset_current_canvas(){
+    const allowed_json = JSON.parse(JSON.stringify(_chart_object[0].share_json));
     let new_begin_point = {x: plot_area.x, y: plot_area.y}
     let resize_rate = current_canvas_object.global_resize
     let new_chart_json = JSON.parse(JSON.stringify(original_chart_json))
     delete_current_canvas()
     let new_canvas_object = new draw_a_canvas(svg, new_chart_json, new_begin_point, resize = resize_rate)
     _chart_object.push(new_canvas_object)
+    _chart_object[0].share_json = allowed_json;
+    _chart_object[0].share_json.forEach(json => {
+      activateInteraction(json);
+    });
   }
 
   this.delete_current_canvas = delete_current_canvas

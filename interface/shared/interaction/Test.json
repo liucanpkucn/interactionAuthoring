@@ -1,0 +1,5 @@
+{
+  "title": "Test",
+  "description": "test remove button",
+  "interaction": "[\n  {\n    \"action\": {\n      \"target\": \"button\",\n      \"action\": \"click\",\n      \"parameter\": \"remove\"\n    },\n    \"result\": {\n      \"target\": \"visual mark\",\n      \"behavior\": \"remove\",\n      \"by\": \"unselected\",\n      \"parameter\": \"auto\"\n    },\n    \"similar\": false,\n    \"description\": \"Clicking the remove button removes unselected visual marks.\"\n  }\n]"
+}
