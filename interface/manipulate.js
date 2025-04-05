@@ -261,6 +261,337 @@ async function getAnswer(message) {
   }
 }
 
+async function validateParse(parsed_json, nl_input) {
+  const token = localStorage.getItem("apiToken");
+
+  if (!token) {
+    console.error("There are no API tokens!");
+    return "API Token is not set.";
+  }
+
+  // correct
+  // miss info
+  // not support
+  // parse된 json 파일들을 검증하려고 한다.
+  // input은 parse된 json들의 배열이다.
+  // parse된 json들을 배열 안에서 하나씩 꺼내어 검증하도록 한다.
+  
+  // parse된 json은 규칙에 따라 miss info, not support, correct 세 가지 상태로 분류된다.
+  // miss info 상태는 다음 두 가지에 따라 나타난다. 
+  // 1. action.action, action.target, result.behavior, result.target 중 하나라도 비어 있으면 miss info로 분류한다.
+  // 2. json에 parse된 action, target, behavior, parameter 등이 natural language input를 제대로 parse해주지 못한 경우 miss info로 분류한다.
+  // not support 상태는 parse된 json과 맵핑되는 인터랙션이 없는 경우 해당된다.
+  // correct 상태는 miss info와 not support가 아닌 경우 해당된다.
+  
+  // 다음은 miss info, not support, correct 상태에 따른 조치이다.
+  // miss info인 경우, 
+  // 1. natural language input을 바탕으로 다시 한 번 json을 파싱한다.
+  // 2-1. 파싱한 결과가 여전히 miss info라면 해당 json은 제거한다. 
+  // 2-2. 파싱한 결과가 not support라면 not support와 같은 방식으로 조치한다.
+  // 2-3. 파싱한 결과가 correct라면 해당 json을 추가한다.
+
+  // not support인 경우,
+  // 1. 해당 json 형식에 가장 유사하면서 맵핑되는 인터랙션이 있는 json을 추가한다.
+  // 2. 이때 not support를 통해 이러한 인터랙션을 추천한다는 표시를 남긴다.
+  
+  // correct인 경우, 그대로 사용한다.
+
+  const prompt = `
+  ### INSTRUCTION ###
+  You are a validator and corrector for structured interaction JSON data, originally generated from natural language instructions.
+
+  Your task is to:
+  1. For each item in the original parsed JSON:
+    - Check whether it is valid, complete, and executable.
+    - Classify it as "correct", "miss info", or "not support" based on its original values (before any changes).
+    
+  2. Based on the classification:
+    - If it is "correct": Keep it as is, and set "similar": false.
+    - If it is "miss info": Attempt to regenerate the correct interaction using the original natural language input (nl_input).  
+      If you cannot recover it, return a fallback item with "Please provide more information."
+    - If it is "not support": You MUST revise the action or result fields to make it executable.  
+      Do NOT leave it unchanged. You must generate the most semantically similar supported interaction.
+
+  3. For each final JSON item:
+    - Add the field "classification" based on the original parsed_json status.
+    - Set "similar" to true only if action or result fields were modified.
+    - Return the final list as a cleaned and corrected JSON object.
+
+  ---
+
+  ### ORIGINAL NATURAL LANGUAGE INPUT ###
+  \`\`\`
+  ${JSON.stringify(nl_input, null, 2)}
+  \`\`\`
+
+  ---
+
+  ### ORIGINAL PARSED JSON ###
+  \`\`\`json
+  ${JSON.stringify(parsed_json, null, 2)}
+  \`\`\`
+
+  ---
+
+  ### PART 1. STRUCTURE SCHEMA ###
+  Each interaction item must follow this format:
+
+  \`\`\`json
+  {
+    "action": { "target": "...", "action": "...", "parameter": "..." },
+    "result": { "target": "...", "behavior": "...", "by": "...", "parameter": "..." },
+    "similar": true | false,
+    "description": "...",
+    "classification": "miss info" | "not support" | "correct"
+  }
+  \`\`\`
+
+  ---
+
+  ### PART 2. VALIDATION RULES ###
+  #### 🔁 CLASSIFICATION POLICY (VERY IMPORTANT)
+
+  - The \`"classification"\` field must reflect the **original parsed_json item's validity**, **before any correction**.
+  - The \`"similar"\` field reflects **whether the item was modified** from the original.
+
+  | Original Status (parsed_json) | After Validation        | classification | similar |
+  |-------------------------------|-------------------------|----------------|---------|
+  | Valid                         | No Change               | correct        | false   |
+  | Valid                         | Slightly changed        | correct        | true    |
+  | Missing Info                  | Recovered or Fallback   | miss info      | true    |
+  | Not Supported Combination     | Corrected               | not support    | true    |
+
+  ---
+
+  ### VALID ENUM VALUES ###
+  You MUST only use the following values for each field.
+
+  - action.target: "visual mark", "axis", "button"
+  - action.action: "click", "double click", "right button click", "mouseover", "drag", "zoom"
+  - action.parameter: "x", "y", "all", "<behavior value>", or "" (as per rules)
+
+  - result.target: "visual mark", "axis", "tooltip"
+  - result.behavior: ONLY one of:
+    "remove", "rescale", "resort", "annotate", "overlap", "highlight"
+
+  - result.by: ONLY one of:
+    "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", ""
+
+  - result.parameter: ONLY one of:
+    "bar", "stacked area",
+    "black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown",
+    "x", "y", "all", ""
+
+  - ⚠️ If any value outside the list above is used (e.g., "select" in result.behavior), it MUST be treated as invalid and classified as "miss info".
+  - NEVER invent or guess new values that are not explicitly allowed in the lists above.
+  - action.target: "tooltip" is not allow
+
+  ### VALID EXECUTABLE COMBINATIONS ###
+  Only the following combinations of action and result are supported by the system:
+
+  1. REMOVE
+    - action.target = "visual mark" → result.behavior = "remove"
+    - action.target = "button" + result.by = "color" or "unselected" → result.behavior = "remove"
+
+  2. RESCALE
+    - action.target = "axis", action.action = "zoom" → result.behavior = "rescale"
+    - action.target = "button", action.parameter = "y" → result.behavior = "rescale"
+
+  3. RESORT
+    - result.parameter = "bar" or "stacked area"
+      and result.by = "height", "opacity", "color", or "move bottom"
+
+  4. ANNOTATE
+    - result.target = "tooltip" → result.behavior = "annotate"
+
+  5. OVERLAP
+    - action.target = "button" → result.behavior = "overlap"
+    - action.action = "drag" → result.behavior = "overlap"
+
+  6. HIGHLIGHT
+    - always allowed, as long as values are valid
+    
+  You MUST only use combinations listed below.
+  If a combination is not in the list, it is NOT supported.
+
+  [List of allowed combinations goes here]
+
+  DO NOT attempt to infer or invent new combinations.
+  Only use those explicitly declared as executable.
+
+  ---
+
+  #### 🔴 MISS INFO
+  - If any of these are missing or meaningless:  
+    - \`action.target\`, \`action.action\`, \`result.target\`, \`result.behavior\`
+  - Or the meaning contradicts the original input
+  - → classification: \`"miss info"\`
+  - → Try to regenerate the item using \`nl_input\`
+  - → If still invalid, include the fallback:
+
+  \`\`\`json
+  {
+    "action": { "target": "", "action": "", "parameter": "" },
+    "result": { "target": "", "behavior": "", "by": "", "parameter": "" },
+    "similar": true,
+    "description": "Please provide more information.",
+    "classification": "miss info"
+  }
+  \`\`\`
+
+  ---
+
+  #### 🟠 NOT SUPPORTED
+  - classification: \`"not support"\`
+  - If the combination is not executable in system logic:
+
+  Unsupported combinations:
+  - \`"highlight"\` → only valid when it visibly changes color or style
+  - \`"annotate"\` → only works with \`result.target === "tooltip"\` and \`action.action === "mouseover"\` and \`action.target === "visual mark"\`
+  - \`"rescale"\` → only valid when:
+    - \`action.target === "axis"\` and \`action.action === "zoom"\`, OR
+    - \`action.target === "button"\` and \`action.parameter === "y"\`
+  - \`"remove"\` → only valid when:
+    - \`action.target === "button"\` and \`by === "color"\` or \`"unselected"\`, OR
+    - \`action.target === "visual mark"\`
+  - \`"resort"\` → only for bar or stacked area charts
+    - \`result.parameter\` must be \`"bar"\` or \`"stacked area"\`
+    - \`by\` must be \`"height"\`, \`"opacity"\`, \`"color"\`, or \`"move bottom"\`
+  - \`"overlap"\` → only valid when:
+    - \`action.target === "button"\`, OR
+    - \`action.action === "drag"\`
+
+  → Revise to the closest valid version  
+  → Set \`"similar": true\` but retain original classification as \`"not support"\`
+
+  SPECIAL CASE:
+  - \`"highlight"\` does NOT need any visual change to be considered valid.
+    - It is always accepted by the system, so should be classified as \`"correct"\`, not \`"not support"\`.
+
+  - If result.behavior = "rescale":
+    - result.target MUST be "axis"
+    - Any other target is invalid (e.g., "visual mark" or "tooltip")
+
+  - If \`result.behavior\` is \`"remove"\`, then:
+    - action.action MUST be one of:
+      - "click"
+      - "right button click"
+      - "double click"
+    - action.action CANNOT be:
+      - "mouseover"
+      - "drag"
+      - "zoom"
+  
+  - If \`result.behavior\` is \`"annotate"\`, then:
+    - \`result.target\` MUST be \`"tooltip"\`
+    - \`action.action\` MUST be \`"mouseover"\`
+    - \`action.target\` MUST be \`"visual mark"\`
+    - \`action.action\` MUST not be \`"zoom"\`, \`"drag"\`, \`"click"\`, \`"right button click"\`, \`"double click"\`
+
+  - If \`action.target\` is \`"button"\`, then:
+    - \`action.action\` MUST be \`"click"\`
+
+  - If \`result.behavior\` is \`"resort"\`, then:
+    - \`action.action\` MUST be \`"click"\`
+
+  ---
+
+  #### 🟢 CORRECT
+  - classification: \`"correct"\`
+  - If the item is complete, valid, and executable
+  - → Keep unchanged  
+  - → Set \`"similar": false\`
+  - "overlap" is fully supported when:
+    - action.target === "button" (e.g., compare button)
+    - OR action.action === "drag"
+  - The button parameter (e.g., "compare") does NOT need to match the behavior
+  - by = "auto" and parameter = "" are both acceptable for overlap
+
+  ---
+
+  ### PART 3. OUTPUT FORMAT ###
+  Return a valid JSON object like:
+
+  \`\`\`json
+  {
+    "data": [
+      {
+        "action": {
+          "target": "<corrected or verified value>",
+          "action": "<corrected or verified value>",
+          "parameter": "<corrected or verified value>"
+        },
+        "result": {
+          "target": "<corrected or verified value>",
+          "behavior": "<corrected or verified value>",
+          "by": "<corrected or verified value>",
+          "parameter": "<corrected or verified value>"
+        },
+        "similar": true | false,
+        "description": "<clear and accurate description of interaction>"
+      },
+      ...
+    ],
+    "description": "<concise description of the full sequence>"
+  }
+  \`\`\`
+
+  - Do NOT include commentary or extra text.
+  - If any item could not be recovered, use the fallback JSON with \`"classification": "miss info"\` instead.
+  - Never return \`"Please provide more information."\` unless it's inside the fallback description field.
+  - Each \`"classification"\` must be based on the original \`parsed_json\`, NOT the corrected version.
+  - when action.target is "button", then action.action MUST be "click"
+
+  ---
+
+  Now validate, revise, and return only the cleaned and corrected JSON.
+
+  ### INPUT ###
+  \`\`\`json
+  {
+    "nl_input": ${JSON.stringify(nl_input, null, 2)},
+    "parsed_json": ${JSON.stringify(parsed_json, null, 2)}
+  }
+  \`\`\`
+  `;
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "model": "gpt-4o",
+    "messages": [
+        {
+          "role": "user",
+          "content": prompt
+        }
+    ],
+    "max_tokens": 1688,
+    "temperature": 0.5,
+    "stream": false
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  console.log("requestOptions", requestOptions);
+
+  try {
+    const response = await fetch("https://api.vveai.com/v1/chat/completions", requestOptions);
+    const result = await response.json();
+    console.log("result", result);
+    return result.choices[0].message.content;
+  } catch (error) {
+      console.error("error", error);
+      return "Error fetching response";
+  }
+}
+
 function activateInteraction(parsedJson){
   let action = parsedJson.action;
   let result = parsedJson.result;

@@ -119,6 +119,7 @@ class ChatService {
         this.sendButton.addEventListener("click", async () => {
             const userMessage = this.chatInput.value.trim();
             let answer;
+            let validatedAnswer;
 
             if (userMessage) {
                 this.UserMessage(userMessage);
@@ -128,6 +129,9 @@ class ChatService {
                 answer = await getAnswer(userMessage);
                 answer = JSON.parse(answer.replace(/```json|```/g, "").trim());
                 console.log("answer!!!!!!!", answer);
+                validatedAnswer = await validateParse(answer, userMessage);
+                validatedAnswer = JSON.parse(validatedAnswer.replace(/```json|```/g, "").trim());
+                console.log("validateAnswer!!!!", validatedAnswer);
                 this.removeLoadingMessage();
                 // answer = {
                 //     description: "Please check this is correct.",
@@ -137,11 +141,12 @@ class ChatService {
                 //     ]
                 // }
                 
-                if (Object.keys(answer.data).length === 0) {
-                    return this.SystemResponse(answer.description);
+                if (Object.keys(validatedAnswer.data).length === 0) {
+                    return this.SystemResponse(validatedAnswer.description);
                 } else {
+                    console.log("validatedAnswer.data", validatedAnswer.data);
                     console.log("answer.data", answer.data);
-                    this.displayAnswerWithCheckboxes(answer);
+                    this.displayAnswerWithCheckboxes(validatedAnswer);
                 }
             }
 
