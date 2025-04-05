@@ -3,7 +3,7 @@ import subprocess
 import json
 from enhanced_axes_extraction.data_formatter import process_simvec_data,process_metadata_data
 from enhanced_axes_extraction.get_metadata import process_metadata
-
+from enhanced_axes_extraction.cal_origin import calculate_origin
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PARSE_SCRIPT = os.path.join(BASE_DIR, "parse_svg_x.js")
 INTERMEDIATE_DIR = os.path.join(BASE_DIR, "intermediate_data")
@@ -60,8 +60,20 @@ def run_enhanced_extraction(svg_string, api_key):
     if not process_metadata_data():
         print("ERROR: Metadata processing failed")
         return None
+    
+    print("Step 5: Calculating origin position...")
+    try:
+        origin = calculate_origin()
+        output_path = os.path.join(BASE_DIR, "output_data", "origin", "origin.json")
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "w") as f:
+            json.dump(origin, f, indent=2)
+        print(f"Origin saved to {output_path}: {origin}")
+    except Exception as e:
+        print(f"ERROR: Origin calculation failed - {e}")
+        return None
 
-    print("Step 5: Loading axes array...")
+    print("Step 6: Loading axes array...")
     axes_array = load_axes_array()
     if axes_array:
         print("Enhanced axes extraction completed")

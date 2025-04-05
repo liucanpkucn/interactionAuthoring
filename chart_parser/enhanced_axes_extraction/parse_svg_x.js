@@ -1,13 +1,13 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-const path = require('path');
-const { SingleBar } = require('cli-progress');
+const path = require("path");
+const { SingleBar } = require("cli-progress");
 
-const inputFileName = "test";  
+const inputFileName = "test";
 const inputFilePath = `input_data/${inputFileName}.svg`;
 const outputDirectory = "intermediate_data/raw_simvec";
 if (!fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(outputDirectory, { recursive: true });
+  fs.mkdirSync(outputDirectory, { recursive: true });
 }
 
 (async () => {
@@ -28,7 +28,7 @@ if (!fs.existsSync(outputDirectory)) {
     function rgbStringToHex(rgbString) {
       const result = rgbString.match(/\d+/g);
       if (!result || result.length !== 3) {
-        return 'None'
+        return "None";
       }
       const r = parseInt(result[0], 10);
       const g = parseInt(result[1], 10);
@@ -38,20 +38,22 @@ if (!fs.existsSync(outputDirectory)) {
     }
 
     function get_all_rects(current_svg) {
-      let rects = [...current_svg.getElementsByTagName("rect")].map((element) => {
-        element.focus();
-        const computed_style = window.getComputedStyle(element);
-        return {
-          type: "rect",
-          x: Math.round(element.getBoundingClientRect().x),
-          y: Math.round(element.getBoundingClientRect().y),
-          width: Math.round(element.getBoundingClientRect().width),
-          height: Math.round(element.getBoundingClientRect().height),
-          fill: computed_style.fill,
-          stroke: computed_style.stroke,
-          stroke_width: computed_style.strokeWidth,
-        };
-      });
+      let rects = [...current_svg.getElementsByTagName("rect")].map(
+        (element) => {
+          element.focus();
+          const computed_style = window.getComputedStyle(element);
+          return {
+            type: "rect",
+            x: Math.round(element.getBoundingClientRect().x),
+            y: Math.round(element.getBoundingClientRect().y),
+            width: Math.round(element.getBoundingClientRect().width),
+            height: Math.round(element.getBoundingClientRect().height),
+            fill: computed_style.fill,
+            stroke: computed_style.stroke,
+            stroke_width: computed_style.strokeWidth,
+          };
+        }
+      );
 
       const circles = current_svg.getElementsByTagName("circle");
       for (let i = 0; i < circles.length; i++) {
@@ -73,7 +75,10 @@ if (!fs.existsSync(outputDirectory)) {
       const texts = current_svg.getElementsByTagName("text");
       for (let i = 0; i < texts.length; i++) {
         const element = texts[i];
-        if (window.getComputedStyle(element).display === "none" || window.getComputedStyle(element).opacity === '0') {
+        if (
+          window.getComputedStyle(element).display === "none" ||
+          window.getComputedStyle(element).opacity === "0"
+        ) {
           continue;
         }
         element.focus();
@@ -82,7 +87,10 @@ if (!fs.existsSync(outputDirectory)) {
 
         rects.push({
           type: "text",
-          content: element.textContent.replaceAll(' ', '_').replaceAll('\u2212', '-').replaceAll(',', ''),
+          content: element.textContent
+            .replaceAll(" ", "_")
+            .replaceAll("\u2212", "-")
+            .replaceAll(",", ""),
           x: Math.round(element.getBoundingClientRect().x),
           y: Math.round(element.getBoundingClientRect().y),
           width: Math.round(element.getBoundingClientRect().width),
@@ -98,7 +106,10 @@ if (!fs.existsSync(outputDirectory)) {
         element.focus();
         const computed_style = window.getComputedStyle(element);
 
-        if (computed_style.fill === "none" && computed_style.stroke === "none") {
+        if (
+          computed_style.fill === "none" &&
+          computed_style.stroke === "none"
+        ) {
           continue;
         }
 
@@ -125,21 +136,24 @@ if (!fs.existsSync(outputDirectory)) {
     });
 
     let filtered_rects = rects.filter(
-      (rect) => !(rect.type === "path" && rect.points && rect.points.length === 0) 
-                && !(rect.width === 0 && rect.height === 0)
+      (rect) =>
+        !(rect.type === "path" && rect.points && rect.points.length === 0) &&
+        !(rect.width === 0 && rect.height === 0)
     );
 
     filtered_rects.forEach((rect) => {
       let point_string = `[${rect.x},${rect.y},${rect.width},${rect.height}]`;
 
-      if (rect.hasOwnProperty('points')) {
-        point_string = rect.points.map((point) => `${Math.round(point.x)},${Math.round(point.y)}`).join(';');
+      if (rect.hasOwnProperty("points")) {
+        point_string = rect.points
+          .map((point) => `${Math.round(point.x)},${Math.round(point.y)}`)
+          .join(";");
         rect.point_string = point_string;
       }
 
-      if (rect.type === 'text') {
+      if (rect.type === "text") {
         rect.sim_description = `${rect.type} ${rect.content}`;
-      } else if (rect.type === 'line') {
+      } else if (rect.type === "line") {
         rect.sim_description = `${rect.type} ${rect.stroke_hex}`;
       } else {
         rect.sim_description = `${rect.type} ${rect.fill_hex}`;
@@ -154,7 +168,7 @@ if (!fs.existsSync(outputDirectory)) {
       width: Math.round(svg.getBoundingClientRect().width),
       height: Math.round(svg.getBoundingClientRect().height),
       element_len: filtered_rects.length,
-      sim_vector: filtered_rects.map((rect) => rect.sim_description).join('|'),
+      sim_vector: filtered_rects.map((rect) => rect.sim_description).join("|"),
       rects: filtered_rects,
     };
 
@@ -163,10 +177,55 @@ if (!fs.existsSync(outputDirectory)) {
 
   const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
 
+  fs.writeFileSync(`${outputDirectory}/test.txt`, simVectorContent);
+
+  // line extraction（只保留水平和垂直）
+  // line extraction（只保留水平和垂直）
+  const lines_only = await page.evaluate(() => {
+    const svg = document.getElementsByTagName("svg")[0];
+
+    const lines = svg.getElementsByTagName("line");
+    let result = [];
+
+    for (let i = 0; i < lines.length; i++) {
+      const el = lines[i];
+
+      const pt1 = el.ownerSVGElement.createSVGPoint();
+      pt1.x = el.x1.baseVal.value;
+      pt1.y = el.y1.baseVal.value;
+
+      const pt2 = el.ownerSVGElement.createSVGPoint();
+      pt2.x = el.x2.baseVal.value;
+      pt2.y = el.y2.baseVal.value;
+
+      const m = el.getScreenCTM();
+      const p1 = pt1.matrixTransform(m);
+      const p2 = pt2.matrixTransform(m);
+
+      if (
+        Math.round(p1.x) === Math.round(p2.x) ||
+        Math.round(p1.y) === Math.round(p2.y)
+      ) {
+        result.push({
+          x1: p1.x,
+          y1: p1.y,
+          x2: p2.x,
+          y2: p2.y,
+        });
+      }
+    }
+
+    return result;
+  });
+
+  const lineOutputDir = "intermediate_data/lines";
+  if (!fs.existsSync(lineOutputDir)) {
+    fs.mkdirSync(lineOutputDir, { recursive: true });
+  }
   fs.writeFileSync(
-    `${outputDirectory}/test.txt`,
-    simVectorContent
-  );  
-  
+    `${lineOutputDir}/line.json`,
+    JSON.stringify(lines_only, null, 2)
+  );
+  // console.log(lines_only);
   await browser.close();
 })();
