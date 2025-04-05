@@ -4,6 +4,8 @@ import json
 from enhanced_axes_extraction.data_formatter import process_simvec_data,process_metadata_data
 from enhanced_axes_extraction.get_metadata import process_metadata
 from enhanced_axes_extraction.cal_origin import calculate_origin
+from enhanced_axes_extraction.calibrate_tick import calibrate_tick_positions
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PARSE_SCRIPT = os.path.join(BASE_DIR, "parse_svg_x.js")
 INTERMEDIATE_DIR = os.path.join(BASE_DIR, "intermediate_data")
@@ -70,10 +72,20 @@ def run_enhanced_extraction(svg_string, api_key):
             json.dump(origin, f, indent=2)
         print(f"Origin saved to {output_path}: {origin}")
     except Exception as e:
+
         print(f"ERROR: Origin calculation failed - {e}")
         return None
+    
+    print("Step 6:Calibrating tick positions...")
+    try:
+        calibrate_tick_positions()
+        print("Tick calibration completed")
+    except Exception as e:
+        print(f"ERROR: Tick calibration failed - {e}")
+        return None
 
-    print("Step 6: Loading axes array...")
+
+    print("Step 7: Loading axes array...")
     axes_array = load_axes_array()
     if axes_array:
         print("Enhanced axes extraction completed")

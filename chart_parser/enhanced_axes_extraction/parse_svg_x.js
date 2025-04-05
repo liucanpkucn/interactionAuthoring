@@ -175,11 +175,13 @@ if (!fs.existsSync(outputDirectory)) {
     return svg_data;
   });
 
-  const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
+  // 存完整的
+  fs.writeFileSync(`intermediate_data/full.json`, JSON.stringify(data, null, 2));
 
+  // 存simvec
+  const simVectorContent = (data.sim_vector || "").replace(/\|/g, "\n");
   fs.writeFileSync(`${outputDirectory}/test.txt`, simVectorContent);
 
-  // line extraction（只保留水平和垂直）
   // line extraction（只保留水平和垂直）
   const lines_only = await page.evaluate(() => {
     const svg = document.getElementsByTagName("svg")[0];

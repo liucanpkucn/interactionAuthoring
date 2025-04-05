@@ -1386,25 +1386,37 @@ if __name__ == "__main__":
 
     # file_name = "20210817_linechart" # manipulate/server/web_page/chosen_svg/war_short.svg
     # file_name = "multi_line"
-    file_name = "20210819_bar"
+    # file_name = "20210819_bar"
     # file_name = "20210831_bubble_stack_nyt"
     # file_name = "20210817_linechart"
     # file_name = "download"
 
-    file_name = "20210822_group_bar"
-    
-    
-    file_name = "20210811_stack"
-    
-    # file_name = "war_short"
-    
-    
     # file_name = "20210822_group_bar"
     
-    # file_name = "multi_line"
     
+    # file_name = "20210811_stack"
+    
+    # file_name = "war_short"
+    # file_name = "20210822_group_bar"
+    # file_name = "multi_line"
 
-    with open(f'test_example/{file_name}.svg') as f:
+    #stack chart
+    # file_name = "20210819_stack_bar"
+    # file_name = "20210815_stack_bar"
+    #area chart
+    # file_name = "download" #ok
+    # file_name = "20210819_area_chart"#
+    # file_name = "20210811_stack"#ok
+    # file_name = "20210822_slack_preset"#.
+    # file_name = "20210905_stack_os"#.
+
+    # 寻找
+    # file_name = "area_0"
+    # file_name = "Gradient Stacked Area Chart"#效果不好
+    # file_name = "echarts"# 效果不好
+    # file_name = "1_groupbar"
+    file_name = "war_short"
+    with open(f'test_example/{file_name}.svg', 'r', encoding='utf-8') as f:
         string = f.read()
         constraints_with_data = get_constraints_with_data(string)
         print("GET constraints with data:")

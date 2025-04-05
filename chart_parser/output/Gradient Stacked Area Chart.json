@@ -1,0 +1,2207 @@
+{
+  "CoordSys": [
+    {
+      "id": 1,
+      "coordinate_type": "stack_x",
+      "origin": [
+        0,
+        0
+      ],
+      "plotarea": {
+        "x": {
+          "min": 170.0,
+          "max": 712.0
+        },
+        "y": {
+          "min": 101.93158102849853,
+          "max": 476.64
+        }
+      },
+      "transform": {
+        "type": "simple",
+        "x_rate": 1,
+        "y_rate": 1,
+        "origin": [
+          0,
+          0
+        ]
+      },
+      "x_axis": 0,
+      "y_axis": 0,
+      "main_axis": {
+        "type": "x",
+        "tick_position": [
+          {
+            "position": 61.0,
+            "range": [
+              6.5,
+              115.5
+            ]
+          },
+          {
+            "position": 170.0,
+            "range": [
+              115.5,
+              224.0
+            ]
+          },
+          {
+            "position": 278.0,
+            "range": [
+              224.0,
+              332.5
+            ]
+          },
+          {
+            "position": 387.0,
+            "range": [
+              332.5,
+              441.0
+            ]
+          },
+          {
+            "position": 495.0,
+            "range": [
+              441.0,
+              549.5
+            ]
+          },
+          {
+            "position": 604.0,
+            "range": [
+              549.5,
+              658.0
+            ]
+          },
+          {
+            "position": 712.0,
+            "range": [
+              658.0,
+              766.0
+            ]
+          }
+        ],
+        "even_type": "single",
+        "direction": "smaller",
+        "another_scale": "linear"
+      },
+      "control_point": [
+        {
+          "ox": 170.0,
+          "oy": 476.64,
+          "id": 0,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 170.0,
+          "y": 476.64,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 476.64,
+          "id": 1,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 278.0,
+          "y": 476.64,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 476.64,
+          "id": 2,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 387.0,
+          "y": 476.64,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 476.64,
+          "id": 3,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 495.0,
+          "y": 476.64,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 476.64,
+          "id": 4,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 604.0,
+          "y": 476.64,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 476.64,
+          "id": 5,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 712.0,
+          "y": 476.64,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 407.12627458208834,
+          "id": 6,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 712.0,
+          "y": 407.12627458208834,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 382.243946036913,
+          "id": 7,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 604.0,
+          "y": 382.243946036913,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 451.5024495326431,
+          "id": 8,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 495.0,
+          "y": 451.5024495326431,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 403.3966541595778,
+          "id": 9,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 387.0,
+          "y": 403.3966541595778,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 448.48401955516766,
+          "id": 10,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 278.0,
+          "y": 448.48401955516766,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 412.2664677274897,
+          "id": 11,
+          "obj_id": 0,
+          "radius": 0,
+          "x": 170.0,
+          "y": 412.2664677274897,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 412.2664677274897,
+          "id": 12,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 170.0,
+          "y": 412.2664677274897,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 448.48401955516766,
+          "id": 13,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 278.0,
+          "y": 448.48401955516766,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 403.3966541595778,
+          "id": 14,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 387.0,
+          "y": 403.3966541595778,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 451.5024495326431,
+          "id": 15,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 495.0,
+          "y": 451.5024495326431,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 382.243946036913,
+          "id": 16,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 604.0,
+          "y": 382.243946036913,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 407.12627458208834,
+          "id": 17,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 712.0,
+          "y": 407.12627458208834,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 320.9960994427845,
+          "id": 18,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 712.0,
+          "y": 320.9960994427845,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 287.81966138255063,
+          "id": 19,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 604.0,
+          "y": 287.81966138255063,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 390.3840533360122,
+          "id": 20,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 495.0,
+          "y": 390.3840533360122,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 338.4076138011756,
+          "id": 21,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 387.0,
+          "y": 338.4076138011756,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 417.5193386422411,
+          "id": 22,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 278.0,
+          "y": 417.5193386422411,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 334.0253227644562,
+          "id": 23,
+          "obj_id": 1,
+          "radius": 0,
+          "x": 170.0,
+          "y": 334.0253227644562,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 334.0253227644562,
+          "id": 24,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 170.0,
+          "y": 334.0253227644562,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 417.5193386422411,
+          "id": 25,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 278.0,
+          "y": 417.5193386422411,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 338.4076138011756,
+          "id": 26,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 387.0,
+          "y": 338.4076138011756,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 390.3840533360122,
+          "id": 27,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 495.0,
+          "y": 390.3840533360122,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 287.81966138255063,
+          "id": 28,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 604.0,
+          "y": 287.81966138255063,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 320.9960994427845,
+          "id": 29,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 712.0,
+          "y": 320.9960994427845,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 259.9626248606961,
+          "id": 30,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 712.0,
+          "y": 259.9626248606961,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 251.66851534563767,
+          "id": 31,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 604.0,
+          "y": 251.66851534563767,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 337.4944943484007,
+          "id": 32,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 495.0,
+          "y": 337.4944943484007,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 245.7063689555573,
+          "id": 33,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 387.0,
+          "y": 245.7063689555573,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 361.7433588529618,
+          "id": 34,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 278.0,
+          "y": 361.7433588529618,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 297.32575504553756,
+          "id": 35,
+          "obj_id": 2,
+          "radius": 0,
+          "x": 170.0,
+          "y": 297.32575504553756,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 297.32575504553756,
+          "id": 36,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 170.0,
+          "y": 297.32575504553756,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 361.7433588529618,
+          "id": 37,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 278.0,
+          "y": 361.7433588529618,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 245.7063689555573,
+          "id": 38,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 387.0,
+          "y": 245.7063689555573,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 337.4944943484007,
+          "id": 39,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 495.0,
+          "y": 337.4944943484007,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 251.66851534563767,
+          "id": 40,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 604.0,
+          "y": 251.66851534563767,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 259.9626248606961,
+          "id": 41,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 712.0,
+          "y": 259.9626248606961,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 226.5413160165819,
+          "id": 42,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 712.0,
+          "y": 226.5413160165819,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 187.83547161297577,
+          "id": 43,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 604.0,
+          "y": 187.83547161297577,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 284.7648782711757,
+          "id": 44,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 495.0,
+          "y": 284.7648782711757,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 208.45903091836414,
+          "id": 45,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 387.0,
+          "y": 208.45903091836414,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 297.44747794003524,
+          "id": 46,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 278.0,
+          "y": 297.44747794003524,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 185.75341008250402,
+          "id": 47,
+          "obj_id": 3,
+          "radius": 0,
+          "x": 170.0,
+          "y": 185.75341008250402,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 185.75341008250402,
+          "id": 48,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 170.0,
+          "y": 185.75341008250402,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 297.4474779400353,
+          "id": 49,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 278.0,
+          "y": 297.4474779400353,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 208.45903091836414,
+          "id": 50,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 387.0,
+          "y": 208.45903091836414,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 284.7648782711757,
+          "id": 51,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 495.0,
+          "y": 284.7648782711757,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 187.83547161297577,
+          "id": 52,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 604.0,
+          "y": 187.83547161297577,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 226.5413160165819,
+          "id": 53,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 712.0,
+          "y": 226.5413160165819,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 712.0,
+          "oy": 184.76263203316375,
+          "id": 54,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 712.0,
+          "y": 184.76263203316375,
+          "coordinate_id": 0,
+          "should_x": 712.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 604.0,
+          "oy": 107.35094322595155,
+          "id": 55,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 604.0,
+          "y": 107.35094322595155,
+          "coordinate_id": 0,
+          "should_x": 604.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 495.0,
+          "oy": 226.4160852025459,
+          "id": 56,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 495.0,
+          "y": 226.4160852025459,
+          "coordinate_id": 0,
+          "should_x": 495.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 387.0,
+          "oy": 143.4749900519613,
+          "id": 57,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 387.0,
+          "y": 143.4749900519613,
+          "coordinate_id": 0,
+          "should_x": 387.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 278.0,
+          "oy": 247.07849754202152,
+          "id": 58,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 278.0,
+          "y": 247.07849754202152,
+          "coordinate_id": 0,
+          "should_x": 278.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        },
+        {
+          "ox": 170.0,
+          "oy": 101.93158102849853,
+          "id": 59,
+          "obj_id": 4,
+          "radius": 0,
+          "x": 170.0,
+          "y": 101.93158102849853,
+          "coordinate_id": 0,
+          "should_x": 170.0,
+          "smaller_y": 476.64,
+          "should_y": 476.64,
+          "activate": true
+        }
+      ],
+      "visual_object": [
+        {
+          "id": 0,
+          "type": "area",
+          "fill": [
+            0,
+            0,
+            0
+          ],
+          "opacity": 1,
+          "fill_opacity": 0.8,
+          "stroke": "none",
+          "stroke_width": "1px",
+          "control_point": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "center": null,
+          "role": "data_encoded",
+          "uuid": "5dd8f6da-11b8-4eb8-9938-3eaaf521228a",
+          "left": 61.2971,
+          "right": 712.32,
+          "up": 382.2016,
+          "down": 476.64,
+          "globle_id": 33,
+          "point_number": 12,
+          "x_min": 61.2971,
+          "x_max": 712.32,
+          "y_min": 382.2016,
+          "y_max": 476.64,
+          "coordinate_id": 0,
+          "activate": true
+        },
+        {
+          "id": 1,
+          "type": "area",
+          "fill": [
+            0,
+            0,
+            0
+          ],
+          "opacity": 1,
+          "fill_opacity": 0.8,
+          "stroke": "none",
+          "stroke_width": "1px",
+          "control_point": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "center": null,
+          "role": "data_encoded",
+          "uuid": "161a6dbf-8a26-47f1-992d-d54f8fe50ec2",
+          "left": 61.2971,
+          "right": 712.32,
+          "up": 287.7632,
+          "down": 451.6416,
+          "globle_id": 34,
+          "point_number": 12,
+          "x_min": 61.2971,
+          "x_max": 712.32,
+          "y_min": 287.7632,
+          "y_max": 451.6416,
+          "coordinate_id": 0,
+          "activate": true
+        },
+        {
+          "id": 2,
+          "type": "area",
+          "fill": [
+            0,
+            0,
+            0
+          ],
+          "opacity": 1,
+          "fill_opacity": 0.8,
+          "stroke": "none",
+          "stroke_width": "1px",
+          "control_point": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "center": null,
+          "role": "data_encoded",
+          "uuid": "5e3a43c3-d317-4311-bab0-e7f9d12d66dd",
+          "left": 61.2971,
+          "right": 712.32,
+          "up": 245.5437,
+          "down": 417.7549,
+          "globle_id": 35,
+          "point_number": 12,
+          "x_min": 61.2971,
+          "x_max": 712.32,
+          "y_min": 245.5437,
+          "y_max": 417.7549,
+          "coordinate_id": 0,
+          "activate": true
+        },
+        {
+          "id": 3,
+          "type": "area",
+          "fill": [
+            0,
+            0,
+            0
+          ],
+          "opacity": 1,
+          "fill_opacity": 0.8,
+          "stroke": "none",
+          "stroke_width": "1px",
+          "control_point": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "center": null,
+          "role": "data_encoded",
+          "uuid": "625a5a8b-ac1b-4902-ad0d-fb867552676b",
+          "left": 61.2971,
+          "right": 712.32,
+          "up": 185.5475,
+          "down": 361.9251,
+          "globle_id": 36,
+          "point_number": 12,
+          "x_min": 61.2971,
+          "x_max": 712.32,
+          "y_min": 185.5475,
+          "y_max": 361.9251,
+          "coordinate_id": 0,
+          "activate": true
+        },
+        {
+          "id": 4,
+          "type": "area",
+          "fill": [
+            0,
+            0,
+            0
+          ],
+          "opacity": 1,
+          "fill_opacity": 0.8,
+          "stroke": "none",
+          "stroke_width": "1px",
+          "control_point": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "center": null,
+          "role": "data_encoded",
+          "uuid": "71f4af85-b5f5-4117-8a99-3399538aa23d",
+          "left": 61.2971,
+          "right": 712.32,
+          "up": 101.664,
+          "down": 297.7626,
+          "globle_id": 37,
+          "point_number": 12,
+          "x_min": 61.2971,
+          "x_max": 712.32,
+          "y_min": 101.664,
+          "y_max": 297.7626,
+          "coordinate_id": 0,
+          "activate": true
+        }
+      ],
+      "visual_object_num": 5,
+      "constraints": [
+        {
+          "type": "fixed-y",
+          "point1": 0,
+          "point2": 11,
+          "distance": 64.37353227251026
+        },
+        {
+          "type": "fixed-x",
+          "point1": 0,
+          "point2": 11,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 12,
+          "point2": 23,
+          "distance": 78.24114496303355
+        },
+        {
+          "type": "fixed-x",
+          "point1": 12,
+          "point2": 23,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 24,
+          "point2": 35,
+          "distance": 36.699567718918615
+        },
+        {
+          "type": "fixed-x",
+          "point1": 24,
+          "point2": 35,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 36,
+          "point2": 47,
+          "distance": 111.57234496303354
+        },
+        {
+          "type": "fixed-x",
+          "point1": 36,
+          "point2": 47,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 48,
+          "point2": 59,
+          "distance": 83.82182905400549
+        },
+        {
+          "type": "fixed-x",
+          "point1": 48,
+          "point2": 59,
+          "distance": 0.0
+        },
+        {
+          "type": "collision_group",
+          "point_group_list": [
+            {
+              "point": [
+                48,
+                59
+              ],
+              "vid": 4,
+              "value": 143.84249555550127
+            },
+            {
+              "point": [
+                36,
+                47
+              ],
+              "vid": 3,
+              "value": 241.5395825640208
+            },
+            {
+              "point": [
+                24,
+                35
+              ],
+              "vid": 2,
+              "value": 315.67553890499687
+            },
+            {
+              "point": [
+                12,
+                23
+              ],
+              "vid": 1,
+              "value": 373.14589524597295
+            },
+            {
+              "point": [
+                0,
+                11
+              ],
+              "vid": 0,
+              "value": 444.45323386374486
+            }
+          ],
+          "collision_order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "distance_y": 0.0,
+          "distance_x": 0,
+          "direction": "y",
+          "min_value": 101.93158102849853,
+          "max_value": 476.64,
+          "group_id": 0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 1,
+          "point2": 10,
+          "distance": 28.155980444832323
+        },
+        {
+          "type": "fixed-x",
+          "point1": 1,
+          "point2": 10,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 13,
+          "point2": 22,
+          "distance": 30.964680912926553
+        },
+        {
+          "type": "fixed-x",
+          "point1": 13,
+          "point2": 22,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 25,
+          "point2": 34,
+          "distance": 55.77597978927929
+        },
+        {
+          "type": "fixed-x",
+          "point1": 25,
+          "point2": 34,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 37,
+          "point2": 46,
+          "distance": 64.29588091292658
+        },
+        {
+          "type": "fixed-x",
+          "point1": 37,
+          "point2": 46,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 49,
+          "point2": 58,
+          "distance": 50.368980398013775
+        },
+        {
+          "type": "fixed-x",
+          "point1": 49,
+          "point2": 58,
+          "distance": 0.0
+        },
+        {
+          "type": "collision_group",
+          "point_group_list": [
+            {
+              "point": [
+                49,
+                58
+              ],
+              "vid": 4,
+              "value": 272.2629877410284
+            },
+            {
+              "point": [
+                37,
+                46
+              ],
+              "vid": 3,
+              "value": 329.59541839649853
+            },
+            {
+              "point": [
+                25,
+                34
+              ],
+              "vid": 2,
+              "value": 389.63134874760146
+            },
+            {
+              "point": [
+                13,
+                22
+              ],
+              "vid": 1,
+              "value": 433.00167909870436
+            },
+            {
+              "point": [
+                1,
+                10
+              ],
+              "vid": 0,
+              "value": 462.56200977758385
+            }
+          ],
+          "collision_order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "distance_y": -5.684341886080802e-14,
+          "distance_x": 0,
+          "direction": "y",
+          "min_value": 247.07849754202152,
+          "max_value": 476.64,
+          "group_id": 0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 2,
+          "point2": 9,
+          "distance": 73.2433458404222
+        },
+        {
+          "type": "fixed-x",
+          "point1": 2,
+          "point2": 9,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 14,
+          "point2": 21,
+          "distance": 64.98904035840218
+        },
+        {
+          "type": "fixed-x",
+          "point1": 14,
+          "point2": 21,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 26,
+          "point2": 33,
+          "distance": 92.7012448456183
+        },
+        {
+          "type": "fixed-x",
+          "point1": 26,
+          "point2": 33,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 38,
+          "point2": 45,
+          "distance": 37.247338037193174
+        },
+        {
+          "type": "fixed-x",
+          "point1": 38,
+          "point2": 45,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 50,
+          "point2": 57,
+          "distance": 64.98404086640284
+        },
+        {
+          "type": "fixed-x",
+          "point1": 50,
+          "point2": 57,
+          "distance": 0.0
+        },
+        {
+          "type": "collision_group",
+          "point_group_list": [
+            {
+              "point": [
+                57,
+                50
+              ],
+              "vid": 4,
+              "value": 175.96701048516272
+            },
+            {
+              "point": [
+                45,
+                38
+              ],
+              "vid": 3,
+              "value": 227.08269993696072
+            },
+            {
+              "point": [
+                33,
+                26
+              ],
+              "vid": 2,
+              "value": 292.05699137836643
+            },
+            {
+              "point": [
+                21,
+                14
+              ],
+              "vid": 1,
+              "value": 370.9021339803767
+            },
+            {
+              "point": [
+                9,
+                2
+              ],
+              "vid": 0,
+              "value": 440.0183270797889
+            }
+          ],
+          "collision_order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "distance_y": 0.0,
+          "distance_x": 0,
+          "direction": "y",
+          "min_value": 143.4749900519613,
+          "max_value": 476.64,
+          "group_id": 0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 3,
+          "point2": 8,
+          "distance": 25.137550467356903
+        },
+        {
+          "type": "fixed-x",
+          "point1": 3,
+          "point2": 8,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 15,
+          "point2": 20,
+          "distance": 61.1183961966309
+        },
+        {
+          "type": "fixed-x",
+          "point1": 15,
+          "point2": 20,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 27,
+          "point2": 32,
+          "distance": 52.88955898761151
+        },
+        {
+          "type": "fixed-x",
+          "point1": 27,
+          "point2": 32,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 39,
+          "point2": 44,
+          "distance": 52.72961607722499
+        },
+        {
+          "type": "fixed-x",
+          "point1": 39,
+          "point2": 44,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 51,
+          "point2": 56,
+          "distance": 58.34879306862979
+        },
+        {
+          "type": "fixed-x",
+          "point1": 51,
+          "point2": 56,
+          "distance": 0.0
+        },
+        {
+          "type": "collision_group",
+          "point_group_list": [
+            {
+              "point": [
+                56,
+                51
+              ],
+              "vid": 4,
+              "value": 255.5904817368608
+            },
+            {
+              "point": [
+                44,
+                39
+              ],
+              "vid": 3,
+              "value": 311.1296863097882
+            },
+            {
+              "point": [
+                32,
+                27
+              ],
+              "vid": 2,
+              "value": 363.93927384220643
+            },
+            {
+              "point": [
+                20,
+                15
+              ],
+              "vid": 1,
+              "value": 420.94325143432764
+            },
+            {
+              "point": [
+                8,
+                3
+              ],
+              "vid": 0,
+              "value": 464.0712247663215
+            }
+          ],
+          "collision_order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "distance_y": 0.0,
+          "distance_x": 0,
+          "direction": "y",
+          "min_value": 226.4160852025459,
+          "max_value": 476.64,
+          "group_id": 0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 4,
+          "point2": 7,
+          "distance": 94.39605396308701
+        },
+        {
+          "type": "fixed-x",
+          "point1": 4,
+          "point2": 7,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 16,
+          "point2": 19,
+          "distance": 94.42428465436234
+        },
+        {
+          "type": "fixed-x",
+          "point1": 16,
+          "point2": 19,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 28,
+          "point2": 31,
+          "distance": 36.15114603691296
+        },
+        {
+          "type": "fixed-x",
+          "point1": 28,
+          "point2": 31,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 40,
+          "point2": 43,
+          "distance": 63.833043732661906
+        },
+        {
+          "type": "fixed-x",
+          "point1": 40,
+          "point2": 43,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 52,
+          "point2": 55,
+          "distance": 80.48452838702421
+        },
+        {
+          "type": "fixed-x",
+          "point1": 52,
+          "point2": 55,
+          "distance": 0.0
+        },
+        {
+          "type": "collision_group",
+          "point_group_list": [
+            {
+              "point": [
+                52,
+                55
+              ],
+              "vid": 4,
+              "value": 147.59320741946365
+            },
+            {
+              "point": [
+                40,
+                43
+              ],
+              "vid": 3,
+              "value": 219.75199347930672
+            },
+            {
+              "point": [
+                28,
+                31
+              ],
+              "vid": 2,
+              "value": 269.7440883640942
+            },
+            {
+              "point": [
+                16,
+                19
+              ],
+              "vid": 1,
+              "value": 335.0318037097318
+            },
+            {
+              "point": [
+                4,
+                7
+              ],
+              "vid": 0,
+              "value": 429.44197301845645
+            }
+          ],
+          "collision_order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "distance_y": 0.0,
+          "distance_x": 0,
+          "direction": "y",
+          "min_value": 107.35094322595155,
+          "max_value": 476.64,
+          "group_id": 0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 5,
+          "point2": 6,
+          "distance": 69.51372541791164
+        },
+        {
+          "type": "fixed-x",
+          "point1": 5,
+          "point2": 6,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 17,
+          "point2": 18,
+          "distance": 86.13017513930384
+        },
+        {
+          "type": "fixed-x",
+          "point1": 17,
+          "point2": 18,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 29,
+          "point2": 30,
+          "distance": 61.03347458208839
+        },
+        {
+          "type": "fixed-x",
+          "point1": 29,
+          "point2": 30,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 41,
+          "point2": 42,
+          "distance": 33.42130884411421
+        },
+        {
+          "type": "fixed-x",
+          "point1": 41,
+          "point2": 42,
+          "distance": 0.0
+        },
+        {
+          "type": "fixed-y",
+          "point1": 53,
+          "point2": 54,
+          "distance": 41.77868398341815
+        },
+        {
+          "type": "fixed-x",
+          "point1": 53,
+          "point2": 54,
+          "distance": 0.0
+        },
+        {
+          "type": "collision_group",
+          "point_group_list": [
+            {
+              "point": [
+                53,
+                54
+              ],
+              "vid": 4,
+              "value": 205.65197402487283
+            },
+            {
+              "point": [
+                41,
+                42
+              ],
+              "vid": 3,
+              "value": 243.251970438639
+            },
+            {
+              "point": [
+                29,
+                30
+              ],
+              "vid": 2,
+              "value": 290.4793621517403
+            },
+            {
+              "point": [
+                17,
+                18
+              ],
+              "vid": 1,
+              "value": 364.06118701243645
+            },
+            {
+              "point": [
+                5,
+                6
+              ],
+              "vid": 0,
+              "value": 441.88313729104414
+            }
+          ],
+          "collision_order": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "distance_y": 0.0,
+          "distance_x": 0,
+          "direction": "y",
+          "min_value": 184.76263203316375,
+          "max_value": 476.64,
+          "group_id": 0
+        }
+      ],
+      "area": {
+        "x": 170.0,
+        "y": 101.93158102849853,
+        "width": 542.0,
+        "height": 374.7084189715015
+      },
+      "size": {
+        "width": 742,
+        "height": 512
+      },
+      "groups": [
+        {
+          "type": "single",
+          "order": "y",
+          "group_list": [
+            {
+              "color": "",
+              "visual_object": [
+                0
+              ]
+            },
+            {
+              "color": "",
+              "visual_object": [
+                1
+              ]
+            },
+            {
+              "color": "",
+              "visual_object": [
+                2
+              ]
+            },
+            {
+              "color": "",
+              "visual_object": [
+                3
+              ]
+            },
+            {
+              "color": "",
+              "visual_object": [
+                4
+              ]
+            }
+          ],
+          "order_list": [
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "obj_group_dict": {
+            "0": 0,
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4
+          }
+        }
+      ]
+    }
+  ],
+  "axis": {
+    "chart_type": "area_chart",
+    "base_axis": "x",
+    "legend": {
+      "labels": [
+        "Line 2",
+        "Line 3",
+        "Line 4",
+        "Line 5"
+      ],
+      "colors": [
+        "#00bcd4",
+        "#ff4081",
+        "#e91e63",
+        "#ffc107"
+      ]
+    },
+    "x": [
+      {
+        "type": "x",
+        "main": true,
+        "attr_type": "Time",
+        "fixed_distance": 108.83333333333333,
+        "range": {
+          "begin": 48,
+          "end": 701
+        },
+        "tick": [
+          {
+            "position": {
+              "x": 48,
+              "y": 483
+            },
+            "content": "Mon",
+            "controlled": null,
+            "visual_object": 6,
+            "text_point": {
+              "x": 61.297101974487305,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"69e39ef1-ebfe-4f12-a4c9-82e809202272\" x=\"13.297101974487305\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Mon</text>",
+            "visual_object_uuid": "69e39ef1-ebfe-4f12-a4c9-82e809202272"
+          },
+          {
+            "position": {
+              "x": 160,
+              "y": 483
+            },
+            "content": "Tue",
+            "controlled": null,
+            "visual_object": 7,
+            "text_point": {
+              "x": 169.8009033203125,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"65a7289b-e033-4329-b6ba-87db3e78a418\" x=\"9.8009033203125\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Tue</text>",
+            "visual_object_uuid": "65a7289b-e033-4329-b6ba-87db3e78a418"
+          },
+          {
+            "position": {
+              "x": 265,
+              "y": 483
+            },
+            "content": "Wed",
+            "controlled": null,
+            "visual_object": 8,
+            "text_point": {
+              "x": 278.3046875,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"f729b136-d9fd-4f28-825d-d6c4f01c95b9\" x=\"13.3046875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Wed</text>",
+            "visual_object_uuid": "f729b136-d9fd-4f28-825d-d6c4f01c95b9"
+          },
+          {
+            "position": {
+              "x": 376,
+              "y": 483
+            },
+            "content": "Thu",
+            "controlled": null,
+            "visual_object": 9,
+            "text_point": {
+              "x": 386.80859375,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"c20028b7-19a8-4512-a7ba-d6fa1575a576\" x=\"10.80859375\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Thu</text>",
+            "visual_object_uuid": "c20028b7-19a8-4512-a7ba-d6fa1575a576"
+          },
+          {
+            "position": {
+              "x": 488,
+              "y": 483
+            },
+            "content": "Fri",
+            "controlled": null,
+            "visual_object": 10,
+            "text_point": {
+              "x": 495.3124084472656,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"46b18beb-1f64-42bd-b281-083935691e43\" x=\"7.312408447265625\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Fri</text>",
+            "visual_object_uuid": "46b18beb-1f64-42bd-b281-083935691e43"
+          },
+          {
+            "position": {
+              "x": 595,
+              "y": 483
+            },
+            "content": "Sat",
+            "controlled": null,
+            "visual_object": 11,
+            "text_point": {
+              "x": 603.8298950195312,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"75f34605-3720-448a-9dde-6adcb23af98e\" x=\"8.82989501953125\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Sat</text>",
+            "visual_object_uuid": "75f34605-3720-448a-9dde-6adcb23af98e"
+          },
+          {
+            "position": {
+              "x": 701,
+              "y": 483
+            },
+            "content": "Sun",
+            "controlled": null,
+            "visual_object": 12,
+            "text_point": {
+              "x": 712.3200073242188,
+              "y": 490.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"3a523340-5efb-47f7-840c-869db7b77200\" x=\"11.32000732421875\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">Sun</text>",
+            "visual_object_uuid": "3a523340-5efb-47f7-840c-869db7b77200"
+          }
+        ],
+        "is_base": true,
+        "base_direction": "up",
+        "align": "up",
+        "scale_type": "time",
+        "value_range": [
+          "Jan 03 2022",
+          "Jan 02 2022"
+        ],
+        "pixel_domain": [
+          48,
+          701
+        ],
+        "prefix": "",
+        "suffix": "",
+        "area": {
+          "x": 47.92210006713867,
+          "y": 482.8900146484375,
+          "width": 675.2572822570801,
+          "height": 15.5
+        },
+        "use_num": 1,
+        "another_attr": 483
+      }
+    ],
+    "y": [
+      {
+        "type": "y",
+        "main": false,
+        "attr_type": "Quantitative",
+        "fixed_distance": 83.4,
+        "range": {
+          "begin": 52,
+          "end": 469
+        },
+        "tick": [
+          {
+            "position": {
+              "x": 46,
+              "y": 469
+            },
+            "content": "0",
+            "controlled": null,
+            "visual_object": 0,
+            "text_point": {
+              "x": 49.77756881713867,
+              "y": 476.6400146484375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"d76887cd-ba57-4458-b347-2e06c76c9599\" x=\"3.777568817138672\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.6400146484375\">0</text>",
+            "visual_object_uuid": "d76887cd-ba57-4458-b347-2e06c76c9599"
+          },
+          {
+            "position": {
+              "x": 32,
+              "y": 386
+            },
+            "content": "300",
+            "controlled": null,
+            "visual_object": 1,
+            "text_point": {
+              "x": 42.73850631713867,
+              "y": 393.31201171875
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"a53d9045-eae7-4035-9a87-2da502010996\" x=\"10.738506317138672\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.31201171875\">300</text>",
+            "visual_object_uuid": "a53d9045-eae7-4035-9a87-2da502010996"
+          },
+          {
+            "position": {
+              "x": 32,
+              "y": 302
+            },
+            "content": "600",
+            "controlled": null,
+            "visual_object": 2,
+            "text_point": {
+              "x": 42.73850631713867,
+              "y": 309.9840087890625
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"42e3fa9d-2c39-45d8-8711-47992f8ab992\" x=\"10.738506317138672\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.9840087890625\">600</text>",
+            "visual_object_uuid": "42e3fa9d-2c39-45d8-8711-47992f8ab992"
+          },
+          {
+            "position": {
+              "x": 32,
+              "y": 219
+            },
+            "content": "900",
+            "controlled": null,
+            "visual_object": 3,
+            "text_point": {
+              "x": 42.73850631713867,
+              "y": 226.656005859375
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"7c1c95eb-675f-48f3-89e8-6e2eff236390\" x=\"10.738506317138672\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.656005859375\">900</text>",
+            "visual_object_uuid": "7c1c95eb-675f-48f3-89e8-6e2eff236390"
+          },
+          {
+            "position": {
+              "x": 22,
+              "y": 136
+            },
+            "content": "1200",
+            "controlled": null,
+            "visual_object": 4,
+            "text_point": {
+              "x": 37.77756881713867,
+              "y": 143.3280029296875
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"39854be3-3d9a-42ca-9472-e06a8bc60bc3\" x=\"15.777568817138672\" xmlns=\"http://www.w3.org/2000/svg\" y=\"7.3280029296875\">1,200</text>",
+            "visual_object_uuid": "39854be3-3d9a-42ca-9472-e06a8bc60bc3"
+          },
+          {
+            "position": {
+              "x": 22,
+              "y": 52
+            },
+            "content": "1500",
+            "controlled": null,
+            "visual_object": 5,
+            "text_point": {
+              "x": 37.77756881713867,
+              "y": 60
+            },
+            "origin": "<text dominant-baseline=\"central\" fill=\"#6E7079\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"middle\" transform=\"translate(0,0)\" uuid=\"f0cb23bc-96e6-40b3-a4c9-86df82c54864\" x=\"15.777568817138672\" xmlns=\"http://www.w3.org/2000/svg\" y=\"8\">1,500</text>",
+            "visual_object_uuid": "f0cb23bc-96e6-40b3-a4c9-86df82c54864"
+          }
+        ],
+        "is_base": false,
+        "base_direction": null,
+        "align": "right",
+        "scale_type": "linear",
+        "value_range": [
+          0.0,
+          1500.0
+        ],
+        "pixel_domain": [
+          469,
+          52
+        ],
+        "prefix": "",
+        "suffix": "",
+        "area": {
+          "x": 22.258037567138672,
+          "y": 52.25,
+          "width": 31.0390625,
+          "height": 432.1400146484375
+        },
+        "use_num": 1,
+        "another_attr": 46
+      }
+    ]
+  },
+  "size": {
+    "width": 742,
+    "height": 512
+  },
+  "svg_string": "<svg baseProfile=\"full\" height=\"512\" version=\"1.1\" viewBox=\"0 0 742 512\" width=\"742\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<rect fill=\"none\" height=\"512\" uuid=\"7f238248-d516-4e50-899d-965ef7570217\" width=\"742\" x=\"0\" y=\"0\"></rect>\n<path class=\"zr0-cls-0\" d=\"M61.2971 476.5L712.32 476.5\" fill=\"none\" stroke=\"#E0E6F1\" uuid=\"0dada3e0-c282-4ef9-b211-ce87fac9c733\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.2971 393.5L712.32 393.5\" fill=\"none\" stroke=\"#E0E6F1\" uuid=\"a5876b14-3f38-4ade-9640-384e2d76ec0d\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.2971 310.5L712.32 310.5\" fill=\"none\" stroke=\"#E0E6F1\" uuid=\"75134fb6-63ca-46a0-9022-2f1566502c08\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.2971 226.5L712.32 226.5\" fill=\"none\" stroke=\"#E0E6F1\" uuid=\"d1803541-492f-4ceb-8e55-301b82021add\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.2971 143.5L712.32 143.5\" fill=\"none\" stroke=\"#E0E6F1\" uuid=\"c34f33ba-f199-4db3-b2cc-086b224d0149\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.2971 60.5L712.32 60.5\" fill=\"none\" stroke=\"#E0E6F1\" uuid=\"94781596-3f8d-4c2e-914c-3ec1f21268c5\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.2971 476.5L712.32 476.5\" fill=\"none\" stroke=\"#6E7079\" stroke-linecap=\"round\" uuid=\"50407228-08db-48b6-8642-a650c783c0f2\"></path>\n<path class=\"zr0-cls-0\" d=\"M61.5 476.64L61.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"3d85015c-5e6f-4f69-a9a1-75821da1b496\"></path>\n<path class=\"zr0-cls-0\" d=\"M170.5 476.64L170.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"755814f6-e52f-45f1-bc3c-520518514888\"></path>\n<path class=\"zr0-cls-0\" d=\"M278.5 476.64L278.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"c174ae7f-617a-4ce0-b4d1-72f6b1897f2b\"></path>\n<path class=\"zr0-cls-0\" d=\"M387.5 476.64L387.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"52adc5c8-74ad-4303-aedb-e3c2858101df\"></path>\n<path class=\"zr0-cls-0\" d=\"M495.5 476.64L495.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"dadd8570-317c-42d8-9ebd-a14753725e6f\"></path>\n<path class=\"zr0-cls-0\" d=\"M604.5 476.64L604.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"35267814-7c06-48d2-bd52-50d66e54b52e\"></path>\n<path class=\"zr0-cls-0\" d=\"M712.5 476.64L712.5 481.64\" fill=\"none\" stroke=\"#6E7079\" uuid=\"e99d6309-f7ed-46de-a97d-76d0333f69cf\"></path>\n\n\n\n\n\n\n\n\n\n\n\n\n\n<g clip-path=\"url(#zr0-c0)\">\n\n</g>\n<g clip-path=\"url(#zr0-c1)\">\n\n</g>\n<g clip-path=\"url(#zr0-c2)\">\n\n</g>\n<g clip-path=\"url(#zr0-c3)\">\n\n</g>\n<g clip-path=\"url(#zr0-c4)\">\n\n</g>\n<g clip-path=\"url(#zr0-c0)\">\n<path class=\"zr0-cls-7\" d=\"M61.2971 437.7536C61.2971 437.7536 116.2623 412.1997 169.8009 412.1997C224.7661 412.1997 224.7844 448.5862 278.3047 448.5862C333.2882 448.5862 332.8344 403.3114 386.8086 403.3114C441.3382 403.3114 443.2605 451.6416 495.3124 451.6416C551.7643 451.6416 545.6168 382.2016 603.8162 382.2016C654.1206 382.2016 712.32 407.2 712.32 407.2\" fill=\"none\" stroke=\"rgb(128,255,165)\" stroke-linejoin=\"bevel\" stroke-width=\"0\" uuid=\"d5843264-8490-4503-8b91-0e55f4b1a6bc\"></path>\n</g>\n<g clip-path=\"url(#zr0-c1)\">\n<path class=\"zr0-cls-7\" d=\"M61.2971 404.4224C61.2971 404.4224 117.121 333.8714 169.8009 333.8714C225.6248 333.8714 223.5191 417.7549 278.3047 417.7549C332.0229 417.7549 329.564 338.3155 386.8086 338.3155C438.0679 338.3155 446.8972 390.5344 495.3124 390.5344C555.401 390.5344 542.1491 287.7632 603.8162 287.7632C650.6529 287.7632 712.32 321.0944 712.32 321.0944\" fill=\"none\" stroke=\"rgb(0,221,255)\" stroke-linejoin=\"bevel\" stroke-width=\"0\" uuid=\"8e06815a-b289-4afe-a4b6-aec6823c8437\"></path>\n</g>\n<g clip-path=\"url(#zr0-c2)\">\n<path class=\"zr0-cls-7\" d=\"M61.2971 315.5392C61.2971 315.5392 119.2894 297.207 169.8009 297.207C227.7932 297.207 230.2822 361.9251 278.3047 361.9251C338.786 361.9251 329.5485 245.5437 386.8086 245.5437C438.0523 245.5437 440.3113 337.76 495.3124 337.76C548.8151 337.76 543.051 251.6544 603.8162 251.6544C651.5548 251.6544 712.32 259.9872 712.32 259.9872\" fill=\"none\" stroke=\"rgb(55,162,255)\" stroke-linejoin=\"bevel\" stroke-width=\"0\" uuid=\"de5aa230-c2ac-4994-878d-0b825ca05303\"></path>\n</g>\n<g clip-path=\"url(#zr0-c3)\">\n<path class=\"zr0-cls-7\" d=\"M61.2971 254.432C61.2971 254.432 120.8044 185.5475 169.8009 185.5475C229.3082 185.5475 221.2224 297.7626 278.3047 297.7626C329.7263 297.7626 331.0171 208.3238 386.8086 208.3238C439.5209 208.3238 443.5596 284.9856 495.3124 284.9856C552.0634 284.9856 543.2392 187.7696 603.8162 187.7696C651.743 187.7696 712.32 226.656 712.32 226.656\" fill=\"none\" stroke=\"rgb(255,0,135)\" stroke-linejoin=\"bevel\" stroke-width=\"0\" uuid=\"6f4fc989-6c8e-4110-ba05-93e8b1f79edb\"></path>\n</g>\n<g clip-path=\"url(#zr0-c4)\">\n<path class=\"zr0-cls-7\" d=\"M61.2971 193.3248C61.2971 193.3248 122.2048 101.664 169.8009 101.664C230.7086 101.664 218.9317 247.488 278.3047 247.488C327.4355 247.488 329.988 143.328 386.8086 143.328C438.4918 143.328 445.5282 226.656 495.3124 226.656C554.032 226.656 544.4372 107.2192 603.8162 107.2192C652.941 107.2192 712.32 184.992 712.32 184.992\" fill=\"none\" stroke=\"rgb(255,191,0)\" stroke-linejoin=\"bevel\" stroke-width=\"0\" uuid=\"1df5e6b6-c9f4-45b9-bbb5-64008e2599c3\"></path>\n</g>\n<path class=\"zr0-cls-0\" d=\"M-5 -5l370.7129 0l0 23.2l-370.7129 0Z\" fill=\"rgb(0,0,0)\" fill-opacity=\"0\" stroke=\"#ccc\" stroke-width=\"0\" transform=\"translate(190.6436 5)\" uuid=\"4fefea4d-e89a-4c71-b8fb-30b5a4e6a979\"></path>\n<path class=\"zr0-cls-0\" d=\"M0 7L25 7\" fill=\"#000\" stroke=\"#80FFA5\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"0\" transform=\"translate(190.6436 4.6)\" uuid=\"00bac84d-e3fa-46c6-a2a1-0fea013942b3\"></path>\n<path class=\"zr0-cls-0\" d=\"M18.1 7A5.6 5.6 0 1 1 18.1 6.9994\" fill=\"#fff\" stroke=\"#80FFA5\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"2\" transform=\"translate(190.6436 4.6)\" uuid=\"5e611634-1994-460b-a1c9-c1563fec6b8e\"></path>\n<text dominant-baseline=\"central\" fill=\"#333\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"start\" transform=\"translate(190.6436 4.6)\" uuid=\"106e5271-ef83-4e84-a056-c725c8b9c1c8\" x=\"30\" xml:space=\"preserve\" y=\"7\">Line 1</text>\n<path class=\"zr0-cls-8\" d=\"M0 0.4l64.1426 0l0 13.2l-64.1426 0Z\" fill=\"none\" transform=\"translate(190.6436 4.6)\" uuid=\"ba58ffcd-a7cc-4df0-b8a8-f7de19c97a1c\"></path>\n<path class=\"zr0-cls-0\" d=\"M0 7L25 7\" fill=\"#000\" stroke=\"#00DDFF\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"0\" transform=\"translate(264.7861 4.6)\" uuid=\"97ad0a98-e4d1-4dc4-9e56-817be4a4a521\"></path>\n<path class=\"zr0-cls-0\" d=\"M18.1 7A5.6 5.6 0 1 1 18.1 6.9994\" fill=\"#fff\" stroke=\"#00DDFF\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"2\" transform=\"translate(264.7861 4.6)\" uuid=\"88ea8562-ae33-4a2c-8fc6-f81b5e7f4ceb\"></path>\n<text dominant-baseline=\"central\" fill=\"#333\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"start\" transform=\"translate(264.7861 4.6)\" uuid=\"5f683233-8e8d-4e2e-93fe-e7b808316f30\" x=\"30\" xml:space=\"preserve\" y=\"7\">Line 2</text>\n<path class=\"zr0-cls-8\" d=\"M0 0.4l64.1426 0l0 13.2l-64.1426 0Z\" fill=\"none\" transform=\"translate(264.7861 4.6)\" uuid=\"f6b040bf-14db-43df-8d3f-90c9c62f54e7\"></path>\n<path class=\"zr0-cls-0\" d=\"M0 7L25 7\" fill=\"#000\" stroke=\"#37A2FF\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"0\" transform=\"translate(338.9287 4.6)\" uuid=\"892c1884-0b5e-42f4-b684-4bebe438b040\"></path>\n<path class=\"zr0-cls-0\" d=\"M18.1 7A5.6 5.6 0 1 1 18.1 6.9994\" fill=\"#fff\" stroke=\"#37A2FF\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"2\" transform=\"translate(338.9287 4.6)\" uuid=\"15781093-da21-4fa1-94f5-3ecb7e4d0de3\"></path>\n<text dominant-baseline=\"central\" fill=\"#333\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"start\" transform=\"translate(338.9287 4.6)\" uuid=\"69f9f84a-a746-4143-b0bf-108d7940193c\" x=\"30\" xml:space=\"preserve\" y=\"7\">Line 3</text>\n<path class=\"zr0-cls-8\" d=\"M0 0.4l64.1426 0l0 13.2l-64.1426 0Z\" fill=\"none\" transform=\"translate(338.9287 4.6)\" uuid=\"36076868-723c-4f45-a120-22e685a5ea7b\"></path>\n<path class=\"zr0-cls-0\" d=\"M0 7L25 7\" fill=\"#000\" stroke=\"#FF0087\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"0\" transform=\"translate(413.0713 4.6)\" uuid=\"94ac6ad5-6c09-4d6e-9afa-5ca9e0933ce3\"></path>\n<path class=\"zr0-cls-0\" d=\"M18.1 7A5.6 5.6 0 1 1 18.1 6.9994\" fill=\"#fff\" stroke=\"#FF0087\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"2\" transform=\"translate(413.0713 4.6)\" uuid=\"7fab1dad-5db1-4daf-af6b-78fc7dad730b\"></path>\n<text dominant-baseline=\"central\" fill=\"#333\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"start\" transform=\"translate(413.0713 4.6)\" uuid=\"0024718d-34ae-4986-be48-6f60405deb3e\" x=\"30\" xml:space=\"preserve\" y=\"7\">Line 4</text>\n<path class=\"zr0-cls-8\" d=\"M0 0.4l64.1426 0l0 13.2l-64.1426 0Z\" fill=\"none\" transform=\"translate(413.0713 4.6)\" uuid=\"490306bf-5e9d-4707-b778-5ab82ad7d7b3\"></path>\n<path class=\"zr0-cls-0\" d=\"M0 7L25 7\" fill=\"#000\" stroke=\"#FFBF00\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"0\" transform=\"translate(487.2139 4.6)\" uuid=\"4edc0660-d122-4abb-8db8-d948ebf484f2\"></path>\n<path class=\"zr0-cls-0\" d=\"M18.1 7A5.6 5.6 0 1 1 18.1 6.9994\" fill=\"#fff\" stroke=\"#FFBF00\" stroke-linecap=\"butt\" stroke-miterlimit=\"10\" stroke-width=\"2\" transform=\"translate(487.2139 4.6)\" uuid=\"ecded202-9fc7-49c7-a3ec-62cfd243d88c\"></path>\n<text dominant-baseline=\"central\" fill=\"#333\" style=\"font-size:12px;font-family:Microsoft YaHei;\" text-anchor=\"start\" transform=\"translate(487.2139 4.6)\" uuid=\"999020b6-32f2-4463-9a88-ad800389ab1d\" x=\"30\" xml:space=\"preserve\" y=\"7\">Line 5</text>\n<path class=\"zr0-cls-8\" d=\"M0 0.4l64.1426 0l0 13.2l-64.1426 0Z\" fill=\"none\" transform=\"translate(487.2139 4.6)\" uuid=\"a33b5a88-aad3-4b89-a0fb-aff79bc83319\"></path>\n<path class=\"zr0-cls-0\" d=\"M-5 -5l266.8516 0l0 28l-266.8516 0Z\" fill=\"rgb(0,0,0)\" fill-opacity=\"0\" stroke=\"#ccc\" stroke-width=\"0\" transform=\"translate(5 5)\" uuid=\"7d69ca6c-cfe3-4c3b-af46-58244945f215\"></path>\n<text dominant-baseline=\"central\" fill=\"#464646\" style=\"font-size:18px;font-family:Microsoft YaHei;font-weight:bold;\" text-anchor=\"start\" transform=\"translate(5 5)\" uuid=\"71307e5b-a2f8-4308-ad66-346f85a4dd41\" xml:space=\"preserve\" y=\"9\">Gradient Stacked Area Chart</text>\n<defs>\n<clipPath id=\"zr0-c0\">\n<path class=\"zr0-cls-1\" d=\"M61 60l653 0l0 416.64l-653 0Z\" fill=\"#000\" uuid=\"4696daab-6910-4bf0-a9d7-b9cb55b3c9fd\"></path>\n</clipPath>\n<linearGradient gradientUnits=\"objectBoundingBox\" id=\"zr0-g0\" x1=\"0\" x2=\"0\" y1=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"rgb(128,255,165)\"></stop>\n<stop offset=\"100%\" stop-color=\"rgb(1,191,236)\"></stop>\n</linearGradient>\n<clipPath id=\"zr0-c1\">\n<path class=\"zr0-cls-1\" d=\"M61 60l653 0l0 416.64l-653 0Z\" fill=\"#000\" uuid=\"99fc6372-4b8c-4b74-9da2-7771ecbf9710\"></path>\n</clipPath>\n<linearGradient gradientUnits=\"objectBoundingBox\" id=\"zr0-g1\" x1=\"0\" x2=\"0\" y1=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"rgb(0,221,255)\"></stop>\n<stop offset=\"100%\" stop-color=\"rgb(77,119,255)\"></stop>\n</linearGradient>\n<clipPath id=\"zr0-c2\">\n<path class=\"zr0-cls-1\" d=\"M61 60l653 0l0 416.64l-653 0Z\" fill=\"#000\" uuid=\"d85e9a3b-9a34-409e-9a69-b23727b1e556\"></path>\n</clipPath>\n<linearGradient gradientUnits=\"objectBoundingBox\" id=\"zr0-g2\" x1=\"0\" x2=\"0\" y1=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"rgb(55,162,255)\"></stop>\n<stop offset=\"100%\" stop-color=\"rgb(116,21,219)\"></stop>\n</linearGradient>\n<clipPath id=\"zr0-c3\">\n<path class=\"zr0-cls-1\" d=\"M61 60l653 0l0 416.64l-653 0Z\" fill=\"#000\" uuid=\"d0f6e94e-c182-41a9-8a3d-cb9868309988\"></path>\n</clipPath>\n<linearGradient gradientUnits=\"objectBoundingBox\" id=\"zr0-g3\" x1=\"0\" x2=\"0\" y1=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"rgb(255,0,135)\"></stop>\n<stop offset=\"100%\" stop-color=\"rgb(135,0,157)\"></stop>\n</linearGradient>\n<clipPath id=\"zr0-c4\">\n<path class=\"zr0-cls-1\" d=\"M61 60l653 0l0 416.64l-653 0Z\" fill=\"#000\" uuid=\"20cd24b5-074c-418f-bb4e-f931b07d0220\"></path>\n</clipPath>\n<linearGradient gradientUnits=\"objectBoundingBox\" id=\"zr0-g4\" x1=\"0\" x2=\"0\" y1=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"rgb(255,191,0)\"></stop>\n<stop offset=\"100%\" stop-color=\"rgb(224,62,76)\"></stop>\n</linearGradient>\n</defs>\n<style>\n.zr0-cls-0:hover {\npointer-events:none;\n}\n.zr0-cls-1:hover {\ncursor:pointer;\nfill:rgba(0,0,0,1);\n}\n.zr0-cls-2:hover {\ncursor:pointer;\nfill:[object Object];\n}\n.zr0-cls-3:hover {\ncursor:pointer;\nfill:[object Object];\n}\n.zr0-cls-4:hover {\ncursor:pointer;\nfill:[object Object];\n}\n.zr0-cls-5:hover {\ncursor:pointer;\nfill:[object Object];\n}\n.zr0-cls-6:hover {\ncursor:pointer;\nfill:[object Object];\n}\n.zr0-cls-7:hover {\ncursor:pointer;\n}\n.zr0-cls-8:hover {\ncursor:pointer;\nfill:rgba(0,0,0,0);\n}\n\n\n\n</style>\n</svg>"
+}

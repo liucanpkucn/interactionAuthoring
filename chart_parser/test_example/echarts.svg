@@ -1,0 +1,71 @@
+<svg width="718" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" viewBox="0 0 718 512">
+<rect width="718" height="512" x="0" y="0" fill="none"></rect>
+<path d="M71.8 442.5L646.2 442.5" fill="none" stroke="#E0E6F1" class="zr0-cls-0"></path>
+<path d="M71.8 365.5L646.2 365.5" fill="none" stroke="#E0E6F1" class="zr0-cls-0"></path>
+<path d="M71.8 289.5L646.2 289.5" fill="none" stroke="#E0E6F1" class="zr0-cls-0"></path>
+<path d="M71.8 213.5L646.2 213.5" fill="none" stroke="#E0E6F1" class="zr0-cls-0"></path>
+<path d="M71.8 136.5L646.2 136.5" fill="none" stroke="#E0E6F1" class="zr0-cls-0"></path>
+<path d="M71.8 60.5L646.2 60.5" fill="none" stroke="#E0E6F1" class="zr0-cls-0"></path>
+<path d="M71.8 442.5L646.2 442.5" fill="none" stroke="#6E7079" stroke-linecap="round" class="zr0-cls-0"></path>
+<path d="M72.5 442L72.5 447" fill="none" stroke="#6E7079" class="zr0-cls-0"></path>
+<path d="M215.5 442L215.5 447" fill="none" stroke="#6E7079" class="zr0-cls-0"></path>
+<path d="M359.5 442L359.5 447" fill="none" stroke="#6E7079" class="zr0-cls-0"></path>
+<path d="M502.5 442L502.5 447" fill="none" stroke="#6E7079" class="zr0-cls-0"></path>
+<path d="M646.5 442L646.5 447" fill="none" stroke="#6E7079" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="end" style="font-size:12px;font-family:Microsoft YaHei;" transform="translate(63.8 442)" fill="#6E7079">0</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:12px;font-family:Microsoft YaHei;" transform="translate(63.8 365.6)" fill="#6E7079">20</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:12px;font-family:Microsoft YaHei;" transform="translate(63.8 289.2)" fill="#6E7079">40</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:12px;font-family:Microsoft YaHei;" transform="translate(63.8 212.8)" fill="#6E7079">60</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:12px;font-family:Microsoft YaHei;" transform="translate(63.8 136.4)" fill="#6E7079">80</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:12px;font-family:Microsoft YaHei;" transform="translate(63.8 60)" fill="#6E7079">100</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:12px;font-family:Microsoft YaHei;" xml:space="preserve" y="6" transform="translate(143.6 450)" fill="#6E7079">Matcha Latte</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:12px;font-family:Microsoft YaHei;" xml:space="preserve" y="6" transform="translate(287.2 450)" fill="#6E7079">Milk Tea</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:12px;font-family:Microsoft YaHei;" xml:space="preserve" y="6" transform="translate(430.8 450)" fill="#6E7079">Cheese Cocoa</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:12px;font-family:Microsoft YaHei;" xml:space="preserve" y="6" transform="translate(574.4 450)" fill="#6E7079">Walnut Brownie</text>
+<path d="M88.314 442l32.5212 0l0 -165.406l-32.5212 0Z" fill="rgb(84,112,198)" class="zr0-cls-1"></path>
+<path d="M231.914 442l32.5212 0l0 -317.442l-32.5212 0Z" fill="rgb(84,112,198)" class="zr0-cls-1"></path>
+<path d="M375.514 442l32.5212 0l0 -330.048l-32.5212 0Z" fill="rgb(84,112,198)" class="zr0-cls-1"></path>
+<path d="M519.114 442l32.5212 0l0 -276.568l-32.5212 0Z" fill="#5470c6" class="zr0-cls-1"></path>
+<path d="M127.3394 442l32.5212 0l0 -327.756l-32.5212 0Z" fill="rgb(145,204,117)" class="zr0-cls-2"></path>
+<path d="M270.9394 442l32.5212 0l0 -280.388l-32.5212 0Z" fill="rgb(145,204,117)" class="zr0-cls-2"></path>
+<path d="M414.5394 442l32.5212 0l0 -249.064l-32.5212 0Z" fill="#91cc75" class="zr0-cls-2"></path>
+<path d="M558.1394 442l32.5212 0l0 -205.898l-32.5212 0Z" fill="#91cc75" class="zr0-cls-2"></path>
+<path d="M166.3648 442l32.5212 0l0 -357.934l-32.5212 0Z" fill="rgb(250,200,88)" class="zr0-cls-3"></path>
+<path d="M309.9648 442l32.5212 0l0 -210.482l-32.5212 0Z" fill="#fac858" class="zr0-cls-3"></path>
+<path d="M453.5648 442l32.5212 0l0 -315.15l-32.5212 0Z" fill="#fac858" class="zr0-cls-3"></path>
+<path d="M597.1648 442l32.5212 0l0 -149.362l-32.5212 0Z" fill="#fac858" class="zr0-cls-3"></path>
+<path d="M-5 -5l204.4453 0l0 24l-204.4453 0Z" transform="translate(261.7773 5)" fill="rgb(0,0,0)" fill-opacity="0" stroke="#ccc" stroke-width="0" class="zr0-cls-0"></path>
+<path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0" transform="translate(261.7773 5)" fill="#5470c6" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="start" style="font-size:12px;font-family:Microsoft YaHei;" x="30" y="7" transform="translate(261.7773 5)" fill="#333">2015</text>
+<path d="M0 0l58.1484 0l0 14l-58.1484 0Z" transform="translate(261.7773 5)" fill="none" class="zr0-cls-4"></path>
+<path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0" transform="translate(329.9258 5)" fill="#91cc75" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="start" style="font-size:12px;font-family:Microsoft YaHei;" x="30" y="7" transform="translate(329.9258 5)" fill="#333">2016</text>
+<path d="M0 0l58.1484 0l0 14l-58.1484 0Z" transform="translate(329.9258 5)" fill="none" class="zr0-cls-4"></path>
+<path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0" transform="translate(398.0742 5)" fill="#fac858" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="start" style="font-size:12px;font-family:Microsoft YaHei;" x="30" y="7" transform="translate(398.0742 5)" fill="#333">2017</text>
+<path d="M0 0l58.1484 0l0 14l-58.1484 0Z" transform="translate(398.0742 5)" fill="none" class="zr0-cls-4"></path>
+<style ><![CDATA[
+.zr0-cls-0:hover {
+pointer-events:none;
+}
+.zr0-cls-1:hover {
+cursor:pointer;
+fill:rgba(92,123,217,1);
+}
+.zr0-cls-2:hover {
+cursor:pointer;
+fill:rgba(159,224,128,1);
+}
+.zr0-cls-3:hover {
+cursor:pointer;
+fill:rgba(255,220,96,1);
+}
+.zr0-cls-4:hover {
+cursor:pointer;
+fill:rgba(0,0,0,0);
+}
+
+]]>
+
+</style>
+</svg>
