@@ -1416,6 +1416,9 @@ if __name__ == "__main__":
     # file_name = "echarts"# 效果不好
     # file_name = "1_groupbar"
     file_name = "war_short"
+    
+    file_name = "1_line_1"
+    
     with open(f'test_example/{file_name}.svg', 'r', encoding='utf-8') as f:
         string = f.read()
         constraints_with_data = get_constraints_with_data(string)
