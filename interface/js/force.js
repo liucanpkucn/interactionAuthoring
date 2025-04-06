@@ -9,6 +9,7 @@ let action_list = []
 
 
 let canvas_main = function(data){
+  console.log("It works")
 
   let chart_json = data
   let svg_string = data.svg_string
@@ -37,6 +38,9 @@ let canvas_main = function(data){
   original_chart_json = chart_json
 
   // Set up the main svg
+
+  d3.select("#canvas").selectAll('svg')
+    .remove()
 
   let svg_contain = d3.select("#canvas").append("svg")
     .attr("width", window_width)

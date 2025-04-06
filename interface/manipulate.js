@@ -229,7 +229,7 @@ async function getAnswer(message) {
   myHeaders.append("Content-Type", "application/json");
 
   var raw = JSON.stringify({
-    "model": "gpt-4o",
+    "model": "gpt-4o-mini",
     "messages": [
         {
           "role": "user",
@@ -560,7 +560,7 @@ async function validateParse(parsed_json, nl_input) {
   myHeaders.append("Content-Type", "application/json");
 
   var raw = JSON.stringify({
-    "model": "gpt-4o",
+    "model": "gpt-4o-mini",
     "messages": [
         {
           "role": "user",
@@ -823,6 +823,7 @@ function buttonCreation({behavior, by, color, chart}) {
       });
     }
   } else if (behavior === "overlap") {
+    button.innerText = "compare";
     button.addEventListener("click", function () {
       _chart_object[0].CoordSys.forEach(coordSys => {
         coordSys.overlap(_chart_object[0], _chart_object[0].content_group);

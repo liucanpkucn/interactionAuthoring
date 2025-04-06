@@ -18,7 +18,7 @@ body {
 :root {
     --background: #f0f0f0;
     --option-bg: #DAEBF7;
-    --selected-bg: #5197d6;
+    --selected-bg: #18A0FB;
     --text-primary: #3389d4;
     --text-white: white;
 }
@@ -100,7 +100,7 @@ body {
 
 #copy-button {
     padding: 8px 16px;
-    background-color: #5197d6;
+    background-color: #18A0FB;
     color: white;
     border: none;
     border-radius: 4px;
@@ -111,7 +111,7 @@ body {
 
 #share-button {
     padding: 8px 16px;
-    background-color: #5197d6;
+    background-color: #18A0FB;
     color: white;
     border: none;
     border-radius: 4px;
@@ -121,11 +121,11 @@ body {
 }
 
 #share-button:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 #copy-button:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 #copy-button:disabled {
@@ -215,7 +215,7 @@ body {
 }
 
 .user .message-text {
-    background: #5197d6;
+    background: #18A0FB;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
@@ -291,7 +291,7 @@ body {
 }
 
 .input-wrapper:focus-within {
-    border: 1px solid var(--Accent-Blue, #5197d6);
+    border: 1px solid var(--Accent-Blue, #18A0FB);
 }
 
 input {
@@ -400,7 +400,7 @@ input:focus {
 }
 
 .option.selected {
-    background: var(--Accent-Blue, #5197d6);
+    background: var(--Accent-Blue, #18A0FB);
     color: white;
 
     /* Body 2/Regular */
@@ -533,7 +533,7 @@ input:focus {
 
 .dropdown-display:focus,
 .dropdown-display.active {
-    border: 1px solid var(--Accent-Blue, #5197d6);
+    border: 1px solid var(--Accent-Blue, #18A0FB);
 }
 
 .dropdown-options {
@@ -571,7 +571,7 @@ input:focus {
 }
 
 .confirm-button {
-    background: #5197d6;
+    background: #18A0FB;
     color: white;
     font-family: Inter;
     font-size: 10px;
@@ -586,7 +586,7 @@ input:focus {
 }
 
 .confirm-button:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 .confirm-button.selected {
@@ -649,7 +649,7 @@ body {
 /* ✅ 버튼 스타일 */
 #send-button {
     border-radius: 8px;
-    background-color: #5197d6;
+    background-color: #18A0FB;
     opacity: 1;
     color: white;
     border: none;
@@ -660,7 +660,7 @@ body {
 #share-button {
     position: absolute;
     border-radius: 8px;
-    background-color: #5197d6;
+    background-color: #18A0FB;
     opacity: 1;
     color: white;
     border: none;
@@ -669,7 +669,7 @@ body {
 }
 
 #send-button:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 #confirm-no {
@@ -682,11 +682,11 @@ body {
 }
 
 #confirm-yes {
-    background-color: #5197d6;
+    background-color: #18A0FB;
 }
 
 #confirm-yes:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 .message-text .check-list {
@@ -718,9 +718,9 @@ body {
     justify-content: center;
     align-items: center;
     gap: 4px;
-    border-radius: 5px;
+    border-radius: 25px;
     background-color: #daebf7;
-    color: #3389d4;
+    color: #18A0FB;
   
     /* Body 2/Regular */
     font-family: Inter;
@@ -741,7 +741,7 @@ body {
 }
   
 .check.selected {
-    background-color: #5197d6;
+    background-color: #18A0FB;
     color: white;
   
     /* Body 2/Regular */
@@ -756,7 +756,7 @@ body {
 }
 
 .check.selected:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 .interaction-button {
@@ -765,7 +765,7 @@ body {
     width: 5rem;
     padding: 8px 12px;
     border-radius: 8px;
-    background-color: #5197d6;
+    background-color: #18A0FB;
     opacity: 1;
     color: white;
     border: none;
@@ -774,5 +774,5 @@ body {
 }
 
 .interaction-button:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }

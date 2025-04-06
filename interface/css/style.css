@@ -177,12 +177,12 @@ body {
 }
 
 .share-button, .share-confirm-button, .close-share-result {
-    background: #5197d6;
+    background: #18A0FB;
     color: white;
 }
 
 .share-button:hover, .share-confirm-button:hover, .close-share-result:hover {
-    background-color: #1565aa;
+    background-color: #0987db;
 }
 
 .share-result {
