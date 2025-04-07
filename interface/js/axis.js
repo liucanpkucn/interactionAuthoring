@@ -237,6 +237,71 @@ let draw_axis = function (canvas, axis, current_canvas_object) {
         .on("zoom", zoom_axis_ing)
         .on('end', function (e, d) {
           zoom_axis_ing(e, d);
+          let current_action = { type: "change_scale" };
+          current_action.scale_type = axis.scale_type;
+          current_action.start_point = { x: e.x, y: e.y };
+          current_action.end_point = { x: e.x, y: e.y };
+          current_action.axis_direction = axis.type;
+          current_action.canvas_id = _chart_object.indexOf(
+            current_canvas_object
+          );
+          current_action.axis_id =
+            current_canvas_object[`${axis.type}_axis_object_list`].indexOf(
+              current_axis_object
+            );
+
+          if (axis.scale_type === "linear") {
+            let tmp_small_pixel = axis.range.begin;
+            let tmp_larger_pixel = axis.range.end;
+            let tmp_scale = d3
+              .scaleLinear()
+              .domain([
+                current_scale.invert(tmp_small_pixel),
+                current_scale.invert(tmp_larger_pixel),
+              ]);
+
+            current_action.range = current_scale.range();
+            current_action.domain = current_scale.domain();
+            action_list.push(current_action);
+
+            new_ticks = tmp_scale.ticks(original_tick_num);
+            add_new_ticks(
+              current_scale,
+              new_ticks,
+              (scale_type = axis.scale_type)
+            );
+          } else if (axis.scale_type === "time") {
+            let current_k = e.transform.k;
+            let resize = last_k / current_k;
+
+            let new_date_begin = new Date(
+              zoom_point_value.getTime() +
+                (new Date(axis.value_range[0]).getTime() -
+                  zoom_point_value.getTime()) *
+                  resize
+            );
+            let new_date_end = new Date(
+              zoom_point_value.getTime() +
+                (new Date(axis.value_range[1]).getTime() -
+                  zoom_point_value.getTime()) *
+                  resize
+            );
+            current_action.range = current_scale.range();
+            console.log("current_action.range", current_action.range);
+            current_action.domain = [
+              current_scale.domain()[0].getTime(),
+              current_scale.domain()[1].getTime(),
+            ];
+            action_list.push(current_action);
+            var ticks = current_scale.ticks(original_tick_num);
+            add_new_ticks(current_scale, ticks, (scale_type = axis.scale_type));
+            // console.log(formattedTicks);
+            window._current_scale = current_scale;
+            axis.value_range[0] =
+              moment(new_date_begin).format("YYYY-MM-DD h:mm:ss");
+            axis.value_range[1] =
+              moment(new_date_end).format("YYYY-MM-DD h:mm:ss");
+          }
           current_canvas_object.restart_all_simulations();
         })
       );
@@ -991,9 +1056,17 @@ let draw_axis = function (canvas, axis, current_canvas_object) {
     tick
       .html(d => text_template)
 
-    tick
-      .select('text')
-      .text(d => axis.prefix + d.value + axis.suffix)
+    if (axis.scale_type === "time") {
+      let timeFormat = d3.timeFormat("%Y"); // or 원하는 포맷
+      tick
+        .select('text')
+        .text(d => axis.prefix + timeFormat(d.value) + axis.suffix);
+    } else {
+      tick
+        .select('text')
+        .text(d => axis.prefix + d.value + axis.suffix);
+    }
+      
 
     tick
       .each(function (d) {

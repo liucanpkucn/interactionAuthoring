@@ -33,12 +33,15 @@ function re_encode_area2bar(canvas, bar_width=10){
     let coord_data = canvas.CoordSys[0].coordinate_data
     let new_coord_data = JSON.parse(JSON.stringify(coord_data))
     let data_list = canvas.chart_json.parsed_data.data_list
-    convert_area_chart_to_bar_chart(new_coord_data, data_list, bar_width)
+    let y_axis = canvas.CoordSys[0].y_axis
+    convert_area_chart_to_bar_chart(new_coord_data, data_list, y_axis, bar_width)
     console.log(new_coord_data)
     window._new_coord_data = new_coord_data
     // canvas.draw_new_coordsys(new_coord_data)
 
     canvas.chart_json.CoordSys = [new_coord_data]
+    // copy the axis here.
+    // update value_range
 
     d3.select("#current_canvas").remove()
     canvas_main(canvas.chart_json)
@@ -75,6 +78,9 @@ function re_encode_line2area(canvas){
 
     // d3.select("#canvas").remove()
     canvas_main(canvas.chart_json)
+
+    _chart_object[0].CoordSys[0].activate_allow_overlap();
+    _chart_object[0].CoordSys[0].x_axis.activate_rescale();
 
     console.log("new data2", canvas.chart_json)
 }
@@ -133,12 +139,13 @@ function deep_copy(old_obj){
 }
 
 
-function convert_area_chart_to_bar_chart(new_coord_data, data_list, bar_width=10){
+function convert_area_chart_to_bar_chart(new_coord_data, data_list, y_axis, bar_width=10){
     let visual_object = new_coord_data.visual_object
     let control_point = new_coord_data.control_point
     let constraints = new_coord_data.constraints
     let color_group = new_coord_data.groups[0]
     let obj_group_dict = deep_copy(color_group.obj_group_dict)
+    let y_scale = y_axis.scale
     color_group.group_list.forEach(d => {
         d.visual_object = []
     })
@@ -171,13 +178,18 @@ function convert_area_chart_to_bar_chart(new_coord_data, data_list, bar_width=10
             new_visual_object.push(new_vo)
             let vid = new_visual_object.length-1;
             new_vo.id = vid;
-            new_control_point[d.pid[0]].obj_id = vid;
-            new_control_point[d.pid[1]].obj_id = vid;
+            new_control_point[d.pid[0]].obj_id = vid; // fist
+            new_control_point[d.pid[1]].obj_id = vid; // second
             new_control_point[d.pid[0]+control_point_length].obj_id = vid;
             new_control_point[d.pid[1]+control_point_length].obj_id = vid;
             constraints.push({'type': 'fixed-x', 'point1': d.pid[0], 'point2': d.pid[0]+control_point_length, 'distance': pixel})
             constraints.push({'type': 'fixed-x', 'point1': d.pid[1], 'point2': d.pid[1]+control_point_length, 'distance': pixel})
-            constraints.push({'type': 'fixed-y', 'point1': d.pid[0]+control_point_length, 'point2': d.pid[1]+control_point_length, 'distance': constraints[d.cons_idx].distance})
+            constraints.push({'type': 'fixed-y', 'point1': d.pid[1], 'point2': d.pid[0]+control_point_length, 'distance': 0})
+            // constraints.push({'type': 'fixed-y', 'point1': d.pid[1], 'point2': d.pid[1]+control_point_length, 'distance': 0})
+            // constraints.push({'type': 'fixed-y', 'point1': d.pid[0], 'point2': d.pid[1], 'distance': -(y_scale() - y_scale(d.value))})
+            constraints.push({'type': 'fixed-y', 'point1': d.pid[0] + control_point_length, 'point2': d.pid[1] + control_point_length, 'distance': y_scale(0) - y_scale(d.value)})
+            constraints.push({'type': 'fixed-y', 'point1': d.pid[0] , 'point2': d.pid[1] , 'distance': y_scale(0) - y_scale(d.value)})
+
             color_group.group_list[obj_group_dict[old_vo.id]].visual_object.push(vid);
             color_group.obj_group_dict[vid] = obj_group_dict[old_vo.id];
         })
