@@ -36,9 +36,9 @@ async function getAnswer(message) {
               },
               "result": {
                   "target": ( "visual mark" | "axis" | "tooltip" ),
-                  "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" ),
-                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected | "move bottom" | "" ),
-                  "parameter": ("bar" | "stacked area" | "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
+                  "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" | "reencode" ),
+                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected | "move bottom" | "line" | "area" | "" ),
+                  "parameter": ("bar" | "stacked area" | "area" | "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
               },
               "similar": (true | false),
               "description": "<A concise and user-friendly explanation of the interaction>"
@@ -63,15 +63,20 @@ async function getAnswer(message) {
 
   4. **result.target** must be one of: "visual mark", "axis", or "tooltip".
 
-  5. **result.behavior** must be one of: "remove", "rescale", "resort", "annotate", "overlap", "highlight".
+  5. **result.behavior** must be one of: "remove", "rescale", "resort", "annotate", "overlap", "highlight", "reencode".
     - \`"resort"\` is used for both **resort and reorder**.
     - \`"annotate"\` replaces **add and show** (e.g., highlighting or marking elements).
     - \`"highlight"\` is used when an element is specifically chosen.
     - ⚠️ If result.behavior is \`"resort"\`, then result.parameter must be either \`"bar"\` or \`"stacked area"\`.  
       - For \`"stacked area"\`, result.by can include \`"move bottom"\`.
       - result.by can also be \`height\`, \`opacity\`, or \`color\` for both values.
+    - If result.behavior is \`"reencode"\`, then you must follow this rule.
+      - result.target must be \`"visual mark"\`.
+      - action.target must be \`"button"\` and action.action must be \`"click"\`.
+      - If result.by is \`"line"\`, then result.parameter must be \`"area"\`.
+      - Else if result.by is \`"area"\`, then result.parameter must be \`"bar"\`.
 
-  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", "auto", "unselected", or "move bottom".
+  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", "line", "area" or empty string("").
     - If "color", then parameter must be one of:
       **"black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown"**.
     - If "axis", then parameter must be "x", "y", or "all".
@@ -375,10 +380,10 @@ async function validateParse(parsed_json, nl_input) {
     "remove", "rescale", "resort", "annotate", "overlap", "highlight"
 
   - result.by: ONLY one of:
-    "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", ""
+    "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", "line", "area", ""
 
   - result.parameter: ONLY one of:
-    "bar", "stacked area",
+    "bar", "stacked area", "area",
     "black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown",
     "x", "y", "all", ""
 
@@ -410,6 +415,11 @@ async function validateParse(parsed_json, nl_input) {
 
   6. HIGHLIGHT
     - always allowed, as long as values are valid
+  
+  7. REENCODE
+    - always action.target = "button", action.action = "click"
+    - if result.by = "line", then result.parameter = "area.
+    - else if result.by = "area", then result.parameter = "bar".
     
   You MUST only use combinations listed below.
   If a combination is not in the list, it is NOT supported.
@@ -494,6 +504,11 @@ async function validateParse(parsed_json, nl_input) {
   - If \`result.behavior\` is \`"resort"\`, then:
     - \`action.action\` MUST be \`"click"\`
 
+  - If \`result.behavior\` is \`"reencode"\`, then:
+    - \`action.action\` MUST be \`"click"\`
+    - \`action.target\` MUST be \`"button"\`
+    - If \`result.by\` is \`"line"\`, then \`result.paramter\` is \`"area"\`.
+    - If \`result.by\` is \`"area"\`, then \`result.parameter\` is \`"bar"\`.
   ---
 
   #### 🟢 CORRECT
@@ -613,6 +628,18 @@ function activateInteraction(parsedJson){
   // console.log(result);
   // console.log(mouse_action);
   // "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" ),
+
+  if(result.behavior === "reencode") {
+    if(result.by === "line") {
+      reencodeButton("line", "area");
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
+    } else if (result.by === "area" || result.by === "stacked area") {
+      reencodeButton("area", "bar");
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
+    }
+  }
 
   // remove area
   if(result.behavior === "remove") {
@@ -834,6 +861,44 @@ function buttonCreation({behavior, by, color, chart}) {
       auto_change_quantitative_scale(_chart_object[0], by);
     });
   }
+}
+
+function reencodeButton(by, parameter) {
+  console.log("Reencode Button Creation");
+
+  let mainRect = document.querySelector(".mainrect");
+
+  if (!mainRect) {
+      console.error("Error: No element found with class 'mainrect'");
+      return;
+  }
+  let button = document.querySelector(".interaction-button");
+
+  button = document.createElement("button");
+  button.className = "interaction-button";
+  button.id = "interaction-button";
+  button.style.width = "90px";
+  button.style.height = "50px";
+  button.style.left = (mainRect.getBoundingClientRect().right - 120) + "px"; // 오른쪽에 배치
+
+  if (by === "line" && parameter === "area") {
+    console.log("BUTTON - Line2Area");
+    button.innerText = "Change to Area Chart";
+    button.style.top = (mainRect.getBoundingClientRect().top + 60) + "px"; // 같은 높이로 정렬
+    button.addEventListener("click", function () {
+      re_encode_line2area(_chart_object[0])
+    });
+  } else if (by === "area" && parameter === "bar") {
+    console.log("BUTTON - Area2Bar");
+    button.innerText = "Change to Bar Chart";
+    button.style.top = (mainRect.getBoundingClientRect().top + 120) + "px"; // 같은 높이로 정렬
+    button.addEventListener("click", function () {
+      re_encode_area2bar(_chart_object[0], 10)
+    });
+  }
+
+  document.body.appendChild(button);
+  makeDraggable(button);
 }
 
 function closestColor(r, g, b) {

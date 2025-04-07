@@ -17,6 +17,7 @@ function re_encode_bar2area(canvas){
 
 
     canvas.chart_json.CoordSys = [new_coord_data]
+    const allowed_json = JSON.parse(JSON.stringify(_chart_object[0].share_json));
 
     let new_data = canvas.chart_json
 
@@ -24,6 +25,11 @@ function re_encode_bar2area(canvas){
 
     d3.select("#current_canvas").remove()
     canvas_main(new_data)
+
+    _chart_object[0].share_json = allowed_json;
+    _chart_object[0].share_json.forEach(json => {
+      activateInteraction(json);
+    });
 
     console.log("new data", new_data)
 
@@ -40,11 +46,21 @@ function re_encode_area2bar(canvas, bar_width=10){
     // canvas.draw_new_coordsys(new_coord_data)
 
     canvas.chart_json.CoordSys = [new_coord_data]
+    const allowed_json = JSON.parse(JSON.stringify(_chart_object[0].share_json));
     // copy the axis here.
     // update value_range
 
+    // main_axis 추가하기
+
     d3.select("#current_canvas").remove()
     canvas_main(canvas.chart_json)
+
+    _chart_object[0].CoordSys[0].activate_allow_overlap();
+
+    _chart_object[0].share_json = allowed_json;
+    _chart_object[0].share_json.forEach(json => {
+      activateInteraction(json);
+    });
 
 }
 
@@ -58,9 +74,15 @@ function re_encode_area2line(canvas){
     // canvas.draw_new_coordsys(new_coord_data)
 
     canvas.chart_json.CoordSys = [new_coord_data]
+    const allowed_json = JSON.parse(JSON.stringify(_chart_object[0].share_json));
 
     d3.select("#current_canvas").remove()
     canvas_main(canvas.chart_json)
+
+    _chart_object[0].share_json = allowed_json;
+    _chart_object[0].share_json.forEach(json => {
+      activateInteraction(json);
+    });
 }
 
 function re_encode_line2area(canvas){
@@ -75,13 +97,18 @@ function re_encode_line2area(canvas){
     canvas.chart_json.CoordSys = [new_coord_data]
     
     console.log("new data1", canvas.chart_json)
+    const allowed_json = JSON.parse(JSON.stringify(_chart_object[0].share_json));
 
     // d3.select("#canvas").remove()
     canvas_main(canvas.chart_json)
 
     _chart_object[0].CoordSys[0].activate_allow_overlap();
-    _chart_object[0].CoordSys[0].x_axis.activate_rescale();
+    // _chart_object[0].CoordSys[0].x_axis.activate_rescale();
 
+    _chart_object[0].share_json = allowed_json;
+    _chart_object[0].share_json.forEach(json => {
+      activateInteraction(json);
+    });
     console.log("new data2", canvas.chart_json)
 }
 
