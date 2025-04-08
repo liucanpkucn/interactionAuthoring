@@ -492,6 +492,7 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
     // console.log(d, current_x, current_y)
 
     if (d.hasOwnProperty('fixed_x_value') && coordinate_data.main_axis.type != 'x'){
+    // if (d.hasOwnProperty('fixed_x_value')){
       let current_value_list = d.fixed_x_value
       let current_show_value = get_chosen_idx_movement(current_y, current_value_list, 'x', 'y')
       if(showXValueTooltip) {
@@ -908,6 +909,12 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
     current_coordinate_object.drag_visual_element(status, current_move_list, change_xy, mouse_point, current_canvas_position, current_vo_id)
     // }
 
+    if(allowOverlap){
+      setTimeout(() => {
+        auto_change_quantitative_scale(_chart_object[0], 'y');
+      }, 3000);
+    }
+    
     // current_move_list.forEach(function(vid){
     //   let vo = visual_object[vid]
     //   vo.control_point.forEach(function(p){

@@ -4,5 +4,6 @@ P3 Stacked Area Chart.json
 remove.json
 compare area.json
 P1 Stacked Area Chart.json
+line2area2bar.json
 P2 Stacked Area Chart.json
 20210811_stack.json

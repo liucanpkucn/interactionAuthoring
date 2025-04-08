@@ -6,6 +6,48 @@ function get_chart_data(){
     return _chart_object[0].chart_json
 }
 
+function generateMainAxisFromVerticalLineCoordinate(coordSys) {
+    const tickGap = coordSys.visual_object_num;
+    const plotMin = coordSys.plotarea.x.min;
+    const plotMax = coordSys.plotarea.x.max;
+  
+    // 1. tick 중심 위치 계산 (tickGap 간격)
+    const positions = [];
+    let pos = plotMin;
+  
+    while (pos <= plotMax) {
+      positions.push(pos);
+      pos += tickGap;
+    }
+  
+    // 2. 각 position 기준 range 계산
+    const tick_position = positions.map((p, i) => {
+      let lower, upper;
+  
+      if (i === 0) {
+        lower = p - tickGap / 2;
+        upper = (p + positions[i + 1]) / 2;
+      } else if (i === positions.length - 1) {
+        lower = (positions[i - 1] + p) / 2;
+        upper = p + tickGap / 2;
+      } else {
+        lower = (positions[i - 1] + p) / 2;
+        upper = (p + positions[i + 1]) / 2;
+      }
+  
+      return {
+        position: parseFloat(p.toFixed(1)),
+        range: [parseFloat(lower.toFixed(1)), parseFloat(upper.toFixed(1))]
+      };
+    });
+  
+    return {
+      type: 'x',
+      tick_position,
+      even_type: 'single'
+    };
+  }  
+
 function re_encode_bar2area(canvas){
     let coord_data = canvas.CoordSys[0].coordinate_data
     let new_coord_data = JSON.parse(JSON.stringify(coord_data))
@@ -51,17 +93,22 @@ function re_encode_area2bar(canvas, bar_width=10){
     // update value_range
 
     // main_axis 추가하기
-
     d3.select("#current_canvas").remove()
     canvas_main(canvas.chart_json)
 
-    _chart_object[0].CoordSys[0].activate_allow_overlap();
+    // _chart_object[0].CoordSys[0].activate_allow_overlap();
 
     _chart_object[0].share_json = allowed_json;
     _chart_object[0].share_json.forEach(json => {
       activateInteraction(json);
     });
 
+    // _chart_object[0].CoordSys[0].coordinate_data.main_axis.type = 'x';
+    const coordinate_data = _chart_object[0].CoordSys[0].coordinate_data;
+
+    if (!coordinate_data.main_axis) {
+        coordinate_data.main_axis = generateMainAxisFromVerticalLineCoordinate(coordinate_data);
+    }
 }
 
 function re_encode_area2line(canvas){
@@ -102,7 +149,7 @@ function re_encode_line2area(canvas){
     // d3.select("#canvas").remove()
     canvas_main(canvas.chart_json)
 
-    _chart_object[0].CoordSys[0].activate_allow_overlap();
+    // _chart_object[0].CoordSys[0].activate_allow_overlap();
     // _chart_object[0].CoordSys[0].x_axis.activate_rescale();
 
     _chart_object[0].share_json = allowed_json;
@@ -189,12 +236,29 @@ function convert_area_chart_to_bar_chart(new_coord_data, data_list, y_axis, bar_
     console.log(new_control_point_2)
     new_control_point.push(...new_control_point_2)
 
+    let max_bar_num = 10
+
     visual_object.forEach(function(old_vo){
         let direction_name = "fixed_y_value"
         if (!(direction_name in old_vo && old_vo[direction_name].length > 1)) return;
 
         let fixed_list = old_vo[direction_name]
+
+        if (fixed_list.length > max_bar_num){
+            let inter = parseInt(fixed_list.length / max_bar_num)
+            let new_fixed_list = []
+            for (let i = 0; i < fixed_list.length; i ++){
+                if (i * inter < fixed_list.length){
+                    new_fixed_list.push(fixed_list[i * inter])
+                }
+                else{
+                    break;
+                }
+            }
+            fixed_list = new_fixed_list;
+        }
         let pixel = bar_width
+        
         fixed_list.forEach(function(d){
             let correspond_constraint = constraints[d.cons_idx]
             let new_vo = deep_copy(old_vo)

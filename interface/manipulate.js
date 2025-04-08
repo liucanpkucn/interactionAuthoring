@@ -36,7 +36,7 @@ async function getAnswer(message) {
               },
               "result": {
                   "target": ( "visual mark" | "axis" | "tooltip" ),
-                  "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" | "reencode" ),
+                  "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" | "reencode" | "stack" ),
                   "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected | "move bottom" | "line" | "area" | "" ),
                   "parameter": ("bar" | "stacked area" | "area" | "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
               },
@@ -63,7 +63,7 @@ async function getAnswer(message) {
 
   4. **result.target** must be one of: "visual mark", "axis", or "tooltip".
 
-  5. **result.behavior** must be one of: "remove", "rescale", "resort", "annotate", "overlap", "highlight", "reencode".
+  5. **result.behavior** must be one of: "remove", "rescale", "resort", "annotate", "overlap", "highlight", "reencode", or "stack".
     - \`"resort"\` is used for both **resort and reorder**.
     - \`"annotate"\` replaces **add and show** (e.g., highlighting or marking elements).
     - \`"highlight"\` is used when an element is specifically chosen.
@@ -75,7 +75,10 @@ async function getAnswer(message) {
       - action.target must be \`"button"\` and action.action must be \`"click"\`.
       - If result.by is \`"line"\`, then result.parameter must be \`"area"\`.
       - Else if result.by is \`"area"\`, then result.parameter must be \`"bar"\`.
-
+    - If result.behavior is \`"stack"\`, then you must follow this rule.
+      - result.target must be \`"visual mark"\`.
+      - action.target must be \`"visual mark"\` and action.action must be \`"drag"\`.
+      
   6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", "line", "area" or empty string("").
     - If "color", then parameter must be one of:
       **"black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown"**.
@@ -127,17 +130,23 @@ async function getAnswer(message) {
       }
       \`\`\`
 
-  11. **Description Formatting (No Extra Words!)**
-   - The **description for each action-result pair must be direct and clear**.
-   - The **overall description must summarize the entire interaction sequence**.
-   - Example formatting:
-     - ✅ \`"Clicking on two colors highlights them for comparison."\`
-     - ✅ \`"Clicking the compare button removes unselected visual marks."\`
-     - ✅ \`"Clicking the y-axis rescale button adjusts the axis scale."\`
-   - Avoid vague or unnecessary words like:
-     - ❌ \`"We inferred that clicking the x-axis will reorder the elements."\`
-     - ❌ \`"When the user hovers, a tooltip appears."\`
-
+  11. **Description Formatting**
+  - Each description field inside a data item must only describe the result, not the action.
+    - ❌ Do NOT include action verbs like: "clicking", "hovering", "zooming", "dragging", "double clicking", etc.
+    - ✅ Focus strictly on what visually changes based on the result fields:
+      - \`result.target\`
+      - \`result.behavior\`
+      - \`result.by\`
+      - \`result.parameter\`
+    - ✅ Examples:
+      - "Highlights the visual marks."
+      - "Removes unselected visual marks."
+      - "Overlaps the visual marks."
+      - "Rescales the y-axis."
+      - "Displays a tooltip."
+      - The overall "description" at the bottom of the JSON must summarize the entire interaction flow, and can include both the actions and the resulting changes.
+    - ✅ Example:
+      - "To compare two colors, first select two colors by clicking on them. Then, click the compare button to remove unselected visual marks, overlap the stacked area chart, and rescale the y-axis using the rescale button."
   ---
 
   ### **EXAMPLES OF INPUT AND EXPECTED OUTPUT** ###
@@ -146,8 +155,6 @@ async function getAnswer(message) {
   **Input:**  
   *"When the user clicks on two colors and then clicks the compare button, we compare these two colors."*
 
-  **Output:**
-  \`\`\`json
   **Output:**
   \`\`\`json
   {
@@ -165,7 +172,7 @@ async function getAnswer(message) {
                   "parameter": "auto"
               },
               "similar": false,
-              "description": "Clicking on two colors selects them for comparison."
+              "description": "Highlights the visual marks."
           },
           {
               "action": {
@@ -180,7 +187,7 @@ async function getAnswer(message) {
                   "parameter": "auto"
               },
               "similar": false,
-              "description": "Clicking the compare button removes unselected visual marks."
+              "description": "Removes unselected visual marks."
           },
           {
               "action": {
@@ -195,7 +202,7 @@ async function getAnswer(message) {
                   "parameter": ""
               },
               "similar": false,
-              "description": "Clicking the compare button overlaps the stacked area chart."
+              "description": Overlaps the visual marks."
           },
           {
               "action": {
@@ -210,7 +217,7 @@ async function getAnswer(message) {
                   "parameter": "y"
               },
               "similar": false,
-              "description": "Clicking the y-axis rescale button adjusts the axis scale."
+              "description": "Rescale y-axis."
           }
       ],
       "description": "To compare two colors, first select two colors by clicking on them. Then, click the compare button to remove unselected visual marks, overlap the stacked area chart, and rescale the y-axis using the rescale button."
@@ -377,7 +384,7 @@ async function validateParse(parsed_json, nl_input) {
 
   - result.target: "visual mark", "axis", "tooltip"
   - result.behavior: ONLY one of:
-    "remove", "rescale", "resort", "annotate", "overlap", "highlight"
+    "remove", "rescale", "resort", "annotate", "overlap", "highlight", "reencode", "stack"
 
   - result.by: ONLY one of:
     "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", "line", "area", ""
@@ -420,6 +427,9 @@ async function validateParse(parsed_json, nl_input) {
     - always action.target = "button", action.action = "click"
     - if result.by = "line", then result.parameter = "area.
     - else if result.by = "area", then result.parameter = "bar".
+
+  8. STACK
+    - always action.target = "visual mark", action.action = "drag", result.target = "visual mark"
     
   You MUST only use combinations listed below.
   If a combination is not in the list, it is NOT supported.
@@ -470,6 +480,7 @@ async function validateParse(parsed_json, nl_input) {
   - \`"overlap"\` → only valid when:
     - \`action.target === "button"\`, OR
     - \`action.action === "drag"\`
+  - \`"stack"\` → only works with \`action.target === "visual mark"\` and \`action.action === "drag"\` and \`result.target === "visual mark"\`
 
   → Revise to the closest valid version  
   → Set \`"similar": true\` but retain original classification as \`"not support"\`
@@ -509,6 +520,12 @@ async function validateParse(parsed_json, nl_input) {
     - \`action.target\` MUST be \`"button"\`
     - If \`result.by\` is \`"line"\`, then \`result.paramter\` is \`"area"\`.
     - If \`result.by\` is \`"area"\`, then \`result.parameter\` is \`"bar"\`.
+
+  - If \`result.behavior\` is \`"stack"\`, then:
+    - \`action.action\` MUST be \`"drag"\`
+    - \`action.target\` MUST be \`"visual mark"\`
+    - \`result.target\` MUST be \`"visual mark"\`
+
   ---
 
   #### 🟢 CORRECT
@@ -629,6 +646,7 @@ function activateInteraction(parsedJson){
   // console.log(mouse_action);
   // "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" ),
 
+  // reencode
   if(result.behavior === "reencode") {
     if(result.by === "line") {
       reencodeButton("line", "area");
@@ -636,6 +654,17 @@ function activateInteraction(parsedJson){
       return true;
     } else if (result.by === "area" || result.by === "stacked area") {
       reencodeButton("area", "bar");
+      _chart_object[0].share_json.push(parsedJson);
+      return true;
+    }
+  }
+
+  // stack
+  if(result.behavior === "stack") {
+    if(action.action === "drag") {
+      _chart_object[0].CoordSys.forEach(coordSys => {
+        coordSys.activate_allow_overlap();
+      });
       _chart_object[0].share_json.push(parsedJson);
       return true;
     }

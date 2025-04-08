@@ -21,7 +21,6 @@ let canvas_main = function(data){
     .attr('id', "tooltip")
     .style('opacity', 0)
 
-
   let window_width = document.getElementById("canvas").clientWidth
   let window_height = document.getElementById("canvas").clientHeight
   let chat_body_width = document.getElementById("chat-body")?.clientWidth
@@ -286,9 +285,13 @@ let draw_a_canvas = function(svg, chart_json, begin_point, resize = 1){
     _chart_object.push(new_canvas_object)
   }
   function reset_current_canvas(){
+    let window_width = document.body.clientWidth - (document.getElementById("chat-body")?.clientWidth || 0)
+    let window_height = window.innerHeight
+    let resize_w = window_width * 0.7 / original_chart_json.size.width
+    let resize_h = window_height * 0.7 / original_chart_json.size.height
+    let resize_rate = Math.min(1, resize_w, resize_h)
     const allowed_json = JSON.parse(JSON.stringify(_chart_object[0].share_json));
     let new_begin_point = {x: plot_area.x, y: plot_area.y}
-    let resize_rate = current_canvas_object.global_resize
     let new_chart_json = JSON.parse(JSON.stringify(original_chart_json))
     delete_current_canvas()
     let new_canvas_object = new draw_a_canvas(svg, new_chart_json, new_begin_point, resize = resize_rate)

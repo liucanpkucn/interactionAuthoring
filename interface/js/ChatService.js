@@ -289,7 +289,7 @@ class ChatService {
     UserMessage (message, no_reply = false) {
         const userMessageDiv = this.document.createElement("div");
         userMessageDiv.className = "chat-message user";
-        userMessageDiv.innerHTML = `<div class="message-text" style="text-align: right; padding-right: 15px;">${message}</div>`;
+        userMessageDiv.innerHTML = `<div class="message-text" style="text-align: left; padding-right: 10px;">${message}</div>`;
         this.chatBody.appendChild(userMessageDiv);
 
 
