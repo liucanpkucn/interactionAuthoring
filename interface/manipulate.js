@@ -37,7 +37,7 @@ async function getAnswer(message) {
               "result": {
                   "target": ( "visual mark" | "axis" | "tooltip" ),
                   "behavior": ( "remove" | "rescale" | "resort" | "annotate" | "overlap" | "highlight" | "reencode" | "stack" ),
-                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected | "move bottom" | "line" | "area" | "" ),
+                  "by": ( "height" | "opacity" | "color" | "axis" | "value" | "auto" | "unselected" | "selected" | "move bottom" | "line" | "area" | "" ),
                   "parameter": ("bar" | "stacked area" | "area" | "black" | "white" | "red" | "green" | "blue" | "yellow" | "gray" | "orange" | "pink" | "purple" | "brown" | "x" | "y" | "all" | "" )
               },
               "similar": (true | false),
@@ -79,7 +79,7 @@ async function getAnswer(message) {
       - result.target must be \`"visual mark"\`.
       - action.target must be \`"visual mark"\` and action.action must be \`"drag"\`.
       
-  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", "line", "area" or empty string("").
+  6. **result.by** must be one of: "height", "opacity", "color", "axis", "value", "auto", "unselected", "selected", "move bottom", "line", "area" or empty string("").
     - If "color", then parameter must be one of:
       **"black", "white", "red", "green", "blue", "yellow", "gray", "orange", "pink", "purple", "brown"**.
     - If "axis", then parameter must be "x", "y", or "all".
@@ -387,7 +387,7 @@ async function validateParse(parsed_json, nl_input) {
     "remove", "rescale", "resort", "annotate", "overlap", "highlight", "reencode", "stack"
 
   - result.by: ONLY one of:
-    "height", "opacity", "color", "axis", "value", "auto", "unselected", "move bottom", "line", "area", ""
+    "height", "opacity", "color", "axis", "value", "auto", "unselected", "selected", "move bottom", "line", "area", ""
 
   - result.parameter: ONLY one of:
     "bar", "stacked area", "area",
@@ -403,7 +403,7 @@ async function validateParse(parsed_json, nl_input) {
 
   1. REMOVE
     - action.target = "visual mark" → result.behavior = "remove"
-    - action.target = "button" + result.by = "color" or "unselected" → result.behavior = "remove"
+    - action.target = "button" + result.by = "color" or "unselected" or "selected" → result.behavior = "remove"
 
   2. RESCALE
     - action.target = "axis", action.action = "zoom" → result.behavior = "rescale"
@@ -472,7 +472,7 @@ async function validateParse(parsed_json, nl_input) {
     - \`action.target === "axis"\` and \`action.action === "zoom"\`, OR
     - \`action.target === "button"\` and \`action.parameter === "y"\`
   - \`"remove"\` → only valid when:
-    - \`action.target === "button"\` and \`by === "color"\` or \`"unselected"\`, OR
+    - \`action.target === "button"\` and \`by === "color"\` or \`"unselected"\` or \`"selected"\`, OR
     - \`action.target === "visual mark"\`
   - \`"resort"\` → only for bar or stacked area charts
     - \`result.parameter\` must be \`"bar"\` or \`"stacked area"\`
@@ -679,7 +679,7 @@ function activateInteraction(parsedJson){
         buttonCreation({behavior: "remove", by: result.by, color: result.parameter});
         _chart_object[0].share_json.push(parsedJson);
         return true;
-      } else if (result.by === "unselected"){
+      } else if (result.by === "unselected" || result.by === "selected"){
         buttonCreation({behavior: "remove", by: result.by});
         _chart_object[0].share_json.push(parsedJson);
         return true;
@@ -820,114 +820,136 @@ function activateInteraction(parsedJson){
   return false;
 }
 
-
 function buttonCreation({behavior, by, color, chart}) {
   console.log("Button Creation");
-
-  let mainRect = document.querySelector(".mainrect");
-
-  if (!mainRect) {
+  let mainRect
+  setTimeout(() => {
+    mainRect= document.querySelector(".mainrect");
+    if (!mainRect) {
       console.error("Error: No element found with class 'mainrect'");
       return;
-  }
+    }
 
-  let button = document.querySelector(".interaction-button");
+    let button = document.getElementById("interaction-button");
 
-  if (!button) {
-    button = document.createElement("button");
-    button.className = "interaction-button";
-    button.id = "interaction-button";
-    button.innerText = behavior;
-    button.style.left = (mainRect.getBoundingClientRect().right - 90) + "px"; // 오른쪽에 배치
-    button.style.top = (mainRect.getBoundingClientRect().bottom - 50) + "px"; // 같은 높이로 정렬
-    document.body.appendChild(button);
-    makeDraggable(button);
-  }
+    if (!button) {
+      button = document.createElement("button");
+      button.className = "interaction-button";
+      button.id = "interaction-button";
+      button.innerText = behavior;
+      button.style.left = (mainRect.getBoundingClientRect().right - 90) + "px"; // 오른쪽에 배치
+      button.style.top = (mainRect.getBoundingClientRect().bottom - 50) + "px"; // 같은 높이로 정렬
+      document.body.appendChild(button);
+      makeDraggable(button);
+    }
 
-  if (behavior === "remove") {
-    if (by === "color") {
-      console.log("BUTTON - REMOVE COLOR");
-      button.addEventListener("click", function () {
-        _chart_object[0].CoordSys.forEach(coordSys => {
-          coordSys.deactivate_visual_object(find_element_by_color(color));
-        });
-      });
-    } else if (by === "unselected") {
-      console.log("BUTTON - REMOVE UNSELECTED AREA");
-      button.addEventListener("click", function () {
-        _chart_object[0].CoordSys.forEach(coordSys => {
-          let selected_idx = [];
-          coordSys.visual_object.forEach((vo, idx) => {
-            if (vo.selected === false) {
-              selected_idx.push(idx);
-            }
+    if (behavior === "remove") {
+      if (by === "color") {
+        console.log("BUTTON - REMOVE COLOR");
+        button.addEventListener("click", function () {
+          _chart_object[0].CoordSys.forEach(coordSys => {
+            coordSys.deactivate_visual_object(find_element_by_color(color));
           });
-          coordSys.deactivate_visual_object_group(selected_idx);
         });
-      });
-    }
-  } else if (behavior === "resort") {
-    if(chart === "bar"){
-      button.addEventListener("click", function (e) {
-        _chart_object[0].CoordSys[_chart_object[0].CoordSys.length - 1].x_axis.sorted_axis(e, by);
-      });
-    } else if (chart === "stacked area"){
+      } else if (by === "unselected" || by === "selected") {
+        console.log("BUTTON - REMOVE UNSELECTED AREA");
+        button.addEventListener("click", function () {
+          _chart_object[0].CoordSys.forEach(coordSys => {
+            let selected_idx = [];
+            coordSys.visual_object.forEach((vo, idx) => {
+              if (by === "unselected" && vo.selected === false) {
+                selected_idx.push(idx);
+              } else if(by === "selected" && vo.selected === true){
+                selected_idx.push(idx);
+              }
+            });
+            coordSys.deactivate_visual_object_group(selected_idx);
+          });
+        });
+      }
+    } else if (behavior === "resort") {
+      if(chart === "bar"){
+        button.addEventListener("click", function (e) {
+          _chart_object[0].CoordSys[_chart_object[0].CoordSys.length - 1].x_axis.sorted_axis(e, by);
+        });
+      } else if (chart === "stacked area"){
+        button.addEventListener("click", function () {
+          _chart_object[0].CoordSys.forEach(coordSys => {
+            coordSys.resort_stacked_area_chart(by);
+          });
+        });
+      }
+    } else if (behavior === "overlap") {
+      button.innerText = "compare";
       button.addEventListener("click", function () {
         _chart_object[0].CoordSys.forEach(coordSys => {
-          coordSys.resort_stacked_area_chart(by);
+          coordSys.overlap(_chart_object[0], _chart_object[0].content_group);
         });
       });
-    }
-  } else if (behavior === "overlap") {
-    button.innerText = "compare";
-    button.addEventListener("click", function () {
-      _chart_object[0].CoordSys.forEach(coordSys => {
-        coordSys.overlap(_chart_object[0], _chart_object[0].content_group);
+    } else if (behavior === "rescale") {
+      button.addEventListener("click", function () {
+        setTimeout(() => {
+          auto_change_quantitative_scale(_chart_object[0], by);
+        }, 3000);
       });
-    });
-  } else if (behavior === "rescale") {
-    button.addEventListener("click", function () {
-      auto_change_quantitative_scale(_chart_object[0], by);
-    });
-  }
+    }
+  }, 1500);
 }
 
 function reencodeButton(by, parameter) {
   console.log("Reencode Button Creation");
+  let mainRect
+  setTimeout(() => {
+    mainRect = document.querySelector(".mainrect");
 
-  let mainRect = document.querySelector(".mainrect");
+    if (!mainRect) {
+        console.error("Error: No element found with class 'mainrect'");
+        return;
+    }
 
-  if (!mainRect) {
-      console.error("Error: No element found with class 'mainrect'");
+    let existingButton = document.getElementById(`interaction-button-${by}-${parameter}`);
+    if (existingButton) {
+      console.log("Button already exists for this transition.");
       return;
-  }
-  let button = document.querySelector(".interaction-button");
+    }
 
-  button = document.createElement("button");
-  button.className = "interaction-button";
-  button.id = "interaction-button";
-  button.style.width = "90px";
-  button.style.height = "50px";
-  button.style.left = (mainRect.getBoundingClientRect().right - 120) + "px"; // 오른쪽에 배치
+    // let button = document.querySelector(".interaction-button");
+    let button = document.createElement("button");
 
-  if (by === "line" && parameter === "area") {
-    console.log("BUTTON - Line2Area");
-    button.innerText = "Change to Area Chart";
-    button.style.top = (mainRect.getBoundingClientRect().top + 60) + "px"; // 같은 높이로 정렬
-    button.addEventListener("click", function () {
-      re_encode_line2area(_chart_object[0])
-    });
-  } else if (by === "area" && parameter === "bar") {
-    console.log("BUTTON - Area2Bar");
-    button.innerText = "Change to Bar Chart";
-    button.style.top = (mainRect.getBoundingClientRect().top + 120) + "px"; // 같은 높이로 정렬
-    button.addEventListener("click", function () {
-      re_encode_area2bar(_chart_object[0], 10)
-    });
-  }
+    button = document.createElement("button");
+    button.className = "interaction-button";
+    button.id = `interaction-button-${by}-${parameter}`;
+    button.style.width = "90px";
+    button.style.height = "50px";
+    button.style.left = (mainRect.getBoundingClientRect().right - 120) + "px"; // 오른쪽에 배치
 
-  document.body.appendChild(button);
-  makeDraggable(button);
+    if (by === "line" && parameter === "area") {
+      console.log("BUTTON - Line2Area");
+      let line_chart_state = 'line';
+      button.innerText = "Change to Area Chart";
+      button.style.top = (mainRect.getBoundingClientRect().top + 60) + "px"; // 같은 높이로 정렬
+      button.addEventListener("click", function () {
+        if(line_chart_state === 'line'){
+          re_encode_line2area(_chart_object[0])
+          line_chart_state = 'area';
+        }
+      });
+    } else if (by === "area" && parameter === "bar") {
+      console.log("BUTTON - Area2Bar");
+      let area_chart_state = 'area';
+      button.innerText = "Change to Bar Chart";
+      button.style.top = (mainRect.getBoundingClientRect().top + 120) + "px"; // 같은 높이로 정렬
+      button.addEventListener("click", function () {
+        if(area_chart_state === 'area'){
+          re_encode_area2bar(_chart_object[0], 10)
+          area_chart_state = 'bar';
+        }
+      });
+    }
+
+    document.body.appendChild(button);
+    makeDraggable(button);
+  }, 1500);
 }
 
 function closestColor(r, g, b) {

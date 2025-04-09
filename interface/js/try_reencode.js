@@ -236,7 +236,10 @@ function convert_area_chart_to_bar_chart(new_coord_data, data_list, y_axis, bar_
     console.log(new_control_point_2)
     new_control_point.push(...new_control_point_2)
 
-    let max_bar_num = 10
+
+
+    // let max_bar_num = 4
+
 
     visual_object.forEach(function(old_vo){
         let direction_name = "fixed_y_value"
@@ -244,19 +247,19 @@ function convert_area_chart_to_bar_chart(new_coord_data, data_list, y_axis, bar_
 
         let fixed_list = old_vo[direction_name]
 
-        if (fixed_list.length > max_bar_num){
-            let inter = parseInt(fixed_list.length / max_bar_num)
-            let new_fixed_list = []
-            for (let i = 0; i < fixed_list.length; i ++){
-                if (i * inter < fixed_list.length){
-                    new_fixed_list.push(fixed_list[i * inter])
-                }
-                else{
-                    break;
-                }
-            }
-            fixed_list = new_fixed_list;
-        }
+        // if (fixed_list.length > max_bar_num){
+        //     let inter = parseInt(fixed_list.length / max_bar_num)
+        //     let new_fixed_list = []
+        //     for (let i = 0; i < fixed_list.length; i ++){
+        //         if (i * inter < fixed_list.length){
+        //             new_fixed_list.push(fixed_list[i * inter])
+        //         }
+        //         else{
+        //             break;
+        //         }
+        //     }
+        //     fixed_list = new_fixed_list;
+        // }
         let pixel = bar_width
         
         fixed_list.forEach(function(d){
@@ -265,6 +268,8 @@ function convert_area_chart_to_bar_chart(new_coord_data, data_list, y_axis, bar_
             new_vo.control_point = [d.pid[0], d.pid[1], d.pid[1]+control_point_length, d.pid[0]+control_point_length]
             new_vo['O_selected'] = new_control_point[d.pid[0]]['O_selected']
             new_vo['activate']= new_control_point[d.pid[0]]['activate']
+            new_vo['stroke'] = 'white'
+            new_vo['stroke_width'] = '0.5px';
             remove_useless_attr(new_vo)
             new_visual_object.push(new_vo)
             let vid = new_visual_object.length-1;
@@ -521,6 +526,9 @@ function convert_line_chart_to_area_chart(new_coord_data, should_y, data_list){
         new_vo.obj_id = new_visual_object.length-1;
         new_vo.type = 'area'
         new_vo.fill = new_vo.stroke
+        new_vo.stroke = 'white'
+        new_vo.stroke_width = '0.5px';
+        
         remove_useless_attr(new_vo)
         new_vo.control_point = []
         old_vo.control_point.forEach(function(d){
@@ -532,7 +540,7 @@ function convert_line_chart_to_area_chart(new_coord_data, should_y, data_list){
             constraints.push({'type': 'fixed-y', 'point1': d, 'point2': d+control_point_length, 'distance': distance})
             new_vo.control_point.push(d)
             if (!collision_dict.hasOwnProperty(new_control_point[d].should_x)) {
-                collision_dict[new_control_point[d].should_x] = {'type': 'collision_group', 'direction': 'y', collision_order: [], point_group_list: [], 'distance_x': 0, 'distance_y': 0, 'group_id': 0}
+                collision_dict[new_control_point[d].should_x] = {'type': 'collision_group', 'direction': 'y', collision_order: [], point_group_list: [], 'distance_x': 1, 'distance_y': 0, 'group_id': 0}
             }
             collision_dict[new_control_point[d].should_x].collision_order.push(new_vo.obj_id)
             collision_dict[new_control_point[d].should_x].point_group_list.push({'point': [d, d+control_point_length], vid: new_vo.obj_id})
@@ -651,4 +659,118 @@ function convert_bar_chart_to_area_chart(new_coord_data, data_list){
     new_coord_data.constraints = constraint
     new_coord_data.control_point = new_control_point
     new_coord_data.visual_object_num = new_visual_object.length
+}
+
+
+
+interaction_list = [
+    {
+      "action": {
+        "target": "button",
+        "action": "click",
+        "parameter": "area"
+      },
+      "result": {
+        "target": "visual mark",
+        "behavior": "reencode",
+        "by": "line",
+        "parameter": "area"
+      },
+      "similar": false,
+      "description": "Changes the line chart to an area chart.",
+      "classification": "correct"
+    },
+    {
+      "action": {
+        "target": "visual mark",
+        "action": "drag",
+        "parameter": ""
+      },
+      "result": {
+        "target": "visual mark",
+        "behavior": "stack",
+        "by": "",
+        "parameter": ""
+      },
+      "similar": true,
+      "description": "Stacks the area chart.",
+      "classification": "not support"
+    },
+    {
+      "action": {
+        "target": "axis",
+        "action": "zoom",
+        "parameter": "all"
+      },
+      "result": {
+        "target": "axis",
+        "behavior": "rescale",
+        "by": "auto",
+        "parameter": ""
+      },
+      "similar": false,
+      "description": "Rescales the axis.",
+      "classification": "correct"
+    },
+    {
+      "action": {
+        "target": "button",
+        "action": "click",
+        "parameter": "bar"
+      },
+      "result": {
+        "target": "visual mark",
+        "behavior": "reencode",
+        "by": "area",
+        "parameter": "bar"
+      },
+      "similar": false,
+      "description": "Changes the area chart to a bar chart.",
+      "classification": "correct"
+    },
+    {
+      "action": {
+        "target": "visual mark",
+        "action": "mouseover",
+        "parameter": ""
+      },
+      "result": {
+        "target": "tooltip",
+        "behavior": "annotate",
+        "by": "",
+        "parameter": ""
+      },
+      "similar": true,
+      "description": "Displays a tooltip.",
+      "classification": "not support"
+    },
+    {
+        "action": {
+          "target": "button",
+          "action": "click",
+          "parameter": ""
+        },
+        "result": {
+          "target": "visual mark",
+          "behavior": "remove",
+          "by": "unselected",
+          "parameter": ""
+        },
+        "similar": true,
+        "description": "remove visual mark.",
+        "classification": "not support"
+      }
+  ]
+function conduct_case() {
+    interaction_list.forEach((interaction) => {
+        activateInteraction(interaction);
+    })
+    // re_encode_line2area(_chart_object[0])
+    // _chart_object[0].CoordSys[0].activate_allow_overlap()
+    // _chart_object[0].CoordSys[0].x_axis.activate_rescale();
+    // _chart_object[0].CoordSys[0].y_axis.activate_rescale();
+    // re_encode_area2bar(_chart_object[0])
+    // _chart_object[0].CoordSys.forEach(coordSys => {
+    //     coordSys.activate_value_tooltip("all");
+    //   });
 }
