@@ -62,7 +62,7 @@ class ChatService {
     }
     set_default_input (input) {
         const textarea = document.getElementById("chat-input");
-        textarea.value = input;
+        textarea.placeholder = input;
     }
     get_default_response (response_type) {
         return this.default_response[response_type][this.language];

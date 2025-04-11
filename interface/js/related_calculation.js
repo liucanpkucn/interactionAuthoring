@@ -912,7 +912,7 @@ let draw_a_coordinate = function(svg, current_canvas_contain, text_canvas, coord
     if(allowOverlap){
       setTimeout(() => {
         auto_change_quantitative_scale(_chart_object[0], 'y');
-      }, 3000);
+      }, 4000);
     }
     
     // current_move_list.forEach(function(vid){

@@ -837,8 +837,12 @@ function buttonCreation({behavior, by, color, chart}) {
       button.className = "interaction-button";
       button.id = "interaction-button";
       button.innerText = behavior;
-      button.style.left = (mainRect.getBoundingClientRect().right - 90) + "px"; // 오른쪽에 배치
-      button.style.top = (mainRect.getBoundingClientRect().bottom - 50) + "px"; // 같은 높이로 정렬
+      button.style.width = "90px";
+      button.style.height = "50px";
+      button.style.left = (mainRect.getBoundingClientRect().right - 120) + "px";
+      button.style.top = (mainRect.getBoundingClientRect().top + 180) + "px"; // 같은 높이로 정렬
+      // button.style.left = (mainRect.getBoundingClientRect().right - 90) + "px"; // 오른쪽에 배치
+      // button.style.top = (mainRect.getBoundingClientRect().bottom - 50) + "px"; // 같은 높이로 정렬
       document.body.appendChild(button);
       makeDraggable(button);
     }
@@ -890,7 +894,7 @@ function buttonCreation({behavior, by, color, chart}) {
       button.addEventListener("click", function () {
         setTimeout(() => {
           auto_change_quantitative_scale(_chart_object[0], by);
-        }, 3000);
+        }, 4000);
       });
     }
   }, 1500);
@@ -941,7 +945,7 @@ function reencodeButton(by, parameter) {
       button.style.top = (mainRect.getBoundingClientRect().top + 120) + "px"; // 같은 높이로 정렬
       button.addEventListener("click", function () {
         if(area_chart_state === 'area'){
-          re_encode_area2bar(_chart_object[0], 10)
+          re_encode_area2bar(_chart_object[0], 20)
           area_chart_state = 'bar';
         }
       });
